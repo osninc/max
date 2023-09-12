@@ -8,7 +8,7 @@
       "title": "Search",
       "type": "string",
       "editor": "textfield",
-      "prefill": "Austin",
+      "prefill": "Malad City, ID",
       "description": "Must be a city"
     },
     "status": {

@@ -1,0 +1,14 @@
+{
+  "actorSpecification": 1,
+  "name": "name-of-my-scraper",
+  "version": "0.0",
+  "buildTag": "latest",
+  "dockerfile": "./Dockerfile",
+  "input": "./input_schema.json",
+  "environmentVariables": {
+    "GOOGLE_API_KEY": "AIzaSyChuRWb9cBUiwHutYkVIEiLBc-0WFcWoNw"
+  },
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  }
+}

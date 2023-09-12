@@ -1,0 +1,185 @@
+{
+  "title": "Testing",
+  "description": "Description",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "search": {
+      "title": "Search",
+      "type": "string",
+      "editor": "textfield",
+      "prefill": "Malad City, ID",
+      "description": "Must be a city"
+    },
+    "status": {
+      "title": "Status",
+      "type": "string",
+      "description": "Property for sale/rent",
+      "default": "sale",
+      "prefill": "sale",
+      "editor": "select",
+      "enum": ["sale", "isForRent", "isRecentlySold"],
+      "enumTitles": ["For sale", "For rent", "Sold"]
+    },
+    "isSingleFamily": {
+      "title": "Houses",
+      "groupCaption": "Home Type",
+      "type": "boolean",
+      "description": "",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "isTownhouse": {
+      "title": "Townhouses",
+      "default": true,
+      "type": "boolean",
+      "description": "",
+      "editor": "checkbox"
+    },
+    "isMultiFamily": {
+      "title": "Multi Family",
+      "type": "boolean",
+      "default": true,
+      "description": "",
+      "editor": "checkbox"
+    },
+    "isCondo": {
+      "title": "Condos",
+      "type": "boolean",
+      "default": true,
+      "description": "",
+      "editor": "checkbox"
+    },
+    "isLotLand": {
+      "title": "Lots",
+      "type": "boolean",
+      "default": true,
+      "description": "",
+      "editor": "checkbox"
+    },
+    "isApartment": {
+      "title": "Apartments",
+      "type": "boolean",
+      "default": true,
+      "description": "",
+      "editor": "checkbox"
+    },
+    "isManufactured": {
+      "title": "Manufactured",
+      "type": "boolean",
+      "default": true,
+      "description": "",
+      "editor": "checkbox"
+    },
+    "minPrice": {
+      "title": "Min Price",
+      "type": "integer",
+      "description": "Minimum price",
+      "editor": "number"
+    },
+    "maxPrice": {
+      "title": "Max Price",
+      "type": "integer",
+      "description": "Maximum price",
+      "editor": "number"
+    },
+    "minLotSize": {
+      "title": "Min Lot Size",
+      "type": "string",
+      "description": "Minimum lot size",
+      "editor": "select",
+      "enum": [
+        "1000",
+        "2000",
+        "3000",
+        "4000",
+        "5000",
+        "7500",
+        "10890",
+        "21780",
+        "43560",
+        "87120",
+        "217800",
+        "435600",
+        "871200",
+        "2178000",
+        "4356000"
+      ],
+      "enumTitles": [
+        "1,000 sqft",
+        "2,000 sqft",
+        "3,000 sqft",
+        "4,000 sqft",
+        "5,000 sqft",
+        "7,500 sqft",
+        "1/4 acre/10,890 sqft",
+        "1/2 acre",
+        "1 acre",
+        "2 acres",
+        "5 acres",
+        "10 acres",
+        "20 acres",
+        "50 acres",
+        "100 acres"
+      ]
+    },
+    "maxLotSize": {
+      "title": "Max Lot Size",
+      "type": "string",
+      "description": "Maximum lot size",
+      "editor": "select",
+      "enum": [
+        "1000",
+        "2000",
+        "3000",
+        "4000",
+        "5000",
+        "7500",
+        "10890",
+        "21780",
+        "43560",
+        "87120",
+        "217800",
+        "435600",
+        "871200",
+        "2178000",
+        "4356000"
+      ],
+      "enumTitles": [
+        "1,000 sqft",
+        "2,000 sqft",
+        "3,000 sqft",
+        "4,000 sqft",
+        "5,000 sqft",
+        "7,500 sqft",
+        "1/4 acre/10,890 sqft",
+        "1/2 acre",
+        "1 acre",
+        "2 acres",
+        "5 acres",
+        "10 acres",
+        "20 acres",
+        "50 acres",
+        "100 acres"
+      ]
+    },
+    "doz": {
+      "title": "Sold in Last/Days on Zillow",
+      "type": "string",
+      "description": "Sold in Last/Days on Zillow",
+      "editor": "select",
+      "enum": ["1", "7", "30", "90", "6m", "12m", "24m", "36m"],
+      "enumTitles": [
+        "1 day",
+        "7 days",
+        "30 days",
+        "90 days",
+        "6 months",
+        "12 months",
+        "24 months",
+        "36 months"
+      ]
+    }
+  },
+  "required": ["search"]
+}

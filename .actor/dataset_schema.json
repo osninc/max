@@ -1,0 +1,10 @@
+{
+  "actorSpecification": 1,
+  "title": "Zillow listings",
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "transformation": {}
+    }
+  }
+}

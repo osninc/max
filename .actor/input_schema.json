@@ -1,0 +1,15 @@
+{
+  "title": "Testing",
+  "description": "Description",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "inputs": {
+      "title": "Inputs",
+      "description": "Inputs",
+      "type": "array",
+      "editor": "json"
+    }
+  },
+  "required": ["inputs"]
+}

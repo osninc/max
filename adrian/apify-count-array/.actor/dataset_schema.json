@@ -1,0 +1,12 @@
+{
+  "actorSpecification": 1,
+  "title": "Zillow listings",
+  "views": {
+    "overvivew": {
+      "title": "Overview",
+      "transformation": {
+        "fields": ["agentListings", "otherListings", "total"]
+      }
+    }
+  }
+}

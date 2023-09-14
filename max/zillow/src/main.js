@@ -22,7 +22,8 @@ const getProxyUrl = async () => {
     });
     // Example http://bob:password123@proxy.example.com:8000
     const urlObj = new URL(await proxyConfiguration.newUrl());
-    return {
+    console.log({ urlObj })
+    const obj = {
         protocol: urlObj.protocol.replace(":", ""),
         host: urlObj.hostname,
         port: urlObj.port,
@@ -31,6 +32,7 @@ const getProxyUrl = async () => {
             password: urlObj.password
         }
     }
+    return obj;
 }
 
 
@@ -230,6 +232,8 @@ const getSearchResults = async searchParams => {
                     proxy: await getProxyUrl()
                 }
             }
+
+            console.log({ finalConfig })
             const response = await axios.get(url, finalConfig);
             const data = response.data;
 

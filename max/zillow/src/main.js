@@ -14,12 +14,10 @@ const ZIPCODE = 7;
 const CITY = 6;
 
 const USETEST = false;
-const USEPROXY = true;
+const USEPROXY = false;
 
 const getProxyUrl = async () => {
-    const proxyConfiguration = await Actor.createProxyConfiguration({
-        groups: ["RESIDENTIAL"],
-    });
+    const proxyConfiguration = await Actor.createProxyConfiguration();
     // Example http://bob:password123@proxy.example.com:8000
     const urlObj = new URL(await proxyConfiguration.newUrl());
     console.log({ urlObj })
@@ -32,7 +30,7 @@ const getProxyUrl = async () => {
             password: urlObj.password
         }
     }
-    console.log({obj})
+    console.log({ obj })
     return obj;
 }
 
@@ -191,6 +189,7 @@ const transformData = data => {
             lat: property.hdpData?.homeInfo?.latitude,
             lon: property.hdpData?.homeInfo?.longitude,
             price: property.hdpData?.homeInfo?.price,
+            lotAreaString: property.lotAreaString,
             lotAreaValue: property.hdpData?.homeInfo?.lotAreaValue,
             lotAreaUnit: property.hdpData?.homeInfo?.lotAreaUnit
         }
@@ -325,14 +324,14 @@ if (status === "isRecentlySold") {
 
 const searchParams = {
     ...loc,
-    defaults: {
-        ...defaults,
-        filterState: {
-            ...defaults.filterState,
-            ...additionalFilters
-        }
+    ...defaults,
+    filterState: {
+        ...defaults.filterState,
+        ...additionalFilters
     }
 }
+
+//console.log({ searchParams })
 
 // Process everything
 const newData = await getSearchResults(searchParams);

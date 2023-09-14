@@ -10,7 +10,7 @@
       "editor": "select",
       "prefill": "San Diego County, CA",
       "description": "Must be a county",
-      "enum": [
+      "enumTitles": [
         "Los Angeles County, CA",
         "Cook County, IL",
         "Harris County, TX",

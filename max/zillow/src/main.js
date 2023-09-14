@@ -14,7 +14,7 @@ const ZIPCODE = 7;
 const CITY = 6;
 
 const USETEST = false;
-const USEPROXY = true;
+const USEPROXY = false;
 
 const getProxyUrl = async () => {
     const proxyConfiguration = await Actor.createProxyConfiguration({

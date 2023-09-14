@@ -32,6 +32,7 @@ const getProxyUrl = async () => {
             password: urlObj.password
         }
     }
+    console.log({obj})
     return obj;
 }
 

@@ -1,0 +1,19 @@
+{
+	"name": "zillow",
+	"version": "0.0.1",
+	"type": "module",
+	"description": "This is an example of an Apify actor.",
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"dependencies": {
+		"apify": "^3.0.0",
+		"axios": "^1.4.0"
+	},
+	"scripts": {
+		"start": "node ./src/main.js",
+		"test": "echo \"Error: oops, the actor has no tests yet, sad!\" && exit 1"
+	},
+	"author": "It's not you it's me",
+	"license": "ISC"
+}

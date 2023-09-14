@@ -8,8 +8,8 @@
       "title": "Search",
       "type": "string",
       "editor": "textfield",
-      "prefill": "Malad City, ID",
-      "description": "Must be a city"
+      "prefill": "San Diego County, CA",
+      "description": "Must be a county"
     },
     "status": {
       "title": "Status",
@@ -26,12 +26,12 @@
       "groupCaption": "Home Type",
       "type": "boolean",
       "description": "",
-      "default": true,
+      "default": false,
       "editor": "checkbox"
     },
     "isTownhouse": {
       "title": "Townhouses",
-      "default": true,
+      "default": false,
       "type": "boolean",
       "description": "",
       "editor": "checkbox"
@@ -39,14 +39,14 @@
     "isMultiFamily": {
       "title": "Multi Family",
       "type": "boolean",
-      "default": true,
+      "default": false,
       "description": "",
       "editor": "checkbox"
     },
     "isCondo": {
       "title": "Condos",
       "type": "boolean",
-      "default": true,
+      "default": false,
       "description": "",
       "editor": "checkbox"
     },
@@ -60,14 +60,14 @@
     "isApartment": {
       "title": "Apartments",
       "type": "boolean",
-      "default": true,
+      "default": false,
       "description": "",
       "editor": "checkbox"
     },
     "isManufactured": {
       "title": "Manufactured",
       "type": "boolean",
-      "default": true,
+      "default": false,
       "description": "",
       "editor": "checkbox"
     },

@@ -38,7 +38,7 @@ const lotSize = [
 // ]
 
 const axiosDefaults = {
-    timeout: 10000
+    timeout: 30000
 }
 
 // The init() call configures the Actor for its environment. It's recommended to start every Actor with an init().

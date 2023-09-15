@@ -6,18 +6,18 @@ const USEPROXY = true;
 const DEBUG = false;
 
 // Get my test data
-//import testLarge from "../test_data/test_san_diego_page1.json" assert {type: "json"};
-//import testRegion from "../test_data/test_san_diego_region.json" assert {type: "json"};
+// import testLarge from "../test_data/test_san_diego_page1.json" assert {type: "json"};
+// import testRegion from "../test_data/test_san_diego_region.json" assert {type: "json"};
 
 const statusMatrix = ["For Sale", "Sold"];
 const timeMatrix = [
-    ["7","7 days"],
-    ["30","30 days"], 
-    ["90","90 days"],
-    ["6m","6 months"], 
-    ["12m","12 months"], 
-    ["24m","24 months"], 
-    ["36m","36 months"]
+    ["7", "7 days"],
+    ["30", "30 days"],
+    ["90", "90 days"],
+    ["6m", "6 months"],
+    ["12m", "12 months"],
+    ["24m", "24 months"],
+    ["36m", "36 months"]
 ];
 const lotSize = [
     ["", "1000"],
@@ -215,31 +215,9 @@ const getLocationInfo = async search => {
 
 const transformData = data => {
     return { count: data.categoryTotals.cat1.totalResultCount }
-    // // Keep only the data we care about
-    // const propertiesFull = data.cat1.searchResults.listResults;
-    // const properties = propertiesFull.map(property => {
-    //     return {
-    //         zpid: property.zpid,
-    //         streetAddress: property.hdpData?.homeInfo?.streetAddress,
-    //         zipcode: property.hdpData?.homeInfo?.zipcode,
-    //         city: property.hdpData?.homeInfo?.zipcode,
-    //         state: property.hdpData?.homeInfo?.zipcode,
-    //         lat: property.hdpData?.homeInfo?.latitude,
-    //         lon: property.hdpData?.homeInfo?.longitude,
-    //         price: property.hdpData?.homeInfo?.price,
-    //         lotAreaValue: property.hdpData?.homeInfo?.lotAreaValue,
-    //         lotAreaUnit: property.hdpData?.homeInfo?.lotAreaUnit
-    //     }
-    // })
-    // return {
-    //     totalPages: data.cat1.searchList.totalPages,
-    //     resultsPerPage: data.cat1.searchList.resultsPerPage,
-    //     count: data.categoryTotals.cat1.totalResultCount,
-    //     //results: properties
-    // };
 }
 
-const getSearchResults = async searchParams => {
+const getSearchResults = async params => {
     const url = "https://www.zillow.com/search/GetSearchPageState.htm";
 
     const wants = {
@@ -257,7 +235,11 @@ const getSearchResults = async searchParams => {
         try {
             let finalConfig = {
                 headers: defaultHeaders,
-                params: { searchQueryState: encodeURIComponent(JSON.stringify(searchParams)), wants: encodeURIComponent(JSON.stringify(wants)), requestId: requestId },
+                params: {
+                    searchQueryState: encodeURIComponent(JSON.stringify(params)),
+                    wants: encodeURIComponent(JSON.stringify(wants)),
+                    requestId: requestId
+                },
                 responseType: "json",
                 ...axiosDefaults
             }
@@ -276,11 +258,10 @@ const getSearchResults = async searchParams => {
 
             const response = await axios.get(url, finalConfig);
             const data = response.data;
-
+            
             return transformData(data)
 
         } catch (error) {
-            console.log("error")
             console.log({ error })
             let message = "";
             if (error.response) {
@@ -363,6 +344,7 @@ const results = await Promise.all(statusMatrix.map(async status => {
 
             // Process everything
             const results = await getSearchResults(searchParams)
+            console.log({ results })
             const finalResults = {
                 status,
                 time: t[1],

@@ -1,12 +1,24 @@
 import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
 
-// Get my test data
-import testLarge from "../test_data/test_san_diego_page1.json" assert {type: "json"};
-import testRegion from "../test_data/test_san_diego_region.json" assert {type: "json"}
+const USETEST = false;
+const USEPROXY = false;
+const DEBUG = false;
 
-const statusMatrix = ["sale", "isRecentlySold"];
-const timeMatrix = ["7", "30", "90", "6m", "12m", "24m", "36m"];
+// Get my test data
+//import testLarge from "../test_data/test_san_diego_page1.json" assert {type: "json"};
+//import testRegion from "../test_data/test_san_diego_region.json" assert {type: "json"};
+
+const statusMatrix = ["For Sale", "Sold"];
+const timeMatrix = [
+    ["7","7 days"],
+    ["30","30 days"], 
+    ["90","90 days"],
+    ["6m","6 months"], 
+    ["12m","12 months"], 
+    ["24m","24 months"], 
+    ["36m","36 months"]
+];
 const lotSize = [
     ["", "1000"],
     ["1000", "43560"],
@@ -19,11 +31,15 @@ const lotSize = [
     ["4356000", ""]
 ]
 
-// const statusMatrix = ["isRecentlySold"];
-// const timeMatrix = ["36m"];
+// const statusMatrix = ["Sold"];
+// const timeMatrix = [["36m", "36 months"]];
 // const lotSize = [
-//     ["4356000", ""]
+//     ["", ""]
 // ]
+
+const axiosDefaults = {
+    timeout: 10000
+}
 
 // The init() call configures the Actor for its environment. It's recommended to start every Actor with an init().
 await Actor.init();
@@ -32,24 +48,7 @@ const COUNTY = 4;
 const ZIPCODE = 7;
 const CITY = 6;
 
-const USETEST = false;
-const USEPROXY = true;
-const DEBUG = false;
-
 const getProxyUrl = async () => {
-    // const proxyConfiguration = await Actor.createProxyConfiguration();
-    // Example http://bob:password123@proxy.example.com:8000
-    //const urlObj = new URL(await proxyConfiguration.newUrl());
-    // const obj = {
-    //     protocol: "http",
-    //     host: "proxy.apify.com",
-    //     port: 8000,
-    //     auth: {
-    //         username: "auto",
-    //         password: process.env.APIFY_PROXY_PASSWORD
-    //     }
-    // }
-
     const proxyConfiguration = await Actor.createProxyConfiguration({
         groups: ["RESIDENTIAL"],
     });
@@ -68,6 +67,7 @@ const getProxyUrl = async () => {
 
     if (DEBUG)
         console.log({ obj })
+
     return obj;
 }
 
@@ -155,10 +155,10 @@ const getLocationInfo = async search => {
     }
     else {
         try {
-            let finalConfig = { headers: defaultHeaders, params: { q: search } }
-            const proxy = await getProxyUrl()
+            let finalConfig = { headers: defaultHeaders, params: { q: search }, ...axiosDefaults }
 
             if (USEPROXY) {
+                const proxy = await getProxyUrl()
                 finalConfig = {
                     ...finalConfig,
                     rejectUnauthorized: false,
@@ -173,7 +173,7 @@ const getLocationInfo = async search => {
 
             const { regionId, lat, lng } = regionResults[0].metaData;
 
-            return {
+            const obj = {
                 mapBounds: {
                     north: lat + offset,
                     south: lat - offset,
@@ -187,6 +187,11 @@ const getLocationInfo = async search => {
                     }
                 ]
             }
+
+            if (DEBUG)
+                console.log(JSON.stringify(obj))
+
+            return obj
 
         } catch (error) {
             console.log({ error })
@@ -209,37 +214,36 @@ const getLocationInfo = async search => {
 }
 
 const transformData = data => {
-    // Keep only the data we care about
-    const propertiesFull = data.cat1.searchResults.mapResults;
-    const properties = propertiesFull.map(property => {
-        return {
-            zpid: property.zpid,
-            streetAddress: property.hdpData?.homeInfo?.streetAddress,
-            zipcode: property.hdpData?.homeInfo?.zipcode,
-            city: property.hdpData?.homeInfo?.zipcode,
-            state: property.hdpData?.homeInfo?.zipcode,
-            lat: property.hdpData?.homeInfo?.latitude,
-            lon: property.hdpData?.homeInfo?.longitude,
-            price: property.hdpData?.homeInfo?.price,
-            lotAreaValue: property.hdpData?.homeInfo?.lotAreaValue,
-            lotAreaUnit: property.hdpData?.homeInfo?.lotAreaUnit
-        }
-    })
-    return {
-        totalPages: data.cat1.searchList.totalPages,
-        resultsPerPage: data.cat1.searchList.resultsPerPage,
-        count: data.categoryTotals.cat1.totalResultCount,
-        //results: properties
-    };
-
+    return { count: data.categoryTotals.cat1.totalResultCount }
+    // // Keep only the data we care about
+    // const propertiesFull = data.cat1.searchResults.listResults;
+    // const properties = propertiesFull.map(property => {
+    //     return {
+    //         zpid: property.zpid,
+    //         streetAddress: property.hdpData?.homeInfo?.streetAddress,
+    //         zipcode: property.hdpData?.homeInfo?.zipcode,
+    //         city: property.hdpData?.homeInfo?.zipcode,
+    //         state: property.hdpData?.homeInfo?.zipcode,
+    //         lat: property.hdpData?.homeInfo?.latitude,
+    //         lon: property.hdpData?.homeInfo?.longitude,
+    //         price: property.hdpData?.homeInfo?.price,
+    //         lotAreaValue: property.hdpData?.homeInfo?.lotAreaValue,
+    //         lotAreaUnit: property.hdpData?.homeInfo?.lotAreaUnit
+    //     }
+    // })
+    // return {
+    //     totalPages: data.cat1.searchList.totalPages,
+    //     resultsPerPage: data.cat1.searchList.resultsPerPage,
+    //     count: data.categoryTotals.cat1.totalResultCount,
+    //     //results: properties
+    // };
 }
 
 const getSearchResults = async searchParams => {
     const url = "https://www.zillow.com/search/GetSearchPageState.htm";
 
-
     const wants = {
-        cat1: ["mapResults"],
+        cat1: ["listResults"],
         cat2: ["total"],
         regionResults: ["regionResults"]
     };
@@ -254,11 +258,12 @@ const getSearchResults = async searchParams => {
             let finalConfig = {
                 headers: defaultHeaders,
                 params: { searchQueryState: encodeURIComponent(JSON.stringify(searchParams)), wants: encodeURIComponent(JSON.stringify(wants)), requestId: requestId },
-                responseType: "json"
+                responseType: "json",
+                ...axiosDefaults
             }
-            const proxy = await getProxyUrl();
 
             if (USEPROXY) {
+                const proxy = await getProxyUrl();
                 finalConfig = {
                     ...finalConfig,
                     proxy,
@@ -275,6 +280,7 @@ const getSearchResults = async searchParams => {
             return transformData(data)
 
         } catch (error) {
+            console.log("error")
             console.log({ error })
             let message = "";
             if (error.response) {
@@ -303,9 +309,9 @@ let searchParams = {}
 let newData = []
 
 // Loop through everything
-await Promise.all(statusMatrix.map(async status => {
+const results = await Promise.all(statusMatrix.map(async status => {
     additionalFilters = {}
-    if (status === "isRecentlySold") {
+    if (status === "Sold") {
         additionalFilters = {
             isForSaleByAgent: { value: false },
             isForSaleByOwner: { value: false },
@@ -319,7 +325,7 @@ await Promise.all(statusMatrix.map(async status => {
     await Promise.all(timeMatrix.map(async t => {
         additionalFilters = {
             ...additionalFilters,
-            doz: { value: t }
+            doz: { value: t[0] }
         }
         await Promise.all(lotSize.map(async lot => {
             if (DEBUG)
@@ -352,14 +358,14 @@ await Promise.all(statusMatrix.map(async status => {
 
 
             if (DEBUG)
-                console.log(JSON.stringify(searchParams))
+                console.log(searchParams)
 
 
             // Process everything
             const results = await getSearchResults(searchParams)
             const finalResults = {
                 status,
-                time: t,
+                time: t[1],
                 minLotSize: lot[0],
                 maxLotSize: lot[1],
                 ...results,
@@ -373,7 +379,9 @@ await Promise.all(statusMatrix.map(async status => {
         }))
     }))
 }))
-await console.log(newData)
+if (DEBUG)
+    await console.log(newData)
+
 await Actor.pushData(newData);
 
 // Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().

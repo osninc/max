@@ -140,11 +140,13 @@ const getLocationInfo = async search => {
     else {
         try {
             let finalConfig = { headers: defaultHeaders, params: { q: search } }
+            const proxy = await getProxyUrl()
 
             if (USEPROXY) {
                 finalConfig = {
                     ...finalConfig,
-                    proxy: await getProxyUrl()
+                    rejectUnauthorized: false,
+                    proxy
                 }
             }
             const response = await axios.get(url, finalConfig);
@@ -238,11 +240,13 @@ const getSearchResults = async searchParams => {
                 params: { searchQueryState: encodeURIComponent(JSON.stringify(searchParams)), wants: encodeURIComponent(JSON.stringify(wants)), requestId: requestId },
                 responseType: "json"
             }
+            const proxy = await getProxyUrl();
 
             if (USEPROXY) {
                 finalConfig = {
                     ...finalConfig,
-                    proxy: await getProxyUrl()
+                    proxy,
+                    rejectUnauthorized: false
                 }
             }
 

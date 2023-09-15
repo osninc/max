@@ -37,15 +37,15 @@ const USEPROXY = true;
 const PRINTURL = true;
 
 const getProxyUrl = async () => {
-    const proxyConfiguration = await Actor.createProxyConfiguration();
+   // const proxyConfiguration = await Actor.createProxyConfiguration();
     // Example http://bob:password123@proxy.example.com:8000
-    const urlObj = new URL(await proxyConfiguration.newUrl());
+    //const urlObj = new URL(await proxyConfiguration.newUrl());
     const obj = {
-        protocol: urlObj.protocol.replace(":", ""),
-        host: urlObj.hostname,
-        port: urlObj.port,
+        protocol: "http",
+        host: "proxy.apify.com",
+        port: 8000,
         auth: {
-            username: urlObj.username,
+            username: "auto",
             password: process.env.APIFY_PROXY_PASSWORD
         }
     }

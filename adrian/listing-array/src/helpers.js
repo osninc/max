@@ -17,11 +17,11 @@ const client = new LambdaClient({
   },
 });
 
-// const proxyConfiguration = await Actor.createProxyConfiguration({
-//   groups: ["RESIDENTIAL"],
-// });
-// const proxyUrl = await proxyConfiguration.newUrl();
-// console.log("PROXY URL", proxyUrl);
+const proxyConfiguration = await Actor.createProxyConfiguration({
+  groups: ["RESIDENTIAL"],
+});
+const proxyUrl = await proxyConfiguration.newUrl();
+console.log("PROXY URL", proxyUrl);
 
 export async function getSearchPageState(filters) {
   try {
@@ -32,7 +32,7 @@ export async function getSearchPageState(filters) {
 
     const response1 = await gotScraping({
       url,
-      //proxyUrl,
+      proxyUrl,
       responseType: "json",
       timeout: {
         request: 10000,

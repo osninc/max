@@ -34,10 +34,10 @@ const CITY = 6;
 
 const USETEST = false;
 const USEPROXY = true;
-const PRINTURL = false;
+const DEBUG = false;
 
 const getProxyUrl = async () => {
-   // const proxyConfiguration = await Actor.createProxyConfiguration();
+    // const proxyConfiguration = await Actor.createProxyConfiguration();
     // Example http://bob:password123@proxy.example.com:8000
     //const urlObj = new URL(await proxyConfiguration.newUrl());
     // const obj = {
@@ -64,9 +64,9 @@ const getProxyUrl = async () => {
             username: urlObj.username,
             password: process.env.APIFY_PROXY_PASSWORD
         }
-    }    
+    }
 
-    if (PRINTURL)
+    if (DEBUG)
         console.log({ obj })
     return obj;
 }
@@ -266,7 +266,9 @@ const getSearchResults = async searchParams => {
                 }
             }
 
-            console.log({ finalConfig })
+            if (DEBUG)
+                console.log({ finalConfig })
+
             const response = await axios.get(url, finalConfig);
             const data = response.data;
 
@@ -320,7 +322,8 @@ await Promise.all(statusMatrix.map(async status => {
             doz: { value: t }
         }
         await Promise.all(lotSize.map(async lot => {
-            console.log({ lot })
+            if (DEBUG)
+                console.log({ lot })
             if (lot[0] !== "") {
                 additionalFilters = {
                     ...additionalFilters,
@@ -348,7 +351,7 @@ await Promise.all(statusMatrix.map(async status => {
             }
 
 
-            if (PRINTURL)
+            if (DEBUG)
                 console.log(JSON.stringify(searchParams))
 
 
@@ -368,47 +371,6 @@ await Promise.all(statusMatrix.map(async status => {
             ];
 
         }))
-
-        //console.log(newData)
-
-        // if (minLotSize) {
-        //     additionalFilters = {
-        //         ...additionalFilters,
-        //         lotSize: {
-        //             ...additionalFilters.lotSize,
-        //             min: Number(minLotSize)
-        //         }
-        //     }
-        // }
-        // if (maxLotSize) {
-        //     additionalFilters = {
-        //         ...additionalFilters,
-        //         lotSize: {
-        //             ...additionalFilters.lotSize,
-        //             max: Number(maxLotSize)
-        //         }
-        //     }
-        // }
-        // if (minPrice) {
-        //     additionalFilters = {
-        //         ...additionalFilters,
-        //         price: {
-        //             ...additionalFilters.price,
-        //             min: Number(minPrice)
-        //         }
-        //     }
-        // }
-        // if (maxPrice) {
-        //     additionalFilters = {
-        //         ...additionalFilters,
-        //         price: {
-        //             ...additionalFilters.price,
-        //             max: Number(maxPrice)
-        //         }
-        //     }
-        // }
-
-
     }))
 }))
 await console.log(newData)

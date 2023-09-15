@@ -50,9 +50,12 @@ const getProxyUrl = async () => {
     //     }
     // }
 
-    const proxyConfiguration = await Actor.createProxyConfiguration();
+    const proxyConfiguration = await Actor.createProxyConfiguration({
+        groups: ["RESIDENTIAL"],
+    });
     // Example http://bob:password123@proxy.example.com:8000
-    const urlObj = new URL(await proxyConfiguration.newUrl());
+    const proxyUrl = await proxyConfiguration.newUrl();
+    const urlObj = new URL(proxyUrl);
     const obj = {
         protocol: urlObj.protocol.replace(":", ""),
         host: urlObj.hostname,

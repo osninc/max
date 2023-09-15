@@ -40,15 +40,28 @@ const getProxyUrl = async () => {
    // const proxyConfiguration = await Actor.createProxyConfiguration();
     // Example http://bob:password123@proxy.example.com:8000
     //const urlObj = new URL(await proxyConfiguration.newUrl());
+    // const obj = {
+    //     protocol: "http",
+    //     host: "proxy.apify.com",
+    //     port: 8000,
+    //     auth: {
+    //         username: "auto",
+    //         password: process.env.APIFY_PROXY_PASSWORD
+    //     }
+    // }
+
+    const proxyConfiguration = await Actor.createProxyConfiguration();
+    // Example http://bob:password123@proxy.example.com:8000
+    const urlObj = new URL(await proxyConfiguration.newUrl());
     const obj = {
-        protocol: "http",
-        host: "proxy.apify.com",
-        port: 8000,
+        protocol: urlObj.protocol.replace(":", ""),
+        host: urlObj.hostname,
+        port: urlObj.port,
         auth: {
-            username: "auto",
+            username: urlObj.username,
             password: process.env.APIFY_PROXY_PASSWORD
         }
-    }
+    }    
 
     if (PRINTURL)
         console.log({ obj })

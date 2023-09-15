@@ -50,6 +50,7 @@ const getProxyUrl = async () => {
         }
     }
 
+    console.log(`username = ${process.env.APIFY_TOKEN}`)
     if (PRINTURL)
         console.log({ obj })
     return obj;

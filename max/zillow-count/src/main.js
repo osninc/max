@@ -2,7 +2,7 @@ import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
 
 const USETEST = false;
-const USEPROXY = false;
+const USEPROXY = true;
 const DEBUG = false;
 
 // Get my test data

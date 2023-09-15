@@ -5,25 +5,25 @@ import { Actor } from "apify";
 import testLarge from "../test_data/test_san_diego_page1.json" assert {type: "json"};
 import testRegion from "../test_data/test_san_diego_region.json" assert {type: "json"}
 
-// const statusMatrix = ["sale", "isRecentlySold"];
-// const timeMatrix = ["7", "30", "90", "6m", "12m", "24m", "36m"];
-// const lotSize = [
-//     ["", "1000"],
-//     ["1000", "43560"],
-//     ["43560", "87120"],
-//     ["87120", "217800"],
-//     ["217800", "435600"],
-//     ["435600", "871200"],
-//     ["871200", "2178000"],
-//     ["2178000", "4356000"],
-//     ["4356000", ""]
-// ]
-
-const statusMatrix = ["isRecentlySold"];
-const timeMatrix = ["36m"];
+const statusMatrix = ["sale", "isRecentlySold"];
+const timeMatrix = ["7", "30", "90", "6m", "12m", "24m", "36m"];
 const lotSize = [
+    ["", "1000"],
+    ["1000", "43560"],
+    ["43560", "87120"],
+    ["87120", "217800"],
+    ["217800", "435600"],
+    ["435600", "871200"],
+    ["871200", "2178000"],
+    ["2178000", "4356000"],
     ["4356000", ""]
 ]
+
+// const statusMatrix = ["isRecentlySold"];
+// const timeMatrix = ["36m"];
+// const lotSize = [
+//     ["4356000", ""]
+// ]
 
 // The init() call configures the Actor for its environment. It's recommended to start every Actor with an init().
 await Actor.init();
@@ -34,7 +34,7 @@ const CITY = 6;
 
 const USETEST = false;
 const USEPROXY = true;
-const PRINTURL = true;
+const PRINTURL = false;
 
 const getProxyUrl = async () => {
    // const proxyConfiguration = await Actor.createProxyConfiguration();

@@ -3,12 +3,10 @@ import { doTheEntireGotDamnThing } from "./helpers.js";
 await Actor.init();
 
 try {
-  const { inputs } = await Actor.getInput();
-  console.log(`inputs`, inputs);
+  const inputs = await Actor.getInput();
+  //console.log(`inputs`, inputs);
 
-  const results = await Promise.all(
-    inputs.map((input) => doTheEntireGotDamnThing(input))
-  );
+  const results = await doTheEntireGotDamnThing(inputs)
 
   await Actor.pushData(results);
 

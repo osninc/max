@@ -9,7 +9,7 @@ import {
 await Actor.init();
 
 try {
-  const { inputs } = await Actor.getInput();
+  const inputs = await Actor.getInput();
 
   /**
    {
@@ -24,12 +24,11 @@ try {
     "status": "sale"
    }
    */
+  //const inputs = input;
 
   console.log("INPUTS", inputs);
 
-  const results = await Promise.all(
-    inputs.map((input) => doTheEntireGotDamnThing(input))
-  );
+  const results = await doTheEntireGotDamnThing(inputs)
 
   await Actor.pushData(results);
 } catch (error) {

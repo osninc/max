@@ -217,7 +217,7 @@ const transformData = data => {
     return { count: data.categoryTotals.cat1.totalResultCount }
 }
 
-const getSearchResults = async params => {
+const getSearchResults = async searchQueryState => {
     const url = "https://www.zillow.com/search/GetSearchPageState.htm";
 
     const wants = {
@@ -236,9 +236,9 @@ const getSearchResults = async params => {
             let finalConfig = {
                 headers: defaultHeaders,
                 params: {
-                    searchQueryState: encodeURIComponent(JSON.stringify(params)),
-                    wants: encodeURIComponent(JSON.stringify(wants)),
-                    requestId: requestId
+                    searchQueryState,
+                    wants,
+                    requestId
                 },
                 responseType: "json",
                 ...axiosDefaults
@@ -344,8 +344,9 @@ const results = await Promise.all(statusMatrix.map(async status => {
 
             // Process everything
             const results = await getSearchResults(searchParams)
-            console.log({ results })
+            
             const finalResults = {
+                area: search, 
                 status,
                 time: t[1],
                 minLotSize: lot[0],

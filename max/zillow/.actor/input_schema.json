@@ -3294,8 +3294,9 @@
       "title": "Proxy Type",
       "type": "string",
       "description": "Toggles between datacenters and residentials",
-      "enum": ["default","residential"],
-      "enumTitles": ["Datacenters (default)","Residentials"]
+      "default": "none",
+      "enum": ["default","residential","none"],
+      "enumTitles": ["Datacenters (default)","Residentials","Don't use proxy"]
     },
     "debug": {
       "title": "Debug Mode",

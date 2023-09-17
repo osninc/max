@@ -17,7 +17,6 @@ const ZIPCODE = 7;
 const CITY = 6;
 
 const USETEST = false;
-const USEPROXY = true;
 
 const axiosDefaults = {
     timeout: 30000
@@ -113,7 +112,7 @@ const getLocationInfo = async search => {
         try {
             let finalConfig = { headers: defaultHeaders, params: { q: search }, ...axiosDefaults }
 
-            if (USEPROXY) {
+            if (proxy !== "none") {
                 finalConfig = {
                     ...finalConfig,
                     proxy: await getProxyUrl(proxy)
@@ -255,7 +254,7 @@ const getSearchResults = async searchParams => {
                 ...axiosDefaults
             }
 
-            if (USEPROXY) {
+            if (proxy !== "none") {
                 finalConfig = {
                     ...finalConfig,
                     proxy: await getProxyUrl(proxy)

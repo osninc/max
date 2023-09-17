@@ -1,6 +1,9 @@
 import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
 
+import { sqft2acre, getRandomInt } from "./functions.js";
+import { getProxyUrl } from "./proxy.js";
+
 // Get my test data
 import testLarge from "../test_data/test.json" assert {type: "json"};
 import testRegion from "../test_data/test_region.json" assert {type: "json"}
@@ -14,33 +17,10 @@ const ZIPCODE = 7;
 const CITY = 6;
 
 const USETEST = false;
-const USEPROXY = true;
+const USEPROXY = false;
 
 const axiosDefaults = {
     timeout: 30000
-}
-
-const getProxyUrl = async (proxy) => {
-    const groups = (proxy === "residential") ? { groups: ["RESIDENTIAL"] } : {};
-    const proxyConfiguration = await Actor.createProxyConfiguration(groups);
-    // Example http://bob:password123@proxy.example.com:8000
-    const proxyUrl = await proxyConfiguration.newUrl();
-    const urlObj = new URL(proxyUrl);
-    const obj = {
-        protocol: urlObj.protocol.replace(":", ""),
-        host: urlObj.hostname,
-        port: urlObj.port,
-        auth: {
-            username: urlObj.username,
-            password: process.env.APIFY_PROXY_PASSWORD
-        }
-    }
-    return obj;
-}
-
-
-const getRandomInt = (max) => {
-    return Math.floor(Math.random() * max);
 }
 
 // Structure of input is defined in input_schema.json
@@ -189,9 +169,18 @@ const getLocationInfo = async search => {
 }
 
 const transformData = data => {
+    // REturn everything
     // Keep only the data we care about
     const propertiesFull = data.cat1.searchResults.listResults;
     const properties = propertiesFull.map(property => {
+        // Time on zillow is milliseconds
+        const lotArea = (property.hdpData?.homeInfo?.lotAreaUnit === "sqft") ? {
+            lotAreaValue: sqft2acre(property.hdpData?.homeInfo?.lotAreaValue),
+            lotAreaUnit: "acres",
+        } : {
+            lotAreaValue: property.hdpData?.homeInfo?.lotAreaValue,
+            lotAreaUnit: property.hdpData?.homeInfo?.lotAreaUnit,
+        }
         return {
             zpid: property.zpid,
             streetAddress: property.hdpData?.homeInfo?.streetAddress,
@@ -202,8 +191,14 @@ const transformData = data => {
             lon: property.hdpData?.homeInfo?.longitude,
             price: property.hdpData?.homeInfo?.price,
             lotAreaString: property.lotAreaString,
-            lotAreaValue: property.hdpData?.homeInfo?.lotAreaValue,
-            lotAreaUnit: property.hdpData?.homeInfo?.lotAreaUnit
+            ...lotArea,
+            statusType: property.statusType,
+            dateSold: property.hdpData?.homeInfo?.dateSold,
+            timeOnZillow: property.timeOnZillow,
+            detailUrl: property.detailUrl,
+            image: property.imgSrc,
+            unitOnZillow: property.variableData?.type,
+            textOnZillow: property.variableData?.text
         }
     })
     return properties;
@@ -422,13 +417,14 @@ if (status === "isRecentlySold") {
         isRecentlySold: { value: true }
     }
 }
-
+// try getting all results from 36 months and filter down depending on user input
 const searchParams = {
     ...loc,
     ...defaults,
     filterState: {
         ...defaults.filterState,
         ...additionalFilters
+       // doz: { value: "36m" }
     }
 }
 

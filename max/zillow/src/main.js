@@ -1,10 +1,10 @@
-import axios from "axios";
+import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
 
 // Get my test data
-import testData from "../test_data/san_mateo_4_7days.json" assert { type: 'json' };
 import testLarge from "../test_data/test.json" assert {type: "json"};
 import testRegion from "../test_data/test_region.json" assert {type: "json"}
+
 
 // The init() call configures the Actor for its environment. It's recommended to start every Actor with an init().
 await Actor.init();
@@ -14,23 +14,27 @@ const ZIPCODE = 7;
 const CITY = 6;
 
 const USETEST = false;
-const USEPROXY = false;
+const USEPROXY = true;
 
-const getProxyUrl = async () => {
-    const proxyConfiguration = await Actor.createProxyConfiguration();
+const axiosDefaults = {
+    timeout: 30000
+}
+
+const getProxyUrl = async (proxy) => {
+    const groups = (proxy === "residential") ? { groups: ["RESIDENTIAL"] } : {};
+    const proxyConfiguration = await Actor.createProxyConfiguration(groups);
     // Example http://bob:password123@proxy.example.com:8000
-    const urlObj = new URL(await proxyConfiguration.newUrl());
-    console.log({ urlObj })
+    const proxyUrl = await proxyConfiguration.newUrl();
+    const urlObj = new URL(proxyUrl);
     const obj = {
         protocol: urlObj.protocol.replace(":", ""),
         host: urlObj.hostname,
         port: urlObj.port,
         auth: {
             username: urlObj.username,
-            password: urlObj.password
+            password: process.env.APIFY_PROXY_PASSWORD
         }
     }
-    console.log({ obj })
     return obj;
 }
 
@@ -49,6 +53,8 @@ const {
     doz,
     minLotSize,
     maxLotSize,
+    debug,
+    proxy
 } = input;
 
 const defaults = {
@@ -125,14 +131,20 @@ const getLocationInfo = async search => {
     else {
 
         try {
-            let finalConfig = { headers: defaultHeaders, params: { q: search } }
+            let finalConfig = { headers: defaultHeaders, params: { q: search }, ...axiosDefaults }
 
             if (USEPROXY) {
                 finalConfig = {
                     ...finalConfig,
-                    proxy: await getProxyUrl()
+                    proxy: await getProxyUrl(proxy)
                 }
             }
+
+            if (debug) {
+                console.log("LINE 144: ")
+                console.log(JSON.stringify(finalConfig))
+            }
+
             const response = await axios.get(url, finalConfig);
             const data = response.data.results;
 
@@ -178,7 +190,7 @@ const getLocationInfo = async search => {
 
 const transformData = data => {
     // Keep only the data we care about
-    const propertiesFull = data.cat1.searchResults.mapResults;
+    const propertiesFull = data.cat1.searchResults.listResults;
     const properties = propertiesFull.map(property => {
         return {
             zpid: property.zpid,
@@ -194,51 +206,141 @@ const transformData = data => {
             lotAreaUnit: property.hdpData?.homeInfo?.lotAreaUnit
         }
     })
+    return properties;
+}
+
+const getCountInfo = data => {
     return {
         totalPages: data.cat1.searchList.totalPages,
         resultsPerPage: data.cat1.searchList.resultsPerPage,
-        count: data.categoryTotals.cat1.totalResultCount,
-        results: properties
-    };
-
+        count: data.categoryTotals.cat1.totalResultCount
+    }
 }
 
 const getSearchResults = async searchParams => {
     const url = "https://www.zillow.com/search/GetSearchPageState.htm";
 
-
     const wants = {
-        cat1: ["mapResults"],
+        cat1: ["listResults"],
         cat2: ["total"],
         regionResults: ["regionResults"]
     };
-    const requestId = getRandomInt(20);
+
+    let finalArray = []
 
     if (USETEST) {
-        return transformData(testLarge);
+        // Check for paging
+        const pagingInfo = getCountInfo(testLarge);
+
+        Array.from({ length: pagingInfo.totalPages }, (_, i) => i + 1).map(x => {
+            // Modify search params to have pagination info
+            searchParams = {
+                ...searchParams,
+                pagination: { currentPage: x }
+            }
+
+            finalArray = [
+                ...finalArray,
+                ...transformData(testLarge)
+            ]
+        })
+        return finalArray;
     }
     else {
 
         try {
             let finalConfig = {
                 headers: defaultHeaders,
-                params: { searchQueryState: encodeURIComponent(JSON.stringify(searchParams)), wants: encodeURIComponent(JSON.stringify(wants)), requestId: requestId },
-                responseType: "json"
+                params: {
+                    searchQueryState: searchParams,
+                    wants,
+                    requestId: getRandomInt(20)
+                },
+                responseType: "json",
+                ...axiosDefaults
             }
 
             if (USEPROXY) {
                 finalConfig = {
                     ...finalConfig,
-                    proxy: await getProxyUrl()
+                    proxy: await getProxyUrl(proxy)
                 }
             }
 
-            console.log({ finalConfig })
+            if (debug) {
+                console.log("LINE 270: ")
+                console.log(JSON.stringify(finalConfig))
+            }
+
+            // Get info from first page
             const response = await axios.get(url, finalConfig);
             const data = response.data;
 
-            return transformData(data)
+            // Check to see if there are pages of data
 
+            // Check for paging
+            const pagingInfo = getCountInfo(data);
+
+            if (debug) {
+                console.log("LINE 284: ")
+                console.log(JSON.stringify(pagingInfo))
+            }
+
+            finalArray = [
+                ...finalArray,
+                ...transformData(data)
+            ]
+
+            if (debug) {
+                console.log("LINE 294: ")
+                console.log({ finalArray })
+            }
+
+            if (pagingInfo.totalPages > 1) {
+                await Promise.all(Array.from({ length: pagingInfo.totalPages }, (_, i) => i + 1).map(async x => {
+                    if (x === 1) return;
+
+                    if (debug) {
+                        console.log("LINE 303:")
+                        console.log({ x })
+                    }
+                    // Modify search params to have pagination info
+                    searchParams = {
+                        ...searchParams,
+                        pagination: { currentPage: x }
+                    }
+                    finalConfig = {
+                        ...finalConfig,
+                        params: {
+                            ...finalConfig.params,
+                            searchQueryState: searchParams,
+                            requestId: getRandomInt(20)
+                        }
+                    }
+
+                    if (debug) {
+                        console.log("LINE 321: ")
+                        console.log(JSON.stringify(finalConfig))
+                    }
+
+                    const response2 = await axios.get(url, finalConfig);
+                    const data2 = response2.data;
+
+                    finalArray = [
+                        ...finalArray,
+                        ...transformData(data2)
+                    ]
+
+                    if (debug) {
+                        console.log("LINE 334: ")
+                        console.log({ finalArray })
+                    }
+                }))
+                return finalArray
+            }
+            else {
+                return transformData(data)
+            }
         } catch (error) {
             console.log({ error })
             let message = "";
@@ -258,7 +360,6 @@ const getSearchResults = async searchParams => {
         }
     }
 }
-
 
 // Get the boundaries
 const loc = await getLocationInfo(search)
@@ -331,12 +432,10 @@ const searchParams = {
     }
 }
 
-//console.log({ searchParams })
-
 // Process everything
 const newData = await getSearchResults(searchParams);
 
-await Actor.pushData(newData.results);
+await Actor.pushData(newData);
 
 // Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().
 await Actor.exit();

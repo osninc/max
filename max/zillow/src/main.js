@@ -248,16 +248,20 @@ const getSearchResults = async searchParams => {
                 params: {
                     searchQueryState: searchParams,
                     wants,
-                    requestId: getRandomInt(20)
+                    requestId: 1
                 },
                 responseType: "json",
                 ...axiosDefaults
             }
 
+            // Only get proxy if it's paging through the same result sets
+            let proxyUrl = "";
+
             if (proxy !== "none") {
+                proxyUrl = await getProxyUrl(proxy);
                 finalConfig = {
                     ...finalConfig,
-                    proxy: await getProxyUrl(proxy)
+                    proxy: proxyUrl
                 }
             }
 
@@ -308,7 +312,7 @@ const getSearchResults = async searchParams => {
                         params: {
                             ...finalConfig.params,
                             searchQueryState: searchParams,
-                            requestId: getRandomInt(20)
+                            requestId: x
                         }
                     }
 
@@ -413,7 +417,8 @@ if (status === "isRecentlySold") {
         isAuction: { value: false },
         isComingSoon: { value: false },
         isForSaleForeclosure: { value: false },
-        isRecentlySold: { value: true }
+        isRecentlySold: { value: true },
+        isAllHomes: { value: true }
     }
 }
 // try getting all results from 36 months and filter down depending on user input
@@ -423,7 +428,7 @@ const searchParams = {
     filterState: {
         ...defaults.filterState,
         ...additionalFilters
-       // doz: { value: "36m" }
+        // doz: { value: "36m" }
     }
 }
 

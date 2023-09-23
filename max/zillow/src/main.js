@@ -5,8 +5,8 @@ import { sqft2acre, getRandomInt } from "./functions.js";
 import { getProxyUrl } from "./proxy.js";
 
 // Get my test data
-import testLarge from "../test_data/test.json" assert {type: "json"};
-import testRegion from "../test_data/test_region.json" assert {type: "json"}
+//import testLarge from "../test_data/test.json" assert {type: "json"};
+//import testRegion from "../test_data/test_region.json" assert {type: "json"}
 
 
 // The init() call configures the Actor for its environment. It's recommended to start every Actor with an init().

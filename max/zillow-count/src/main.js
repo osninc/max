@@ -2,12 +2,10 @@ import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
 
 const USETEST = false;
-const USEPROXY = true;
-const DEBUG = false;
 
 // Get my test data
-// import testLarge from "../test_data/test_san_diego_page1.json" assert {type: "json"};
-// import testRegion from "../test_data/test_san_diego_region.json" assert {type: "json"};
+import testLarge from "../test_data/test_san_diego_page1.json" assert {type: "json"};
+import testRegion from "../test_data/test_san_diego_region.json" assert {type: "json"};
 
 const statusMatrix = ["For Sale", "Sold"];
 const timeMatrix = [
@@ -48,10 +46,9 @@ const COUNTY = 4;
 const ZIPCODE = 7;
 const CITY = 6;
 
-const getProxyUrl = async () => {
-    const proxyConfiguration = await Actor.createProxyConfiguration({
-        groups: ["RESIDENTIAL"],
-    });
+const getProxyUrl = async (proxy) => {
+    const groups = (proxy === "residential") ? { groups: ["RESIDENTIAL"] } : {};
+    const proxyConfiguration = await Actor.createProxyConfiguration(groups);
     // Example http://bob:password123@proxy.example.com:8000
     const proxyUrl = await proxyConfiguration.newUrl();
     const urlObj = new URL(proxyUrl);
@@ -65,7 +62,7 @@ const getProxyUrl = async () => {
         }
     }
 
-    if (DEBUG)
+    if (debug)
         console.log({ obj })
 
     return obj;
@@ -79,7 +76,9 @@ const getRandomInt = (max) => {
 // Structure of input is defined in input_schema.json
 const input = await Actor.getInput();
 const {
-    search
+    search,
+    debug,
+    proxy
 } = input;
 
 const defaults = {
@@ -157,8 +156,8 @@ const getLocationInfo = async search => {
         try {
             let finalConfig = { headers: defaultHeaders, params: { q: search }, ...axiosDefaults }
 
-            if (USEPROXY) {
-                const proxy = await getProxyUrl()
+            if (proxy !== "none") {
+                const proxy = await getProxyUrl(proxy)
                 finalConfig = {
                     ...finalConfig,
                     rejectUnauthorized: false,
@@ -188,7 +187,7 @@ const getLocationInfo = async search => {
                 ]
             }
 
-            if (DEBUG)
+            if (debug)
                 console.log(JSON.stringify(obj))
 
             return obj
@@ -244,8 +243,8 @@ const getSearchResults = async searchQueryState => {
                 ...axiosDefaults
             }
 
-            if (USEPROXY) {
-                const proxy = await getProxyUrl();
+            if (proxy !== "none") {
+                const proxy = await getProxyUrl(proxy);
                 finalConfig = {
                     ...finalConfig,
                     proxy,
@@ -253,12 +252,12 @@ const getSearchResults = async searchQueryState => {
                 }
             }
 
-            if (DEBUG)
+            if (debug)
                 console.log({ finalConfig })
 
             const response = await axios.get(url, finalConfig);
             const data = response.data;
-            
+
             return transformData(data)
 
         } catch (error) {
@@ -309,7 +308,7 @@ const results = await Promise.all(statusMatrix.map(async status => {
             doz: { value: t[0] }
         }
         await Promise.all(lotSize.map(async lot => {
-            if (DEBUG)
+            if (debug)
                 console.log({ lot })
             if (lot[0] !== "") {
                 additionalFilters = {
@@ -338,15 +337,15 @@ const results = await Promise.all(statusMatrix.map(async status => {
             }
 
 
-            if (DEBUG)
+            if (debug)
                 console.log(searchParams)
 
 
             // Process everything
             const results = await getSearchResults(searchParams)
-            
+
             const finalResults = {
-                area: search, 
+                area: search,
                 status,
                 time: t[1],
                 minLotSize: lot[0],
@@ -362,7 +361,7 @@ const results = await Promise.all(statusMatrix.map(async status => {
         }))
     }))
 }))
-if (DEBUG)
+if (debug)
     await console.log(newData)
 
 await Actor.pushData(newData);

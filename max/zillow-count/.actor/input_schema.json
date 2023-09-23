@@ -3155,7 +3155,31 @@
         "Loving County, TX",
         "Kalawao County, HI"
       ]
+    },
+    "proxy": {
+      "title": "Proxy Type",
+      "type": "string",
+      "description": "Toggles between datacenters and residentials",
+      "default": "none",
+      "enum": [
+        "default",
+        "residential",
+        "none"
+      ],
+      "enumTitles": [
+        "Datacenters (default)",
+        "Residentials",
+        "Don't use proxy"
+      ]
+    },
+    "debug": {
+      "title": "Debug Mode",
+      "type": "boolean",
+      "description": "turn on console.log messages.",
+      "default": false
     }
   },
-  "required": ["search"]
+  "required": [
+    "search"
+  ]
 }

@@ -9,39 +9,40 @@ export const testOrderData = (statusMatrix, timeMatrix, lotSize) => {
     // x axis is lot size
     // const lots = testCounts.filter(x => )
 
-    // const result2 = testCounts.reduce((x, y) => {
+    const result2 = testCounts.reduce((x, y) => {
 
-    //     (x[y.minLotSize] = x[y.minLotSize] || []).push(y);
+        (x[y.minLotSize] = x[y.minLotSize] || []).push(y);
 
-    //     return x;
+        return x;
 
-    // }, {});
-
-
-    // const result3 = testCounts.reduce((x, y) => {
-    //     let keyName = `${y.minLotSize}-${y.maxLotSize}`;
-
-    //     if (y.maxLotSize === "") keyName = `${y.minLotSize}+`;
-    //     if (y.minLotSize === "") keyName = `0-${y.maxLotSize}`;
-
-    //     // Keyname would be column titles
-    //     //const keyName = `${y.time} - ${y.status}`;
+    }, {});
 
 
-    //     (x[keyName] = x[keyName] || []).push({
-    //         size: (y.maxLotSize === "") ? `${y.minLotSize}+` : (y.minLotSize === "") ? `0-${y.maxLotSize}` : `${y.minLotSize}-${y.maxLotSize}`,
-    //         [`${y.time} - ${y.status}`]: y.count,
-    //         url: "https://zillow.com"
-    //     });
+    const result = testCounts.reduce((x, y) => {
+        let keyName = `${y.minLotSize}-${y.maxLotSize}`;
 
-    //     return x;
+        if (y.maxLotSize === "") keyName = `${y.minLotSize}+`;
+        if (y.minLotSize === "") keyName = `0-${y.maxLotSize}`;
 
-    // }, {});
+       
+        // Keyname would be column titles
+        //const keyName = `${y.time} - ${y.status}`;
 
 
-    const result = testCounts.map(y => {
+        (x[keyName] = x[keyName] || []).push({
+            //size: (y.maxLotSize === "") ? `${y.minLotSize}+` : (y.minLotSize === "") ? `0-${y.maxLotSize}` : `${y.minLotSize}-${y.maxLotSize}`,
+            [`${y.time} - ${y.status}`]: y.count
+        });
+
+        return x;
+
+    }, {});
+
+
+    const result4 = testCounts.map(y => {
+        const sizeLabel = (y.maxLotSize === "") ? `${y.minLotSize}+` : (y.minLotSize === "") ? `0-${y.maxLotSize}` : `${y.minLotSize}-${y.maxLotSize}`;
         return {
-            size: (y.maxLotSize === "") ? `${y.minLotSize}+` : (y.minLotSize === "") ? `0-${y.maxLotSize}` : `${y.minLotSize}-${y.maxLotSize}`,
+            size: sizeLabel,
             [`${y.time} - ${y.status}`]: y.count,
             url: ""
         }
@@ -72,16 +73,26 @@ export const testOrderData = (statusMatrix, timeMatrix, lotSize) => {
     //console.log
 
     // Make a new JSON for correct display
-    // const returnValue = Object.entries(result).map(kv => {
-    //     //console.log(kv)
-    //     const [key, value] = kv
-    //     return {
-    //         ...value,
-    //         size: key
-    //     }
-    // })
+    const returnValue = Object.entries(result).map(kv => {
 
-    return result;
+        const [key, value] = kv
+
+        //const sizeLabel = (y.maxLotSize === "") ? `${y.minLotSize}+` : (y.minLotSize === "") ? `0-${y.maxLotSize}` : `${y.minLotSize}-${y.maxLotSize}`;
+
+        
+        let newValue = {
+            size: key
+        }
+        value.map(v => {
+            newValue = {
+                ...newValue,
+                ...v
+            }
+        })
+        return newValue;
+    })
+
+    return returnValue;
 }
 
 export const orderData = (statusMatrix, timeMatrix, lotSize) => {

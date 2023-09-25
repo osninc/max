@@ -21,15 +21,21 @@ export const testOrderData = (statusMatrix, timeMatrix, lotSize) => {
     // Reduce the reduce
     const returnValue = Object.entries(result).map(kv => {
         const [key, value] = kv
+        const newKey = key === "" ? 0 : parseInt(key)
         // Reduce by time
         const timeDim = value.reduce((x, y) => {
 
-            (x[y.time] = x[y.time] || []).push(y);
+
+            (x[y.time] = x[y.time] || []).push({
+                status: y.status,
+                count: y.count,
+                url: ""
+            });
 
             return x;
 
         }, {});
-        return { [key]: timeDim };
+        return { [newKey]: timeDim };
     })
 
     return returnValue;

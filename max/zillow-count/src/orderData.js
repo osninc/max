@@ -96,7 +96,7 @@ export const testOrderData = (statusMatrix, timeMatrix, lotSize) => {
     return returnValue;
 }
 
-export const orderData = (data) => {
+export const orderData = (search, data) => {
 
     const result = testCounts.reduce((x, y) => {
         let keyName = `${y.minLotSize}-${y.maxLotSize}`;
@@ -118,6 +118,7 @@ export const orderData = (data) => {
         const [key, value] = kv
 
         let newValue = {
+            area: search,
             lotSize: key
         }
         value.map(v => {

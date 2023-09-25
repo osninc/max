@@ -11,13 +11,13 @@ import testRegion from "../test_data/test_san_diego_region.json" assert {type: "
 
 const statusMatrix = ["For Sale", "Sold"];
 const timeMatrix = [
-    ["7", "7 days"],
-    ["30", "30 days"],
-    ["90", "90 days"],
-    ["6m", "6 months"],
-    ["12m", "12 months"],
-    ["24m", "24 months"],
-    ["36m", "36 months"]
+    ["7", "7 Days"],
+    ["30", "30 Days"],
+    ["90", "90 Days"],
+    ["6m", "6 Months"],
+    ["12m", "12 Months"],
+    ["24m", "24 Months"],
+    ["36m", "36 Months"]
 ];
 const lotSize = [
     ["", "1000"],
@@ -52,15 +52,15 @@ const soldParams = {
     isAllHomes: { value: true }
 }
 
-const newData1 = orderData();
+// const newData1 = orderData();
 
-await Actor.init();
-await Actor.pushData(newData1);
+// await Actor.init();
+// await Actor.pushData(newData1);
 
-// Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().
-await Actor.exit();
+// // Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().
+// await Actor.exit();
 
-process.exit();
+// process.exit();
 
 // The init() call configures the Actor for its environment. It's recommended to start every Actor with an init().
 await Actor.init();
@@ -381,7 +381,7 @@ if (debug)
     await console.log(newData)
 
     // redo the data
-const apifyData = await orderData(newData)
+const apifyData = await orderData(search,newData)
 
 await Actor.pushData(apifyData);
 

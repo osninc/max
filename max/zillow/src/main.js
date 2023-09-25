@@ -1,7 +1,7 @@
 import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
 
-import { sqft2acre, getRandomInt } from "./functions.js";
+import { sqft2acre, getRandomInt, alphaNum } from "./functions.js";
 import { getProxyUrl } from "./proxy.js";
 
 // Get my test data
@@ -22,6 +22,17 @@ const axiosDefaults = {
     timeout: 30000
 }
 
+const soldParams = {
+    isForSaleByAgent: { value: false },
+    isForSaleByOwner: { value: false },
+    isNewConstruction: { value: false },
+    isAuction: { value: false },
+    isComingSoon: { value: false },
+    isForSaleForeclosure: { value: false },
+    isRecentlySold: { value: true },
+    isAllHomes: { value: true }
+}
+
 // Structure of input is defined in input_schema.json
 const input = await Actor.getInput();
 const {
@@ -38,8 +49,10 @@ const {
 
 const defaults = {
     pagination: {},
-    isMapVisible: false,
-    isListVisible: false,
+    isMapVisible: true,
+    isListVisible: true,
+    usersSearchTerm: alphaNum(search),
+    mapZoom: 8,
     filterState: {
         sortSelection: { value: "globalrelevanceex" },
         isLotLand: { value: true },
@@ -132,12 +145,23 @@ const getLocationInfo = async search => {
 
             const { regionId, lat, lng } = regionResults[0].metaData;
 
+            const testRegion = {
+                west: -120.7596,
+                east: -115.837725,
+                south: 32.231438311849196,
+                north: 35.32637718516131
+            }
+
+            const realRegion = {
+                north: lat + offset,
+                south: lat - offset,
+                west: lng - offset,
+                east: lng + offset
+            }
+
             return {
                 mapBounds: {
-                    north: lat + offset,
-                    south: lat - offset,
-                    west: lng - offset,
-                    east: lng + offset
+                    ...testRegion
                 },
                 regionSelection: [
                     {
@@ -204,6 +228,11 @@ const transformData = data => {
 }
 
 const getCountInfo = data => {
+    if (debug) {
+        console.log("LINE:231: ");
+        console.log(JSON.stringify(data.cat1))
+    }
+
     return {
         totalPages: data.cat1.searchList.totalPages,
         resultsPerPage: data.cat1.searchList.resultsPerPage,
@@ -216,8 +245,8 @@ const getSearchResults = async searchParams => {
 
     const wants = {
         cat1: ["listResults"],
-        cat2: ["total"],
-        regionResults: ["regionResults"]
+        //cat2: ["total"],
+        //regionResults: ["regionResults"]
     };
 
     let finalArray = []
@@ -294,7 +323,7 @@ const getSearchResults = async searchParams => {
                 console.log({ finalArray })
             }
 
-            if (pagingInfo.totalPages > 1) {
+            if (false) { //pagingInfo.totalPages > 1) {
                 await Promise.all(Array.from({ length: pagingInfo.totalPages }, (_, i) => i + 1).map(async x => {
                     if (x === 1) return;
 
@@ -411,14 +440,7 @@ if (doz) {
 if (status === "isRecentlySold") {
     additionalFilters = {
         ...additionalFilters,
-        isForSaleByAgent: { value: false },
-        isForSaleByOwner: { value: false },
-        isNewConstruction: { value: false },
-        isAuction: { value: false },
-        isComingSoon: { value: false },
-        isForSaleForeclosure: { value: false },
-        isRecentlySold: { value: true },
-        isAllHomes: { value: true }
+        ...soldParams
     }
 }
 // try getting all results from 36 months and filter down depending on user input

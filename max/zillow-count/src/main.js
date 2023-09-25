@@ -1,5 +1,7 @@
 import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
+import { testOrderData } from "./orderData.js";
+import { sqft2acre, getRandomInt, alphaNum } from "./functions.js";
 
 const USETEST = false;
 
@@ -39,12 +41,35 @@ const axiosDefaults = {
     timeout: 30000
 }
 
+const soldParams = {
+    isForSaleByAgent: { value: false },
+    isForSaleByOwner: { value: false },
+    isNewConstruction: { value: false },
+    isAuction: { value: false },
+    isComingSoon: { value: false },
+    isForSaleForeclosure: { value: false },
+    isRecentlySold: { value: true },
+    isAllHomes: { value: true }
+}
+
+const newData1 = testOrderData(statusMatrix,timeMatrix,lotSize);
+
+await Actor.init();
+await Actor.pushData(newData1);
+
+// Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().
+await Actor.exit();
+
+process.exit();
+
 // The init() call configures the Actor for its environment. It's recommended to start every Actor with an init().
 await Actor.init();
 
 const COUNTY = 4;
 const ZIPCODE = 7;
 const CITY = 6;
+
+
 
 const getProxyUrl = async (proxy) => {
     const groups = (proxy === "residential") ? { groups: ["RESIDENTIAL"] } : {};
@@ -68,11 +93,6 @@ const getProxyUrl = async (proxy) => {
     return obj;
 }
 
-
-const getRandomInt = (max) => {
-    return Math.floor(Math.random() * max);
-}
-
 // Structure of input is defined in input_schema.json
 const input = await Actor.getInput();
 const {
@@ -83,8 +103,10 @@ const {
 
 const defaults = {
     pagination: {},
-    isMapVisible: false,
-    isListVisible: false,
+    isMapVisible: true,
+    isListVisible: true,
+    usersSearchTerm: alphaNum(search),
+    mapZoom: 8,
     filterState: {
         sortSelection: { value: "globalrelevanceex" },
         isLotLand: { value: true },
@@ -293,13 +315,7 @@ const results = await Promise.all(statusMatrix.map(async status => {
     additionalFilters = {}
     if (status === "Sold") {
         additionalFilters = {
-            isForSaleByAgent: { value: false },
-            isForSaleByOwner: { value: false },
-            isNewConstruction: { value: false },
-            isAuction: { value: false },
-            isComingSoon: { value: false },
-            isForSaleForeclosure: { value: false },
-            isRecentlySold: { value: true }
+            ...soldParams
         }
     }
     await Promise.all(timeMatrix.map(async t => {

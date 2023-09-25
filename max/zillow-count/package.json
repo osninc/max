@@ -9,7 +9,8 @@
 	"dependencies": {
 		"apify": "^3.1.10",
 		"axios": "^1.5.0",
-		"axios-https-proxy-fix": "^0.17.1"
+		"axios-https-proxy-fix": "^0.17.1",
+		"core-js": "^3.32.2"
 	},
 	"scripts": {
 		"start": "node ./src/main.js",

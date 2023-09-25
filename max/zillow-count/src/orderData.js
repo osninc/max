@@ -118,7 +118,7 @@ export const orderData = (data) => {
         const [key, value] = kv
 
         let newValue = {
-            size: key
+            lotSize: key
         }
         value.map(v => {
             newValue = {

@@ -1,5 +1,6 @@
 
 import testCounts from "../test_data/dataset_maxeverythingcount_2023-09-23_19-03-24-717.json" assert { type: "json" }
+import { camelizeStr } from "./functions.js";
 
 export const testOrderData = (statusMatrix, timeMatrix, lotSize) => {
     //console.log("testOrderdata");
@@ -95,6 +96,38 @@ export const testOrderData = (statusMatrix, timeMatrix, lotSize) => {
     return returnValue;
 }
 
-export const orderData = (statusMatrix, timeMatrix, lotSize) => {
+export const orderData = (data) => {
 
+    const result = testCounts.reduce((x, y) => {
+        let keyName = `${y.minLotSize}-${y.maxLotSize}`;
+
+        if (y.maxLotSize === "") keyName = `${y.minLotSize}+`;
+        if (y.minLotSize === "") keyName = `0-${y.maxLotSize}`;
+
+        (x[keyName] = x[keyName] || []).push({
+            [camelizeStr(`${y.time} - ${y.status}`)]: y.count
+        });
+
+        return x;
+
+    }, {});
+
+    // Make a new JSON for correct display
+    const returnValue = Object.entries(result).map(kv => {
+
+        const [key, value] = kv
+
+        let newValue = {
+            size: key
+        }
+        value.map(v => {
+            newValue = {
+                ...newValue,
+                ...v
+            }
+        })
+        return newValue;
+    })
+
+    return returnValue;
 }

@@ -9,3 +9,11 @@ export const sqft2acre = num => {
 export const alphaNum = str => {
     return str.replace(/[^0-9a-z\ ]/gi, '')
 }
+
+export const alphaNumWithoutSpace = str => {
+    return str.replace(/[^0-9a-z]/gi, '')
+}
+
+export const camelizeStr = str => {
+    return alphaNumWithoutSpace(str);
+}

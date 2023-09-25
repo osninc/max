@@ -1,7 +1,7 @@
 import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
-import { testOrderData } from "./orderData.js";
-import { sqft2acre, getRandomInt, alphaNum } from "./functions.js";
+import { orderData } from "./orderData.js";
+import { sqft2acre, getRandomInt, alphaNum, camelizeStr } from "./functions.js";
 
 const USETEST = false;
 
@@ -52,7 +52,7 @@ const soldParams = {
     isAllHomes: { value: true }
 }
 
-const newData1 = testOrderData(statusMatrix,timeMatrix,lotSize);
+const newData1 = orderData();
 
 await Actor.init();
 await Actor.pushData(newData1);
@@ -380,7 +380,10 @@ const results = await Promise.all(statusMatrix.map(async status => {
 if (debug)
     await console.log(newData)
 
-await Actor.pushData(newData);
+    // redo the data
+const apifyData = await orderData(newData)
+
+await Actor.pushData(apifyData);
 
 // Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().
 await Actor.exit();

@@ -48,5 +48,5 @@ const defaultParams = {
 }
 
 export const buildZillowUrl = (params) => {
-    
+    return JSON.stringify(params)
 }

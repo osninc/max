@@ -20,5 +20,5 @@ export const camelizeStr = str => {
 
 export const convertArea4Zillow = str => {
     const newStr = alphaNum(str);
-    return newStr.replace(" ","-").toLowerCase();
+    return newStr.replace(/\ /gi,"-").toLowerCase();
 }

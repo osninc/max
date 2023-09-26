@@ -68,7 +68,7 @@ export const buildZillowUrl = (status, params) => {
         }
     }
 
-    const finalPath = `${baseUrl}${locationPath}/${(status === "Sold") ? soldPath : salePath}${baseParams}${encodeURIComponent(newParams)}`
+    const finalPath = `${baseUrl}${locationPath}/${(status === "Sold") ? soldPath : salePath}${baseParams}${encodeURIComponent(JSON.stringify(newParams))}`
 
     return finalPath;
 }

@@ -388,7 +388,7 @@ if (debug)
     // redo the data
 const apifyData = await orderData(search,newData)
 
-await Actor.pushData(newData);
+await Actor.pushData(apifyData);
 
 // Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().
 await Actor.exit();

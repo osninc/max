@@ -370,7 +370,7 @@ const results = await Promise.all(statusMatrix.map(async status => {
                 time: t[1],
                 minLotSize: lot[0],
                 maxLotSize: lot[1],
-                url: buildZillowUrl(searchParam),
+                url: buildZillowUrl(searchParams),
                 ...results,
 
             }

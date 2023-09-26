@@ -104,7 +104,7 @@ export const orderData = (search, data) => {
         if (y.minLotSize === "") keyName = `0-${y.maxLotSize}`;
 
         (x[keyName] = x[keyName] || []).push({
-            [camelizeStr(`${y.time} - ${y.status}`)]: y.count
+            [camelizeStr(`${y.time} - ${y.status}`)]: `<a href='${y.url}'>${y.count}</a>`
         });
 
         return x;

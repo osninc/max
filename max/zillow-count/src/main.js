@@ -16,22 +16,22 @@ import testCounts from "../test_data/dataset_maxeverythingcount_2023-09-23_19-03
 const statusMatrix = ["For Sale", "Sold"];
 const timeMatrix = [
     ["7", "7 Days"],
-    ["30", "30 Days"],
-    ["90", "90 Days"],
-    ["6m", "6 Months"],
-    ["12m", "12 Months"],
-    ["24m", "24 Months"],
-    ["36m", "36 Months"]
+    // ["30", "30 Days"],
+    // ["90", "90 Days"],
+    // ["6m", "6 Months"],
+    // ["12m", "12 Months"],
+    // ["24m", "24 Months"],
+    // ["36m", "36 Months"]
 ];
 const lotSize = [
-    ["", "1000"],
-    ["1000", "43560"],
-    ["43560", "87120"],
-    ["87120", "217800"],
-    ["217800", "435600"],
-    ["435600", "871200"],
-    ["871200", "2178000"],
-    ["2178000", "4356000"],
+    // ["", "1000"],
+    // ["1000", "43560"],
+    // ["43560", "87120"],
+    // ["87120", "217800"],
+    // ["217800", "435600"],
+    // ["435600", "871200"],
+    // ["871200", "2178000"],
+    // ["2178000", "4356000"],
     ["4356000", ""]
 ]
 
@@ -370,7 +370,7 @@ const results = await Promise.all(statusMatrix.map(async status => {
                 time: t[1],
                 minLotSize: lot[0],
                 maxLotSize: lot[1],
-                url: buildZillowUrl(searchParams),
+                url: buildZillowUrl(status,searchParams),
                 ...results,
 
             }

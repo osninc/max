@@ -3,11 +3,15 @@ import { Actor } from "apify";
 import { orderData } from "./orderData.js";
 import { sqft2acre, getRandomInt, alphaNum, camelizeStr } from "./functions.js";
 
+import { buildZillowUrl } from "./zillowUrl.js";
+
 const USETEST = false;
 
 // Get my test data
 import testLarge from "../test_data/test_san_diego_page1.json" assert {type: "json"};
 import testRegion from "../test_data/test_san_diego_region.json" assert {type: "json"};
+import testCounts from "../test_data/dataset_maxeverythingcount_2023-09-23_19-03-24-717.json" assert { type: "json" }
+
 
 const statusMatrix = ["For Sale", "Sold"];
 const timeMatrix = [
@@ -52,7 +56,7 @@ const soldParams = {
     isAllHomes: { value: true }
 }
 
-// const newData1 = orderData();
+// const newData1 = orderData("Los Angeles County, CA", testCounts);
 
 // await Actor.init();
 // await Actor.pushData(newData1);
@@ -366,6 +370,7 @@ const results = await Promise.all(statusMatrix.map(async status => {
                 time: t[1],
                 minLotSize: lot[0],
                 maxLotSize: lot[1],
+                url: buildZillowUrl(searchParam),
                 ...results,
 
             }
@@ -383,7 +388,7 @@ if (debug)
     // redo the data
 const apifyData = await orderData(search,newData)
 
-await Actor.pushData(apifyData);
+await Actor.pushData(newData);
 
 // Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().
 await Actor.exit();

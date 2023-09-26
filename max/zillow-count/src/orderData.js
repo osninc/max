@@ -1,104 +1,103 @@
 
-import testCounts from "../test_data/dataset_maxeverythingcount_2023-09-23_19-03-24-717.json" assert { type: "json" }
 import { camelizeStr } from "./functions.js";
 
-export const testOrderData = (statusMatrix, timeMatrix, lotSize) => {
-    //console.log("testOrderdata");
-    // console.log(statusMatrix, timeMatrix, lotSize)
+// export const testOrderData = (statusMatrix, timeMatrix, lotSize) => {
+//     //console.log("testOrderdata");
+//     // console.log(statusMatrix, timeMatrix, lotSize)
 
-    // Sort by order of matrix
-    // x axis is lot size
-    // const lots = testCounts.filter(x => )
+//     // Sort by order of matrix
+//     // x axis is lot size
+//     // const lots = testCounts.filter(x => )
 
-    const result2 = testCounts.reduce((x, y) => {
+//     const result2 = testCounts.reduce((x, y) => {
 
-        (x[y.minLotSize] = x[y.minLotSize] || []).push(y);
+//         (x[y.minLotSize] = x[y.minLotSize] || []).push(y);
 
-        return x;
+//         return x;
 
-    }, {});
+//     }, {});
 
 
-    const result = testCounts.reduce((x, y) => {
-        let keyName = `${y.minLotSize}-${y.maxLotSize}`;
+//     const result = testCounts.reduce((x, y) => {
+//         let keyName = `${y.minLotSize}-${y.maxLotSize}`;
 
-        if (y.maxLotSize === "") keyName = `${y.minLotSize}+`;
-        if (y.minLotSize === "") keyName = `0-${y.maxLotSize}`;
+//         if (y.maxLotSize === "") keyName = `${y.minLotSize}+`;
+//         if (y.minLotSize === "") keyName = `0-${y.maxLotSize}`;
 
        
-        // Keyname would be column titles
-        //const keyName = `${y.time} - ${y.status}`;
+//         // Keyname would be column titles
+//         //const keyName = `${y.time} - ${y.status}`;
 
 
-        (x[keyName] = x[keyName] || []).push({
-            //size: (y.maxLotSize === "") ? `${y.minLotSize}+` : (y.minLotSize === "") ? `0-${y.maxLotSize}` : `${y.minLotSize}-${y.maxLotSize}`,
-            [`${y.time} - ${y.status}`]: y.count
-        });
+//         (x[keyName] = x[keyName] || []).push({
+//             //size: (y.maxLotSize === "") ? `${y.minLotSize}+` : (y.minLotSize === "") ? `0-${y.maxLotSize}` : `${y.minLotSize}-${y.maxLotSize}`,
+//             [`${y.time} - ${y.status}`]: y.count
+//         });
 
-        return x;
+//         return x;
 
-    }, {});
-
-
-    const result4 = testCounts.map(y => {
-        const sizeLabel = (y.maxLotSize === "") ? `${y.minLotSize}+` : (y.minLotSize === "") ? `0-${y.maxLotSize}` : `${y.minLotSize}-${y.maxLotSize}`;
-        return {
-            size: sizeLabel,
-            [`${y.time} - ${y.status}`]: y.count,
-            url: ""
-        }
-    })
+//     }, {});
 
 
-    // Reduce the reduce
-    // const returnValue = Object.entries(result).map(kv => {
-    //     const [key, value] = kv
-    //     const newKey = key === "" ? 0 : parseInt(key)
-    //     // Reduce by time
-    //     const timeDim = value.reduce((x, y) => {
+//     const result4 = testCounts.map(y => {
+//         const sizeLabel = (y.maxLotSize === "") ? `${y.minLotSize}+` : (y.minLotSize === "") ? `0-${y.maxLotSize}` : `${y.minLotSize}-${y.maxLotSize}`;
+//         return {
+//             size: sizeLabel,
+//             [`${y.time} - ${y.status}`]: y.count,
+//             url: ""
+//         }
+//     })
 
 
-    //         (x[y.time] = x[y.time] || []).push({
-    //             status: y.status,
-    //             count: y.count,
-    //             url: ""
-    //         });
+//     // Reduce the reduce
+//     // const returnValue = Object.entries(result).map(kv => {
+//     //     const [key, value] = kv
+//     //     const newKey = key === "" ? 0 : parseInt(key)
+//     //     // Reduce by time
+//     //     const timeDim = value.reduce((x, y) => {
 
-    //         return x;
 
-    //     }, {});
-    //     return { [newKey]: timeDim };
-    // })
+//     //         (x[y.time] = x[y.time] || []).push({
+//     //             status: y.status,
+//     //             count: y.count,
+//     //             url: ""
+//     //         });
 
-    // Fix data that apify would understand
-    //console.log
+//     //         return x;
 
-    // Make a new JSON for correct display
-    const returnValue = Object.entries(result).map(kv => {
+//     //     }, {});
+//     //     return { [newKey]: timeDim };
+//     // })
 
-        const [key, value] = kv
+//     // Fix data that apify would understand
+//     //console.log
 
-        //const sizeLabel = (y.maxLotSize === "") ? `${y.minLotSize}+` : (y.minLotSize === "") ? `0-${y.maxLotSize}` : `${y.minLotSize}-${y.maxLotSize}`;
+//     // Make a new JSON for correct display
+//     const returnValue = Object.entries(result).map(kv => {
+
+//         const [key, value] = kv
+
+//         //const sizeLabel = (y.maxLotSize === "") ? `${y.minLotSize}+` : (y.minLotSize === "") ? `0-${y.maxLotSize}` : `${y.minLotSize}-${y.maxLotSize}`;
 
         
-        let newValue = {
-            size: key
-        }
-        value.map(v => {
-            newValue = {
-                ...newValue,
-                ...v
-            }
-        })
-        return newValue;
-    })
+//         let newValue = {
+//             size: key
+//         }
+//         value.map(v => {
+//             newValue = {
+//                 ...newValue,
+//                 ...v
+//             }
+//         })
+//         return newValue;
+//     })
 
-    return returnValue;
-}
+//     return returnValue;
+// }
 
 export const orderData = (search, data) => {
 
-    const result = testCounts.reduce((x, y) => {
+    const result = data.reduce((x, y) => {
         let keyName = `${y.minLotSize}-${y.maxLotSize}`;
 
         if (y.maxLotSize === "") keyName = `${y.minLotSize}+`;

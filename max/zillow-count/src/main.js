@@ -286,6 +286,7 @@ const getSearchResults = async searchQueryState => {
 
             return transformData(data)
 
+
         } catch (error) {
             console.log({ error })
             let message = "";
@@ -323,25 +324,28 @@ const results = await Promise.all(statusMatrix.map(async status => {
         }
     }
     await Promise.all(timeMatrix.map(async t => {
-        additionalFilters = {
-            ...additionalFilters,
+        let timeFilter = {}
+        timeFilter = {
+            ...timeFilter,
             doz: { value: t[0] }
         }
         await Promise.all(lotSize.map(async lot => {
             if (debug)
                 console.log({ lot })
+            let newFilters = {}
             if (lot[0] !== "") {
-                additionalFilters = {
-                    ...additionalFilters,
+                newFilters = {
+                    ...newFilters,
                     lotSize: {
                         min: Number(lot[0])
                     }
                 }
             }
             if (lot[1] !== "") {
-                additionalFilters = {
-                    ...additionalFilters,
+                newFilters = {
+                    ...newFilters,
                     lotSize: {
+                        ...newFilters.lotSize,
                         max: Number(lot[1])
                     }
                 }
@@ -352,17 +356,21 @@ const results = await Promise.all(statusMatrix.map(async status => {
                 ...defaults,
                 filterState: {
                     ...defaults.filterState,
-                    ...additionalFilters
+                    ...additionalFilters,
+                    ...timeFilter,
+                    ...newFilters
                 }
             }
 
 
             if (debug)
-                console.log(searchParams)
+                console.log(searchParams.filterState)
 
+            const url = buildZillowUrl(status, searchParams);
 
             // Process everything
             const results = await getSearchResults(searchParams)
+            
 
             const finalResults = {
                 area: search,
@@ -370,7 +378,7 @@ const results = await Promise.all(statusMatrix.map(async status => {
                 time: t[1],
                 minLotSize: lot[0],
                 maxLotSize: lot[1],
-                url: buildZillowUrl(status,searchParams),
+                url,
                 ...results,
 
             }
@@ -385,8 +393,8 @@ const results = await Promise.all(statusMatrix.map(async status => {
 if (debug)
     await console.log(newData)
 
-    // redo the data
-const apifyData = await orderData(search,newData)
+// redo the data
+const apifyData = await orderData(search, newData)
 
 await Actor.pushData(apifyData);
 

@@ -144,21 +144,7 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
             return obj
 
         } catch (error) {
-            let message = "";
-            if (error.response) {
-                if (error.response.status === 404) {
-                    message = "This was a bad request"
-                }
-                if (error.response.status === 403) {
-                    message = "Failed CAPTCHA: Press & Hold to confirm you are a human (and not a bot)"
-                }
-            } else if (error.request) {
-                message = "There was an error communicating with the server.  Please try again later.";
-            } else {
-                message = error.message;
-            }
-
-            console.log(message)
+            processError(error);
             return {}
         }
     }
@@ -212,21 +198,26 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
 
 
         } catch (error) {
-            let message = "";
-            if (error.response) {
-                if (error.response.status === 404) {
-                    message = "This was a bad request"
-                }
-                if (error.response.status === 403) {
-                    message = "Failed CAPTCHA: Press & Hold to confirm you are a human (and not a bot)"
-                }
-            } else if (error.request) {
-                message = "There was an error communicating with the server.  Please try again later.";
-            } else {
-                message = error.message;
-            }
-            console.log(message)
+            processError(error);
             return {}
         }
     }
+}
+
+const processError = error => {
+    let message = "";
+    if (error.response) {
+        message = `Error code ${error.response.status}: `;
+        if (error.response.status === 404) {
+            message = `${message} This was a bad request`
+        }
+        if (error.response.status === 403) {
+            message = `${message} Failed CAPTCHA: Press & Hold to confirm you are a human (and not a bot)`
+        }
+    } else if (error.request) {
+        message = "There was an error communicating with the server.  Please try again later.";
+    } else {
+        message = error.message;
+    }
+    console.log(message)
 }

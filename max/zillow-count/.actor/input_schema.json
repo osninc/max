@@ -3174,6 +3174,7 @@
       "title": "Select a state",
       "type": "string",
       "editor": "select",
+      "description": "Must be a state",
       "enum": [
         "AL",
         "AK",
@@ -3300,6 +3301,7 @@
     "zipcode": {
       "title": "Zip Code",
       "type": "string",
+      "description": "Enter 5 digit zip code",
       "editor": "textfield",
       "pattern": "^\\d{5}$",
       "minLength": 5,

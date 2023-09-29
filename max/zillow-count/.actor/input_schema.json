@@ -11,6 +11,7 @@
       "type": "string",
       "editor": "select",
       "default": "county",
+      "description": "Select an area type",
       "enum": [
         "county",
         "state",

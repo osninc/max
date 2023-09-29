@@ -130,7 +130,7 @@ const defaults = {
     isMapVisible: true,
     isListVisible: true,
     usersSearchTerm: alphaNum(realSearch),
-    //mapZoom: 8,
+    mapZoom: 8,
     filterState: {
         sortSelection: { value: "globalrelevanceex" },
         isLotLand: { value: true },
@@ -289,7 +289,7 @@ const getLocationInfo = async (searchType, search) => {
 }
 
 const transformData = data => {
-    return { count: data.categoryTotals.cat1.totalResultCount }
+    return { count: data.categoryTotals.cat1.totalResultCount ? data.categoryTotals.cat1.totalResultCount : "N/A" }
 }
 
 const getSearchResults = async (searchQueryState, refererUrl) => {

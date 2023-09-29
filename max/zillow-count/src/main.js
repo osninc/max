@@ -24,8 +24,7 @@ const timeMatrix = [
     ["36m", "36 Months"]
 ];
 const lotSize = [
-    ["", "1000"],
-    ["1000", "43560"],
+    ["", "43560"],
     ["43560", "87120"],
     ["87120", "217800"],
     ["217800", "435600"],
@@ -104,6 +103,8 @@ const {
     debug,
     proxy
 } = input;
+
+const ts = new Date();
 
 const defaults = {
     pagination: {},
@@ -285,6 +286,7 @@ const getSearchResults = async searchQueryState => {
             const data = response.data;
 
             return transformData(data)
+            //return {count: 0}
 
 
         } catch (error) {
@@ -374,10 +376,13 @@ const results = await Promise.all(statusMatrix.map(async status => {
 
             const finalResults = {
                 area: search,
+                timeStamp: ts.toString(),
                 status,
-                time: t[1],
-                minLotSize: lot[0],
-                maxLotSize: lot[1],
+                daysOnZillowOrSoldInLast: t[1],
+                //minLotSize: lot[0],
+                //maxLotSize: lot[1],
+                minLotSizeInAcres: sqft2acre(lot[0]),
+                maxLotSizeInAcres: sqft2acre(lot[1]),
                 url,
                 ...results,
 
@@ -394,9 +399,9 @@ if (debug)
     await console.log(newData)
 
 // redo the data
-const apifyData = await orderData(search, newData)
+//const apifyData = await orderData(search, newData)
 
-await Actor.pushData(apifyData);
+await Actor.pushData(newData);
 
 // Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().
 await Actor.exit();

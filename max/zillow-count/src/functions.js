@@ -3,6 +3,8 @@ export const getRandomInt = (max) => {
 }
 
 export const sqft2acre = num => {
+    if (num === "")
+        return "";
     return parseFloat((num / 43560).toFixed(2));
 }
 
@@ -20,5 +22,5 @@ export const camelizeStr = str => {
 
 export const convertArea4Zillow = str => {
     const newStr = alphaNum(str);
-    return newStr.replace(/\ /gi,"-").toLowerCase();
+    return newStr.replace(/\ /gi, "-").toLowerCase();
 }

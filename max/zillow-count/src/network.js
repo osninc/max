@@ -51,9 +51,6 @@ export const getProxyUrl = async (proxy) => {
         }
     }
 
-    if (debug)
-        console.log({ obj })
-
     return obj;
 }
 

@@ -30,6 +30,7 @@ export const lotSizeToString = (min, max) => {
 
     if (max === "") keyName = `${min}+`;
     if (min === "") keyName = `0-${max}`;
+    if ((min === "") && (max === "")) keyName = "TOTAL";
 
     return keyName;
 }

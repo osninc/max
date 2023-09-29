@@ -31,7 +31,8 @@ const lotSize = [
     ["435600", "871200"],
     ["871200", "2178000"],
     ["2178000", "4356000"],
-    ["4356000", ""]
+    ["4356000", ""],
+    ["",""]
 ]
 
 // const statusMatrix = ["Sold"];
@@ -160,7 +161,7 @@ const getLocationInfo = async search => {
     const offset = 10;
     const url = 'https://www.zillowstatic.com/autocomplete/v3/suggestions';
 
-    if (USETEST) {
+    if (true) {
         const lat = testRegion.results[0].metaData.lat;
         const lng = testRegion.results[0].metaData.lng;
         const regionId = testRegion.results[0].metaData.regionId;
@@ -282,11 +283,11 @@ const getSearchResults = async searchQueryState => {
             if (debug)
                 console.log({ finalConfig })
 
-            const response = await axios.get(url, finalConfig);
-            const data = response.data;
+            // const response = await axios.get(url, finalConfig);
+            // const data = response.data;
 
-            return transformData(data)
-            //return {count: 0}
+            // return transformData(data)
+            return {count: 0}
 
 
         } catch (error) {
@@ -369,7 +370,7 @@ const results = await Promise.all(statusMatrix.map(async status => {
                 console.log(searchParams.filterState)
 
             const url = buildZillowUrl(status, searchParams);
-            const lotStr = `${lotSizeToString(sqft2acre(lot[0]),sqft2acre(lot[1]))} acres`;
+            const lotStr = `${lotSizeToString(sqft2acre(lot[0]),sqft2acre(lot[1]))}`;
 
             // Process everything
             const results = await getSearchResults(searchParams)
@@ -380,7 +381,7 @@ const results = await Promise.all(statusMatrix.map(async status => {
                 timeStamp: ts.toString(),
                 status,
                 daysOnZillowOrSoldInLast: t[1],
-                lot: lotStr,
+                acreage: lotStr,
                 url,
                 ...results,
 

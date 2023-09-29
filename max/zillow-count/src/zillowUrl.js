@@ -28,7 +28,7 @@ const defaultParams = {
         apco: { value: false }, // Apartment Or condo
     },
     isListVisible: true,
-    mapZoom: 8
+    //mapZoom: 8
 }
 
 const soldFilter = {

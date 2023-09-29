@@ -1,7 +1,7 @@
 import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
 import { orderData } from "./orderData.js";
-import { sqft2acre, getRandomInt, alphaNum, camelizeStr } from "./functions.js";
+import { sqft2acre, getRandomInt, alphaNum, camelizeStr, lotSizeToString } from "./functions.js";
 
 import { buildZillowUrl } from "./zillowUrl.js";
 
@@ -111,7 +111,7 @@ const defaults = {
     isMapVisible: true,
     isListVisible: true,
     usersSearchTerm: alphaNum(search),
-    mapZoom: 8,
+    //mapZoom: 8,
     filterState: {
         sortSelection: { value: "globalrelevanceex" },
         isLotLand: { value: true },
@@ -247,7 +247,7 @@ const getSearchResults = async searchQueryState => {
     const url = "https://www.zillow.com/search/GetSearchPageState.htm";
 
     const wants = {
-        cat1: ["listResults"],
+        cat1: ["mapResults"],
         cat2: ["total"],
         regionResults: ["regionResults"]
     };
@@ -369,6 +369,7 @@ const results = await Promise.all(statusMatrix.map(async status => {
                 console.log(searchParams.filterState)
 
             const url = buildZillowUrl(status, searchParams);
+            const lotStr = `${lotSizeToString(sqft2acre(lot[0]),sqft2acre(lot[1]))} acres`;
 
             // Process everything
             const results = await getSearchResults(searchParams)
@@ -379,10 +380,7 @@ const results = await Promise.all(statusMatrix.map(async status => {
                 timeStamp: ts.toString(),
                 status,
                 daysOnZillowOrSoldInLast: t[1],
-                //minLotSize: lot[0],
-                //maxLotSize: lot[1],
-                minLotSizeInAcres: sqft2acre(lot[0]),
-                maxLotSizeInAcres: sqft2acre(lot[1]),
+                lot: lotStr,
                 url,
                 ...results,
 

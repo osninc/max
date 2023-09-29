@@ -24,3 +24,12 @@ export const convertArea4Zillow = str => {
     const newStr = alphaNum(str);
     return newStr.replace(/\ /gi, "-").toLowerCase();
 }
+
+export const lotSizeToString = (min, max) => {
+    let keyName = `${min}-${max}`;
+
+    if (max === "") keyName = `${min}+`;
+    if (min === "") keyName = `0-${max}`;
+
+    return keyName;
+}

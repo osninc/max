@@ -42,8 +42,8 @@ const soldFilter = {
     ah: { value: true }, // All Homes
 }
 
-export const buildZillowUrl = (status, params) => {
-    const locationPath = convertArea4Zillow(params.usersSearchTerm);
+export const buildZillowUrl = (status, params, searchType) => {
+    const locationPath = convertArea4Zillow(params, searchType);
 
     // Reformat the param list
     let newParams = {

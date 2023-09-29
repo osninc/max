@@ -20,9 +20,16 @@ export const camelizeStr = str => {
     return alphaNumWithoutSpace(str);
 }
 
-export const convertArea4Zillow = str => {
-    const newStr = alphaNum(str);
-    return newStr.replace(/\ /gi, "-").toLowerCase();
+export const convertArea4Zillow = (params, searchType) => {
+    let str = params.usersSearchTerm;
+    if (searchType === "zipcode") {
+        str = `${params.cityState}-${params.usersSearchTerm}`;
+        return str;
+    }
+    else {
+        const newStr = alphaNum(str);
+        return newStr.replace(/\ /gi, "-").toLowerCase();
+    }
 }
 
 export const lotSizeToString = (min, max) => {

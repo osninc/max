@@ -13,7 +13,10 @@ import testRegion from "../test_data/test_san_diego_region.json" assert {type: "
 import testCounts from "../test_data/dataset_maxeverythingcount_2023-09-23_19-03-24-717.json" assert { type: "json" }
 
 
-const statusMatrix = ["For Sale", "Sold"];
+const statusMatrix = [
+    "For Sale",
+     "Sold"
+];
 const timeMatrix = [
     ["7", "7 Days"],
     ["30", "30 Days"],
@@ -32,7 +35,7 @@ const lotSize = [
     ["871200", "2178000"],
     ["2178000", "4356000"],
     ["4356000", ""],
-    ["",""]
+    ["", ""]
 ]
 
 // const statusMatrix = ["Sold"];
@@ -72,6 +75,7 @@ await Actor.init();
 const COUNTY = 4;
 const ZIPCODE = 7;
 const CITY = 6;
+const STATE = 2;
 
 
 
@@ -100,18 +104,32 @@ const getProxyUrl = async (proxy) => {
 // Structure of input is defined in input_schema.json
 const input = await Actor.getInput();
 const {
-    search,
+    county,
     debug,
-    proxy
+    proxy,
+    searchby,
+    state,
+    zipcode
 } = input;
 
 const ts = new Date();
+
+// change search terms depending on searchby option
+let realSearch = county;
+switch (searchby) {
+    case "zipcode":
+        realSearch = zipcode;
+        break;
+    case "state":
+        realSearch = state
+        break;
+}
 
 const defaults = {
     pagination: {},
     isMapVisible: true,
     isListVisible: true,
-    usersSearchTerm: alphaNum(search),
+    usersSearchTerm: alphaNum(realSearch),
     //mapZoom: 8,
     filterState: {
         sortSelection: { value: "globalrelevanceex" },
@@ -132,10 +150,18 @@ const defaultHeaders = {
     'Accept-Language': 'en-US,en;q=0.9',
     'upgrade-insecure-requests': '1',
     "x-requested-with": "XMLHttpRequest",
-    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36'
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
+    "accept-language": "en-US,en-CA;q=0.9,en-AU;q=0.8,en;q=0.7",
+    "sec-ch-ua":
+        '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"macOS"',
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site",
 }
 
-const getLocationInfo = async search => {
+const getLocationInfo = async (searchType, search) => {
     /*
         Sample return JSON
         {
@@ -158,6 +184,20 @@ const getLocationInfo = async search => {
         }
     */
 
+    // Determine regiontype
+    let regionType = COUNTY;
+    switch (searchType) {
+        case "zipcode":
+            regionType = ZIPCODE;
+            break;
+        case "state":
+            regionType = STATE;
+            break;
+        case "city":
+            regionType = CITY;
+            break;
+    }
+
     const offset = 10;
     const url = 'https://www.zillowstatic.com/autocomplete/v3/suggestions';
 
@@ -175,7 +215,7 @@ const getLocationInfo = async search => {
             regionSelection: [
                 {
                     regionId,
-                    regionType: COUNTY
+                    regionType
                 }
             ]
         }
@@ -196,9 +236,16 @@ const getLocationInfo = async search => {
             const data = response.data.results;
 
             // Only get the result of the county regionType
-            const regionResults = data.filter(d => d.metaData?.regionType?.toLowerCase() === "county");
+            const regionResults = data.filter(d => d.metaData?.regionType?.toLowerCase() === searchType);
 
             const { regionId, lat, lng } = regionResults[0].metaData;
+            let extraMeta = {}
+
+            // If it's a zipcode, need the city and state name
+            if (searchType === "zipcode")
+                extraMeta = {
+                    cityState: `${regionResults[0].metaData.city}-${regionResults[0].metaData.state}`.toLowerCase()
+                }
 
             const obj = {
                 mapBounds: {
@@ -210,9 +257,10 @@ const getLocationInfo = async search => {
                 regionSelection: [
                     {
                         regionId,
-                        regionType: COUNTY
+                        regionType
                     }
-                ]
+                ],
+                ...extraMeta
             }
 
             if (debug)
@@ -244,7 +292,7 @@ const transformData = data => {
     return { count: data.categoryTotals.cat1.totalResultCount }
 }
 
-const getSearchResults = async searchQueryState => {
+const getSearchResults = async (searchQueryState, refererUrl) => {
     const url = "https://www.zillow.com/search/GetSearchPageState.htm";
 
     const wants = {
@@ -261,7 +309,11 @@ const getSearchResults = async searchQueryState => {
 
         try {
             let finalConfig = {
-                headers: defaultHeaders,
+                headers: {
+                    ...defaultHeaders,
+                    Referer: refererUrl,
+                    "Referrer-Policy": "unsafe-url",
+                },
                 params: {
                     searchQueryState,
                     wants,
@@ -287,7 +339,7 @@ const getSearchResults = async searchQueryState => {
             const data = response.data;
 
             return transformData(data)
-            //return {count: 0}
+            //return { count: 0 }
 
 
         } catch (error) {
@@ -312,7 +364,7 @@ const getSearchResults = async searchQueryState => {
 
 
 // Get the boundaries
-const loc = await getLocationInfo(search)
+const loc = await getLocationInfo(searchby, realSearch)
 
 let additionalFilters = {}
 let searchParams = {}
@@ -369,15 +421,15 @@ const results = await Promise.all(statusMatrix.map(async status => {
             if (debug)
                 console.log(searchParams.filterState)
 
-            const url = buildZillowUrl(status, searchParams);
-            const lotStr = `${lotSizeToString(sqft2acre(lot[0]),sqft2acre(lot[1]))}`;
+            const url = buildZillowUrl(status, searchParams, searchby);
+            const lotStr = `${lotSizeToString(sqft2acre(lot[0]), sqft2acre(lot[1]))}`;
 
             // Process everything
-            const results = await getSearchResults(searchParams)
-            
+            const results = await getSearchResults(searchParams, url)
+
 
             const finalResults = {
-                area: search,
+                area: realSearch,
                 timeStamp: ts.toString(),
                 status,
                 daysOnZillowOrSoldInLast: t[1],

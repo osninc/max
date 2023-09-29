@@ -1,0 +1,1008 @@
+[{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 Days",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 Days",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 Days",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 Days",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 Days",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 Days",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 Days",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 Days",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 Days",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 Days",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 Days",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 Days",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 Days",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 Days",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 Days",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 Days",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 Days",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 Days",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 Days",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 Days",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 Days",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 Days",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 Days",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 Days",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 Days",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 Days",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 Days",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 Months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 Months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 Months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 Months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 Months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 Months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 Months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 Months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 Months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 Months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 Months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 Months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 Months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 Months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 Months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 Months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 Months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 Months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 Months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 Months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 Months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 Months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 Months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 Months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 Months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 Months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 Months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 Months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 Months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 Months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 Months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 Months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 Months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 Months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 Months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 Months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 Days",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 Days",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 Days",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 Days",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 Days",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 Days",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 Days",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 Days",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 Days",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 Days",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 Days",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 Days",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 Days",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 Days",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 Days",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 Days",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 Days",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 Days",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 Days",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 Days",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 Days",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 Days",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 Days",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 Days",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 Days",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 Days",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 Days",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 Months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 Months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 Months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 Months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 Months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 Months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 Months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 Months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 Months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 Months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 Months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 Months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 Months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 Months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 Months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 Months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 Months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 Months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 Months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 Months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 Months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 Months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 Months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 Months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 Months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 Months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 Months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 Months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 Months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 Months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 Months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 Months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 Months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 Months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 Months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 Months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "url": "{\"mapBounds\":{\"north\":44.19790785114752,\"south\":24.19790785114752,\"west\":-128.26099957942273,\"east\":-108.26099957942273},\"regionSelection\":[{\"regionId\":3101,\"regionType\":4}],\"pagination\":{},\"isMapVisible\":true,\"isListVisible\":true,\"usersSearchTerm\":\"Los Angeles County CA\",\"mapZoom\":8,\"filterState\":{\"sortSelection\":{\"value\":\"globalrelevanceex\"},\"isLotLand\":{\"value\":true},\"isSingleFamily\":{\"value\":false},\"isTownhouse\":{\"value\":false},\"isMultiFamily\":{\"value\":false},\"isCondo\":{\"value\":false},\"isApartment\":{\"value\":false},\"isManufactured\":{\"value\":false},\"isApartmentOrCondo\":{\"value\":false},\"isForSaleByAgent\":{\"value\":false},\"isForSaleByOwner\":{\"value\":false},\"isNewConstruction\":{\"value\":false},\"isAuction\":{\"value\":false},\"isComingSoon\":{\"value\":false},\"isForSaleForeclosure\":{\"value\":false},\"isRecentlySold\":{\"value\":true},\"isAllHomes\":{\"value\":true},\"doz\":{\"value\":\"36m\"},\"lotSize\":{\"min\":4356000}}}"
+}]

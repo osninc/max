@@ -161,7 +161,7 @@ const getLocationInfo = async search => {
     const offset = 10;
     const url = 'https://www.zillowstatic.com/autocomplete/v3/suggestions';
 
-    if (true) {
+    if (USETEST) {
         const lat = testRegion.results[0].metaData.lat;
         const lng = testRegion.results[0].metaData.lng;
         const regionId = testRegion.results[0].metaData.regionId;
@@ -283,11 +283,11 @@ const getSearchResults = async searchQueryState => {
             if (debug)
                 console.log({ finalConfig })
 
-            // const response = await axios.get(url, finalConfig);
-            // const data = response.data;
+            const response = await axios.get(url, finalConfig);
+            const data = response.data;
 
-            // return transformData(data)
-            return {count: 0}
+            return transformData(data)
+            //return {count: 0}
 
 
         } catch (error) {

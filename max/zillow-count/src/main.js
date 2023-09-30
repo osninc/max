@@ -6,7 +6,7 @@ import { getSearchResults, getLocationInfo } from "./network.js";
 import { getState } from "./state.js";
 
 const USETEST = false;
-const USEDEV = true;
+const USEDEV = false;
 
 let statusMatrix = [];
 let timeMatrix = [];

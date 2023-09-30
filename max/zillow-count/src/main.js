@@ -5,7 +5,7 @@ import { buildZillowUrl } from "./zillowUrl.js";
 import { getSearchResults, getLocationInfo } from "./network.js";
 
 const USETEST = false;
-const USEDEV = true;
+const USEDEV = false;
 
 let statusMatrix = [];
 let timeMatrix = [];

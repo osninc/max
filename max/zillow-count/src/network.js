@@ -31,7 +31,9 @@ const defaultHeaders = {
 
 
 const transformData = data => {
-    return { count: data.categoryTotals.cat1.totalResultCount ? data.categoryTotals.cat1.totalResultCount : "N/A" }
+    //console.log(data.categoryTotals.cat1.totalResultCount)
+    //console.log(("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A")
+    return { count: ("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A" }
 }
 
 export const getProxyUrl = async (proxy) => {
@@ -112,8 +114,6 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
 
             // Only get the result of the county regionType
             const regionResults = data.filter(d => d.metaData?.regionType?.toLowerCase() === searchType.toLowerCase());
-
-            console.log({ regionResults })
 
             const { regionId, lat, lng } = regionResults[0].metaData;
             let extraMeta = {}

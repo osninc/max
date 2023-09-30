@@ -15,7 +15,7 @@ if (USEDEV) {
     statusMatrix = ["Sold"];
     timeMatrix = [["36m", "36 months"]];
     lotSize = [
-        ["", ""]
+        ["435600", "871200"]
     ]
 }
 else {

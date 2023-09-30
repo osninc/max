@@ -3,9 +3,10 @@ import { sqft2acre, alphaNum, lotSizeToString } from "./functions.js";
 
 import { buildZillowUrl } from "./zillowUrl.js";
 import { getSearchResults, getLocationInfo } from "./network.js";
+import { getState } from "./state.js";
 
 const USETEST = false;
-const USEDEV = false;
+const USEDEV = true;
 
 let statusMatrix = [];
 let timeMatrix = [];
@@ -176,8 +177,10 @@ const results = await Promise.all(statusMatrix.map(async status => {
             // Process everything
             const results = await getSearchResults(searchParams, url, proxy, USETEST)
 
+            const searchByText = (searchBy==="state") ? getState(realSearch) : realSearch;
+
             const finalResults = {
-                [searchBy]: realSearch,
+                [searchBy]: searchByText,
                 timeStamp: ts.toString(),
                 status,
                 daysOnZillowOrSoldInLast: t[1],

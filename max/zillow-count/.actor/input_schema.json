@@ -3308,6 +3308,7 @@
       "maxLength": 5
     },
     "proxy": {
+      "sectionCaption": "Proxies",
       "title": "Proxy Type",
       "type": "string",
       "description": "Toggles between datacenters and residentials",
@@ -3324,6 +3325,7 @@
       ]
     },
     "debug": {
+      "sectionCaption": "Debug",
       "title": "Debug Mode",
       "type": "boolean",
       "description": "turn on console.log messages.",

@@ -177,11 +177,20 @@ const results = await Promise.all(statusMatrix.map(async status => {
             // Process everything
             const results = await getSearchResults(searchParams, url, proxy, USETEST)
 
-            const searchByText = (searchBy==="state") ? getState(realSearch) : realSearch;
+            const searchByText = (searchBy === "state") ? getState(realSearch) : realSearch;
             const daysKey = (status === "Sold") ? "soldInLast" : "daysOnZillow";
 
+            const blankFields = {
+                county: "",
+                state: "",
+                zipCode: "",
+                soldInLast: "",
+                daysOnZillow: ""
+            }
+
             const finalResults = {
-                area: searchByText,
+                ...blankFields,
+                [searchBy]: searchByText,
                 timeStamp: ts.toString(),
                 status,
                 [daysKey]: t[1],

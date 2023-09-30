@@ -6,7 +6,9 @@
             "title": "Overview",
             "transformation": {
                 "fields": [
-                    "area",
+                    "county",
+                    "state",
+                    "zipCode",
                     "acreage",
                     "status",
                     "daysOnZillow",

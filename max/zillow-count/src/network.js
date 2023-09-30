@@ -31,8 +31,6 @@ const defaultHeaders = {
 
 
 const transformData = data => {
-    //console.log(data.categoryTotals.cat1.totalResultCount)
-    //console.log(("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A")
     return { count: ("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A" }
 }
 
@@ -200,7 +198,7 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
 
         } catch (error) {
             processError("getSearchResults", error);
-            return {}
+            return {count: "N/A"}
         }
     }
 }

@@ -10,41 +10,6 @@
 	"input": "./input_schema.json",
 	"dockerfile": "./Dockerfile",
 	"storages": { 
-		"dataset": { 
-			"actorSpecification": 1, 
-			"fields": {}, 
-			"views": { 
-				"overview": { 
-					"title": "Overview", 
-					"transformation": { 
-						"fields": [
-							"county",
-							"zipCode",
-							"state", 
-							"acreage",
-							"status",
-							"daysOnZillowOrSoldInLast",
-							"count",
-							"url",
-							"timeStamp"
-						]
-					},
-					"display": { 
-						"component": "table", 
-						"properties": { 
-							"county": {
-								"label": "County"
-							},
-							"zipCode": {
-								"label": "Zip Code"
-							},
-							"state": {
-								"label": "State"
-							}
-						}
-					}
-				}
-			}
-		}
+		"dataset": "./output_schema.json"
 	}
 }

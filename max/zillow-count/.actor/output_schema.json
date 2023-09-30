@@ -1,0 +1,35 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": [
+                    "area",
+                    "acreage",
+                    "status",
+                    "daysOnZillow",
+                    "soldInLast",
+                    "count",
+                    "url",
+                    "timeStamp"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "county": {
+                        "label": "County"
+                    },
+                    "zipCode": {
+                        "label": "Zip Code"
+                    },
+                    "state": {
+                        "label": "State"
+                    }
+                }
+            }
+        }
+    }
+}

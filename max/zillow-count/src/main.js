@@ -178,12 +178,13 @@ const results = await Promise.all(statusMatrix.map(async status => {
             const results = await getSearchResults(searchParams, url, proxy, USETEST)
 
             const searchByText = (searchBy==="state") ? getState(realSearch) : realSearch;
+            const daysKey = (status === "Sold") ? "soldInLast" : "daysOnZillow";
 
             const finalResults = {
-                [searchBy]: searchByText,
+                area: searchByText,
                 timeStamp: ts.toString(),
                 status,
-                daysOnZillowOrSoldInLast: t[1],
+                [daysKey]: t[1],
                 acreage: lotStr,
                 url,
                 ...results,

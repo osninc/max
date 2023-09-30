@@ -1,13 +1,11 @@
-import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
-//import { orderData } from "./orderData.js";
 import { sqft2acre, alphaNum, lotSizeToString } from "./functions.js";
 
 import { buildZillowUrl } from "./zillowUrl.js";
 import { getSearchResults, getLocationInfo } from "./network.js";
 
 const USETEST = false;
-const USEDEV = false;
+const USEDEV = true;
 
 let statusMatrix = [];
 let timeMatrix = [];
@@ -77,18 +75,18 @@ const {
     county,
     debug,
     proxy,
-    searchby,
+    searchBy,
     state,
-    zipcode
+    zipCode
 } = input;
 
 const ts = new Date();
 
 // change search terms depending on searchby option
 let realSearch = county;
-switch (searchby) {
+switch (searchBy.toLowerCase()) {
     case "zipcode":
-        realSearch = zipcode;
+        realSearch = zipCode;
         break;
     case "state":
         realSearch = state
@@ -115,7 +113,7 @@ const defaults = {
 }
 
 // Get the boundaries
-const loc = await getLocationInfo(searchby, realSearch, proxy, USETEST)
+const loc = await getLocationInfo(searchBy, realSearch, proxy, USETEST)
 
 let additionalFilters = {}
 let searchParams = {}
@@ -172,14 +170,14 @@ const results = await Promise.all(statusMatrix.map(async status => {
             if (debug)
                 console.log(searchParams.filterState)
 
-            const url = buildZillowUrl(status, searchParams, searchby);
+            const url = buildZillowUrl(status, searchParams, searchBy);
             const lotStr = `${lotSizeToString(sqft2acre(lot[0]), sqft2acre(lot[1]))}`;
 
             // Process everything
             const results = await getSearchResults(searchParams, url, proxy, USETEST)
 
             const finalResults = {
-                area: realSearch,
+                [searchBy]: realSearch,
                 timeStamp: ts.toString(),
                 status,
                 daysOnZillowOrSoldInLast: t[1],
@@ -198,9 +196,6 @@ const results = await Promise.all(statusMatrix.map(async status => {
 }))
 if (debug)
     await console.log(newData)
-
-// redo the data
-//const apifyData = await orderData(search, newData)
 
 await Actor.pushData(newData);
 

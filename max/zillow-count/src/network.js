@@ -8,7 +8,6 @@ const ZIPCODE = 7;
 const CITY = 6;
 const STATE = 2;
 
-
 const axiosDefaults = {
     timeout: 30000
 }
@@ -79,7 +78,7 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
 
     // Determine regiontype
     let regionType = COUNTY;
-    switch (searchType) {
+    switch (searchType.toLowerCase()) {
         case "zipcode":
             regionType = ZIPCODE;
             break;
@@ -112,13 +111,15 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
             const data = response.data.results;
 
             // Only get the result of the county regionType
-            const regionResults = data.filter(d => d.metaData?.regionType?.toLowerCase() === searchType);
+            const regionResults = data.filter(d => d.metaData?.regionType?.toLowerCase() === searchType.toLowerCase());
+
+            console.log({ regionResults })
 
             const { regionId, lat, lng } = regionResults[0].metaData;
             let extraMeta = {}
 
             // If it's a zipcode, need the city and state name
-            if (searchType === "zipcode")
+            if (searchType.toLowerCase() === "zipcode")
                 extraMeta = {
                     cityState: `${regionResults[0].metaData.city}-${regionResults[0].metaData.state}`.toLowerCase()
                 }
@@ -144,7 +145,7 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
             return obj
 
         } catch (error) {
-            processError(error);
+            processError("getLocationInfo", error);
             return {}
         }
     }
@@ -198,16 +199,16 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
 
 
         } catch (error) {
-            processError(error);
+            processError("getSearchResults", error);
             return {}
         }
     }
 }
 
-const processError = error => {
-    let message = "";
+const processError = (from, error) => {
+    let message = `Caught from ${from} - `;
     if (error.response) {
-        message = `Error code ${error.response.status}: `;
+        message = `${message} Error code ${error.response.status}: `;
         if (error.response.status === 404) {
             message = `${message} This was a bad request`
         }
@@ -215,9 +216,9 @@ const processError = error => {
             message = `${message} Failed CAPTCHA: Press & Hold to confirm you are a human (and not a bot)`
         }
     } else if (error.request) {
-        message = "There was an error communicating with the server.  Please try again later.";
+        message = `${message} There was an error communicating with the server.  Please try again later.`;
     } else {
-        message = error.message;
+        message = `${message} ${error.message}` ;
     }
     console.log(message)
 }

@@ -4,7 +4,7 @@
   "type": "object",
   "schemaVersion": 1,
   "properties": {
-    "searchby": {
+    "searchBy": {
       "sectionCaption": "Search by",
       "sectionDescription": "Choose county (default), zip code, or state",
       "title": "Area type",
@@ -15,7 +15,7 @@
       "enum": [
         "county",
         "state",
-        "zipcode"
+        "zipCode"
       ]
     },
     "county": {
@@ -3298,7 +3298,7 @@
         "Wyoming"
       ]
     },
-    "zipcode": {
+    "zipCode": {
       "title": "Zip Code",
       "type": "string",
       "description": "Enter 5 digit zip code",

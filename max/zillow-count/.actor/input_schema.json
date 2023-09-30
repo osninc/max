@@ -3325,7 +3325,7 @@
       ]
     },
     "debug": {
-      "sectionCaption": "Proxies",
+      "sectionCaption": "Debug",
       "title": "Debug Mode",
       "type": "boolean",
       "description": "turn on console.log messages.",

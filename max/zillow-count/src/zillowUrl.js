@@ -64,8 +64,6 @@ export const buildZillowUrl = (status, params, searchType) => {
         mapZoom: zoomParams[searchType.toLowerCase()]
     }
 
-    console.log(newParams.mapZoom)
-
     if (status === "Sold") {
         newParams = {
             ...newParams,

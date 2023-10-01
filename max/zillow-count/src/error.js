@@ -6,13 +6,14 @@ export const processError = (from, error) => {
             message = `${message} This was a bad request`
         }
         if (error.response.status === 403) {
-            console.log({error})
+            console.log({ error })
             message = `${message} Failed CAPTCHA: Press & Hold to confirm you are a human (and not a bot)`
         }
     } else if (error.request) {
         message = `${message} There was an error communicating with the server.  Please try again later.`;
     } else {
-        message = `${message} ${error.message}`;
+        console.log({ error })
+        message = `${message}${error.message}`;
     }
     console.log(message)
 }

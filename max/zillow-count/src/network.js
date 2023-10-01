@@ -151,9 +151,9 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
                 }
             }
 
-            const response1 = await gotScraping(scrapingConfig);
-            const body = response1.body;
-            const finalMapBounds = getMapBoundsFromHtml(body);
+            //const response1 = await gotScraping(scrapingConfig);
+            //const body = response1.body;
+            //const finalMapBounds = getMapBoundsFromHtml(body);
 
             const response = await axios.get(url, finalConfig);
             const data = response.data.results;
@@ -161,7 +161,7 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
             // Only get the result of the county regionType
             const regionResults = data.filter(d => d.metaData?.regionType?.toLowerCase() === searchType.toLowerCase());
 
-            const { regionId } = regionResults[0].metaData;
+            const { regionId, lat, lng } = regionResults[0].metaData;
             let extraMeta = {}
 
             // If it's a zipcode, need the city and state name
@@ -170,12 +170,17 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
                     cityState: `${regionResults[0].metaData.city.replace(/\ /gi, "-").toLowerCase()}-${regionResults[0].metaData.state}`.toLowerCase()
                 }
 
-            // const offset = 10;
+            const offset = 10;
 
             //console.log({finalMapBounds})
 
             const obj = {
-                mapBounds: finalMapBounds,
+                mapBounds: {
+                    north: lat + offset,
+                    south: lat - offset,
+                    west: lng - offset,
+                    east: lng + offset
+                },
                 regionSelection: [
                     {
                         regionId,

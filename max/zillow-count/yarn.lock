@@ -574,7 +574,7 @@ got-cjs@12.5.4:
     p-cancelable "2.1.1"
     responselike "2.0.1"
 
-got-scraping@^3.2.9:
+got-scraping@^3.2.15, got-scraping@^3.2.9:
   version "3.2.15"
   resolved "https://registry.yarnpkg.com/got-scraping/-/got-scraping-3.2.15.tgz#b5ff57a8b666e9f8b68bcc2307bbe097b8f8a5ed"
   integrity sha512-EXqDe4JVyrWZTHhPT1G98+wv+oozDpUHpCLVd6C/HpNtySh6xSSaIgLUCBpAgIT5xheq6ZgNkgb0rA97pq8vZA==

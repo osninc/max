@@ -6,14 +6,14 @@ import { getSearchResults, getLocationInfo } from "./network.js";
 import { getState } from "./state.js";
 
 const USETEST = false;
-const USEDEV = false;
+const USEDEV = true;
 
 let statusMatrix = [];
 let timeMatrix = [];
 let lotSize = [];
 
 if (USEDEV) {
-    statusMatrix = ["Sold"];
+    statusMatrix = ["For Sale"];
     timeMatrix = [["36m", "36 months"]];
     lotSize = [
         ["435600", "871200"]

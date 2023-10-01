@@ -1,8 +1,10 @@
 import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
 import { getTestRegion, getTestData } from "./usingTest.js";
-import { getRandomInt } from "./functions.js";
+import { alphaNum, getRandomInt } from "./functions.js";
 import { processError } from "./error.js";
+import { gotScraping } from "got-scraping";
+import * as cheerio from 'cheerio';
 
 const COUNTY = 4;
 const ZIPCODE = 7;
@@ -28,6 +30,21 @@ const defaultHeaders = {
     "sec-fetch-dest": "empty",
     "sec-fetch-mode": "cors",
     "sec-fetch-site": "cross-site",
+}
+
+const getMapBoundsFromHtml = body => {
+    const $ = cheerio.load(body);
+
+    const findTextAndReturnRemainder = (target, variable) => {
+        const chopFront = target.substring(target.search(variable) + variable.length, target.length);
+        const result = chopFront.substring(0, chopFront.search(";"));
+        return result;
+    }
+
+    const text = $($('script')).text();
+    const findAndClean = findTextAndReturnRemainder(text, "window.mapBounds = ");
+    const result = JSON.parse(findAndClean);
+    return result;
 }
 
 
@@ -78,6 +95,7 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
     */
 
     // Determine regiontype
+    let nameForUrl = search;
     let regionType = COUNTY;
     switch (searchType.toLowerCase()) {
         case "zipcode":
@@ -87,11 +105,18 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
             regionType = STATE;
             break;
         case "city":
+            nameForUrl = alphaNum(search).replace(/\ /gi, "-").toLowerCase();
             regionType = CITY;
+            break;
+        default:
+            nameForUrl = alphaNum(search).replace(/\ /gi, "-").toLowerCase();
             break;
     }
 
     const url = 'https://www.zillowstatic.com/autocomplete/v3/suggestions';
+
+    const scrapMapBoundsUrl = `https://www.zillow.com/homes/${nameForUrl}_rb/`
+
 
     if (isTest) {
         return getTestRegion(regionType);
@@ -100,6 +125,23 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
         try {
             let finalConfig = { headers: defaultHeaders, params: { q: search }, ...axiosDefaults }
 
+            let scrapingConfig = {
+                url: scrapMapBoundsUrl,
+                headerGeneratorOptions: {
+                    browsers: [
+                        {
+                            name: 'chrome',
+                            minVersion: 87,
+                            maxVersion: 89
+                        }
+                    ],
+                    devices: ['desktop'],
+                    locales: ['de-DE', 'en-US'],
+                    operatingSystems: ['windows', 'linux'],
+                }
+            }
+
+
             if (proxy !== "none") {
                 const proxyUrl = await getProxyUrl(proxy)
                 finalConfig = {
@@ -107,14 +149,24 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
                     rejectUnauthorized: false,
                     proxy: proxyUrl
                 }
+
+                scrapingConfig = {
+                    ...scrapingConfig,
+                    proxyUrl: proxyUrl
+                }
             }
+
+            const response1 = await gotScraping(scrapingConfig);
+            const body = response1.body;
+            const finalMapBounds = getMapBoundsFromHtml(body);
+
             const response = await axios.get(url, finalConfig);
             const data = response.data.results;
 
             // Only get the result of the county regionType
             const regionResults = data.filter(d => d.metaData?.regionType?.toLowerCase() === searchType.toLowerCase());
 
-            const { regionId, lat, lng } = regionResults[0].metaData;
+            const { regionId } = regionResults[0].metaData;
             let extraMeta = {}
 
             // If it's a zipcode, need the city and state name
@@ -123,15 +175,12 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
                     cityState: `${regionResults[0].metaData.city.replace(/\ /gi, "-").toLowerCase()}-${regionResults[0].metaData.state}`.toLowerCase()
                 }
 
-            const offset = 10;
+            // const offset = 10;
+
+            //console.log({finalMapBounds})
 
             const obj = {
-                mapBounds: {
-                    north: lat + offset,
-                    south: lat - offset,
-                    west: lng - offset,
-                    east: lng + offset
-                },
+                mapBounds: finalMapBounds,
                 regionSelection: [
                     {
                         regionId,
@@ -199,7 +248,7 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
 
         } catch (error) {
             processError("getSearchResults", error);
-            return {count: "N/A"}
+            return { count: "N/A" }
         }
     }
 }

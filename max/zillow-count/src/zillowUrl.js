@@ -14,6 +14,12 @@ const soldPath = "sold/"
 // isRecentlySold: { value: true },
 // isAllHomes: { value: true }
 
+const zoomParams = {
+    zipcode: 12,
+    county: 9,
+    state: 6
+}
+
 const defaultParams = {
     pagination: {},
     isMapVisible: true,
@@ -27,8 +33,7 @@ const defaultParams = {
         apa: { value: false }, // Apartment
         apco: { value: false }, // Apartment Or condo
     },
-    isListVisible: true,
-    mapZoom: 4
+    isListVisible: true
 }
 
 const soldFilter = {
@@ -55,8 +60,11 @@ export const buildZillowUrl = (status, params, searchType) => {
             ...defaultParams.filterState,
             doz: { ...params.filterState.doz },
             lot: { ...params.filterState.lotSize }
-        }
+        },
+        mapZoom: zoomParams[searchType.toLowerCase()]
     }
+
+    console.log(newParams.mapZoom)
 
     if (status === "Sold") {
         newParams = {

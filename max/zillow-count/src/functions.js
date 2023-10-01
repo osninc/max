@@ -23,7 +23,10 @@ export const camelizeStr = str => {
 export const convertArea4Zillow = (params, searchType) => {
     let str = params.usersSearchTerm;
     if (searchType.toLowerCase() === "zipcode") {
-        str = `${params.cityState}-${params.usersSearchTerm}`;
+        // Just in case city is more than one word 
+        const newStr = alphaNum(params.cityState);
+        const cs = newStr.replace(/\ /gi, "-").toLowerCase();
+        str = `${cs}-${params.usersSearchTerm}`;
         return str;
     }
     else {

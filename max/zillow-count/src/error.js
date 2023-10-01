@@ -12,7 +12,7 @@ export const processError = (from, error) => {
     } else if (error.request) {
         message = `${message} There was an error communicating with the server.  Please try again later.`;
     } else {
-        console.log({ error })
+        //console.log({ error })
         message = `${message}${error.message}`;
     }
     console.log(message)

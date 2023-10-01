@@ -42,7 +42,7 @@ const getMapBoundsFromHtml = body => {
     }
 
     const text = $($('script')).text();
-    console.log({text})
+    console.log({ text })
     const findAndClean = findTextAndReturnRemainder(text, "window.mapBounds = ");
     console.log({ findAndClean })
     const result = JSON.parse(findAndClean);
@@ -129,17 +129,10 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
 
             let scrapingConfig = {
                 url: scrapMapBoundsUrl,
-                headerGeneratorOptions: {
-                    browsers: [
-                        {
-                            name: 'chrome',
-                            minVersion: 87,
-                            maxVersion: 89
-                        }
-                    ],
-                    devices: ['desktop'],
-                    locales: ['de-DE', 'en-US'],
-                    operatingSystems: ['windows', 'linux'],
+                headers: {
+                    ...defaultHeaders,
+                    Referer: "https://www.zillow.com/",
+                    "Referrer-Policy": "unsafe-url",
                 }
             }
 

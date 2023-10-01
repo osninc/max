@@ -11,6 +11,8 @@ const ZIPCODE = 7;
 const CITY = 6;
 const STATE = 2;
 
+const USESCRAPER = true;
+
 const axiosDefaults = {
     timeout: 30000
 }
@@ -42,9 +44,9 @@ const getMapBoundsFromHtml = body => {
     }
 
     const text = $($('script')).text();
-    console.log({ text })
+    //console.log({ text })
     const findAndClean = findTextAndReturnRemainder(text, "window.mapBounds = ");
-    console.log({ findAndClean })
+    //console.log({ findAndClean })
     const result = JSON.parse(findAndClean);
     return result;
 }
@@ -54,7 +56,7 @@ const transformData = data => {
     return { count: ("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A" }
 }
 
-export const getProxyUrl = async (proxy) => {
+export const getProxyUrl4Axios = async (proxy) => {
     const groups = (proxy === "residential") ? { groups: ["RESIDENTIAL"] } : {};
     const proxyConfiguration = await Actor.createProxyConfiguration(groups);
     // Example http://bob:password123@proxy.example.com:8000
@@ -71,6 +73,15 @@ export const getProxyUrl = async (proxy) => {
     }
 
     return obj;
+}
+
+export const getProxyUrl = async (proxy) => {
+    const groups = (proxy === "residential") ? { groups: ["RESIDENTIAL"] } : {};
+    const proxyConfiguration = await Actor.createProxyConfiguration(groups);
+    // Example http://bob:password123@proxy.example.com:8000
+    const proxyUrl = await proxyConfiguration.newUrl();
+
+    return proxyUrl;
 }
 
 export const getLocationInfo = async (searchType, search, proxy, isTest) => {
@@ -138,22 +149,26 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
 
 
             if (proxy !== "none") {
-                const proxyUrl = await getProxyUrl(proxy)
+                const proxyUrl4Axios = await getProxyUrl4Axios(proxy);
+                const proxyUrl = await getProxyUrl(proxy);
                 finalConfig = {
                     ...finalConfig,
                     rejectUnauthorized: false,
-                    proxy: proxyUrl
+                    proxy: proxyUrl4Axios
                 }
 
                 scrapingConfig = {
                     ...scrapingConfig,
-                    proxyUrl: proxyUrl
+                    proxyUrl
                 }
             }
 
-            //const response1 = await gotScraping(scrapingConfig);
-            //const body = response1.body;
-            //const finalMapBounds = getMapBoundsFromHtml(body);
+            let response1, body, finalMapBounds;
+            if (USESCRAPER) {
+                response1 = await gotScraping(scrapingConfig);
+                body = response1.body;
+                finalMapBounds = getMapBoundsFromHtml(body);
+            }
 
             const response = await axios.get(url, finalConfig);
             const data = response.data.results;
@@ -172,15 +187,19 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
 
             const offset = 10;
 
-            //console.log({finalMapBounds})
+            const returnBounds = {
+                north: lat + offset,
+                south: lat - offset,
+                west: lng - offset,
+                east: lng + offset
+            }
+
+            // console.log({ finalMapBounds })
+            // console.log({ returnBounds })
+
 
             const obj = {
-                mapBounds: {
-                    north: lat + offset,
-                    south: lat - offset,
-                    west: lng - offset,
-                    east: lng + offset
-                },
+                mapBounds: finalMapBounds ? finalMapBounds : returnBounds,
                 regionSelection: [
                     {
                         regionId,
@@ -231,10 +250,10 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
             }
 
             if (proxy !== "none") {
-                const proxyUrl = await getProxyUrl(proxy);
+                const proxyUrl4Axios = await getProxyUrl4Axios(proxy);
                 finalConfig = {
                     ...finalConfig,
-                    proxy: proxyUrl,
+                    proxy: proxyUrl4Axios,
                     rejectUnauthorized: false
                 }
             }

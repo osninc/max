@@ -120,7 +120,7 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
             // If it's a zipcode, need the city and state name
             if (searchType.toLowerCase() === "zipcode")
                 extraMeta = {
-                    cityState: `${regionResults[0].metaData.city}-${regionResults[0].metaData.state}`.toLowerCase()
+                    cityState: `${regionResults[0].metaData.city.replace(/\ /gi, "-").toLowerCase()}-${regionResults[0].metaData.state}`.toLowerCase()
                 }
 
             const offset = 10;

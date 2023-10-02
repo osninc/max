@@ -12,6 +12,8 @@ let statusMatrix = [];
 let timeMatrix = [];
 let lotSize = [];
 
+const startScript = performance.now();
+
 if (USEDEV) {
     statusMatrix = ["For Sale"];
     timeMatrix = [["36m", "36 months"]];
@@ -115,103 +117,125 @@ const defaults = {
 
 // Get the boundaries
 const loc = await getLocationInfo(searchBy, realSearch, proxy, USETEST)
-console.log({loc})
 
-let additionalFilters = {}
-let searchParams = {}
-let newData = []
+if (loc.regionSelection.regionType === 0) // Can't process without a region
+    await Actor.pushData({ message: "Error getting location data from zillow" });
+else {
+    let additionalFilters = {}
+    let searchParams = {}
+    let newData = []
 
-// Loop through everything
-const results = await Promise.all(statusMatrix.map(async status => {
-    additionalFilters = {}
-    if (status === "Sold") {
-        additionalFilters = {
-            ...soldParams
+    // Loop through everything
+    const results = await Promise.all(statusMatrix.map(async status => {
+        additionalFilters = {}
+        if (status === "Sold") {
+            additionalFilters = {
+                ...soldParams
+            }
         }
-    }
-    await Promise.all(timeMatrix.map(async t => {
-        let timeFilter = {}
-        timeFilter = {
-            ...timeFilter,
-            doz: { value: t[0] }
-        }
-        await Promise.all(lotSize.map(async lot => {
-            if (debug)
-                console.log({ lot })
-            let newFilters = {}
-            if (lot[0] !== "") {
-                newFilters = {
-                    ...newFilters,
-                    lotSize: {
-                        min: Number(lot[0])
+        await Promise.all(timeMatrix.map(async t => {
+            let timeFilter = {}
+            timeFilter = {
+                ...timeFilter,
+                doz: { value: t[0] }
+            }
+            await Promise.all(lotSize.map(async lot => {
+                if (debug)
+                    console.log({ lot })
+                let newFilters = {}
+                if (lot[0] !== "") {
+                    newFilters = {
+                        ...newFilters,
+                        lotSize: {
+                            min: Number(lot[0])
+                        }
                     }
                 }
-            }
-            if (lot[1] !== "") {
-                newFilters = {
-                    ...newFilters,
-                    lotSize: {
-                        ...newFilters.lotSize,
-                        max: Number(lot[1])
+                if (lot[1] !== "") {
+                    newFilters = {
+                        ...newFilters,
+                        lotSize: {
+                            ...newFilters.lotSize,
+                            max: Number(lot[1])
+                        }
                     }
                 }
-            }
 
-            searchParams = {
-                ...loc,
-                ...defaults,
-                filterState: {
-                    ...defaults.filterState,
-                    ...additionalFilters,
-                    ...timeFilter,
-                    ...newFilters
+                searchParams = {
+                    ...loc,
+                    ...defaults,
+                    filterState: {
+                        ...defaults.filterState,
+                        ...additionalFilters,
+                        ...timeFilter,
+                        ...newFilters
+                    }
                 }
-            }
 
 
-            if (debug)
-                console.log(searchParams.filterState)
+                if (debug)
+                    console.log(searchParams.filterState)
 
-            const url = buildZillowUrl(status, searchParams, searchBy);
-            const lotStr = `${lotSizeToString(sqft2acre(lot[0]), sqft2acre(lot[1]))}`;
+                const url = buildZillowUrl(status, searchParams, searchBy);
+                const lotStr = `${lotSizeToString(sqft2acre(lot[0]), sqft2acre(lot[1]))}`;
 
-            // Process everything
-            const results = await getSearchResults(searchParams, url, proxy, USETEST)
+                // Process everything
+                let startTime, endTime;
+                startTime = performance.now();
+                const results = await getSearchResults(searchParams, url, proxy, USETEST)
+                endTime = performance.now();
 
-            const searchByText = (searchBy === "state") ? getState(realSearch) : realSearch;
-            const daysKey = (status === "Sold") ? "soldInLast" : "daysOnZillow";
 
-            const blankFields = {
-                county: "",
-                state: "",
-                zipCode: "",
-                soldInLast: "",
-                daysOnZillow: ""
-            }
+                const searchByText = (searchBy === "state") ? getState(realSearch) : realSearch;
+                const daysKey = (status === "Sold") ? "soldInLast" : "daysOnZillow";
 
-            const finalResults = {
-                ...blankFields,
-                [searchBy]: searchByText,
-                timeStamp: ts.toString(),
-                status,
-                [daysKey]: t[1],
-                acreage: lotStr,
-                url,
-                ...results,
+                const blankFields = {
+                    county: "",
+                    state: "",
+                    zipCode: "",
+                    soldInLast: "",
+                    daysOnZillow: ""
+                }
 
-            }
-            newData = [
-                ...newData,
-                finalResults
-            ];
+                const finalResults = {
+                    ...blankFields,
+                    [searchBy]: searchByText,
+                    timeStamp: ts.toString(),
+                    status,
+                    [daysKey]: t[1],
+                    acreage: lotStr,
+                    url,
+                    timeToGetInfo: `${((endTime - startTime) / 1000).toFixed(2)} seconds`,
+                    proxy,
+                    ...results,
 
+                }
+                newData = [
+                    ...newData,
+                    finalResults
+                ];
+
+            }))
         }))
     }))
-}))
-if (debug)
-    await console.log(newData)
 
-await Actor.pushData(newData);
+    const endScript = performance.now();
 
+    // Count N/A vs. count
+    const totalResults = newData.length;
+    const totalNA = newData.filter(data => data.count === "N/A").length;
+    const totalRunTime = `${((endScript - startScript) / 1000).toFixed(2)} seconds`
+    await Actor.pushData({
+        total: totalResults,
+        totalFailed: totalNA,
+        totalRunTime: totalRunTime
+    })
+
+
+    if (debug)
+        await console.log(newData)
+
+    await Actor.pushData(newData);
+}
 // Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().
 await Actor.exit();

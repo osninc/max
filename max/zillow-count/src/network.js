@@ -37,7 +37,7 @@ const defaultHeaders = {
 const randomHeaders = {
     devices: ['mobile', 'desktop'],
     locales: ['en-US'],
-    operatingSystems: ['windows', 'macos', 'android', 'ios','linux'],
+    operatingSystems: ['windows', 'macos', 'android', 'ios', 'linux'],
     browsers: [{
         name: 'chrome',
         minVersion: 87,
@@ -56,8 +56,8 @@ const getMapBoundsFromHtml = body => {
 
     const text = $($('script')).text();
     const findAndClean = findTextAndReturnRemainder(text, "window.mapBounds = ");
-    console.log({text});
-    console.log({findAndClean})
+    console.log({ text });
+    console.log({ findAndClean })
     const result = JSON.parse(findAndClean);
     return result;
 }
@@ -151,7 +151,7 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
 
             let scrapingConfig = {
                 url: scrapMapBoundsUrl,
-                headerGeneratorOptions: {...randomHeaders},
+                headerGeneratorOptions: { ...randomHeaders },
                 headers: {
                     Referer: "https://www.zillow.com/",
                     "Referrer-Policy": "unsafe-url",
@@ -217,7 +217,7 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
                 east: lng + offset
             }
 
-             //console.log({ finalMapBounds })
+            //console.log({ finalMapBounds })
             // console.log({ returnBounds })
 
 
@@ -237,10 +237,16 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
         } catch (error) {
             processError("getLocationInfo", error);
             return {
-                north: 0,
-                south: 0,
-                west: 0,
-                east: 0
+                mapBounds: {
+                    north: 0,
+                    south: 0,
+                    west: 0,
+                    east: 0
+                },
+                regionSelection: {
+                    regionId: 0,
+                    regionType: 0
+                }
             }
         }
     }
@@ -315,7 +321,7 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
                     ...scrapingConfig,
                     proxyUrl
                 }
-                
+
             }
 
             //const response = await axios.get(url, finalConfig);
@@ -336,7 +342,7 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
 
             //console.log({ scrapingConfig })
             const response = await gotScraping(scrapingConfig)
-            //console.log({response2})
+            console.log({response})
             const data = response.body;
 
             return transformData(data)

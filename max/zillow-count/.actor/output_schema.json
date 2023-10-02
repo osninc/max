@@ -2,6 +2,18 @@
     "actorSpecification": 1,
     "fields": {},
     "views": {
+        "timers": {
+            "title": "Timed Tests",
+            "transformation": {
+                "fields": [
+                    "proxy",
+                    "timeToGetInfo",
+                    "total",
+                    "totalFailed",
+                    "totalRunTime"
+                ]
+            }
+        },
         "overview": {
             "title": "Overview",
             "transformation": {

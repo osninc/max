@@ -51,9 +51,9 @@ const getMapBoundsFromHtml = body => {
     }
 
     const text = $($('script')).text();
-    //console.log({ text })
+    console.log({ text })
     const findAndClean = findTextAndReturnRemainder(text, "window.mapBounds = ");
-    //console.log({ findAndClean })
+    console.log({ findAndClean })
     const result = JSON.parse(findAndClean);
     return result;
 }

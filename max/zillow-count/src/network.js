@@ -56,8 +56,8 @@ const getMapBoundsFromHtml = body => {
 
     const text = $($('script')).text();
     const findAndClean = findTextAndReturnRemainder(text, "window.mapBounds = ");
-    console.log({ text });
-    console.log({ findAndClean })
+    //console.log({ text });
+   // console.log({ findAndClean })
     const result = JSON.parse(findAndClean);
     return result;
 }
@@ -342,7 +342,7 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
 
             //console.log({ scrapingConfig })
             const response = await gotScraping(scrapingConfig)
-            console.log({response})
+            //console.log({response})
             const data = response.body;
 
             return transformData(data)

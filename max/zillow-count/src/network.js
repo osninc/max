@@ -1,4 +1,4 @@
-import axios from "axios-https-proxy-fix";
+//import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
 import { getTestRegion, getTestData } from "./usingTest.js";
 import { alphaNum, getRandomInt } from "./functions.js";
@@ -32,6 +32,13 @@ const defaultHeaders = {
     "sec-fetch-dest": "empty",
     "sec-fetch-mode": "cors",
     "sec-fetch-site": "cross-site",
+}
+
+const randomHeaders = {
+    devices: ['mobile', 'desktop'],
+    locales: ['en-US'],
+    operatingSystems: ['windows', 'macos', 'android', 'ios'],
+    browsers: ['chrome', 'edge', 'firefox', 'safari'],
 }
 
 const getMapBoundsFromHtml = body => {
@@ -140,8 +147,8 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
 
             let scrapingConfig = {
                 url: scrapMapBoundsUrl,
+                headerGeneratorOptions: {...randomHeaders},
                 headers: {
-                    ...defaultHeaders,
                     Referer: "https://www.zillow.com/",
                     "Referrer-Policy": "unsafe-url",
                 }
@@ -166,12 +173,25 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
             let response1, body, finalMapBounds;
             if (USESCRAPER) {
                 response1 = await gotScraping(scrapingConfig);
+                //console.log({ scrapingConfig })
                 body = response1.body;
                 finalMapBounds = getMapBoundsFromHtml(body);
             }
 
-            const response = await axios.get(url, finalConfig);
-            const data = response.data.results;
+            //const response = await axios.get(url, finalConfig);
+            const response = await gotScraping(
+                {
+                    ...scrapingConfig,
+                    searchParams: { q: search },
+                    url,
+                    responseType: "json"
+                }
+            )
+            //console.log({response})
+            //const data = response.data.results;
+            const data = response.body.results;
+
+            //console.log(JSON.stringify(data))
 
             // Only get the result of the county regionType
             const regionResults = data.filter(d => d.metaData?.regionType?.toLowerCase() === searchType.toLowerCase());
@@ -194,7 +214,7 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
                 east: lng + offset
             }
 
-            // console.log({ finalMapBounds })
+             //console.log({ finalMapBounds })
             // console.log({ returnBounds })
 
 
@@ -249,23 +269,74 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
                 ...axiosDefaults
             }
 
+            let scrapingConfig = {
+                url: url,
+                headerGeneratorOptions: { ...randomHeaders },
+                headers: {
+                    Referer: refererUrl,
+                    "Referrer-Policy": "unsafe-url",
+                },
+                responseType: "json",
+                searchParams: {
+                    searchQueryState: encodeURIComponent(JSON.stringify(searchQueryState)),
+                    wants: encodeURIComponent(JSON.stringify(wants)),
+                    requestId
+                }
+            }
+
+            // let scrapingConfig = {
+            //     headers: {
+            //     //     ...defaultHeaders,
+            //         Referer: refererUrl,
+            //         "Referrer-Policy": "unsafe-url",
+            //     },
+            //     headerGeneratorOptions: { ...randomHeaders },
+            //     responseType: "json",
+            //     url
+            // }
+
             if (proxy !== "none") {
                 const proxyUrl4Axios = await getProxyUrl4Axios(proxy);
+                const proxyUrl = await getProxyUrl(proxy);
                 finalConfig = {
                     ...finalConfig,
                     proxy: proxyUrl4Axios,
                     rejectUnauthorized: false
                 }
+                scrapingConfig = {
+                    ...scrapingConfig,
+                    proxyUrl
+                }
+                
             }
 
-            const response = await axios.get(url, finalConfig);
-            const data = response.data;
+            //const response = await axios.get(url, finalConfig);
+            //const data = response.data;
+
+            // const obj = {
+            //     ...scrapingConfig,
+            //     searchParams: {
+            //         searchQueryState,
+            //         wants,
+            //         requestId
+            //     },
+            //     url
+            // }
+
+            //console.log(JSON.stringify(obj))
+
+
+            //console.log({ scrapingConfig })
+            const response = await gotScraping(scrapingConfig)
+            //console.log({response2})
+            const data = response.body;
 
             return transformData(data)
             //return { count: 0 }
 
 
         } catch (error) {
+            //console.log(JSON.stringify(error))
             processError("getSearchResults", error);
             return { count: "N/A" }
         }

@@ -1,4 +1,4 @@
-//import axios from "axios-https-proxy-fix";
+import axios from "axios-https-proxy-fix";
 import { Actor } from "apify";
 import { getTestRegion, getTestData } from "./usingTest.js";
 import { alphaNum, getRandomInt } from "./functions.js";
@@ -11,7 +11,7 @@ const ZIPCODE = 7;
 const CITY = 6;
 const STATE = 2;
 
-const USESCRAPER = true;
+const USESCRAPER = false;
 
 const axiosDefaults = {
     timeout: 30000
@@ -190,18 +190,18 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
                 finalMapBounds = getMapBoundsFromHtml(body);
             }
 
-            //const response = await axios.get(url, finalConfig);
-            const response = await gotScraping(
-                {
-                    ...scrapingConfig,
-                    searchParams: { q: search },
-                    url,
-                    responseType: "json"
-                }
-            )
+            const response = await axios.get(url, finalConfig);
+            // const response = await gotScraping(
+            //     {
+            //         ...scrapingConfig,
+            //         searchParams: { q: search },
+            //         url,
+            //         responseType: "json"
+            //     }
+            // )
             //console.log({response})
-            //const data = response.data.results;
-            const data = response.body.results;
+            const data = response.data.results;
+            //const data = response.body.results;
 
             //console.log(JSON.stringify(data))
 
@@ -333,8 +333,8 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
 
             }
 
-            //const response = await axios.get(url, finalConfig);
-            //const data = response.data;
+            const response = await axios.get(url, finalConfig);
+            const data = response.data;
 
             // const obj = {
             //     ...scrapingConfig,
@@ -350,9 +350,9 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
 
 
             //console.log({ scrapingConfig })
-            const response = await gotScraping(scrapingConfig)
-            //console.log({response})
-            const data = response.body;
+            // const response = await gotScraping(scrapingConfig)
+            // //console.log({response})
+            // const data = response.body;
 
             return transformData(data)
             //return { count: 0 }

@@ -5,9 +5,7 @@
   "schemaVersion": 1,
   "properties": {
     "searchBy": {
-      "sectionCaption": "Search by",
-      "sectionDescription": "Choose county (default), zip code, or state",
-      "title": "Area type",
+      "title": "Choose county (default), zip code, or state",
       "type": "string",
       "editor": "select",
       "default": "county",
@@ -3308,7 +3306,6 @@
       "maxLength": 5
     },
     "proxy": {
-      "sectionCaption": "Proxies",
       "title": "Proxy Type",
       "type": "string",
       "description": "Toggles between datacenters and residentials",
@@ -3325,7 +3322,6 @@
       ]
     },
     "debug": {
-      "sectionCaption": "Debug",
       "title": "Debug Mode",
       "type": "boolean",
       "description": "turn on console.log messages.",

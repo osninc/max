@@ -61,12 +61,12 @@ const getMapBoundsFromHtml = body => {
     try {
         const result = JSON.parse(findAndClean);
         return result;
-    }
-    catch (error) {
+    } catch (error) {
         console.log({ text });
         console.log({ findAndClean })
-        const result = JSON.parse(findAndClean);
-        return result;
+        const l = findTextAndReturnRemainder(text, "var pxCaptchaSrc = ");
+        processError("findTextAndReturnRemainder", error);
+        throw new Error(l)
     }
 
 }

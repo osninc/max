@@ -115,6 +115,7 @@ const defaults = {
 
 // Get the boundaries
 const loc = await getLocationInfo(searchBy, realSearch, proxy, USETEST)
+console.log({loc})
 
 let additionalFilters = {}
 let searchParams = {}

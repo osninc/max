@@ -37,8 +37,12 @@ const defaultHeaders = {
 const randomHeaders = {
     devices: ['mobile', 'desktop'],
     locales: ['en-US'],
-    operatingSystems: ['windows', 'macos', 'android', 'ios'],
-    browsers: ['chrome', 'edge', 'firefox', 'safari'],
+    operatingSystems: ['windows', 'macos', 'android', 'ios','linux'],
+    browsers: [{
+        name: 'chrome',
+        minVersion: 87,
+        maxVersion: 89
+    }, 'edge', 'firefox', 'safari'],
 }
 
 const getMapBoundsFromHtml = body => {
@@ -51,9 +55,9 @@ const getMapBoundsFromHtml = body => {
     }
 
     const text = $($('script')).text();
-    console.log({ text })
     const findAndClean = findTextAndReturnRemainder(text, "window.mapBounds = ");
-    console.log({ findAndClean })
+    console.log({text});
+    console.log({findAndClean})
     const result = JSON.parse(findAndClean);
     return result;
 }
@@ -173,7 +177,6 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
             let response1, body, finalMapBounds;
             if (USESCRAPER) {
                 response1 = await gotScraping(scrapingConfig);
-                //console.log({ scrapingConfig })
                 body = response1.body;
                 finalMapBounds = getMapBoundsFromHtml(body);
             }
@@ -233,7 +236,12 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
 
         } catch (error) {
             processError("getLocationInfo", error);
-            return {}
+            return {
+                north: 0,
+                south: 0,
+                west: 0,
+                east: 0
+            }
         }
     }
 }

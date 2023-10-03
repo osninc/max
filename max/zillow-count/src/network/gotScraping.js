@@ -48,7 +48,7 @@ export const getProxyUrl = async (proxy) => {
 }
 
 export const getLocationData = async (searchType, proxy, q, nameForUrl) => {
-    const finalConfig = {
+    let finalConfig = {
         headerGeneratorOptions: { ...randomHeaders },
         headers: {
             Referer: "https://www.zillow.com/",

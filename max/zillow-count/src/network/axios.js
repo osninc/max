@@ -3,7 +3,6 @@ import { defaultHeaders } from "./headers.js";
 import { zillow } from "./zillow.js";
 import { getRandomInt } from "../functions.js";
 import { Actor } from "apify";
-import { processError } from "../error.js";
 
 const axiosDefaults = {
     timeout: 4000

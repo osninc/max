@@ -120,7 +120,7 @@ const defaults = {
 const loc = await getLocationInfo(searchBy, realSearch, proxy, USETEST, scraper)
 
 if (loc.regionSelection.regionType === 0) // Can't process without a region
-    await Actor.pushData({ proxy, message: "Error getting location data from zillow" });
+    await Actor.pushData({ scraper, proxy, message: "Error getting location data from zillow" });
 else {
     let additionalFilters = {}
     let searchParams = {}

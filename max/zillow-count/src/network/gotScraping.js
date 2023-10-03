@@ -59,7 +59,6 @@ export const getLocationData = async (searchType, proxy, q, nameForUrl) => {
     // build URL
     const url = zillow.url.mapBound.replace("INSERT-NAME-HERE", nameForUrl)
 
-
     if (proxy !== "none") {
         const proxyUrl = await getProxyUrl(proxy);
 
@@ -68,6 +67,7 @@ export const getLocationData = async (searchType, proxy, q, nameForUrl) => {
             proxyUrl
         }
     }
+    
     let response1, body, finalMapBounds;
     response1 = await gotScraping({
         ...finalConfig,

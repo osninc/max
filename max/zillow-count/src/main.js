@@ -5,6 +5,7 @@ import { buildZillowUrl } from "./zillowUrl.js";
 import { getSearchResults, getLocationInfo } from "./network.js";
 import { getState } from "./state.js";
 import { rate } from "./constants/rate.js";
+import { createCrawleeObj, processAryOfUrls } from "./network/crawlee.js";
 
 const USETEST = false;
 const USEDEV = false;
@@ -120,6 +121,9 @@ const defaults = {
 // Get the boundaries
 const loc = await getLocationInfo(searchBy, realSearch, proxy, USETEST, scraper)
 
+// For crawlee
+let arrayOfUrls = [];
+
 if (true) {
     if (loc.regionSelection.regionType === 0) // Can't process without a region
         await Actor.pushData({ scraper, proxy, message: "Error getting location data from zillow" });
@@ -127,6 +131,7 @@ if (true) {
         let additionalFilters = {}
         let searchParams = {}
         let newData = []
+
 
         // Loop through everything
         const results = await Promise.all(statusMatrix.map(async status => {
@@ -184,44 +189,54 @@ if (true) {
 
                     // Process everything
                     let startTime, endTime;
-                    startTime = performance.now();
-                    const results = await getSearchResults(searchParams, url, proxy, USETEST, scraper)
-                    endTime = performance.now();
-
-
-                    const searchByText = (searchBy === "state") ? getState(realSearch) : realSearch;
-                    const daysKey = (status === "Sold") ? "soldInLast" : "daysOnZillow";
-
-                    const blankFields = {
-                        county: "",
-                        state: "",
-                        zipCode: "",
-                        soldInLast: "",
-                        daysOnZillow: ""
+                    let results;
+                    if (scraper === "crawlee") {
+                        const crawleeObj = createCrawleeObj(searchParams, url, searchBy, status, lotStr, t[1])
+                        //const crawleeObj = await getSearchResults(searchParams, url, proxy, USETEST, scraper)
+                        arrayOfUrls = [...arrayOfUrls, crawleeObj];
                     }
+                    else {
+                        startTime = performance.now();
+                        results = await getSearchResults(searchParams, url, proxy, USETEST, scraper);
+                        endTime = performance.now();
 
-                    const finalResults = {
-                        ...blankFields,
-                        [searchBy]: searchByText,
-                        timeStamp: ts.toString(),
-                        status,
-                        [daysKey]: t[1],
-                        acreage: lotStr,
-                        url,
-                        timeToGetInfo: `${((endTime - startTime) / 1000).toFixed(2)} seconds`,
-                        proxy,
-                        scraper,
-                        ...results,
+                        const searchByText = (searchBy === "state") ? getState(realSearch) : realSearch;
+                        const daysKey = (status === "Sold") ? "soldInLast" : "daysOnZillow";
 
+                        const blankFields = {
+                            county: "",
+                            state: "",
+                            zipCode: "",
+                            soldInLast: "",
+                            daysOnZillow: ""
+                        }
+
+                        const finalResults = {
+                            ...blankFields,
+                            [searchBy]: searchByText,
+                            timeStamp: ts.toString(),
+                            status,
+                            [daysKey]: t[1],
+                            acreage: lotStr,
+                            url,
+                            timeToGetInfo: `${((endTime - startTime) / 1000).toFixed(2)} seconds`,
+                            proxy,
+                            scraper,
+                            ...results,
+
+                        }
+                        newData = [
+                            ...newData,
+                            finalResults
+                        ];
                     }
-                    newData = [
-                        ...newData,
-                        finalResults
-                    ];
-
                 }))
             }))
         }))
+
+        if (scraper === "crawlee") {
+            newData = await processAryOfUrls(arrayOfUrls, proxy, ts)
+        }
 
         const endScript = performance.now();
 

@@ -5,6 +5,7 @@ import { getRandomInt } from "../functions.js";
 import { getProxy } from "./shared/proxy.js";
 import { getMapBoundsFromHtml } from "./shared/map.js";
 import { transformData } from './shared/data.js';
+import { getState } from '../state.js';
 
 export const getProxyUrl = async (proxy) => {
     const proxyUrl = await getProxy(proxy);
@@ -16,7 +17,7 @@ export const getLocationData = async (searchType, proxy, q, nameForUrl) => {
     const url = zillow.url.mapBound.replace("INSERT-NAME-HERE", nameForUrl)
 
     let baseConfig = {
-        headerGeneratorOptions: { ...randomHeaders },
+       // headerGeneratorOptions: { ...randomHeaders },
         headers: {
             Referer: "https://www.zillow.com/",
             "Referrer-Policy": "unsafe-url"
@@ -136,7 +137,7 @@ export const getSearchData = async (searchQueryState, refererUrl, proxy) => {
     const url = zillow.url.search;
     const requestId = getRandomInt(20);
 
-    let scrapingConfig = {
+    let returnObj = {
         url,
         headerGeneratorOptions: { ...randomHeaders },
         headers: {
@@ -150,24 +151,29 @@ export const getSearchData = async (searchQueryState, refererUrl, proxy) => {
             requestId
         }
     }
+    if (proxy !== "none") {
+        const proxyUrl = await getProxyUrl(proxy);
+        scrapingConfig = {
+            ...scrapingConfig,
+            proxyUrl
+        }
+    }
+    return returnObj;
+}
 
-    let returnObj;
+export const processAryOfUrls = async (urls, proxy, ts) => {
+    let newData = [];
 
     const crawler = new BasicCrawler({
-        async requestHandler({ request, sendRequest }) {
+        async requestHandler({request,sendRequest}) {
+            //console.log(request.userData)
             // Build the request
             let defaultRequest = {
                 url: request.url,
                 method: request.method,
                 body: request.payload,
                 headers: request.headers,
-                responseType: "json",
-                searchParams: {
-                    searchQueryState: encodeURIComponent(JSON.stringify(searchQueryState)),
-                    wants: encodeURIComponent(JSON.stringify(zillow.wants)),
-                    requestId
-                },
-                headerGeneratorOptions: { ...randomHeaders }
+                responseType: "json"
             }
             if (proxy !== "none") {
                 const proxyUrl = await getProxyUrl(proxy);
@@ -177,16 +183,72 @@ export const getSearchData = async (searchQueryState, refererUrl, proxy) => {
                 }
             }
 
+            let startTime, endTime;
+            startTime = performance.now();
             const { body } = await sendRequest(defaultRequest);
-            returnObj = transformData(body);
+            endTime = performance.now();
+            let returnObj = transformData(body);
+
+            const searchByText = (request.userData.searchBy === "state") ? getState(request.userData.realSearch) : request.userData.realSearch;
+            const daysKey = (request.userData.status === "Sold") ? "soldInLast" : "daysOnZillow";
+
+            const blankFields = {
+                county: "",
+                state: "",
+                zipCode: "",
+                soldInLast: "",
+                daysOnZillow: ""
+            }
+
+            const finalResults = {
+                ...blankFields,
+                [request.userData.searchBy]: searchByText,
+                timeStamp: ts.toString(),
+                status: request.userData.status,
+                [daysKey]: request.userData.timeDim,
+                acreage: request.userData.lotSize,
+                url: request.userData.linkUrl,
+                timeToGetInfo: `${((endTime - startTime) / 1000).toFixed(2)} seconds`,
+                proxy,
+                scraper: "crawlee",
+                ...returnObj
+            }
+
+            newData = [
+                ...newData,
+                finalResults
+            ];
         }
     })
+    await crawler.run(urls);
 
-    await crawler.run([
-        scrapingConfig
-    ]);
+    return newData;
 
-    return returnObj;
+}
+
+export const createCrawleeObj = (searchParams, refererUrl, searchBy, status, lot, t) => {
+    const requestId = getRandomInt(20);
+
+    const zUrl = `${zillow.url.search}?searchQueryState=${encodeURIComponent(JSON.stringify(searchParams))}&wants=${encodeURIComponent(JSON.stringify(zillow.wants))}&requestId=${requestId}`;
+    
+    const requestObj = {
+        url: zUrl,
+        headers: {
+            Referer: refererUrl,
+            "Referrer-Policy": "unsafe-url",
+        },
+        responseType: "json",
+        userData: {
+            searchBy,
+            status,
+            linkUrl: refererUrl,
+            realSearch: searchParams.usersSearchTerm,
+            lotSize: lot,
+            timeDim: t
+        }
+    }
+    return requestObj;
+
 }
 
 

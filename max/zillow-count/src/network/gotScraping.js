@@ -4,6 +4,7 @@ import { zillow } from "./zillow.js";
 
 import { randomHeaders } from "./headers.js";
 import { getRandomInt } from "../functions.js";
+import { processError } from "../error.js";
 
 const transformData = data => {
     return { count: ("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A" }
@@ -121,44 +122,37 @@ export const getSearchData = async (searchQueryState, refererUrl, proxy) => {
 
     const requestId = getRandomInt(20);
 
-    try {
-
-        let scrapingConfig = {
-            url,
-            headerGeneratorOptions: { ...randomHeaders },
-            headers: {
-                Referer: refererUrl,
-                "Referrer-Policy": "unsafe-url",
-            },
-            responseType: "json",
-            searchParams: {
-                searchQueryState: encodeURIComponent(JSON.stringify(searchQueryState)),
-                wants: encodeURIComponent(JSON.stringify(zillow.wants)),
-                requestId
-            }
+    let scrapingConfig = {
+        url,
+        headerGeneratorOptions: { ...randomHeaders },
+        headers: {
+            Referer: refererUrl,
+            "Referrer-Policy": "unsafe-url",
+        },
+        responseType: "json",
+        searchParams: {
+            searchQueryState: encodeURIComponent(JSON.stringify(searchQueryState)),
+            wants: encodeURIComponent(JSON.stringify(zillow.wants)),
+            requestId
         }
-
-
-        if (proxy !== "none") {
-            const proxyUrl = await getProxyUrl(proxy);
-
-            scrapingConfig = {
-                ...scrapingConfig,
-                proxyUrl
-            }
-
-        }
-
-        const response = await gotScraping(scrapingConfig)
-        const data = response.body;
-
-        return transformData(data)
-
-    } catch (error) {
-        //console.log(JSON.stringify(error))
-        processError("getSearchResults", error);
-        return { count: "N/A" }
     }
+
+
+    if (proxy !== "none") {
+        const proxyUrl = await getProxyUrl(proxy);
+
+        scrapingConfig = {
+            ...scrapingConfig,
+            proxyUrl
+        }
+
+    }
+
+    const response = await gotScraping(scrapingConfig)
+    const data = response.body;
+
+    return transformData(data)
+
 }
 
 

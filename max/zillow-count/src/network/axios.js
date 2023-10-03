@@ -52,10 +52,10 @@ export const getLocationData = async (searchType, proxy, q) => {
         }
     }
 
-    console.log({ finalConfig })
+    //console.log({ finalConfig })
 
     const response = await axios.get(zillow.url.region, finalConfig);
-    console.log({ response })
+    //console.log({ response })
     const data = response.data.results;
 
     // Only get the result of the county regionType

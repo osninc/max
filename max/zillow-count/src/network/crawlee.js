@@ -24,14 +24,6 @@ export const getLocationData = async (searchType, proxy, q, nameForUrl) => {
         searchParams: { q }
     }
 
-    if (proxy !== "none") {
-        const proxyUrl = await getProxyUrl(proxy);
-        baseConfig = {
-            ...baseConfig,
-            proxyUrl
-        }
-    }
-
     const mapBoundsConfig = {
         ...baseConfig,
         url
@@ -56,10 +48,12 @@ export const getLocationData = async (searchType, proxy, q, nameForUrl) => {
                 //headerGeneratorOptions: { ...randomHeaders }
             }
             let finalRequest;
+
             if (proxy !== "none") {
+                const proxyUrl = await getProxyUrl(proxy);
                 defaultRequest = {
                     ...defaultRequest,
-                    proxyUrl: request.proxyUrl
+                    proxyUrl
                 }
             }
 
@@ -176,9 +170,10 @@ export const getSearchData = async (searchQueryState, refererUrl, proxy) => {
                 headerGeneratorOptions: { ...randomHeaders }
             }
             if (proxy !== "none") {
+                const proxyUrl = await getProxyUrl(proxy);
                 defaultRequest = {
                     ...defaultRequest,
-                    proxyUrl: request.proxyUrl
+                    proxyUrl
                 }
             }
 

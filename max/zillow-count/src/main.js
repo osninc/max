@@ -227,7 +227,7 @@ else {
     // Count N/A vs. count
     const totalResults = newData.length;
     const totalNA = newData.filter(data => data.count === "N/A").length;
-    const failureRate = `${(totalNA / totalResults).toFixed(2)} %`
+    const failureRate = `${(totalNA / totalResults).toFixed(2) * 100} %`
     const secDiff = (endScript - startScript) / 1000;
     const howMany10Seconds = parseInt(secDiff / 10);
     const estimatedCost = `$${((howMany10Seconds === 0 ? 1 : howMany10Seconds) * rate[proxy]).toFixed(3)}`;

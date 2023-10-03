@@ -6,7 +6,7 @@ import { Actor } from "apify";
 import { processError } from "../error.js";
 
 const axiosDefaults = {
-    timeout: 30000
+    timeout: 4000
 }
 
 const transformData = data => {

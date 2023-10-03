@@ -7,7 +7,7 @@ import { getState } from "./state.js";
 import { rate } from "./constants/rate.js";
 
 const USETEST = false;
-const USEDEV = true;
+const USEDEV = false;
 
 let statusMatrix = [];
 let timeMatrix = [];

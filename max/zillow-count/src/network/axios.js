@@ -2,6 +2,7 @@ import axios from "axios-https-proxy-fix";
 import { defaultHeaders } from "./headers.js";
 import { zillow } from "./zillow.js";
 import { getRandomInt } from "../functions.js";
+import { Actor } from "apify";
 
 const axiosDefaults = {
     timeout: 30000

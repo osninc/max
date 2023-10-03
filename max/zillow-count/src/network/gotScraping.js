@@ -5,6 +5,7 @@ import { zillow } from "./zillow.js";
 import { randomHeaders } from "./headers.js";
 import { getRandomInt } from "../functions.js";
 import { processError } from "../error.js";
+import { Actor } from "apify";
 
 const transformData = data => {
     return { count: ("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A" }

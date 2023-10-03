@@ -3,6 +3,7 @@ import { defaultHeaders } from "./headers.js";
 import { zillow } from "./zillow.js";
 import { getRandomInt } from "../functions.js";
 import { Actor } from "apify";
+import { processError } from "../error.js";
 
 const axiosDefaults = {
     timeout: 30000
@@ -92,41 +93,34 @@ export const getSearchData = async (searchQueryState, refererUrl, proxy) => {
     const url = zillow.url.search;
     const requestId = getRandomInt(20);
 
-    try {
-        let finalConfig = {
-            headers: {
-                ...defaultHeaders,
-                Referer: refererUrl,
-                "Referrer-Policy": "unsafe-url",
-            },
-            params: {
-                searchQueryState,
-                wants: zillow.wants,
-                requestId
-            },
-            responseType: "json",
-            ...axiosDefaults
-        }
-
-        if (proxy !== "none") {
-            const proxyUrl = await getProxyUrl(proxy);
-            finalConfig = {
-                ...finalConfig,
-                proxy: proxyUrl,
-                rejectUnauthorized: false
-            }
-        }
-
-        const response = await axios.get(url, finalConfig);
-        const data = response.data;
-
-        return transformData(data)
-
-    } catch (error) {
-        //console.log(JSON.stringify(error))
-        processError("getSearchResults", error);
-        return { count: "N/A" }
+    let finalConfig = {
+        headers: {
+            ...defaultHeaders,
+            Referer: refererUrl,
+            "Referrer-Policy": "unsafe-url",
+        },
+        params: {
+            searchQueryState,
+            wants: zillow.wants,
+            requestId
+        },
+        responseType: "json",
+        ...axiosDefaults
     }
+
+    if (proxy !== "none") {
+        const proxyUrl = await getProxyUrl(proxy);
+        finalConfig = {
+            ...finalConfig,
+            proxy: proxyUrl,
+            rejectUnauthorized: false
+        }
+    }
+
+    const response = await axios.get(url, finalConfig);
+    const data = response.data;
+
+    return transformData(data)
 }
 
 

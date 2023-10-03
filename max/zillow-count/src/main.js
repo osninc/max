@@ -80,7 +80,8 @@ const {
     proxy,
     searchBy,
     state,
-    zipCode
+    zipCode,
+    scraper
 } = input;
 
 const ts = new Date();
@@ -116,7 +117,7 @@ const defaults = {
 }
 
 // Get the boundaries
-const loc = await getLocationInfo(searchBy, realSearch, proxy, USETEST)
+const loc = await getLocationInfo(searchBy, realSearch, proxy, USETEST, scraper)
 
 if (loc.regionSelection.regionType === 0) // Can't process without a region
     await Actor.pushData({ proxy, message: "Error getting location data from zillow" });
@@ -182,7 +183,7 @@ else {
                 // Process everything
                 let startTime, endTime;
                 startTime = performance.now();
-                const results = await getSearchResults(searchParams, url, proxy, USETEST)
+                const results = await getSearchResults(searchParams, url, proxy, USETEST, scraper)
                 endTime = performance.now();
 
 
@@ -207,6 +208,7 @@ else {
                     url,
                     timeToGetInfo: `${((endTime - startTime) / 1000).toFixed(2)} seconds`,
                     proxy,
+                    scraper,
                     ...results,
 
                 }

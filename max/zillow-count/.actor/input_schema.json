@@ -3321,6 +3321,16 @@
         "Don't use proxy"
       ]
     },
+    "scraper": {
+      "title": "Scraper Option",
+      "type": "string",
+      "default": "axios",
+      "enum": [
+        "axios",
+        "got",
+        "crawlee (not yet implemented)"
+      ]
+    },
     "debug": {
       "title": "Debug Mode",
       "type": "boolean",

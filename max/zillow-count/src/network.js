@@ -5,13 +5,14 @@ import { alphaNum, getRandomInt } from "./functions.js";
 import { processError } from "./error.js";
 import { gotScraping } from "got-scraping";
 import * as cheerio from 'cheerio';
+import { getLocationData as axiosGetLocationData, getSearchData as axiosGetSearchData } from "./network/axios.js";
+import { getLocationData as gotGetLocationData, getSearchData as gotGetSearchData } from "./network/gotScraping.js";
+import { zillow } from "./network/zillow.js";
 
 const COUNTY = 4;
 const ZIPCODE = 7;
 const CITY = 6;
 const STATE = 2;
-
-const USESCRAPER = false;
 
 const axiosDefaults = {
     timeout: 30000
@@ -45,36 +46,36 @@ const randomHeaders = {
     }, 'edge', 'firefox', 'safari'],
 }
 
-const getMapBoundsFromHtml = body => {
-    const $ = cheerio.load(body);
+// const getMapBoundsFromHtml = body => {
+//     const $ = cheerio.load(body);
 
-    const findTextAndReturnRemainder = (target, variable) => {
-        const chopFront = target.substring(target.search(variable) + variable.length, target.length);
-        const result = chopFront.substring(0, chopFront.search(";"));
-        return result;
-    }
+//     const findTextAndReturnRemainder = (target, variable) => {
+//         const chopFront = target.substring(target.search(variable) + variable.length, target.length);
+//         const result = chopFront.substring(0, chopFront.search(";"));
+//         return result;
+//     }
 
-    const text = $($('script')).text();
-    const findAndClean = findTextAndReturnRemainder(text, "window.mapBounds = ");
-    //console.log({ text });
-    // console.log({ findAndClean })
-    try {
-        const result = JSON.parse(findAndClean);
-        return result;
-    } catch (error) {
-        console.log({ text });
-        console.log({ findAndClean })
-        const l = findTextAndReturnRemainder(text, "var pxCaptchaSrc = ");
-        processError("findTextAndReturnRemainder", error);
-        throw new Error(l)
-    }
+//     const text = $($('script')).text();
+//     const findAndClean = findTextAndReturnRemainder(text, "window.mapBounds = ");
+//     //console.log({ text });
+//     // console.log({ findAndClean })
+//     try {
+//         const result = JSON.parse(findAndClean);
+//         return result;
+//     } catch (error) {
+//         console.log({ text });
+//         console.log({ findAndClean })
+//         const l = findTextAndReturnRemainder(text, "var pxCaptchaSrc = ");
+//         processError("findTextAndReturnRemainder", error);
+//         throw new Error(l)
+//     }
 
-}
+// }
 
 
-const transformData = data => {
-    return { count: ("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A" }
-}
+// const transformData = data => {
+//     return { count: ("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A" }
+// }
 
 export const getProxyUrl4Axios = async (proxy) => {
     const groups = (proxy === "residential") ? { groups: ["RESIDENTIAL"] } : {};
@@ -104,7 +105,7 @@ export const getProxyUrl = async (proxy) => {
     return proxyUrl;
 }
 
-export const getLocationInfo = async (searchType, search, proxy, isTest) => {
+export const getLocationInfo = async (searchType, search, proxy, isTest, scraper) => {
     /*
         Sample return JSON
         {
@@ -146,99 +147,25 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
             break;
     }
 
-    const url = 'https://www.zillowstatic.com/autocomplete/v3/suggestions';
-
-    const scrapMapBoundsUrl = `https://www.zillow.com/homes/${nameForUrl}_rb/`
-
-
     if (isTest) {
         return getTestRegion(regionType);
     }
     else {
         try {
-            let finalConfig = { headers: defaultHeaders, params: { q: search }, ...axiosDefaults }
+            let data;
+            switch (scraper) {
+                case "axios":
+                    data = await axiosGetLocationData(searchType, proxy, search)
+                    break;
+                case "got":
+                    data = await gotGetLocationData(searchType, proxy, search, nameForUrl)
+                    break;
 
-            let scrapingConfig = {
-                url: scrapMapBoundsUrl,
-                headerGeneratorOptions: { ...randomHeaders },
-                headers: {
-                    Referer: "https://www.zillow.com/",
-                    "Referrer-Policy": "unsafe-url",
-                }
             }
-
-
-            if (proxy !== "none") {
-                const proxyUrl4Axios = await getProxyUrl4Axios(proxy);
-                const proxyUrl = await getProxyUrl(proxy);
-                finalConfig = {
-                    ...finalConfig,
-                    rejectUnauthorized: false,
-                    proxy: proxyUrl4Axios
-                }
-
-                scrapingConfig = {
-                    ...scrapingConfig,
-                    proxyUrl
-                }
-            }
-
-            let response1, body, finalMapBounds;
-            if (USESCRAPER) {
-                response1 = await gotScraping(scrapingConfig);
-                body = response1.body;
-                finalMapBounds = getMapBoundsFromHtml(body);
-            }
-
-            const response = await axios.get(url, finalConfig);
-            // const response = await gotScraping(
-            //     {
-            //         ...scrapingConfig,
-            //         searchParams: { q: search },
-            //         url,
-            //         responseType: "json"
-            //     }
-            // )
-            //console.log({response})
-            const data = response.data.results;
-            //const data = response.body.results;
-
-            //console.log(JSON.stringify(data))
-
-            // Only get the result of the county regionType
-            const regionResults = data.filter(d => d.metaData?.regionType?.toLowerCase() === searchType.toLowerCase());
-
-            const { regionId, lat, lng } = regionResults[0].metaData;
-            let extraMeta = {}
-
-            // If it's a zipcode, need the city and state name
-            if (searchType.toLowerCase() === "zipcode")
-                extraMeta = {
-                    cityState: `${regionResults[0].metaData.city.replace(/\ /gi, "-").toLowerCase()}-${regionResults[0].metaData.state}`.toLowerCase()
-                }
-
-            const offset = 10;
-
-            const returnBounds = {
-                north: lat + offset,
-                south: lat - offset,
-                west: lng - offset,
-                east: lng + offset
-            }
-
-            //console.log({ finalMapBounds })
-            // console.log({ returnBounds })
-
 
             const obj = {
-                mapBounds: finalMapBounds ? finalMapBounds : returnBounds,
-                regionSelection: [
-                    {
-                        regionId,
-                        regionType
-                    }
-                ],
-                ...extraMeta
+                ...data,
+                regionSelection: [{ regionId: data.regionSelection[0].regionId, regionType }],
             }
 
             return obj
@@ -261,108 +188,22 @@ export const getLocationInfo = async (searchType, search, proxy, isTest) => {
     }
 }
 
-export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTest) => {
-    const url = "https://www.zillow.com/search/GetSearchPageState.htm";
-
-    const wants = {
-        cat1: ["mapResults"],
-        cat2: ["total"],
-        regionResults: ["regionResults"]
-    };
-    const requestId = getRandomInt(20);
-
-    if (isTest) {
-        return transformData(getTestData());
-    }
-    else {
-
-        try {
-            let finalConfig = {
-                headers: {
-                    ...defaultHeaders,
-                    Referer: refererUrl,
-                    "Referrer-Policy": "unsafe-url",
-                },
-                params: {
-                    searchQueryState,
-                    wants,
-                    requestId
-                },
-                responseType: "json",
-                ...axiosDefaults
-            }
-
-            let scrapingConfig = {
-                url: url,
-                headerGeneratorOptions: { ...randomHeaders },
-                headers: {
-                    Referer: refererUrl,
-                    "Referrer-Policy": "unsafe-url",
-                },
-                responseType: "json",
-                searchParams: {
-                    searchQueryState: encodeURIComponent(JSON.stringify(searchQueryState)),
-                    wants: encodeURIComponent(JSON.stringify(wants)),
-                    requestId
-                }
-            }
-
-            // let scrapingConfig = {
-            //     headers: {
-            //     //     ...defaultHeaders,
-            //         Referer: refererUrl,
-            //         "Referrer-Policy": "unsafe-url",
-            //     },
-            //     headerGeneratorOptions: { ...randomHeaders },
-            //     responseType: "json",
-            //     url
-            // }
-
-            if (proxy !== "none") {
-                const proxyUrl4Axios = await getProxyUrl4Axios(proxy);
-                const proxyUrl = await getProxyUrl(proxy);
-                finalConfig = {
-                    ...finalConfig,
-                    proxy: proxyUrl4Axios,
-                    rejectUnauthorized: false
-                }
-                scrapingConfig = {
-                    ...scrapingConfig,
-                    proxyUrl
-                }
-
-            }
-
-            const response = await axios.get(url, finalConfig);
-            const data = response.data;
-
-            // const obj = {
-            //     ...scrapingConfig,
-            //     searchParams: {
-            //         searchQueryState,
-            //         wants,
-            //         requestId
-            //     },
-            //     url
-            // }
-
-            //console.log(JSON.stringify(obj))
-
-
-            //console.log({ scrapingConfig })
-            // const response = await gotScraping(scrapingConfig)
-            // //console.log({response})
-            // const data = response.body;
-
-            return transformData(data)
-            //return { count: 0 }
-
-
-        } catch (error) {
-            //console.log(JSON.stringify(error))
-            processError("getSearchResults", error);
-            return { count: "N/A" }
+export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTest, scraper) => {
+    try {
+        let data;
+        switch (scraper) {
+            case "axios":
+                data = await axiosGetSearchData(searchQueryState, refererUrl, proxy)
+                break;
+            case "got":
+                data = await gotGetSearchData(searchQueryState, refererUrl, proxy)
+                break;
         }
+
+        return data;
+    } catch (error) {
+        //console.log(JSON.stringify(error))
+        processError("getSearchResults", error);
+        return { count: "N/A" }
     }
 }
-

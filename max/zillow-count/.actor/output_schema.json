@@ -38,6 +38,7 @@
             "transformation": {
                 "fields": [
                     "proxy",
+                    "scraper",
                     "timeToGetInfo",
                     "total",
                     "totalFailed",

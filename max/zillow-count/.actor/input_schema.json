@@ -3323,6 +3323,7 @@
     },
     "scraper": {
       "title": "Scraper Option",
+      "description": "select the scraper to use",
       "type": "string",
       "default": "axios",
       "enum": [

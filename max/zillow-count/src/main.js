@@ -7,7 +7,7 @@ import { getState } from "./state.js";
 import { rate } from "./constants/rate.js";
 
 const USETEST = false;
-const USEDEV = false;
+const USEDEV = true;
 
 let statusMatrix = [];
 let timeMatrix = [];
@@ -120,134 +120,136 @@ const defaults = {
 // Get the boundaries
 const loc = await getLocationInfo(searchBy, realSearch, proxy, USETEST, scraper)
 
-if (loc.regionSelection.regionType === 0) // Can't process without a region
-    await Actor.pushData({ scraper, proxy, message: "Error getting location data from zillow" });
-else {
-    let additionalFilters = {}
-    let searchParams = {}
-    let newData = []
+if (true) {
+    if (loc.regionSelection.regionType === 0) // Can't process without a region
+        await Actor.pushData({ scraper, proxy, message: "Error getting location data from zillow" });
+    else {
+        let additionalFilters = {}
+        let searchParams = {}
+        let newData = []
 
-    // Loop through everything
-    const results = await Promise.all(statusMatrix.map(async status => {
-        additionalFilters = {}
-        if (status === "Sold") {
-            additionalFilters = {
-                ...soldParams
+        // Loop through everything
+        const results = await Promise.all(statusMatrix.map(async status => {
+            additionalFilters = {}
+            if (status === "Sold") {
+                additionalFilters = {
+                    ...soldParams
+                }
             }
-        }
-        await Promise.all(timeMatrix.map(async t => {
-            let timeFilter = {}
-            timeFilter = {
-                ...timeFilter,
-                doz: { value: t[0] }
-            }
-            await Promise.all(lotSize.map(async lot => {
-                if (debug)
-                    console.log({ lot })
-                let newFilters = {}
-                if (lot[0] !== "") {
-                    newFilters = {
-                        ...newFilters,
-                        lotSize: {
-                            min: Number(lot[0])
+            await Promise.all(timeMatrix.map(async t => {
+                let timeFilter = {}
+                timeFilter = {
+                    ...timeFilter,
+                    doz: { value: t[0] }
+                }
+                await Promise.all(lotSize.map(async lot => {
+                    if (debug)
+                        console.log({ lot })
+                    let newFilters = {}
+                    if (lot[0] !== "") {
+                        newFilters = {
+                            ...newFilters,
+                            lotSize: {
+                                min: Number(lot[0])
+                            }
                         }
                     }
-                }
-                if (lot[1] !== "") {
-                    newFilters = {
-                        ...newFilters,
-                        lotSize: {
-                            ...newFilters.lotSize,
-                            max: Number(lot[1])
+                    if (lot[1] !== "") {
+                        newFilters = {
+                            ...newFilters,
+                            lotSize: {
+                                ...newFilters.lotSize,
+                                max: Number(lot[1])
+                            }
                         }
                     }
-                }
 
-                searchParams = {
-                    ...loc,
-                    ...defaults,
-                    filterState: {
-                        ...defaults.filterState,
-                        ...additionalFilters,
-                        ...timeFilter,
-                        ...newFilters
+                    searchParams = {
+                        ...loc,
+                        ...defaults,
+                        filterState: {
+                            ...defaults.filterState,
+                            ...additionalFilters,
+                            ...timeFilter,
+                            ...newFilters
+                        }
                     }
-                }
 
 
-                if (debug)
-                    console.log(searchParams.filterState)
+                    if (debug)
+                        console.log(searchParams.filterState)
 
-                const url = buildZillowUrl(status, searchParams, searchBy);
-                const lotStr = `${lotSizeToString(sqft2acre(lot[0]), sqft2acre(lot[1]))}`;
+                    const url = buildZillowUrl(status, searchParams, searchBy);
+                    const lotStr = `${lotSizeToString(sqft2acre(lot[0]), sqft2acre(lot[1]))}`;
 
-                // Process everything
-                let startTime, endTime;
-                startTime = performance.now();
-                const results = await getSearchResults(searchParams, url, proxy, USETEST, scraper)
-                endTime = performance.now();
+                    // Process everything
+                    let startTime, endTime;
+                    startTime = performance.now();
+                    const results = await getSearchResults(searchParams, url, proxy, USETEST, scraper)
+                    endTime = performance.now();
 
 
-                const searchByText = (searchBy === "state") ? getState(realSearch) : realSearch;
-                const daysKey = (status === "Sold") ? "soldInLast" : "daysOnZillow";
+                    const searchByText = (searchBy === "state") ? getState(realSearch) : realSearch;
+                    const daysKey = (status === "Sold") ? "soldInLast" : "daysOnZillow";
 
-                const blankFields = {
-                    county: "",
-                    state: "",
-                    zipCode: "",
-                    soldInLast: "",
-                    daysOnZillow: ""
-                }
+                    const blankFields = {
+                        county: "",
+                        state: "",
+                        zipCode: "",
+                        soldInLast: "",
+                        daysOnZillow: ""
+                    }
 
-                const finalResults = {
-                    ...blankFields,
-                    [searchBy]: searchByText,
-                    timeStamp: ts.toString(),
-                    status,
-                    [daysKey]: t[1],
-                    acreage: lotStr,
-                    url,
-                    timeToGetInfo: `${((endTime - startTime) / 1000).toFixed(2)} seconds`,
-                    proxy,
-                    scraper,
-                    ...results,
+                    const finalResults = {
+                        ...blankFields,
+                        [searchBy]: searchByText,
+                        timeStamp: ts.toString(),
+                        status,
+                        [daysKey]: t[1],
+                        acreage: lotStr,
+                        url,
+                        timeToGetInfo: `${((endTime - startTime) / 1000).toFixed(2)} seconds`,
+                        proxy,
+                        scraper,
+                        ...results,
 
-                }
-                newData = [
-                    ...newData,
-                    finalResults
-                ];
+                    }
+                    newData = [
+                        ...newData,
+                        finalResults
+                    ];
 
+                }))
             }))
         }))
-    }))
 
-    const endScript = performance.now();
+        const endScript = performance.now();
 
-    // Count N/A vs. count
-    const totalResults = newData.length;
-    const totalNA = newData.filter(data => data.count === "N/A").length;
-    const failureRate = `${(totalNA / totalResults).toFixed(2) * 100} %`
-    const secDiff = (endScript - startScript) / 1000;
-    const howMany10Seconds = parseInt(secDiff / 10);
-    const estimatedCost = `$${((howMany10Seconds === 0 ? 1 : howMany10Seconds) * rate[proxy]).toFixed(3)}`;
-    const totalRunTime = `${(secDiff).toFixed(2)} seconds`
-    await Actor.pushData({
-        proxy,
-        scraper,
-        area: realSearch,
-        total: totalResults,
-        totalFailed: totalNA,
-        failureRate,
-        estimatedCost,
-        totalRunTime: totalRunTime
-    })
+        // Count N/A vs. count
+        const totalResults = newData.length;
+        const totalNA = newData.filter(data => data.count === "N/A").length;
+        const failureRate = `${(totalNA / totalResults).toFixed(2) * 100} %`
+        const secDiff = (endScript - startScript) / 1000;
+        const howMany10Seconds = parseInt(secDiff / 10);
+        const estimatedCost = `$${((howMany10Seconds === 0 ? 1 : howMany10Seconds) * rate[proxy]).toFixed(3)}`;
+        const totalRunTime = `${(secDiff).toFixed(2)} seconds`
+        await Actor.pushData({
+            proxy,
+            scraper,
+            area: realSearch,
+            total: totalResults,
+            totalFailed: totalNA,
+            failureRate,
+            estimatedCost,
+            totalRunTime: totalRunTime
+        })
 
 
-    if (debug)
-        await console.log(newData)
+        if (debug)
+            await console.log(newData)
 
-    await Actor.pushData(newData);
+        await Actor.pushData(newData);
+    }
 }
 // Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().
 await Actor.exit();

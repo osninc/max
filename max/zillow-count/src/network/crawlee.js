@@ -1,121 +1,197 @@
-import axios from "axios-https-proxy-fix";
-import { defaultHeaders } from "./shared/headers.js";
+import { BasicCrawler, Dataset, Configuration } from 'crawlee';
+import { defaultHeaders, randomHeaders } from "./shared/headers.js";
 import { zillow } from "../constants/zillow.js";
 import { getRandomInt } from "../functions.js";
 import { getProxy } from "./shared/proxy.js";
 import { getMapBoundsFromHtml } from "./shared/map.js";
+import { transformData } from './shared/data.js';
 
-const getProxyUrl = async (proxy) => {
+export const getProxyUrl = async (proxy) => {
     const proxyUrl = await getProxy(proxy);
-    const urlObj = new URL(proxyUrl);
-    const obj = {
-        protocol: urlObj.protocol.replace(":", ""),
-        host: urlObj.hostname,
-        port: urlObj.port,
-        auth: {
-            username: urlObj.username,
-            password: process.env.APIFY_PROXY_PASSWORD
-        }
-    }
-
-    return obj;
+    return proxyUrl;
 }
 
 export const getLocationData = async (searchType, proxy, q, nameForUrl) => {
-    let finalConfig = {
-        headers: {
-            ...defaultHeaders,
-            Referer: "https://www.zillow.com/",
-            "Referrer-Policy": "unsafe-url"
-        },
-        params: { q },
-        ...axiosDefaults
-    }
-
     // build URL
     const url = zillow.url.mapBound.replace("INSERT-NAME-HERE", nameForUrl)
 
+    let baseConfig = {
+        headerGeneratorOptions: { ...randomHeaders },
+        headers: {
+            Referer: "https://www.zillow.com/",
+            "Referrer-Policy": "unsafe-url"
+        },
+        searchParams: { q }
+    }
+
     if (proxy !== "none") {
         const proxyUrl = await getProxyUrl(proxy);
-        finalConfig = {
-            ...finalConfig,
-            rejectUnauthorized: false,
-            proxy: proxyUrl
+        baseConfig = {
+            ...baseConfig,
+            proxyUrl
         }
     }
 
-    const response1 = await axios.get(url, finalConfig);
-    const body = response1.data;
-    const finalMapBounds = getMapBoundsFromHtml(body);
-
-    const response = await axios.get(zillow.url.region, finalConfig);
-    //console.log({ response })
-    const data = response.data.results;
-
-    // Only get the result of the county regionType
-    const regionResults = data.filter(d => d.metaData?.regionType?.toLowerCase() === searchType.toLowerCase());
-
-    const { regionId, lat, lng } = regionResults[0].metaData;
-    let extraMeta = {}
-
-    // If it's a zipcode, need the city and state name
-    if (searchType.toLowerCase() === "zipcode")
-        extraMeta = {
-            cityState: `${regionResults[0].metaData.city.replace(/\ /gi, "-").toLowerCase()}-${regionResults[0].metaData.state}`.toLowerCase()
-        }
-
-    const offset = 10;
-
-    const returnBounds = {
-        north: lat + offset,
-        south: lat - offset,
-        west: lng - offset,
-        east: lng + offset
+    const mapBoundsConfig = {
+        ...baseConfig,
+        url
     }
 
-    return {
-        mapBounds: finalMapBounds ? finalMapBounds : returnBounds,
-        regionSelection: [
-            {
-                regionId
+    const regionConfig = {
+        ...baseConfig,
+        url: zillow.url.region,
+        responseType: "json"
+    }
+
+    let returnObj = {}
+
+    const crawler = new BasicCrawler({
+        async requestHandler({ request, sendRequest }) {
+            // Build the request
+            let defaultRequest = {
+                url: request.url,
+                method: request.method,
+                body: request.payload,
+                headers: request.headers,
+                //headerGeneratorOptions: { ...randomHeaders }
             }
-        ],
-        ...extraMeta
-    }
+            let finalRequest;
+            if (proxy !== "none") {
+                defaultRequest = {
+                    ...defaultRequest,
+                    proxyUrl: request.proxyUrl
+                }
+            }
+
+            if (request.url === url) {
+                finalRequest = {
+                    ...defaultRequest
+                }
+            }
+            if (request.url === zillow.url.region) {
+                finalRequest = {
+                    ...defaultRequest,
+                    responseType: "json",
+                    searchParams: { q }
+                }
+            }
+
+            // 'request' contains an instance of the Request class
+            // Here we simply fetch the HTML of the page and store it to a dataset
+            const { body } = await sendRequest(finalRequest);
+
+            if (request.url === url) {
+                const finalMapBounds = getMapBoundsFromHtml(body);
+                returnObj = {
+                    ...returnObj,
+                    mapBounds: finalMapBounds
+                }
+            }
+
+            if (request.url === zillow.url.region) {
+                const data = body.results;
+
+                // Only get the result of the county regionType
+                const regionResults = data.filter(d => d.metaData?.regionType?.toLowerCase() === searchType.toLowerCase());
+
+                const { regionId, lat, lng } = regionResults[0].metaData;
+                let extraMeta = {}
+
+                // If it's a zipcode, need the city and state name
+                if (searchType.toLowerCase() === "zipcode")
+                    extraMeta = {
+                        cityState: `${regionResults[0].metaData.city.replace(/\ /gi, "-").toLowerCase()}-${regionResults[0].metaData.state}`.toLowerCase()
+                    }
+
+                if (!returnObj.mapBounds) {
+                    const offset = 10;
+
+                    extraMeta = {
+                        ...extraMeta,
+                        mapBounds: {
+                            north: lat + offset,
+                            south: lat - offset,
+                            west: lng - offset,
+                            east: lng + offset
+                        }
+                    }
+                }
+
+                returnObj = {
+                    ...returnObj,
+                    regionSelection: [
+                        {
+                            regionId
+                        }
+                    ],
+                    ...extraMeta
+                }
+            }
+        }
+    });
+
+    await crawler.run([
+        mapBoundsConfig,
+        regionConfig
+    ]);
+
+    return returnObj;
 }
 
 export const getSearchData = async (searchQueryState, refererUrl, proxy) => {
     const url = zillow.url.search;
     const requestId = getRandomInt(20);
 
-    let finalConfig = {
+    let scrapingConfig = {
+        url,
+        headerGeneratorOptions: { ...randomHeaders },
         headers: {
-            ...defaultHeaders,
             Referer: refererUrl,
             "Referrer-Policy": "unsafe-url",
         },
-        params: {
-            searchQueryState,
-            wants: zillow.wants,
-            requestId
-        },
         responseType: "json",
-        ...axiosDefaults
-    }
-
-    if (proxy !== "none") {
-        const proxyUrl = await getProxyUrl(proxy);
-        finalConfig = {
-            ...finalConfig,
-            proxy: proxyUrl,
-            rejectUnauthorized: false
+        searchParams: {
+            searchQueryState: encodeURIComponent(JSON.stringify(searchQueryState)),
+            wants: encodeURIComponent(JSON.stringify(zillow.wants)),
+            requestId
         }
     }
 
-    const response = await axios.get(url, finalConfig);
-    const data = response.data;
+    let returnObj;
 
-    return transformData(data)
+    const crawler = new BasicCrawler({
+        async requestHandler({ request, sendRequest }) {
+            // Build the request
+            let defaultRequest = {
+                url: request.url,
+                method: request.method,
+                body: request.payload,
+                headers: request.headers,
+                responseType: "json",
+                searchParams: {
+                    searchQueryState: encodeURIComponent(JSON.stringify(searchQueryState)),
+                    wants: encodeURIComponent(JSON.stringify(zillow.wants)),
+                    requestId
+                },
+                headerGeneratorOptions: { ...randomHeaders }
+            }
+            if (proxy !== "none") {
+                defaultRequest = {
+                    ...defaultRequest,
+                    proxyUrl: request.proxyUrl
+                }
+            }
+
+            const { body } = await sendRequest(defaultRequest);
+            returnObj = transformData(body);
+        }
+    })
+
+    await crawler.run([
+        scrapingConfig
+    ]);
+
+    return returnObj;
 }
 
 

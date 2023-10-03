@@ -3,6 +3,8 @@ import { alphaNum } from "./functions.js";
 import { processError } from "./error.js";
 import { getLocationData as axiosGetLocationData, getSearchData as axiosGetSearchData } from "./network/axios.js";
 import { getLocationData as gotGetLocationData, getSearchData as gotGetSearchData } from "./network/gotScraping.js";
+import { getLocationData as crawleeGetLocationData, getSearchData as crawleeGetSearchData } from "./network/crawlee.js";
+
 import { zillow } from "./constants/zillow.js";
 
 export const getLocationInfo = async (searchType, search, proxy, isTest, scraper) => {
@@ -48,6 +50,9 @@ export const getLocationInfo = async (searchType, search, proxy, isTest, scraper
                 case "got":
                     data = await gotGetLocationData(searchType, proxy, search, nameForUrl)
                     break;
+                    case "crawlee":
+                    data = await crawleeGetLocationData(searchType, proxy, search, nameForUrl)
+                    break;
 
             }
 
@@ -85,6 +90,9 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
                 break;
             case "got":
                 data = await gotGetSearchData(searchQueryState, refererUrl, proxy)
+                break;
+            case "crawlee":
+                data = await crawleeGetSearchData(searchQueryState, refererUrl, proxy)
                 break;
         }
 

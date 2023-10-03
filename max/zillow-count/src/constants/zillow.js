@@ -8,5 +8,16 @@ export const zillow = {
         cat1: ["mapResults"],
         cat2: ["total"],
         regionResults: ["regionResults"]
+    },
+    regionType: {
+        county: 4,
+        zipcode: 7,
+        city: 6,
+        state: 2
     }
 }
+
+// const COUNTY = 4;
+// const ZIPCODE = 7;
+// const CITY = 6;
+// const STATE = 2;

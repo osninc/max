@@ -39,9 +39,11 @@
                 "fields": [
                     "proxy",
                     "scraper",
-                    "timeToGetInfo",
+                    "area",
                     "total",
                     "totalFailed",
+                    "failureRate",
+                    "estimatedCost",
                     "totalRunTime"
                 ]
             }

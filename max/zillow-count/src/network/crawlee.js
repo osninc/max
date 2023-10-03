@@ -4,11 +4,6 @@ import { zillow } from "../constants/zillow.js";
 import { getRandomInt } from "../functions.js";
 import { getProxy } from "./shared/proxy.js";
 import { getMapBoundsFromHtml } from "./shared/map.js";
-import { transformData } from "./shared/data.js";
-
-const axiosDefaults = {
-    timeout: 4000
-}
 
 const getProxyUrl = async (proxy) => {
     const proxyUrl = await getProxy(proxy);

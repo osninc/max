@@ -1,49 +1,15 @@
 import { gotScraping } from "got-scraping";
-import * as cheerio from 'cheerio';
-import { zillow } from "./zillow.js";
+import { zillow } from "../constants/zillow.js";
 
-import { randomHeaders } from "./headers.js";
+import { randomHeaders } from "./shared/headers.js";
 import { getRandomInt } from "../functions.js";
-import { processError } from "../error.js";
-import { Actor } from "apify";
-
-const transformData = data => {
-    return { count: ("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A" }
-}
-
-const getMapBoundsFromHtml = body => {
-    const $ = cheerio.load(body);
-
-    const findTextAndReturnRemainder = (target, variable) => {
-        const chopFront = target.substring(target.search(variable) + variable.length, target.length);
-        const result = chopFront.substring(0, chopFront.search(";"));
-        return result;
-    }
-
-    const text = $($('script')).text();
-    const findAndClean = findTextAndReturnRemainder(text, "window.mapBounds = ");
-    //console.log({ text });
-    // console.log({ findAndClean })
-    try {
-        const result = JSON.parse(findAndClean);
-        return result;
-    } catch (error) {
-        console.log({ text });
-        console.log({ findAndClean })
-        const l = findTextAndReturnRemainder(text, "var pxCaptchaSrc = ");
-        processError("findTextAndReturnRemainder", error);
-        throw new Error(l)
-    }
-
-}
+import { getProxy } from "./shared/proxy.js";
+import { getMapBoundsFromHtml } from "./shared/map.js";
+import { transformData } from "./shared/data.js";
 
 
 export const getProxyUrl = async (proxy) => {
-    const groups = (proxy === "residential") ? { groups: ["RESIDENTIAL"] } : {};
-    const proxyConfiguration = await Actor.createProxyConfiguration(groups);
-    // Example http://bob:password123@proxy.example.com:8000
-    const proxyUrl = await proxyConfiguration.newUrl();
-
+    const proxyUrl = await getProxy(proxy);
     return proxyUrl;
 }
 
@@ -67,14 +33,13 @@ export const getLocationData = async (searchType, proxy, q, nameForUrl) => {
             proxyUrl
         }
     }
-    
-    let response1, body, finalMapBounds;
-    response1 = await gotScraping({
+
+    const response1 = await gotScraping({
         ...finalConfig,
         url
     });
-    body = response1.body;
-    finalMapBounds = getMapBoundsFromHtml(body);
+    const body = response1.body;
+    const finalMapBounds = getMapBoundsFromHtml(body);
 
     const response = await gotScraping(
         {

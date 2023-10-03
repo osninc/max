@@ -4,9 +4,10 @@ import { sqft2acre, alphaNum, lotSizeToString } from "./functions.js";
 import { buildZillowUrl } from "./zillowUrl.js";
 import { getSearchResults, getLocationInfo } from "./network.js";
 import { getState } from "./state.js";
+import { rate } from "./constants/rate.js";
 
 const USETEST = false;
-const USEDEV = false;
+const USEDEV = true;
 
 let statusMatrix = [];
 let timeMatrix = [];
@@ -226,10 +227,19 @@ else {
     // Count N/A vs. count
     const totalResults = newData.length;
     const totalNA = newData.filter(data => data.count === "N/A").length;
-    const totalRunTime = `${((endScript - startScript) / 1000).toFixed(2)} seconds`
+    const failureRate = `${(totalNA / totalResults).toFixed(2)} %`
+    const secDiff = (endScript - startScript) / 1000;
+    const howMany10Seconds = parseInt(secDiff / 10);
+    const estimatedCost = `$${((howMany10Seconds === 0 ? 1 : howMany10Seconds) * rate[proxy]).toFixed(3)}`;
+    const totalRunTime = `${(secDiff).toFixed(2)} seconds`
     await Actor.pushData({
+        proxy,
+        scraper,
+        area: realSearch,
         total: totalResults,
         totalFailed: totalNA,
+        failureRate,
+        estimatedCost,
         totalRunTime: totalRunTime
     })
 

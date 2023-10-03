@@ -3329,7 +3329,7 @@
       "enum": [
         "axios",
         "got",
-        "crawlee (not yet implemented)"
+        "crawlee"
       ]
     },
     "debug": {

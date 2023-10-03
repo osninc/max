@@ -3,11 +3,7 @@ import { alphaNum } from "./functions.js";
 import { processError } from "./error.js";
 import { getLocationData as axiosGetLocationData, getSearchData as axiosGetSearchData } from "./network/axios.js";
 import { getLocationData as gotGetLocationData, getSearchData as gotGetSearchData } from "./network/gotScraping.js";
-
-const COUNTY = 4;
-const ZIPCODE = 7;
-const CITY = 6;
-const STATE = 2;
+import { zillow } from "./constants/zillow.js";
 
 export const getLocationInfo = async (searchType, search, proxy, isTest, scraper) => {
     /*
@@ -34,21 +30,9 @@ export const getLocationInfo = async (searchType, search, proxy, isTest, scraper
 
     // Determine regiontype
     let nameForUrl = search;
-    let regionType = COUNTY;
-    switch (searchType.toLowerCase()) {
-        case "zipcode":
-            regionType = ZIPCODE;
-            break;
-        case "state":
-            regionType = STATE;
-            break;
-        case "city":
-            nameForUrl = alphaNum(search).replace(/\ /gi, "-").toLowerCase();
-            regionType = CITY;
-            break;
-        default:
-            nameForUrl = alphaNum(search).replace(/\ /gi, "-").toLowerCase();
-            break;
+    let regionType = zillow.regionType[searchType.toLowerCase()];
+    if (["city", "county"].includes(searchType.toLowerCase())) {
+        nameForUrl = alphaNum(search).replace(/\ /gi, "-").toLowerCase();
     }
 
     if (isTest) {
@@ -59,7 +43,7 @@ export const getLocationInfo = async (searchType, search, proxy, isTest, scraper
             let data;
             switch (scraper) {
                 case "axios":
-                    data = await axiosGetLocationData(searchType, proxy, search)
+                    data = await axiosGetLocationData(searchType, proxy, search, nameForUrl)
                     break;
                 case "got":
                     data = await gotGetLocationData(searchType, proxy, search, nameForUrl)

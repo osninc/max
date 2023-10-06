@@ -1,0 +1,1008 @@
+[{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 days",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 0
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 days",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 0
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 days",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 0
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 days",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 3
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 days",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 0
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 days",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 0
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 days",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 4
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 8
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 10
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 11
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 days",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 13
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 5
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 days",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 10
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 days",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 15
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 days",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 28
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 days",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 28
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 days",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 31
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 days",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 31
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 days",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 26
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "7 days",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 0
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 24
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 31
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 days",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 49
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 days",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 55
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 days",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 110
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 days",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 368
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 days",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 110
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 days",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 193
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 days",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 482
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 days",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 1186
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 801
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 1296
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 1026
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 2759
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 days",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 87
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 days",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 148
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 days",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 82
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 days",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 227
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 days",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 105
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 days",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 419
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 days",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 1494
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 days",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 1554
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 1019
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 2082
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 2261
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 2357
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 2379
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 35
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 1488
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 3647
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 days",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 455
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 days",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 541
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 days",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 670
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 days",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 1379
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "6 months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 1790
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "90 days",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 1565
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 1197
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "7 days",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 97
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "30 days",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 482
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 2349
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 3117
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 3607
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 2717
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 days",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 4
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 days",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 156
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 days",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 135
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 6
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 days",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 1
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 6
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 3478
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 3312
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 days",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 68
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 40
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 3835
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 2849
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 9
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 3785
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 days",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 160
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 days",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 160
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "30 days",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 0
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "36 months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 1537
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 1162
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 3199
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 15
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "24 months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 3691
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 days",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 246
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 days",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 449
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 days",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 491
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 3083
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 days",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 522
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 days",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 523
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 days",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 515
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "90 days",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 291
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "For Sale",
+  "time": "12 months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 2947
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 486
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 1057
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 1670
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 1005
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 584
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 1851
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 40
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 1103
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 2003
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 1994
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 1085
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 922
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 4451
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 36
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 909
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 3081
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 3735
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 3747
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 4331
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "6 months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 1082
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 months",
+  "minLotSize": "43560",
+  "maxLotSize": "87120",
+  "count": 2429
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 months",
+  "minLotSize": "",
+  "maxLotSize": "1000",
+  "count": 71
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 months",
+  "minLotSize": "4356000",
+  "maxLotSize": "",
+  "count": 23
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 months",
+  "minLotSize": "1000",
+  "maxLotSize": "43560",
+  "count": 1970
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 6199
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 months",
+  "minLotSize": "217800",
+  "maxLotSize": "435600",
+  "count": 4137
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 months",
+  "minLotSize": "87120",
+  "maxLotSize": "217800",
+  "count": 5621
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "12 months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 1938
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 months",
+  "minLotSize": "871200",
+  "maxLotSize": "2178000",
+  "count": 6665
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 months",
+  "minLotSize": "435600",
+  "maxLotSize": "871200",
+  "count": 6500
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "24 months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 4482
+},
+{
+  "area": "Los Angeles County, CA",
+  "status": "Sold",
+  "time": "36 months",
+  "minLotSize": "2178000",
+  "maxLotSize": "4356000",
+  "count": 6707
+}]

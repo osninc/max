@@ -1,0 +1,33 @@
+{
+  "title": "Testing",
+  "description": "Description",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "zpid": {
+      "title": "Zillow ID",
+      "type": "string",
+      "description": "Enter the zillow id",
+      "editor": "textfield"
+    },
+    "proxy": {
+      "title": "Proxy Type",
+      "type": "string",
+      "description": "Toggles between datacenters and residentials",
+      "default": "none",
+      "enum": [
+        "default",
+        "residential",
+        "none"
+      ],
+      "enumTitles": [
+        "Datacenters (default)",
+        "Residentials",
+        "Don't use proxy"
+      ]
+    }
+  },
+  "required": [
+    "zpid"
+  ]
+}

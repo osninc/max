@@ -1,0 +1,231 @@
+[
+    {
+        "data": {
+            "property": {
+                "address": {
+                    "city": "Middletown",
+                    "state": "NJ",
+                    "streetAddress": "00 Magnolia Lane",
+                    "zipcode": "07748"
+                },
+                "dateSold": 1695686400000,
+                "hdpUrl": "/homedetails/0-Magnolia-Ln-Middletown-NJ-07748/2126095780_zpid/",
+                "homeStatus": "RECENTLY_SOLD",
+                "lastSoldPrice": 130000,
+                "latitude": 40.40455,
+                "longitude": -74.12965,
+                "lotSize": 90604,
+                "price": 130000,
+                "priceHistory": [
+                    {
+                        "date": "2023-09-26",
+                        "time": 1695686400000,
+                        "price": 130000,
+                        "event": "Sold",
+                        "buyerAgent": {
+                            "photo": {
+                                "url": "https://photos.zillowstatic.com/h_e/ISif7bra2qh0y40000000000.jpg"
+                            },
+                            "profileUrl": "/profile/The-Bosniak-RE-Group/",
+                            "name": "Eric Bosniak"
+                        },
+                        "sellerAgent": {
+                            "photo": {
+                                "url": "https://photos.zillowstatic.com/h_e/ISif7bra2qh0y40000000000.jpg"
+                            },
+                            "profileUrl": "/profile/The-Bosniak-RE-Group/",
+                            "name": "Eric Bosniak"
+                        }
+                    },
+                    {
+                        "date": "2023-07-20",
+                        "time": 1689811200000,
+                        "price": 150000,
+                        "event": "Pending sale",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2023-03-02",
+                        "time": 1677715200000,
+                        "price": 150000,
+                        "event": "Listed for sale",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2020-12-31",
+                        "time": 1609372800000,
+                        "price": 148500,
+                        "event": "Sold",
+                        "buyerAgent": {
+                            "photo": {
+                                "url": "https://photos.zillowstatic.com/h_e/ISif7bra2qh0y40000000000.jpg"
+                            },
+                            "profileUrl": "/profile/The-Bosniak-RE-Group/",
+                            "name": "Eric Bosniak"
+                        },
+                        "sellerAgent": {
+                            "photo": {
+                                "url": "https://photos.zillowstatic.com/h_e/ISa9965xot170m0000000000.jpg"
+                            },
+                            "profileUrl": "/profile/DonHyourrealtor/",
+                            "name": "Donald L Hughes"
+                        }
+                    },
+                    {
+                        "date": "2020-09-24",
+                        "time": 1600905600000,
+                        "price": 150000,
+                        "event": "Price change",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2020-09-17",
+                        "time": 1600300800000,
+                        "price": 153999,
+                        "event": "Listed for sale",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2020-08-13",
+                        "time": 1597276800000,
+                        "price": 153999,
+                        "event": "Listing removed",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2020-05-11",
+                        "time": 1589155200000,
+                        "price": 153999,
+                        "event": "Price change",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2020-01-16",
+                        "time": 1579132800000,
+                        "price": 149900,
+                        "event": "Price change",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2019-07-11",
+                        "time": 1562803200000,
+                        "price": 164900,
+                        "event": "Price change",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2019-01-07",
+                        "time": 1546819200000,
+                        "price": 174900,
+                        "event": "Price change",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2018-11-26",
+                        "time": 1543190400000,
+                        "price": 189900,
+                        "event": "Price change",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2018-10-02",
+                        "time": 1538438400000,
+                        "price": 199900,
+                        "event": "Listed for sale",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2017-09-11",
+                        "time": 1505088000000,
+                        "price": 99000,
+                        "event": "Listing removed",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2017-03-11",
+                        "time": 1489190400000,
+                        "price": 99000,
+                        "event": "Listed for sale",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2012-12-20",
+                        "time": 1355961600000,
+                        "price": 50000,
+                        "event": "Sold",
+                        "buyerAgent": {
+                            "photo": {
+                                "url": "https://photos.zillowstatic.com/h_e/ISmairktk2tenx1000000000.jpg"
+                            },
+                            "profileUrl": "/profile/Kubis-Team/",
+                            "name": "Carol Kubis"
+                        },
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2012-08-11",
+                        "time": 1344643200000,
+                        "price": 99000,
+                        "event": "Listing removed",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2012-04-28",
+                        "time": 1335571200000,
+                        "price": 99000,
+                        "event": "Price change",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2011-10-07",
+                        "time": 1317945600000,
+                        "price": 139000,
+                        "event": "Price change",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    },
+                    {
+                        "date": "2011-06-17",
+                        "time": 1308268800000,
+                        "price": 159000,
+                        "event": "Listed for sale",
+                        "buyerAgent": null,
+                        "sellerAgent": null
+                    }
+                ],
+                "yearBuilt": null,
+                "zestimate": null,
+                "zpid": 2126095780,
+                "lotAreaValue": 2.08,
+                "lotAreaUnits": "Acres",
+                "timeOnZillow": "13 days",
+                "pageViewCount": 46,
+                "favoriteCount": 0,
+                "daysOnZillow": 13,
+                "description": "Residential R-22 Zone! 2 Plus Acres of gorgeous, wooded land with the possibility of constructing ONE single family home. Semiprivate cul-de-sac street Magnolia Ln. is one of Middletown best kept secrets. BUYER TO DO THEIR OWN DUE DILIGENCE including all township approvals. Seller has engaged an engineer, surveyor and has completed a wetlands study. Public Water/Sewer/Gas & Electric at street. Great location and close to Rt35. Reach out today to learn more about this incredible opportunity. Photos with white outline is where a possible single family home could be built. Seller makes no guarantee. Buyer to do their own due diligence. Property is known as Block 605 Lot 60.",
+                "brokerId": null,
+                "brokerageName": "Coldwell Banker Realty",
+                "mlsid": "22305672",
+                "resoFacts": {
+                    "parcelNumber": "6056012346060"
+                }
+            }
+        },
+        "extensions": {}
+    }
+]

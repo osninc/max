@@ -39,7 +39,7 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { defaultHeaders, graphqlHeaders } from "./headers.js";
 
 import { DetailsView } from "./components/DetailsView.js";
-import { alphaNumWithoutSpace, sqft2acre, USDollar, convertStrToAcre, calcRatio, calcAbsorption } from "./functions/functions.js"
+import { alphaNumWithoutSpace, sqft2acre, USDollar, convertStrToAcre, calcRatio, calcAbsorption, calcMos, convertPriceStringToFloat } from "./functions/functions.js"
 import { APIFY, BUILD, USETEST, srcset, modalStyle } from "./constants/constants.js";
 import { Copyright } from "./components/Copyright.js"
 import { ZillowTable } from "./components/ZillowTable.js";
@@ -49,15 +49,32 @@ import { ThirdPartyIcon } from "./components/ThirdPartyIcon.js";
 import { getPropertyParams } from "./zillowGraphQl.js";
 import ListingsView from "./components/ListingsView.js";
 
+import Skeleton from '@mui/material/Skeleton';
+import { SkeletonTable } from "./components/SkeletonTable.js";
+
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
+// There could be a posiblity of text like 'from $32,000' and '32K'
+const getListOfPrices = listings => {
+  if ((typeof listings === 'undefined') || (listings.length === 0)) return [];
+
+  const listOfPrices = listings.map(listing => convertPriceStringToFloat(listing.price)).filter(el => el)
+  return listOfPrices;
+}
+
+const getSumOfPrices = ary => {
+  if (ary.length === 0) return 0;
+
+  return ary.reduce((a, b) => a + b, 0)
+}
+
 const calcAvgPrice = listings => {
   if ((typeof listings === 'undefined') || (listings.length === 0)) return 0;
-  //const numListings = listings.length;
-  const listOfPrices = listings.map(listing => parseFloat(listing.price.replace("$", "").replaceAll(",", ""))).filter(el => el)
-  const totalPrices = listOfPrices.reduce((a, b) => a + b, 0)
+
+  const listOfPrices = getListOfPrices(listings)
+  const totalPrices = getSumOfPrices(listOfPrices)
   const numListings = listOfPrices.length;
 
   return (numListings === 0) ? 0 : (totalPrices / numListings).toFixed(0);
@@ -68,7 +85,7 @@ const calcPPA = listings => {
 
   // Convert to individual price/acre
   const newListings = listings.map(listing => {
-    const price = parseFloat(listing.price.replace("$", "").replaceAll(",", ""))
+    const price = convertPriceStringToFloat(listing.price)
     const acre = convertStrToAcre(listing.lotAreaString)
 
     if (!isNaN(price && acre))
@@ -77,7 +94,7 @@ const calcPPA = listings => {
       return (price && acre)
   }).filter(el => el)
 
-  const totalPrices = newListings.reduce((a, b) => a + b, 0)
+  const totalPrices = getSumOfPrices(newListings)
   const numListings = newListings.length
 
   return (numListings === 0) ? 0 : (totalPrices / numListings).toFixed(0)
@@ -103,6 +120,8 @@ const normalizeTheData = data => {
               count: count.agentCount,
               url: count.url,
               listings: count.listings,
+              listOfPrices: getListOfPrices(count.listings),
+              sumOfPrices: getSumOfPrices(getListOfPrices(count.listings)),
               mapCount: count.mapCount,
               otherCount: count.otherCount,
               //agentCount: count.agentCount,
@@ -123,7 +142,8 @@ const normalizeTheData = data => {
       c[acreage][time] = {
         ...c[acreage][time],
         ratio: calcRatio(c[acreage][time]["for sale"]?.count, c[acreage][time]["sold"]?.count),
-        absorption: calcAbsorption(c[acreage][time]["for sale"]?.count, c[acreage][time]["sold"]?.count)
+        mos: calcMos(c[acreage][time]["for sale"]?.count, c[acreage][time]["sold"]?.count, time),
+        absorption: calcAbsorption(c[acreage][time]["for sale"]?.count, c[acreage][time]["sold"]?.count, time)
 
       }
     })
@@ -162,6 +182,44 @@ const App = () => {
   const isTestingSite = document.location.hostname.includes("sunburst") || document.location.hostname.includes("localhost")
 
   const [buildNumber, setBuildNumber] = useState(hasBuildOnQS ? searchParams.get("build") : BUILD);
+
+
+  const [hasLocal, setHasLocal] = useState(false)
+  const [saveFirstTime, setSaveFirstTime] = useState(false)
+  const getLocalData = () => {
+    if (localStorage) {
+      // LocalStorage is supported!
+      // Check if there is any data
+      const data = localStorage.getItem("data")
+      console.log({data,saveFirstTime})
+      console.log({counts})
+      if (data && !saveFirstTime) {
+        // if it's set, don't re-set
+        console.log({counts})
+        setCounts(JSON.parse(data))
+        setSearch(localStorage.getItem("search"))
+        setCountsDate(localStorage.getItem("timeStamp"))
+        setHasLocal(true)
+      }
+      else {
+        if (hasLocal)
+          setHasLocal(false)
+      }
+    } else {
+      return {};
+      // No support. Use a fallback such as browser cookies or store on the server.
+    }
+  }
+  const saveLocalData = (search,timeStamp,data) => {
+    return;
+    if (localStorage) {
+      localStorage.setItem("data", JSON.stringify(data));
+      localStorage.setItem("timeStamp", timeStamp)
+      localStorage.setItem("search", search)
+    }
+  }
+
+  //const localData = getLocalData();
 
   const toggleDrawer = (event, p) => {
     setOpenDrawer(openDrawer => {
@@ -246,8 +304,8 @@ const App = () => {
         data = testCounts
       else {
         //let u2 = "https://api.apify.com/v2/datasets/ImVQ7f8FZwIERq833/items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H"
-        //let u2 = "https://api.apify.com/v2/datasets/rkaR7VOOWWYSC8UAS/items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H"
-        //const response = await axios.get(u2)
+        //let u2 = "https://api.apify.com/v2/datasets/6KcWeMAEclNoaFhdd/items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H"
+        // const response = await axios.get(u2)
         const response = await axios.post(url, input);
         data = response.data
       }
@@ -258,6 +316,10 @@ const App = () => {
 
       const normalizedData = normalizeTheData(data)
       setCounts(normalizedData)
+
+      // Save last successful search
+      //setSaveFirstTime(true);
+      //saveLocalData(search, data[1]?.timeStamp, normalizedData )
 
 
     } catch (error) {
@@ -682,10 +744,18 @@ const App = () => {
               //<DataGrid rows={rows} columns={columns} />
               (Object.keys(counts).length > 0) && (
                 <>
+                  <Tabs value={0} aria-label="basic tabs example">
+                    <Tab label="Zillow" {...a11yProps(0)} value={0} />
+                    <Tab label="Redfin" {...a11yProps(1)} value={1} />
+                    <Tab label="Realtor" {...a11yProps(2)} value={2} />
+                    <Tab label="Landwatch" {...a11yProps(3)} value={3} />
+                    <Tab label="MLS" {...a11yProps(4)} value={4} />
+                  </Tabs>
                   <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example">
                     <Tab label="Sales & Listings" {...a11yProps(0)} value={0} />
                     <Tab label="List/Sale Ratio" {...a11yProps(2)} value={2} />
                     <Tab label="Months of Supply" {...a11yProps(4)} value={4} />
+                    <Tab label="Absorption Rate" {...a11yProps(4)} value={7} />
                     <Tab label="Average Prices" {...a11yProps(1)} value={1} />
                     <Tab label="Price Per Acre" {...a11yProps(3)} value={3} />
                     <Tab label="Days on Market" {...a11yProps(5)} value={5} />

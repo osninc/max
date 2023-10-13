@@ -1,4 +1,4 @@
-export const BUILD = "0.1.23"
+export const BUILD = "yir-dev"
 
 export const USETEST = {
     counts: true,

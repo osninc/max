@@ -1,5 +1,5 @@
-import { Button, ButtonGroup, IconButton, Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import React from "react";
+import { Button, ButtonGroup, IconButton, Link, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import React, { useState } from "react";
 import { lotMatrix, statusMatrix, timeMatrix } from "../constants/matrix.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
@@ -24,8 +24,34 @@ const ZillowHeader = props => {
     )
 }
 
-const DataCell = ({ data: counts, lot, time, onClick, field }) => {
+const DataCell = props => {
+    const {
+        data: counts,
+        lot,
+        time,
+        onClick,
+        field,
+        anchorEl,
+        open,
+        onMouseEnter,
+        onMouseLeave
+    } = props;
     const record = counts[lot][time]
+
+    const calcDaysInTimeFrame = {
+        "7 days": 7,
+        "30 days": 30,
+        "90 days": 90,
+        "6 months": 180,
+        "12 months": 360,
+        "24 months": 720,
+        "36 months": 1080
+    }
+
+    const typographyParams = {
+        variant: "body2"
+    }
+
     if (["count", "avgPrice", "ppa"].includes(field)) {
 
 
@@ -54,6 +80,7 @@ const DataCell = ({ data: counts, lot, time, onClick, field }) => {
         let soldParams;
         let soldHtml = "N/A"
         let soldText = sold[field];
+        let soldHover = "";
 
         switch (field) {
             case "avgPrice":
@@ -81,6 +108,7 @@ const DataCell = ({ data: counts, lot, time, onClick, field }) => {
         let saleParams;
         let saleHtml = "N/A"
         let saleText = sale[field];
+        let saleHover = "";
 
         switch (field) {
             case "avgPrice":
@@ -105,23 +133,115 @@ const DataCell = ({ data: counts, lot, time, onClick, field }) => {
                 </ButtonGroup> : saleText
         }
 
-
+        let moreSaleText = "";
+        let moreSoldText = "";
+        if (record["for sale"].listOfPrices.length >= 500)
+            moreSaleText = <strong>DISCLAIMER: Results are limited to 500 records<br /></strong>;
+        if (record["sold"].listOfPrices.length >= 500)
+            moreSoldText = <strong>DISCLAIMER: Results are limited to 500 records<br /></strong>;
+        switch (field) {
+            case "avgPrice":
+                saleHover = <Typography variant="caption">
+                    {moreSaleText}
+                    This value is the sum of all {record["for sale"].listOfPrices.length} available prices
+                    divided by the Number of Listings that had a price listed<br />
+                    {USDollar.format(record["for sale"].sumOfPrices)} / {record["for sale"].listOfPrices.length} = {saleText}
+                </Typography>
+                soldHover = <Typography variant="caption">
+                    {moreSoldText}
+                    This value is the sum of all {record["sold"].listOfPrices.length} available prices
+                    divided by the Number of Sales that had a price listed<br />
+                    {USDollar.format(record["sold"].sumOfPrices)} / {record["sold"].listOfPrices.length} = {soldText}
+                </Typography>;
+                break;
+            case "ppa":
+                saleHover = <Typography variant="caption">
+                    {moreSaleText}
+                    This value is the sum of each of the listing's individual price per acre
+                    divided by  ({record["for sale"].listOfPrices.length}) listings<br />
+                    sum(price/acre) / {record["for sale"].listOfPrices.length} = {saleText}
+                </Typography>
+                soldHover = <Typography variant="caption">
+                    {moreSoldText}
+                    This value is the sum of each of the sale's individual price per acre
+                    divided by  ({record["sold"].listOfPrices.length}) sales <br />
+                    sum(price/acre) / {record["sold"].listOfPrices.length} = {soldText}
+                </Typography>;
+                break;
+        }
         return (
             <React.Fragment key={`${lot}${time}`}>
                 <TableCell align="center" sx={{ backgroundColor: columnColor["for sale"] }}>
-                    {saleHtml}
+                    {(saleHover === "") ? saleHtml : (
+                        <Typography
+                            aria-owns={open ? 'mouse-over-popover' : undefined}
+                            aria-haspopup="true"
+                            onMouseEnter={(e) => onMouseEnter(e, saleHover)}
+                            onMouseLeave={(e) => onMouseLeave(e)}
+                            {...typographyParams}
+                        >
+                            {saleHtml}
+                        </Typography>
+                    )}
                 </TableCell>
 
                 <TableCell align="center" sx={{ backgroundColor: columnColor["sold"] }}>
-                    {soldHtml}
+                    {(soldHover === "") ? soldHtml : (
+                        <Typography
+                            aria-owns={open ? 'mouse-over-popover' : undefined}
+                            aria-haspopup="true"
+                            onMouseEnter={(e) => onMouseEnter(e, soldHover)}
+                            onMouseLeave={(e) => onMouseLeave(e)}
+                            {...typographyParams}
+                        >
+                            {soldHtml}
+                        </Typography>
+                    )}
                 </TableCell>
+
             </React.Fragment>
         )
     }
     else {
+        // Possible hover
+        let text = "";
+        switch (field) {
+            case "mos":
+                text = <Typography variant="caption">
+                    This value was calculated by Number of Active Listings ({record["for sale"].count})
+                    divided by Number of Sales ({record["sold"].count}) multiplied by the number of days ({calcDaysInTimeFrame[time.toLowerCase()]})
+                    divided by 30 days<br />
+                    {record["for sale"].count} / {record["sold"].count} * {calcDaysInTimeFrame[time.toLowerCase()]} / 30 = {record[field]}
+                </Typography>
+                break;
+            case "absorption":
+                text = <Typography variant="caption">
+                    This value is the percentage of the Number of Sales ({record["sold"].count})
+                    divided by Number of Listings ({record["for sale"].count})<br />
+                    {record["sold"].count} / {record["for sale"].count} * 100% = {record[field]}
+                </Typography>
+                break;
+            case "ratio":
+                text = <Typography variant="caption">
+                    This value is the percentage of the Number of Listings ({record["for sale"].count})
+                    divided by Number of Sales ({record["sold"].count})<br />
+                    {record["for sale"].count} / {record["sold"].count} * 100% = {record[field]}
+                </Typography>
+                break;
+        }
         return (
             <TableCell align="center" colSpan={2} sx={{ backgroundColor: columnColor["for sale"] }}>
-                {record[field]}
+                {(text === "") ? record[field] : (
+                    <Typography
+                        aria-owns={open ? 'mouse-over-popover' : undefined}
+                        aria-haspopup="true"
+                        onMouseEnter={(e) => onMouseEnter(e, text)}
+                        onMouseLeave={(e) => onMouseLeave(e)}
+                        {...typographyParams}
+                    >
+                        {record[field]}
+                    </Typography>
+                )}
             </TableCell>
         )
     }
@@ -198,15 +318,15 @@ export const ZillowTable = ({ value, data, onClick, area, date }) => {
             dataField: "ppa"
         },
         4: {
-            text: "Months of Supply (Absorbtion Rate)",
+            text: "Months of Supply",
             color: cyan[200],
             columns: {
                 cols: 1,
                 colspan: 2,
-                colText: ["Absorption"],
+                colText: ["MoS"],
             },
             comingSoon: false,
-            dataField: "absorption"
+            dataField: "mos"
         },
         5: {
             text: "DOM Days on Market",
@@ -229,12 +349,35 @@ export const ZillowTable = ({ value, data, onClick, area, date }) => {
             },
             comingSoon: true,
             dataField: "count"
+        },
+        7: {
+            text: "Absorption Rate",
+            color: cyan[200],
+            columns: {
+                cols: 1,
+                colspan: 2,
+                colText: ["Absorption"],
+            },
+            comingSoon: false,
+            dataField: "absorption"
         }
     }
 
     const colSpan = (value === 0) ? 15 : 15;
 
-    //if (onClick) onClick();
+    // For hovering
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [popoverText, setPopoverText] = useState("")
+    const handlePopoverOpen = (event, text) => {
+        setPopoverText(text)
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handlePopoverClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
 
     // calculate columns loop
     const colLoop = [...Array(7)]
@@ -244,7 +387,7 @@ export const ZillowTable = ({ value, data, onClick, area, date }) => {
                 <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center"><strong>{area} Vacant Land</strong><br/>
+                            <TableCell align="center"><strong>{area} Vacant Land</strong><br />
                                 <Typography variant="caption">
                                     Data from {newDate}
                                 </Typography>
@@ -267,10 +410,10 @@ export const ZillowTable = ({ value, data, onClick, area, date }) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>&nbsp;</TableCell>
-                            <TableCell colSpan={colSpan} align="center"><strong>{area} Vacant Land</strong><br/>
-                                    <Typography variant="caption">
-                                        Data from {newDate}
-                                    </Typography>
+                            <TableCell colSpan={colSpan} align="center"><strong>{area} Vacant Land</strong><br />
+                                <Typography variant="caption">
+                                    Data from {newDate}
+                                </Typography>
                             </TableCell>
                         </TableRow>
                         <TableRow sx={{ backgroundColor: tableHeader[value].color }}>
@@ -310,9 +453,19 @@ export const ZillowTable = ({ value, data, onClick, area, date }) => {
                                     <TableCell align="center"><Typography variant="caption">TBD</Typography></TableCell>
                                     <TableCell align="center">{lot}</TableCell>
                                     {Object.keys(timeMatrix).map(time => (
-                                        <DataCell key={time} data={data} lot={lot} time={time} field={tableHeader[value].dataField} onClick={(e, p) => {
-                                            onClick(e, p)
-                                        }}
+                                        <DataCell
+                                            key={time}
+                                            data={data}
+                                            lot={lot}
+                                            time={time}
+                                            field={tableHeader[value].dataField}
+                                            onClick={(e, p) => {
+                                                onClick(e, p)
+                                            }}
+                                            open={open}
+                                            anchorEl={anchorEl}
+                                            onMouseEnter={(e, text) => handlePopoverOpen(e, text)}
+                                            onMouseLeave={handlePopoverClose}
                                         />
                                     ))}
                                 </TableRow>
@@ -325,6 +478,26 @@ export const ZillowTable = ({ value, data, onClick, area, date }) => {
                     )}
 
                 </Table>
+                <Popover
+                    id="mouse-over-popover"
+                    sx={{
+                        pointerEvents: 'none',
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <Typography sx={{ p: 2 }}> {popoverText}</Typography>
+                </Popover>
             </TableContainer>
         )
     )

@@ -146,11 +146,12 @@ const StyledPopper = styled(Popper)({
 const OPTIONS = [...counties, ...states]
 
 const SelectLocation = (props) => {
-    const { onChange } = props;
+    const { onChange, value } = props;
 
     return (
         <Autocomplete
-            onInputChange={(e, v) => onChange(v)}
+            value={value}
+            //onInputChange={(e, v) => onChange(v)}
             onChange={(e, v) => onChange(v)}
             id="virtualize-demo"
             sx={{ width: 300 }}

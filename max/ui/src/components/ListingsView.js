@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { ThirdPartyIcon } from "./ThirdPartyIcon";
 import { srcset } from "../constants/constants";
 import { DataGrid } from '@mui/x-data-grid';
-import { USDollar, convertStrToAcre } from "../functions/functions.js";
+import { USDollar, convertPriceStringToFloat, convertStrToAcre } from "../functions/functions.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useState } from "react";
@@ -17,7 +17,8 @@ const calcAcre = (num, unit) => {
 }
 
 const calcPpa = (oldPrice, acre) => {
-    const price = parseFloat(oldPrice.replace("$", "").replaceAll(",", ""))
+    //const price = parseFloat(oldPrice.replace("$", "").replaceAll(",", ""))
+    const price = convertPriceStringToFloat(oldPrice);
 
     if (isNaN(price)) return "$0";
 
@@ -110,7 +111,13 @@ const Images = ({ listings, onClick }) => {
 
 const Grid = ({ listings, onClick }) => {
     const columns = [
-        { field: 'price', headerName: 'PRICE' },
+        { 
+            field: 'price', 
+            headerName: 'PRICE',
+            valueGetter: (params) => {
+                return USDollar.format(convertPriceStringToFloat(params.row.price))
+            }
+         },
         {
             field: 'acres',
             headerName: 'ACRES',
@@ -128,6 +135,8 @@ const Grid = ({ listings, onClick }) => {
             valueGetter: (params) => {
                 const details = params.row;
                 const thisAcre = calcAcre(details.lotAreaValue, details.lotAreaString)
+                //console.log(convertPriceStringToFloat(details.price))
+                //const price = convertPriceStringToFloat(details.price.toString())
                 return calcPpa(details.price, thisAcre)
             }
         },

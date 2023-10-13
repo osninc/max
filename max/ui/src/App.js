@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -39,7 +39,7 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { defaultHeaders, graphqlHeaders } from "./headers.js";
 
 import { DetailsView } from "./components/DetailsView.js";
-import { alphaNumWithoutSpace, sqft2acre, USDollar, convertStrToAcre, calcRatio, calcAbsorption, calcMos, convertPriceStringToFloat } from "./functions/functions.js"
+import { alphaNumWithoutSpace, sqft2acre, USDollar, convertStrToAcre, calcRatio, calcAbsorption, calcMos, convertPriceStringToFloat, convertDateToLocal } from "./functions/functions.js"
 import { APIFY, BUILD, USETEST, srcset, modalStyle } from "./constants/constants.js";
 import { Copyright } from "./components/Copyright.js"
 import { ZillowTable } from "./components/ZillowTable.js";
@@ -183,43 +183,7 @@ const App = () => {
 
   const [buildNumber, setBuildNumber] = useState(hasBuildOnQS ? searchParams.get("build") : BUILD);
 
-
-  const [hasLocal, setHasLocal] = useState(false)
-  const [saveFirstTime, setSaveFirstTime] = useState(false)
-  const getLocalData = () => {
-    if (localStorage) {
-      // LocalStorage is supported!
-      // Check if there is any data
-      const data = localStorage.getItem("data")
-      console.log({data,saveFirstTime})
-      console.log({counts})
-      if (data && !saveFirstTime) {
-        // if it's set, don't re-set
-        console.log({counts})
-        setCounts(JSON.parse(data))
-        setSearch(localStorage.getItem("search"))
-        setCountsDate(localStorage.getItem("timeStamp"))
-        setHasLocal(true)
-      }
-      else {
-        if (hasLocal)
-          setHasLocal(false)
-      }
-    } else {
-      return {};
-      // No support. Use a fallback such as browser cookies or store on the server.
-    }
-  }
-  const saveLocalData = (search,timeStamp,data) => {
-    return;
-    if (localStorage) {
-      localStorage.setItem("data", JSON.stringify(data));
-      localStorage.setItem("timeStamp", timeStamp)
-      localStorage.setItem("search", search)
-    }
-  }
-
-  //const localData = getLocalData();
+  const [datasetId, setDatasetId] = useState("")
 
   const toggleDrawer = (event, p) => {
     setOpenDrawer(openDrawer => {
@@ -234,7 +198,7 @@ const App = () => {
 
           const saleText = (p.status === "sale") ? "for sale" : "sold"
           const timeText = Object.keys(timeMatrix).find(key => timeMatrix[key] === p.time)
-          setDrawerTitle(`(${p.count}) ${sizeStr} acre lots in ${area} ${saleText} within last ${timeText}`)
+          setDrawerTitle(`(Count=${p.count} Details=${p.mapCount}) ${sizeStr} acre lots in ${area} ${saleText} within last ${timeText}`)
           fetchListingData(
             {
               ...p,
@@ -251,14 +215,10 @@ const App = () => {
     })
   }
 
-  const fetchData = async () => {
+  const fetchData = async (ds) => {
     setMessage("");
     setLoading(true);
 
-    // Initialize the ApifyClient with API token
-    // const client = new ApifyClient({
-    //   token: "apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H",
-    // });
     let searchBy = "county"
     // figure out what kind of search it is
     if (search.length === 2)
@@ -277,51 +237,61 @@ const App = () => {
 
     setSearchBy(searchBy)
 
-    const url = APIFY.counts[APIFY.counts.use].replace("<BUILD>", buildNumber);
+    let axiosObj;
 
-    const finalObj = {
-      params: input,
-      method: APIFY.counts.method,
-      url
+    if (ds === "") {
+      const url = `${APIFY.base.url}${APIFY.counts.endPoint}?token=${APIFY.base.token}&build=${buildNumber}`;
+
+      axiosObj = {
+        data: input,
+        method: APIFY.counts.method,
+        url
+      }
+    }
+    else {
+      const url = `${APIFY.datasets.realTime.replace("<DATASETID>", ds)}?token=${APIFY.base.token}`
+      //console.log({ url })
+      axiosObj = {
+        method: APIFY.datasets.method,
+        url
+      }
     }
 
-    const formData = serialize(input);
-
     try {
-      // Run the Actor and wait for it to finish
-      //const run = await client.actor("DfRN94Fcs8WeKNY9h/OVT9EXRpZMjSZ2lhS").call(input);
-
-      // Fetch and print Actor results from the run's dataset (if any)
-      // console.log('Results from dataset');
-      // const { items } = await client.dataset(run.defaultDatasetId).listItems();
-      // items.forEach((item) => {
-      //   console.dir(item);
-      // });
-
       let data;
-      //if (USETEST.counts)
       if (testData.includes("counts"))
         data = testCounts
       else {
-        //let u2 = "https://api.apify.com/v2/datasets/ImVQ7f8FZwIERq833/items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H"
-        //let u2 = "https://api.apify.com/v2/datasets/6KcWeMAEclNoaFhdd/items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H"
-        // const response = await axios.get(u2)
-        const response = await axios.post(url, input);
+        const response = await axios(axiosObj);
         data = response.data
       }
 
       // Get the name of area
-      setArea(search)
+      // Pre-fill all variables
+      const data1 = data[1];
+      let newSearch = search;
+      if (data1["county"] !== "") {
+        newSearch = data1["county"];
+        setSearchBy("county")
+        setSearch(newSearch)
+      }
+      if (data1["zipCode"] !== "") {
+        newSearch = data1["zipCode"];
+        //console.log({ newSearch })
+        setSearchBy("zipCode")
+        setSearch(data1["zipCode"])
+      }
+      if (data1["state"] !== "") {
+        newSearch = data1["state"];
+        setSearchBy("state")
+        setSearch(data1["state"])
+      }
+
+      setArea(newSearch)
       setCountsDate(data[1]?.timeStamp)
 
       const normalizedData = normalizeTheData(data)
       setCounts(normalizedData)
-
-      // Save last successful search
-      //setSaveFirstTime(true);
-      //saveLocalData(search, data[1]?.timeStamp, normalizedData )
-
-
     } catch (error) {
       setMessage(processError("fetchData", error))
       setOpenSnack(true)
@@ -335,39 +305,9 @@ const App = () => {
     setMessage("")
     setListingLoading(true);
 
-    const url = APIFY.listings.realTime
-
-    const formData = serialize(params);
-
-    const i = {
-      "county": "Cook County, IL",
-      "debug": true,
-      "doz": "7",
-      "proxy": "none",
-      "status": "sale"
-    }
-
     try {
-      // Run the Actor and wait for it to finish
-      //const run = await client.actor("DfRN94Fcs8WeKNY9h/OVT9EXRpZMjSZ2lhS").call(input);
 
-      // Fetch and print Actor results from the run's dataset (if any)
-      // console.log('Results from dataset');
-      // const { items } = await client.dataset(run.defaultDatasetId).listItems();
-      // items.forEach((item) => {
-      //   console.dir(item);
-      // });
       const data = counts[lot][time][status].listings
-
-      //if (USETEST.listings)
-      // if (testData.includes("listings"))
-      //   //data = testListings
-      // else {
-      //   const response = await axios.post(url, params);
-      //   data = response.data
-      // }
-
-      //data = 
 
       setListings(data)
 
@@ -387,37 +327,9 @@ const App = () => {
 
     const url = APIFY.details.realTime
 
-
-    let finalConfig = {
-      //headerGeneratorOptions: { ...randomHeaders },
-      headers: {
-        ...defaultHeaders,
-        Referer: "https://www.zillow.com/",
-        "Referrer-Policy": "unsafe-url",
-      },
-    }
-
-    const graphQlHeaders = {
-      'authority': 'www.zillow.com',
-      'method': 'POST',
-      'path': `/graphql/?zpid=${zpid}`,
-      'scheme': 'https',
-      'accept': '*/*',
-      'accept-encoding': 'gzip, deflate, br',
-      'accept-language': 'en-US,en',
-      'content-type': 'text/plain',
-      'dnt': '1',
-      'origin': 'https://www.zillow.com',
-      'sec-fetch-dest': 'empty',
-      'sec-fetch-mode': 'cors',
-      'sec-fetch-site': 'same-origin',
-      'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
-    }
-
     const graphQlParams = getPropertyParams(zpid)
 
     let baseConfig = {
-      //headerGeneratorOptions: { ...randomHeaders },
       headers: {
         ...defaultHeaders,
         Referer: "https://www.zillow.com/",
@@ -426,28 +338,10 @@ const App = () => {
       responseType: "json"
     }
 
-
-
-    //console.log(params.extensions.toString());
-
-    //const finalUrl = `${url}/?extensions=${encodeURIComponent(JSON.stringify(params.extensions))}&variables=${encodeURIComponent(JSON.stringify(params.variables))}`
-    //console.log({ finalUrl })
-    //const formData = serialize(params);
-
     try {
-      // Run the Actor and wait for it to finish
-      //const run = await client.actor("DfRN94Fcs8WeKNY9h/OVT9EXRpZMjSZ2lhS").call(input);
 
-      // Fetch and print Actor results from the run's dataset (if any)
-      // console.log('Results from dataset');
-      // const { items } = await client.dataset(run.defaultDatasetId).listItems();
-      // items.forEach((item) => {
-      //   console.dir(item);
-      // });
       let data;
-      //if (USETEST.details)
       if (testData.includes("details")) {
-        // console.log("user")
         data = testDetails
       }
       else {
@@ -464,17 +358,6 @@ const App = () => {
       try {
         // getting backup
         const url = APIFY.details.backup
-        // const graphQlParams = getPropertyParams(zpid)
-
-        // const baseConfig = {
-        //   //headerGeneratorOptions: { ...randomHeaders },
-        //   headers: {
-        //     ...defaultHeaders,
-        //     Referer: "https://www.zillow.com/",
-        //     "Referrer-Policy": "unsafe-url"
-        //   },
-        //   responseType: "json"
-        // }
 
         // Prepare Actor input
         const input = {
@@ -499,7 +382,7 @@ const App = () => {
 
   const handleClick = async () => {
     setLoading(true);
-    await fetchData();
+    await fetchData("");
   }
 
   const handleTextChange = e => {
@@ -532,12 +415,10 @@ const App = () => {
     };
   }
   const handleScraperChange = (e) => {
-    //console.log(e.target.value)
     setScraper(e.target.value)
   }
 
   const handleProxyChange = (e) => {
-    //console.log(e.target.value)
     setProxy(e.target.value)
   }
 
@@ -554,6 +435,79 @@ const App = () => {
   const handleTestChange = (event, newTests) => {
     setTestData(newTests);
   };
+
+  if (searchParams.has("datasetid")) {
+    if (datasetId === "") {
+      setDatasetId(searchParams.get("datasetid"));
+    }
+  }
+
+  const [dataset, setDataset] = useState('');
+
+  const handleDatasetChange = (event) => {
+    setDataset(event.target.value);
+  };
+
+  const handleDatasetSearch = async () => {
+    setLoading(true);
+    await fetchData(dataset);
+  }
+
+  const [datasetLoading, setDatasetLoading] = useState(false)
+  const [datasets, setDatasets] = useState([])
+
+  const fetchStore = async (storeId) => {
+    try {
+      const url = `${APIFY.inputs.realTime.replace("<STOREID>", storeId)}?token=${APIFY.base.token}`;
+      const response = await axios.get(url);
+      const data = response.data;
+      const search = data[data.searchBy]
+      return {
+        searchBy: data.searchBy,
+        search: search
+      }
+    }
+    catch (error) {
+      setMessage(processError("fetchStore", error))
+      return {
+        searchBy: "",
+        search: ""
+      }
+    }
+  }
+
+  const fetchDatasets = async () => {
+    try {
+      const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true&limit=100`;
+      const response = await axios.get(url);
+      const data = response.data;
+
+      const aryOfItems = await Promise.all(data.data.items.map(async (item) => {
+        const storeId = item.defaultKeyValueStoreId;
+        const { searchBy, search } = await fetchStore(storeId);
+        return {
+          value: item.defaultDatasetId,
+          text: <><i>{searchBy}</i>:<strong>{search}</strong> <i>{convertDateToLocal(item.startedAt)}</i> <strong>{item.defaultDatasetId}</strong></>
+        }
+      }))
+
+      setDatasets(aryOfItems)
+    }
+    catch (error) {
+      setMessage(processError("fecthDatasets", error))
+      setOpenSnack(true)
+      setDatasets([])
+    } finally {
+      setDatasetLoading(false);
+    }
+  }
+  const handleDatasetClick = async (event) => {
+    if (datasets.length === 0) {
+      // update dropdown
+      setDatasetLoading(true)
+      await fetchDatasets()
+    }
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -711,13 +665,41 @@ const App = () => {
               <IconButton sx={{ p: '10px' }} aria-label="menu">
                 <FontAwesomeIcon icon={icon({ name: 'map-pin' })} />
               </IconButton>
-              <SelectLocation onChange={(value) => handleTextChange(value)} />
+              <SelectLocation onChange={(value) => handleTextChange(value)} value={search} />
 
               <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
-              <LoadingButton loading={isLoading} loadingIndicator="Fetching..." variant="contained" onClick={handleClick}>
+              <LoadingButton loading={isLoading || datasetLoading} loadingIndicator="Fetching..." variant="contained" onClick={handleClick}>
                 <FontAwesomeIcon icon={icon({ name: 'search' })} fixedWidth />
                 Search
+              </LoadingButton>
+
+            </Paper>
+            <Paper
+              component="form"
+              elevation={0}
+              sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "100%" }}
+            >
+              <Typography variant="body2">Or choose from:</Typography>
+              <FormControl sx={{ m: 1, minWidth: 120 }} size="small" variant="standard" >
+                <InputLabel id="demo-select-small-label">Dataset</InputLabel>
+                <Select
+                  labelId="demo-select-small-label"
+                  id="demo-select-small"
+                  value={dataset}
+                  label="Dataset ID"
+                  onChange={handleDatasetChange}
+                  onOpen={handleDatasetClick}
+                >
+                  {datasetLoading ? <CircularProgress size={20} /> : (
+                    (datasets.length > 0) && (datasets.map(ds => (
+                      <MenuItem key={ds.value} value={ds.value}><Typography variant="caption">{ds.text}</Typography></MenuItem>
+                    ))))}
+                </Select>
+              </FormControl>
+              <LoadingButton loading={isLoading || datasetLoading} loadingIndicator="Fetching..." variant="contained" onClick={handleDatasetSearch}>
+                <FontAwesomeIcon icon={icon({ name: 'download' })} fixedWidth />
+                Get Dataset
               </LoadingButton>
 
             </Paper>
@@ -785,7 +767,7 @@ const App = () => {
         open={openDrawer}
         onClose={() => toggleDrawer(false)}
       >
-        <Typography align="center" variant="h4" gutterBottom>{drawerTitle}</Typography>
+        <Typography align="center" variant="h6" gutterBottom color="primary">{drawerTitle}</Typography>
         <Container>
           <Box>
             {isListingLoading ? <CircularProgress /> : <ListingsView listings={listings} onDetailsClick={(zpid) => openDetails(zpid)} />}

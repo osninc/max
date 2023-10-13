@@ -198,11 +198,13 @@ const DataTable = ({ details }) => {
     }
 
     const thisAcre = calcAcre(details.lotAreaValue, details.lotAreaString)
+    const word = details.statusText.toLowerCase().replace("_", " ")
+    const statusText = word.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
     const fields = {
         "price": USDollar.format(details.price),
         "acres": `${thisAcre} acres`,
         "price/acre": calcPpa(details.price, thisAcre),
-        "status": details.statusText,
+        "status": statusText,
         "dom": calcDom(details.priceHistory),
         "views": details.pageViewCount,
         "favorites": details.favoriteCount,
@@ -241,7 +243,7 @@ const DataTable = ({ details }) => {
                     ))}
                 </TableRow>
                 <TableRow>
-                    <TableCell colspan={1 + Object.keys(fields).length}>
+                    <TableCell colSpan={1 + Object.keys(fields).length}>
                         <Collapse in={showPriceDetails} timeout="auto" unmountOnExit>
                             <PriceHistory history={details["priceHistory"]} />
                         </Collapse>
@@ -332,7 +334,6 @@ export const DetailsView = ({ listings, details: theDetails, onClose }) => {
                         Google Maps
                     </Button>
                     <Button
-                        expand={expanded}
                         onClick={handleExpandClick}
                         aria-expanded={expanded}
                         aria-label="show more"

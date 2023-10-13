@@ -106,3 +106,24 @@ export const convertPriceStringToFloat = str => {
 
     return parseFloat(str.replace("$", "").replaceAll(",", "").replace("From ", "").replace("K", "000").replace("M", "000000"))
 }
+
+export const convertDateToLocal = dateStr => {
+
+    const timeZone = "PST";
+
+    const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        timeZone,
+        timeZoneName: "short",
+        hour12: true,
+        hour: "numeric",
+        minute: "numeric"
+    };
+
+    const epochTime = Date.parse(dateStr);
+    const newDate = new Date(epochTime).toLocaleString("en-US", options);
+    return newDate
+}

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { blue, cyan, green, yellow } from '@mui/material/colors';
 import { ThirdPartyIcon } from "./ThirdPartyIcon.js";
-import { USDollar } from "../functions/functions.js";
+import { USDollar, convertDateToLocal } from "../functions/functions.js";
 
 const columnColor = {
     "sold": yellow[200],
@@ -80,57 +80,74 @@ const DataCell = props => {
         let soldParams;
         let soldHtml = "N/A"
         let soldText = sold[field];
+        let soldTextButton;
         let soldHover = "";
 
-        switch (field) {
-            case "avgPrice":
-            case "ppa":
-                soldText = USDollar.format(soldText);
-                break;
-        }
         if (sold) {
             soldParams = {
                 ...commonParams,
                 "status": statusMatrix["sold"],
-                count: sold.count
+                count: sold.count,
+                mapCount: sold.mapCount
             }
-            soldHtml = (field === "count") ?
-                <ButtonGroup
-                    {...buttonGroupParams}
-                >
-                    <Button href="#" onClick={(e) => onClick(e, soldParams)}>{soldText}</Button>
-                    <Button href={sold.url} rel="noreferrer" target="_blank">
-                        <ThirdPartyIcon site="zillow" size="xs" />
-                    </Button>
-                </ButtonGroup> : soldText
+            switch (field) {
+                case "avgPrice":
+                case "ppa":
+                    soldText = USDollar.format(soldText);
+                    soldTextButton = <Button href="#" onClick={(e) => onClick(e, soldParams)}>{soldText}</Button>
+                    break;
+                case "count":
+                    soldTextButton = <ButtonGroup
+                        {...buttonGroupParams}
+                    >
+                        <Button href="#" onClick={(e) => onClick(e, soldParams)}>{soldText}</Button>
+                        <Button href={sold.url} rel="noreferrer" target="_blank">
+                            <ThirdPartyIcon site="zillow" size="xs" />
+                        </Button>
+                    </ButtonGroup>
+                    break;
+                default:
+                    soldTextButton = soldText;
+                    break;
+
+            }
+            soldHtml = soldTextButton;
         }
 
         let saleParams;
         let saleHtml = "N/A"
         let saleText = sale[field];
+        let saleTextButton;
         let saleHover = "";
 
-        switch (field) {
-            case "avgPrice":
-            case "ppa":
-                saleText = USDollar.format(saleText);
-                break;
-        }
         if (sale) {
             saleParams = {
                 ...commonParams,
                 "status": statusMatrix["for sale"],
-                count: sale.count
+                count: sale.count,
+                mapCount: sold.mapCount
             }
-            saleHtml = (field === "count") ?
-                <ButtonGroup
-                    {...buttonGroupParams}
-                >
-                    <Button href="#" onClick={(e) => onClick(e, saleParams)}>{saleText}</Button>
-                    <Button href={sale.url} rel="noreferrer" target="_blank">
-                        <ThirdPartyIcon site="zillow" size="xs" />
-                    </Button>
-                </ButtonGroup> : saleText
+            switch (field) {
+                case "avgPrice":
+                case "ppa":
+                    saleText = USDollar.format(saleText);
+                    saleTextButton = <Button href="#" onClick={(e) => onClick(e, saleParams)}>{saleText}</Button>
+                    break;
+                case "count":
+                    saleTextButton = <ButtonGroup
+                        {...buttonGroupParams}
+                    >
+                        <Button href="#" onClick={(e) => onClick(e, saleParams)}>{saleText}</Button>
+                        <Button href={sale.url} rel="noreferrer" target="_blank">
+                            <ThirdPartyIcon site="zillow" size="xs" />
+                        </Button>
+                    </ButtonGroup>
+                    break;
+                default:
+                    saleTextButton = saleText;
+                    break;
+            }
+            saleHtml = saleTextButton;
         }
 
         let moreSaleText = "";
@@ -245,27 +262,6 @@ const DataCell = props => {
             </TableCell>
         )
     }
-}
-
-const convertDateToLocal = dateStr => {
-
-    const timeZone = "PST";
-
-    const options = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        timeZone,
-        timeZoneName: "short",
-        hour12: true,
-        hour: "numeric",
-        minute: "numeric"
-    };
-
-    const epochTime = Date.parse(dateStr);
-    const newDate = new Date(epochTime).toLocaleString("en-US", options);
-    return newDate
 }
 
 export const ZillowTable = ({ value, data, onClick, area, date }) => {
@@ -472,9 +468,11 @@ export const ZillowTable = ({ value, data, onClick, area, date }) => {
                             ))}
                         </TableBody>
                     ) : (
-                        <TableRow>
-                            <TableCell colSpan={colSpan} align="center">Coming soon!</TableCell>
-                        </TableRow>
+                        <TableBody>
+                            <TableRow>
+                                <TableCell colSpan={colSpan} align="center">Coming soon!</TableCell>
+                            </TableRow>
+                        </TableBody>
                     )}
 
                 </Table>

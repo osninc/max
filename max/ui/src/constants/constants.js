@@ -7,9 +7,14 @@ export const USETEST = {
 }
 
 export const APIFY = {
+    base: {
+        url: "https://api.apify.com/v2/acts/OVT9EXRpZMjSZ2lhS",
+        token: "apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H"
+    },
     counts: {
         use: "realTime",
         method: "post",
+        endPoint: "/run-sync-get-dataset-items",
         old: "https://api.apify.com/v2/datasets/RYjTNctyQeqlnFAAI/items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H",
         realTime: `https://api.apify.com/v2/acts/OVT9EXRpZMjSZ2lhS/run-sync-get-dataset-items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H&build=<BUILD>`
     },
@@ -23,11 +28,27 @@ export const APIFY = {
         use: "realTime",
         method: "post",
         old: "",
+        endPoint: "/run-sync-get-dataset-items",
         realTime: "https://www.zillow.com/graphql",
         backup: "https://api.apify.com/v2/acts/Iv8c0Q2qJueBe2sg6/run-sync-get-dataset-items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H"
     },
     builds: {
+        endPoint: "/builds",
         realTime: "https://api.apify.com/v2/acts/land-stats~maxeverythingcount/builds?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H",
+        method: "get"
+    },
+    runs: {
+        endPoint: "/runs",
+        realTime: "https://api.apify.com/v2/acts/OVT9EXRpZMjSZ2lhS/runs?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H",
+        method: "get"
+    },
+    datasets: {
+        endPoint: "/items",
+        realTime: "https://api.apify.com/v2/datasets/<DATASETID>/items",
+        method: "get"
+    },
+    inputs: {
+        realTime: "https://api.apify.com/v2/key-value-stores/<STOREID>/records/INPUT",
         method: "get"
     }
 }

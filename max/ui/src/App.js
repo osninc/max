@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -20,97 +20,77 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import axios from './axios.js';
 import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
-import { Alert, Box, CircularProgress, Divider, Drawer, FormControl, FormControlLabel, FormLabel, IconButton, InputLabel, Menu, MenuItem, Modal, Paper, Select, Snackbar, Stack, Switch, Tab, Tabs, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Alert, Box, CircularProgress, Divider, Drawer, FormControl, FormLabel, IconButton, InputLabel, Menu, MenuItem, Modal, Paper, Select, Snackbar, Stack, Tab, Tabs, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { processError } from "./error.js";
 
-
-
-import { serialize } from 'object-to-formdata';
-
 import testCounts from "./data/countsWithListings.json";
-import testListings from "./data/listings.json";
+//import testListings from "./data/listings.json";
 import testDetails from "./data/details.json";
 
-
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
-
-import { defaultHeaders, graphqlHeaders } from "./headers.js";
+import { defaultHeaders } from "./headers.js";
 
 import { DetailsView } from "./components/DetailsView.js";
-import { alphaNumWithoutSpace, sqft2acre, USDollar, convertStrToAcre, calcRatio, calcAbsorption, calcMos, convertPriceStringToFloat, convertDateToLocal } from "./functions/functions.js"
-import { APIFY, BUILD, USETEST, srcset, modalStyle } from "./constants/constants.js";
+import { convertStrToAcre, convertPriceStringToFloat, convertDateToLocal } from "./functions/functions.js"
+import { sqft2acre, calcRatio, calcAbsorption, calcMos, calcPpa, getListOfField, getSum } from "./functions/formulas.js"
+
+import { APIFY, BUILD, modalStyle } from "./constants/constants.js";
 import { Copyright } from "./components/Copyright.js"
 import { ZillowTable } from "./components/ZillowTable.js";
 import { timeMatrix } from "./constants/matrix.js";
 import SelectLocation from "./components/SelectLocation.js";
-import { ThirdPartyIcon } from "./components/ThirdPartyIcon.js";
 import { getPropertyParams } from "./zillowGraphQl.js";
 import ListingsView from "./components/ListingsView.js";
-
-import Skeleton from '@mui/material/Skeleton';
-import { SkeletonTable } from "./components/SkeletonTable.js";
-
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-// There could be a posiblity of text like 'from $32,000' and '32K'
-const getListOfPrices = listings => {
-  if ((typeof listings === 'undefined') || (listings.length === 0)) return [];
+const calcAvgPrice = ary => {
+  if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
 
-  const listOfPrices = listings.map(listing => convertPriceStringToFloat(listing.price)).filter(el => el)
-  return listOfPrices;
-}
-
-const getSumOfPrices = ary => {
-  if (ary.length === 0) return 0;
-
-  return ary.reduce((a, b) => a + b, 0)
-}
-
-const calcAvgPrice = listings => {
-  if ((typeof listings === 'undefined') || (listings.length === 0)) return 0;
-
-  const listOfPrices = getListOfPrices(listings)
-  const totalPrices = getSumOfPrices(listOfPrices)
+  const listOfPrices = getListOfField(ary, "unformattedPrice")
+  const totalPrices = getSum(listOfPrices)
   const numListings = listOfPrices.length;
 
-  return (numListings === 0) ? 0 : (totalPrices / numListings).toFixed(0);
+  return (numListings === 0) ? 0 : parseInt((totalPrices / numListings).toFixed(0));
 }
 
-const calcPPA = listings => {
-  if ((typeof listings === 'undefined') || (listings.length === 0)) return 0;
+const calcAvgPpa = ary => {
+  if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
 
-  // Convert to individual price/acre
-  const newListings = listings.map(listing => {
-    const price = convertPriceStringToFloat(listing.price)
-    const acre = convertStrToAcre(listing.lotAreaString)
+  const listOfPpa = getListOfField(ary, "unformattedPpa")
+  const totalPpa = getSum(listOfPpa)
+  const numListings = listOfPpa.length;
 
-    if (!isNaN(price && acre))
-      return (acre === 0) ? 0 : (price / acre)
-    else
-      return (price && acre)
-  }).filter(el => el)
+  return (numListings === 0) ? 0 : parseInt((totalPpa / numListings).toFixed(0));
+}
 
-  const totalPrices = getSumOfPrices(newListings)
-  const numListings = newListings.length
-
-  return (numListings === 0) ? 0 : (totalPrices / numListings).toFixed(0)
+const fixListings = listings => {
+  const f = listings.map(listing => {
+    const newPrice = convertPriceStringToFloat(listing.price)
+    const newAcre = convertStrToAcre(listing.lotAreaString)
+    const newPpa = calcPpa(newPrice, newAcre);
+    //console.log({ newPpa })
+    return {
+      ...listing,
+      unformattedPrice: newPrice,
+      acre: newAcre,
+      unformattedPpa: newPpa
+    }
+  })
+  return f
 }
 
 const normalizeTheData = data => {
   let c = {}
-  //console.log(data)
   // Put everything in an object to reference faster and easier
-  //console.log({ data })
   data.map((count, i) => {
-    //console.log({count})
     if (count.status !== undefined) {
       const timeDim = (count.status?.toLowerCase() === "sold") ? count?.soldInLast?.toLowerCase() : count?.daysOnZillow?.toLowerCase();
-      //console.log({ timeDim })
-      if (timeDim)
+
+      if (timeDim) {
+        const fixedListings = fixListings(count.listings);
+        const listOfPrices = getListOfField(fixedListings, "unformattedPrice")
+        const numPrices = listOfPrices.length
         c[count.acreage?.toLowerCase()] = {
           ...c[count.acreage?.toLowerCase()],
           [timeDim.toLowerCase()]: {
@@ -119,22 +99,21 @@ const normalizeTheData = data => {
             [count.status?.toLowerCase()]: {
               count: count.agentCount,
               url: count.url,
-              listings: count.listings,
-              listOfPrices: getListOfPrices(count.listings),
-              sumOfPrices: getSumOfPrices(getListOfPrices(count.listings)),
+              listings: fixedListings,
+              numPrices,
+              sumPrice: getSum(listOfPrices),
               mapCount: count.mapCount,
               otherCount: count.otherCount,
-              //agentCount: count.agentCount,
-              avgPrice: calcAvgPrice(count.listings),
-              ppa: calcPPA(count.listings)
+              avgPrice: calcAvgPrice(fixedListings),
+              avgPpa: calcAvgPpa(fixedListings)
             }
 
           }
         }
+      }
     }
+    return {}
   })
-
-  //console.log("here")
 
   // Added calculated values
   Object.keys(c).map(acreage => {
@@ -146,7 +125,9 @@ const normalizeTheData = data => {
         absorption: calcAbsorption(c[acreage][time]["for sale"]?.count, c[acreage][time]["sold"]?.count, time)
 
       }
-    })
+      return {};
+    });
+    return {};
   })
 
   //console.log({ c })
@@ -406,6 +387,12 @@ const App = () => {
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
+  };
+
+  const [sourceTabValue, setSourceTabValue] = useState("zillow");
+
+  const handleSourceTabChange = (event, newValue) => {
+    setSourceTabValue(newValue);
   };
 
   const a11yProps = (index) => {
@@ -726,12 +713,12 @@ const App = () => {
               //<DataGrid rows={rows} columns={columns} />
               (Object.keys(counts).length > 0) && (
                 <>
-                  <Tabs value={0} aria-label="basic tabs example">
-                    <Tab label="Zillow" {...a11yProps(0)} value={0} />
-                    <Tab label="Redfin" {...a11yProps(1)} value={1} />
-                    <Tab label="Realtor" {...a11yProps(2)} value={2} />
-                    <Tab label="Landwatch" {...a11yProps(3)} value={3} />
-                    <Tab label="MLS" {...a11yProps(4)} value={4} />
+                  <Tabs value={sourceTabValue} onChange={handleSourceTabChange} aria-label="basic tabs example">
+                    <Tab label="Zillow" {...a11yProps(0)} value="zillow" />
+                    <Tab label="Redfin" {...a11yProps(1)} value="redfin" />
+                    <Tab label="Realtor" {...a11yProps(2)} value="realtor" />
+                    <Tab label="Landwatch" {...a11yProps(3)} value="landwatch" />
+                    <Tab label="MLS" {...a11yProps(4)} value="mls" />
                   </Tabs>
                   <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example">
                     <Tab label="Sales & Listings" {...a11yProps(0)} value={0} />
@@ -743,7 +730,7 @@ const App = () => {
                     <Tab label="Days on Market" {...a11yProps(5)} value={5} />
                     <Tab label="Realtors" {...a11yProps(6)} value={6} />
                   </Tabs>
-                  <ZillowTable area={area} date={countsDate} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                  <ZillowTable area={area} date={countsDate} source={sourceTabValue} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
                 </>
               )}
           </Grid>

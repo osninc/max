@@ -1,3 +1,5 @@
+import { sqft2acre } from "./formulas.js";
+
 export const USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -6,12 +8,6 @@ export const USDollar = new Intl.NumberFormat('en-US', {
 
 export const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
-}
-
-export const sqft2acre = num => {
-    if (num === "")
-        return "";
-    return parseFloat((num / 43560).toFixed(2));
 }
 
 export const alphaNum = str => {
@@ -49,10 +45,6 @@ export const lotSizeToString = (min, max) => {
     return keyName;
 }
 
-export const calcPpa = (price,acre) => {
-
-}
-
 export const convertStrToAcre = str => {
     const isSqft = str.toLowerCase().includes("sqft")
     let returnStr = 0;
@@ -69,37 +61,6 @@ export const convertStrToAcre = str => {
 
 }
 
-export const calcRatio = (sale, sold) => {
-    if (!sold || (sold === 0) || (sold === "N/A")) return "0%";
-    return `${((sale / sold) * 100).toFixed(0)}%`;
-}
-
-export const calcMos = (sale, sold, time) => {
-
-    const calcDaysOf30 = (time) => {
-        return time / 30;
-    }
-
-    const calcDaysInTimeFrame = {
-        "7 days": calcDaysOf30(7),
-        "30 days": calcDaysOf30(30),
-        "90 days": calcDaysOf30(90),
-        "6 months": calcDaysOf30(180),
-        "12 months": calcDaysOf30(360),
-        "24 months": calcDaysOf30(720),
-        "36 months": calcDaysOf30(1080)
-    }
-
-    if (!sold || (sold === 0) || (sold === "N/A")) return "0.00";
-
-    return (sale / sold * calcDaysInTimeFrame[time.toLowerCase()]).toFixed(2);
-}
-
-export const calcAbsorption = (sale, sold) => {
-    if (!sale || (sale === 0) || (sale === "N/A")) return "0.00%";
-
-    return `${((sold / sale) * 100).toFixed(2)}%`
-}
 
 export const convertPriceStringToFloat = str => {
     if ((typeof str === 'undefined') || (str === "")) return null;

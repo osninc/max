@@ -1,9 +1,9 @@
-import { Button, ButtonGroup, Icon, IconButton, ImageList, ImageListItem, ImageListItemBar, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import { Button, IconButton, ImageList, ImageListItem, ImageListItemBar, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import { ThirdPartyIcon } from "./ThirdPartyIcon";
 import { srcset } from "../constants/constants";
 import { DataGrid } from '@mui/x-data-grid';
-import { USDollar, convertPriceStringToFloat, convertStrToAcre } from "../functions/functions.js";
+import { USDollar } from "../functions/functions.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useState } from "react";
@@ -11,64 +11,6 @@ import { useState } from "react";
 const getGoogleMapsUrl = address => {
     return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
 }
-
-const calcAcre = (num, unit) => {
-    return convertStrToAcre(unit)
-}
-
-const calcPpa = (oldPrice, acre) => {
-    //const price = parseFloat(oldPrice.replace("$", "").replaceAll(",", ""))
-    const price = convertPriceStringToFloat(oldPrice);
-
-    if (isNaN(price)) return "$0";
-
-    if (!isNaN(price && acre))
-        return (acre === 0) ? "$0" : `${USDollar.format((price / acre).toFixed(0))}`
-    else
-        return (price && acre)
-}
-const calcDom = (history) => {
-    // if the first item is "listed for sale, then seconds from now to them"
-    if (history.length === 0)
-        return 0
-
-    const epochNow = Date.now()
-    let aryOfMs = []
-
-    let firstEventListed = false;
-    const firstEvent = history[0].event.toLowerCase()
-    if (firstEvent === "listed for sale") {
-        const firstEventTime = history[0].time
-        aryOfMs = [(epochNow - firstEventTime)]
-        firstEventListed = true
-    }
-
-    let startHit = false;
-    // let endHit = false;
-    let startValue;
-    let endValue;
-    for (let i = (firstEventListed ? 1 : 0); i < history.length; i++) {
-        // Find start time
-        if (["listing removed", "sold"].includes(history[i].event.toString().toLowerCase())) {
-            startHit = true;
-            startValue = history[i].time;
-        }
-        if (history[i].event.toString().toLowerCase() === "listed for sale") {
-
-            if (startHit) {
-                endValue = history[i].time;
-                aryOfMs = [...aryOfMs, (startValue - endValue)];
-                startHit = false;
-            }
-        }
-    }
-
-    //console.log({ aryOfMs })
-
-    const totalMs = aryOfMs.reduce((a, b) => a + b, 0)
-    return Math.round(totalMs / 86400000);
-}
-
 
 const Images = ({ listings, onClick }) => {
     return (
@@ -111,34 +53,21 @@ const Images = ({ listings, onClick }) => {
 
 const Grid = ({ listings, onClick }) => {
     const columns = [
-        { 
-            field: 'price', 
+        {
+            field: 'price',
             headerName: 'PRICE',
-            valueGetter: (params) => {
-                return USDollar.format(convertPriceStringToFloat(params.row.price))
-            }
-         },
+            valueGetter: (params) => USDollar.format(params.row.unformattedPrice)
+        },
         {
             field: 'acres',
             headerName: 'ACRES',
 
-            valueGetter: (params) => {
-                const details = params.row;
-                const thisAcre = calcAcre(details.lotAreaValue, details.lotAreaString)
-
-                return `${thisAcre} acres`
-            }
+            valueGetter: (params) =>  `${params.row.acre} acres`
         },
         {
             field: "ppa",
             headerName: "PRICE/ACRE",
-            valueGetter: (params) => {
-                const details = params.row;
-                const thisAcre = calcAcre(details.lotAreaValue, details.lotAreaString)
-                //console.log(convertPriceStringToFloat(details.price))
-                //const price = convertPriceStringToFloat(details.price.toString())
-                return calcPpa(details.price, thisAcre)
-            }
+            valueGetter: (params) => USDollar.format(params.row.unformattedPpa)
         },
         {
             field: "statusType", headerName: "STATUS", valueGetter: (params) => {

@@ -1,8 +1,6 @@
-import { Button, ButtonGroup, IconButton, Link, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Button, ButtonGroup, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { lotMatrix, statusMatrix, timeMatrix } from "../constants/matrix.js";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { blue, cyan, green, yellow } from '@mui/material/colors';
 import { ThirdPartyIcon } from "./ThirdPartyIcon.js";
 import { USDollar, convertDateToLocal } from "../functions/functions.js";
@@ -31,7 +29,6 @@ const DataCell = props => {
         time,
         onClick,
         field,
-        anchorEl,
         open,
         onMouseEnter,
         onMouseLeave
@@ -52,7 +49,7 @@ const DataCell = props => {
         variant: "body2"
     }
 
-    if (["count", "avgPrice", "ppa"].includes(field)) {
+    if (["count", "avgPrice", "avgPpa"].includes(field)) {
 
 
         const sold = record["sold"];
@@ -92,7 +89,7 @@ const DataCell = props => {
             }
             switch (field) {
                 case "avgPrice":
-                case "ppa":
+                case "avgPpa":
                     soldText = USDollar.format(soldText);
                     soldTextButton = <Button href="#" onClick={(e) => onClick(e, soldParams)}>{soldText}</Button>
                     break;
@@ -125,11 +122,11 @@ const DataCell = props => {
                 ...commonParams,
                 "status": statusMatrix["for sale"],
                 count: sale.count,
-                mapCount: sold.mapCount
+                mapCount: sale.mapCount
             }
             switch (field) {
                 case "avgPrice":
-                case "ppa":
+                case "avgPpa":
                     saleText = USDollar.format(saleText);
                     saleTextButton = <Button href="#" onClick={(e) => onClick(e, saleParams)}>{saleText}</Button>
                     break;
@@ -152,38 +149,40 @@ const DataCell = props => {
 
         let moreSaleText = "";
         let moreSoldText = "";
-        if (record["for sale"].listOfPrices.length >= 500)
+        if (record["for sale"].numPrices >= 500)
             moreSaleText = <strong>DISCLAIMER: Results are limited to 500 records<br /></strong>;
-        if (record["sold"].listOfPrices.length >= 500)
+        if (record["sold"].numPrices >= 500)
             moreSoldText = <strong>DISCLAIMER: Results are limited to 500 records<br /></strong>;
         switch (field) {
             case "avgPrice":
                 saleHover = <Typography variant="caption">
                     {moreSaleText}
-                    This value is the sum of all {record["for sale"].listOfPrices.length} available prices
+                    This value is the sum of all {record["for sale"].numPrices} available prices
                     divided by the Number of Listings that had a price listed<br />
-                    {USDollar.format(record["for sale"].sumOfPrices)} / {record["for sale"].listOfPrices.length} = {saleText}
+                    {USDollar.format(record["for sale"].sumPrice)} / {record["for sale"].numPrices} = {saleText}
                 </Typography>
                 soldHover = <Typography variant="caption">
                     {moreSoldText}
-                    This value is the sum of all {record["sold"].listOfPrices.length} available prices
+                    This value is the sum of all {record["sold"].numPrices} available prices
                     divided by the Number of Sales that had a price listed<br />
-                    {USDollar.format(record["sold"].sumOfPrices)} / {record["sold"].listOfPrices.length} = {soldText}
+                    {USDollar.format(record["sold"].sumPrice)} / {record["sold"].numPrices} = {soldText}
                 </Typography>;
                 break;
-            case "ppa":
+            case "avgPpa":
                 saleHover = <Typography variant="caption">
                     {moreSaleText}
                     This value is the sum of each of the listing's individual price per acre
-                    divided by  ({record["for sale"].listOfPrices.length}) listings<br />
-                    sum(price/acre) / {record["for sale"].listOfPrices.length} = {saleText}
+                    divided by  ({record["for sale"].numPrices}) listings<br />
+                    sum(price/acre) / {record["for sale"].numPrices} = {saleText}
                 </Typography>
                 soldHover = <Typography variant="caption">
                     {moreSoldText}
                     This value is the sum of each of the sale's individual price per acre
-                    divided by  ({record["sold"].listOfPrices.length}) sales <br />
-                    sum(price/acre) / {record["sold"].listOfPrices.length} = {soldText}
+                    divided by  ({record["sold"].numPrices}) sales <br />
+                    sum(price/acre) / {record["sold"].numPrices} = {soldText}
                 </Typography>;
+                break;
+            default:
                 break;
         }
         return (
@@ -245,6 +244,8 @@ const DataCell = props => {
                     {record["for sale"].count} / {record["sold"].count} * 100% = {record[field]}
                 </Typography>
                 break;
+            default:
+                break;
         }
         return (
             <TableCell align="center" colSpan={2} sx={{ backgroundColor: columnColor["for sale"] }}>
@@ -264,7 +265,38 @@ const DataCell = props => {
     }
 }
 
-export const ZillowTable = ({ value, data, onClick, area, date }) => {
+const ComingSoon = props => {
+    const {
+        area,
+        header,
+        date,
+    } = props
+    return (
+        <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell align="center"><strong>{area} Vacant Land</strong><br />
+                            <Typography variant="caption">
+                                Data from {date}
+                            </Typography>
+                        </TableCell>
+                    </TableRow>
+                    <TableRow sx={{ backgroundColor: header.color }}>
+                        <TableCell align="center"><strong>{header.text}</strong></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    <TableRow>
+                        <TableCell align="center">Coming soon!</TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </TableContainer>
+    )
+}
+
+export const ZillowTable = ({ value, data, onClick, area, date, source }) => {
     const newDate = convertDateToLocal(date)
     const commonColText = ["Listed", "Sold"]
     const commonBgColor = [columnColor["for sale"], columnColor["sold"]]
@@ -311,7 +343,7 @@ export const ZillowTable = ({ value, data, onClick, area, date }) => {
                 colText: commonColText,
             },
             comingSoon: false,
-            dataField: "ppa"
+            dataField: "avgPpa"
         },
         4: {
             text: "Months of Supply",
@@ -378,28 +410,8 @@ export const ZillowTable = ({ value, data, onClick, area, date }) => {
     // calculate columns loop
     const colLoop = [...Array(7)]
     return (
-        (value === 6) ? (
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center"><strong>{area} Vacant Land</strong><br />
-                                <Typography variant="caption">
-                                    Data from {newDate}
-                                </Typography>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow sx={{ backgroundColor: tableHeader[value].color }}>
-                            <TableCell align="center"><strong>{tableHeader[value].text}</strong></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <TableRow>
-                            <TableCell align="center">Coming soon!</TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
-            </TableContainer>
+        ((value === 6) || (source !== "zillow")) ? (
+            <ComingSoon area={area} header={tableHeader[value]} date={newDate} />
         ) : (
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
@@ -450,7 +462,7 @@ export const ZillowTable = ({ value, data, onClick, area, date }) => {
                                     <TableCell align="center">{lot}</TableCell>
                                     {Object.keys(timeMatrix).map(time => (
                                         <DataCell
-                                            key={time}
+                                            key={`${time}${lot}${tableHeader[value].dataField}`}
                                             data={data}
                                             lot={lot}
                                             time={time}

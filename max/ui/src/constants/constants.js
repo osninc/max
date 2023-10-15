@@ -75,3 +75,9 @@ export const srcset = (image, width, height, rows = 1, cols = 1) => {
     };
 }
 
+export const SOURCE = {
+    zillow: {
+        color: "#1277e1"
+    }
+}
+

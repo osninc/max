@@ -88,3 +88,11 @@ export const convertDateToLocal = dateStr => {
     const newDate = new Date(epochTime).toLocaleString("en-US", options);
     return newDate
 }
+
+export const getGoogleMapsUrl = address => {
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
+}
+
+export const getZillowUrl = zpid => {
+    return `https://www.zillow.com/homes/${zpid}_zpid`
+}

@@ -70,11 +70,14 @@ const fixListings = listings => {
     const newAcre = convertStrToAcre(listing.lotAreaString)
     const newPpa = calcPpa(newPrice, newAcre);
     //console.log({ newPpa })
+    // replace all google images
+    const newImage = (listing.imgSrc.includes("googleapis.com")) ? "/no-image.png" : listing.imgSrc
     return {
       ...listing,
       unformattedPrice: newPrice,
       acre: newAcre,
-      unformattedPpa: newPpa
+      unformattedPpa: newPpa,
+      imgSrc: newImage
     }
   })
   return f

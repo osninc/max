@@ -79,6 +79,7 @@ const Marker = ({ children, listing }) => {
                 <Typography variant="body2" color="text.secondary">
                     price: {USDollar.format(listing.unformattedPrice)}<br/>
                     acreage: {listing.acre} acres<br/>
+                    price per acre: {USDollar.format(listing.unformattedPpa)}<br />
                     lat: {listing.latitude}<br/>
                     lng: {listing.longitude}<br/>
                 </Typography>

@@ -84,9 +84,13 @@ export const convertDateToLocal = dateStr => {
         minute: "numeric"
     };
 
-    const epochTime = Date.parse(dateStr);
-    const newDate = new Date(epochTime).toLocaleString("en-US", options);
+    const newDate = time2epoch(dateStr).toLocaleString("en-US", options);
     return newDate
+}
+
+export const time2epoch = dateStr => {
+    const epochTime = Date.parse(dateStr)
+    return new Date(epochTime)
 }
 
 export const getGoogleMapsUrl = address => {
@@ -102,15 +106,19 @@ export const sec2min = seconds => {
     const minutes = Math.floor((seconds % 3600) / 60)
     const remainingSeconds = seconds % 60
 
-    const hourString = hours > 0 ? `${hours} hour${hours > 1 ? 's' : ''}` : ''
-    const minuteString = minutes > 0 ? `${minutes} minute${minutes > 1 ? 's' : ''}` : ''
-    const secondString =
-        remainingSeconds > 0 ? `${remainingSeconds} second${remainingSeconds > 1 ? 's' : ''}` : ''
+    // const hourString = hours > 0 ? `${hours} hour${hours > 1 ? 's' : ''}` : ''
+    // const minuteString = minutes > 0 ? `${minutes} minute${minutes > 1 ? 's' : ''}` : ''
+    // const secondString =
+    //     remainingSeconds > 0 ? `${remainingSeconds} second${remainingSeconds > 1 ? 's' : ''}` : ''
+
+    const hourString = hours > 0 ? `${hours}h` : "";
+    const minuteString = minutes > 0 ? `${minutes}m` : "";
+    const secondString = remainingSeconds > 0 ? `${remainingSeconds}s` : ""
 
     if (hours > 0) {
-        return `${hourString} : ${minuteString || '0 minute'} ${secondString && `: ${secondString}`}`
+        return `${hourString} ${minuteString || '0 m'} ${secondString && ` ${secondString}`}`
     } else if (!hours && minutes > 0) {
-        return `${minuteString} ${secondString && `: ${secondString}`}`
+        return `${minuteString} ${secondString && ` ${secondString}`}`
     }
 
     return secondString

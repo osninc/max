@@ -22,7 +22,7 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import axios from './axios.js';
 import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
-import { Alert, Box, CircularProgress, Divider, Drawer, FormControl, FormLabel, IconButton, InputLabel, Menu, MenuItem, Modal, Paper, Select, Snackbar, Stack, Tab, Tabs, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Alert, Avatar, Box, Chip, CircularProgress, Divider, Drawer, FormControl, FormLabel, IconButton, InputLabel, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Menu, MenuItem, Modal, Paper, Select, Snackbar, Stack, Tab, Tabs, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { processError } from "./error.js";
 
 import testCounts from "./data/countsWithListings.json";
@@ -32,7 +32,7 @@ import testDetails from "./data/details.json";
 import { defaultHeaders } from "./headers.js";
 
 import { DetailsView } from "./components/DetailsView.js";
-import { convertStrToAcre, convertPriceStringToFloat, convertDateToLocal } from "./functions/functions.js"
+import { convertStrToAcre, convertPriceStringToFloat, convertDateToLocal, sec2min, time2epoch } from "./functions/functions.js"
 import { sqft2acre, calcRatio, calcAbsorption, calcMos, calcPpa, getListOfField, getSum } from "./functions/formulas.js"
 
 import { APIFY, BUILD, modalStyle } from "./constants/constants.js";
@@ -136,7 +136,7 @@ const normalizeTheData = data => {
     return {};
   })
 
-  console.log({ c })
+  //console.log({ c })
 
   return c
 };
@@ -245,7 +245,7 @@ const App = () => {
       }
     }
 
-    console.log({ axiosObj })
+    //console.log({ axiosObj })
 
     try {
       let data;
@@ -372,7 +372,6 @@ const App = () => {
 
   const handleClick = async () => {
     setLoading(true);
-    console.log(search)
     await fetchData("");
   }
 
@@ -484,6 +483,10 @@ const App = () => {
         const { searchBy, search } = await fetchStore(storeId);
         return {
           value: item.defaultDatasetId,
+          searchBy: searchBy,
+          search: search,
+          date: convertDateToLocal(item.startedAt),
+          elapsedTime: sec2min(((time2epoch(item.finishedAt) - time2epoch(item.startedAt)) / 1000).toFixed(0)),
           text: <><i>{searchBy}</i>:<strong>{search}</strong> <i>{convertDateToLocal(item.startedAt)}</i> <strong>{item.defaultDatasetId}</strong></>
         }
       }))
@@ -499,11 +502,11 @@ const App = () => {
     }
   }
   const handleDatasetClick = async (event) => {
-    //if (datasets.length === 0) {
-    // update dropdown
-    setDatasetLoading(true)
-    await fetchDatasets()
-    //}
+    if (datasets.length === 0) {
+      // update dropdown
+      setDatasetLoading(true)
+      await fetchDatasets()
+    }
   }
 
   return (
@@ -662,10 +665,7 @@ const App = () => {
               <IconButton sx={{ p: '10px' }} aria-label="menu">
                 <FontAwesomeIcon icon={icon({ name: 'map-pin' })} />
               </IconButton>
-              <SelectLocation onChange={(value) => {
-                console.log({value})
-                handleTextChange(value)
-              }} value={search} />
+              <SelectLocation onChange={(value) => handleTextChange(value)} value={search} />
 
               <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
@@ -691,9 +691,39 @@ const App = () => {
                   onChange={handleDatasetChange}
                   onOpen={handleDatasetClick}
                 >
-                  {datasetLoading ? <><CircularProgress size={20} /><Typography variant="caption">Updating...</Typography></> : (
+                  {datasetLoading ? [
+                    <CircularProgress key={0} size={20} />,
+                    <Typography key={1} variant="caption">Updating...</Typography>
+                  ] : (
                     (datasets.length > 0) && (datasets.map(ds => (
-                      <MenuItem key={ds.value} value={ds.value}><Typography variant="caption">{ds.text}</Typography></MenuItem>
+                      [
+                        <Divider key={`${ds.value}0`}>
+                          <Typography variant="caption">{ds.date}</Typography>
+                        </Divider>
+                        ,
+                        <MenuItem key={`${ds.value}1`} value={ds.value}>
+                          {/* <ListItemIcon>
+                            <FontAwesomeIcon icon={icon({ name: 'database' })} />
+                          </ListItemIcon> */}
+                          <ListItemText primary={
+                            <Typography component="span" variant="body2">
+                              {ds.searchBy}: <strong>{ds.search}</strong>
+                            </Typography>
+                          } secondary={
+                            <React.Fragment>
+                              <Typography
+                                sx={{ display: 'inline' }}
+                                component="span"
+                                variant="body2"
+                                color="text.primary"
+                              >
+                                {ds.elapsedTime}
+                              </Typography>
+                              {` - ${ds.value}`}
+                            </React.Fragment>
+                          } />
+                        </MenuItem>
+                      ]
                     ))))}
                 </Select>
               </FormControl>
@@ -724,8 +754,8 @@ const App = () => {
           <Grid item>
             {isLoading ? <CircularProgressTimer onUpdate={(sec) => {
               setLoadTime(sec)
-            }}/>
-             :
+            }} />
+              :
               //<DataGrid rows={rows} columns={columns} />
               (Object.keys(counts).length > 0) && (
                 <>

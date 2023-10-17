@@ -65,7 +65,19 @@ export const convertStrToAcre = str => {
 export const convertPriceStringToFloat = str => {
     if ((typeof str === 'undefined') || (str === "")) return null;
 
-    return parseFloat(str.replace("$", "").replaceAll(",", "").replace("From ", "").replace("K", "000").replace("M", "000000"))
+    const removeComma = str.replace("$", "").replaceAll(",", "").replace("From ", "");
+    const removeK = removeComma.replace("K", "000")
+    // special case for millions
+    let removeM
+    if (removeK.includes("M")) {
+        console.log({ removeK })
+        removeM = removeK.replace("M", "")
+        removeM = parseFloat(removeM * 1000000)
+    }
+    else
+        removeM = parseFloat(removeK)
+
+    return removeM;
 }
 
 export const convertDateToLocal = dateStr => {

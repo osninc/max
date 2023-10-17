@@ -151,7 +151,7 @@ const SelectLocation = (props) => {
     return (
         <Autocomplete
             value={value}
-            //onInputChange={(e, v) => onChange(v)}
+            onInputChange={(e, v) => onChange(v)}
             onChange={(e, v) => onChange(v)}
             id="virtualize-demo"
             sx={{ width: 300 }}

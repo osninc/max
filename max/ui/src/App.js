@@ -12,6 +12,8 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 import LoadingButton from '@mui/lab/LoadingButton';
 
+import Timer from "./components/Timer.js";
+
 import TextField from '@mui/material/TextField';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -40,6 +42,7 @@ import { timeMatrix } from "./constants/matrix.js";
 import SelectLocation from "./components/SelectLocation.js";
 import { getPropertyParams } from "./zillowGraphQl.js";
 import ListingsView from "./components/ListingsView.js";
+import { CircularProgressTimer } from "./components/Listings/CircularProgressTimer.js";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -133,7 +136,7 @@ const normalizeTheData = data => {
     return {};
   })
 
-  //console.log({ c })
+  console.log({ c })
 
   return c
 };
@@ -158,7 +161,6 @@ const App = () => {
   const [proxy, setProxy] = useState("smartproxy-residential")
   const [anchorEl, setAnchorEl] = useState(null);
 
-
   const searchParams = new URLSearchParams(document.location.search);
 
   const hasDebugMenu = searchParams.has("debugMenu")
@@ -168,6 +170,8 @@ const App = () => {
   const [buildNumber, setBuildNumber] = useState(hasBuildOnQS ? searchParams.get("build") : BUILD);
 
   const [datasetId, setDatasetId] = useState("")
+
+  const [loadTime, setLoadTime] = useState(0)
 
   const toggleDrawer = (event, p) => {
     setOpenDrawer(openDrawer => {
@@ -240,6 +244,8 @@ const App = () => {
         url
       }
     }
+
+    console.log({ axiosObj })
 
     try {
       let data;
@@ -366,6 +372,7 @@ const App = () => {
 
   const handleClick = async () => {
     setLoading(true);
+    console.log(search)
     await fetchData("");
   }
 
@@ -492,11 +499,11 @@ const App = () => {
     }
   }
   const handleDatasetClick = async (event) => {
-    if (datasets.length === 0) {
-      // update dropdown
-      setDatasetLoading(true)
-      await fetchDatasets()
-    }
+    //if (datasets.length === 0) {
+    // update dropdown
+    setDatasetLoading(true)
+    await fetchDatasets()
+    //}
   }
 
   return (
@@ -576,7 +583,7 @@ const App = () => {
                           <MenuItem value="apify-residential">Apify Residential</MenuItem>
                         </Select>
                       </FormControl>
-                      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                      {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                         <FormLabel id="demo-simple-select-helper-label">Select which will use test data</FormLabel>
                         <ToggleButtonGroup
                           color="primary"
@@ -587,7 +594,7 @@ const App = () => {
                           <ToggleButton value="counts">Counts</ToggleButton>
                           <ToggleButton value="details">Details</ToggleButton>
                         </ToggleButtonGroup>
-                      </FormControl>
+                      </FormControl> */}
                     </Stack>
                   </MenuItem>
                 </Menu>
@@ -655,7 +662,10 @@ const App = () => {
               <IconButton sx={{ p: '10px' }} aria-label="menu">
                 <FontAwesomeIcon icon={icon({ name: 'map-pin' })} />
               </IconButton>
-              <SelectLocation onChange={(value) => handleTextChange(value)} value={search} />
+              <SelectLocation onChange={(value) => {
+                console.log({value})
+                handleTextChange(value)
+              }} value={search} />
 
               <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
@@ -681,7 +691,7 @@ const App = () => {
                   onChange={handleDatasetChange}
                   onOpen={handleDatasetClick}
                 >
-                  {datasetLoading ? <CircularProgress size={20} /> : (
+                  {datasetLoading ? <><CircularProgress size={20} /><Typography variant="caption">Updating...</Typography></> : (
                     (datasets.length > 0) && (datasets.map(ds => (
                       <MenuItem key={ds.value} value={ds.value}><Typography variant="caption">{ds.text}</Typography></MenuItem>
                     ))))}
@@ -712,7 +722,10 @@ const App = () => {
             )}
           </Grid>
           <Grid item>
-            {isLoading ? <CircularProgress /> :
+            {isLoading ? <CircularProgressTimer onUpdate={(sec) => {
+              setLoadTime(sec)
+            }}/>
+             :
               //<DataGrid rows={rows} columns={columns} />
               (Object.keys(counts).length > 0) && (
                 <>
@@ -733,7 +746,7 @@ const App = () => {
                     <Tab label="Days on Market" {...a11yProps(5)} value={5} />
                     <Tab label="Realtors" {...a11yProps(6)} value={6} />
                   </Tabs>
-                  <ZillowTable area={area} date={countsDate} source={sourceTabValue} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                  <ZillowTable loadTime={loadTime} area={area} date={countsDate} source={sourceTabValue} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
                 </>
               )}
           </Grid>

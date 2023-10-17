@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { lotMatrix, statusMatrix, timeMatrix } from "../constants/matrix.js";
 import { blue, cyan, green, yellow } from '@mui/material/colors';
 import { ThirdPartyIcon } from "./ThirdPartyIcon.js";
-import { USDollar, convertDateToLocal } from "../functions/functions.js";
+import { USDollar, convertDateToLocal, sec2min } from "../functions/functions.js";
 
 const columnColor = {
     "sold": yellow[200],
@@ -296,8 +296,9 @@ const ComingSoon = props => {
     )
 }
 
-export const ZillowTable = ({ value, data, onClick, area, date, source }) => {
+export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime }) => {
     const newDate = convertDateToLocal(date)
+    const newLoadTime = (loadTime > 0) ? `(${sec2min(loadTime)})` : "";
     const commonColText = ["Listed", "Sold"]
     const commonBgColor = [columnColor["for sale"], columnColor["sold"]]
     const tableHeader = {
@@ -420,7 +421,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source }) => {
                             <TableCell>&nbsp;</TableCell>
                             <TableCell colSpan={colSpan} align="center"><strong>{area} Vacant Land</strong><br />
                                 <Typography variant="caption">
-                                    Data from {newDate}
+                                        Data from {newDate} {(newLoadTime)}
                                 </Typography>
                             </TableCell>
                         </TableRow>

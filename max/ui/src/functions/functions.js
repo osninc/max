@@ -70,7 +70,6 @@ export const convertPriceStringToFloat = str => {
     // special case for millions
     let removeM
     if (removeK.includes("M")) {
-        console.log({ removeK })
         removeM = removeK.replace("M", "")
         removeM = parseFloat(removeM * 1000000)
     }

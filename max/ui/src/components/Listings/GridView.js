@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { IconButton } from "@mui/material";
+import { IconButton, Popover, Typography } from "@mui/material";
 import { USDollar, getGoogleMapsUrl, getZillowUrl } from "../../functions/functions";
 import { ThirdPartyIcon } from "../ThirdPartyIcon";
 
@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 import { DataGrid } from '@mui/x-data-grid';
-import { SOURCE } from "../../constants/constants";
+import { SOURCE, srcset } from "../../constants/constants";
+import { useState } from "react";
 
 export const GridView = ({ listings, onClick }) => {
     const columns = [
@@ -72,30 +73,84 @@ export const GridView = ({ listings, onClick }) => {
             field: "zpid", headerName: "DETAILS", renderCell: ({ value }) => {
                 return (
                     <IconButton onClick={() => onClick(value)} color="primary">
-                        <FontAwesomeIcon icon={icon({ name: 'circle-info' })} size="xs" />
+                        <FontAwesomeIcon icon={icon({ name: 'circle-info' })} size="sm" fixedWidth />
                     </IconButton>
                 )
             }
         }
     ];
 
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [value, setValue] = useState('');
+
+    const handlePopoverOpen = (event) => {
+        const id = event.currentTarget.parentElement.dataset.id;
+        const row = listings.find(r => r.zpid === id);
+        const field = event.currentTarget.dataset.field;
+
+        const ignoreFields = ["zlink", "gmaps", "zpid", "__check__"]
+        if (!ignoreFields.includes(field)) {
+            setValue(row.imgSrc);
+            setAnchorEl(event.currentTarget);
+        }
+    };
+
+    const handlePopoverClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+
 
 
     return (
-        <DataGrid
-            getRowId={(row) => row.zpid}
-            rows={listings}
-            columns={columns}
-            initialState={{
-                pagination: {
-                    paginationModel: {
-                        pageSize: 10,
+        <>
+            <DataGrid
+                getRowId={(row) => row.zpid}
+                rows={listings}
+                columns={columns}
+                initialState={{
+                    pagination: {
+                        paginationModel: {
+                            pageSize: 15,
+                        },
                     },
-                },
-            }}
-            pageSizeOptions={[5, 10, 15]}
-            checkboxSelection
-            disableRowSelectionOnClick
-        />
+                }}
+                pageSizeOptions={[5, 10, 15, 20]}
+                checkboxSelection
+                disableRowSelectionOnClick
+                density='compact'
+                slotProps={{
+                    cell: {
+                        onMouseEnter: handlePopoverOpen,
+                        onMouseLeave: handlePopoverClose
+                    },
+                }}
+            />
+            <Popover
+                sx={{
+                    pointerEvents: 'none',
+                }}
+                open={open}
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                    vertical: 'center',
+                    horizontal: 'left',
+                }}
+                transformOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                onClose={handlePopoverClose}
+                disableRestoreFocus
+            >
+                <img
+                    {...srcset(value, 250, 200, 1, 1)}
+                    src={value}
+                    height={200}
+                    loading="lazy"
+                />
+            </Popover>
+        </>
     )
 }

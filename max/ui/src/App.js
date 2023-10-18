@@ -75,12 +75,15 @@ const fixListings = listings => {
     //console.log({ newPpa })
     // replace all google images
     const newImage = (listing.imgSrc.includes("googleapis.com")) ? "/no-image.png" : listing.imgSrc
+    // if (listing.imgSrc.includes("googleapis"))
+    //   console.log(listing.imgSrc)
     return {
       ...listing,
       unformattedPrice: newPrice,
       acre: newAcre,
       unformattedPpa: newPpa,
-      imgSrc: newImage
+      imgSrc: newImage,
+      originalImgSrc: listing.imgSrc
     }
   })
   return f

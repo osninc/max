@@ -8,7 +8,7 @@ export const ImagesView = ({ listings, onClick }) => {
     return (
         <ImageList sx={{
 
-            height: 450,
+            height: 600,
         }} rowHeight={200}
             gap={8}
             cols={4}>

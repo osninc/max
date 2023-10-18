@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { lotMatrix, statusMatrix, timeMatrix } from "../constants/matrix.js";
 import { blue, cyan, green, yellow } from '@mui/material/colors';
 import { ThirdPartyIcon } from "./ThirdPartyIcon.js";
-import { USDollar, convertDateToLocal, sec2min } from "../functions/functions.js";
+import { DisplayNumber, USDollar, convertDateToLocal, sec2min } from "../functions/functions.js";
 
 const columnColor = {
     "sold": yellow[200],
@@ -97,7 +97,7 @@ const DataCell = props => {
                     soldTextButton = <ButtonGroup
                         {...buttonGroupParams}
                     >
-                        <Button href="#" onClick={(e) => onClick(e, soldParams)}>{soldText}</Button>
+                        <Button href="#" onClick={(e) => onClick(e, soldParams)}>{DisplayNumber.format(soldText)}</Button>
                         <Button href={sold.url} rel="noreferrer" target="_blank">
                             <ThirdPartyIcon site="zillow" size="xs" />
                         </Button>
@@ -134,7 +134,7 @@ const DataCell = props => {
                     saleTextButton = <ButtonGroup
                         {...buttonGroupParams}
                     >
-                        <Button href="#" onClick={(e) => onClick(e, saleParams)}>{saleText}</Button>
+                        <Button href="#" onClick={(e) => onClick(e, saleParams)}>{DisplayNumber.format(saleText)}</Button>
                         <Button href={sale.url} rel="noreferrer" target="_blank">
                             <ThirdPartyIcon site="zillow" size="xs" />
                         </Button>

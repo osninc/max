@@ -78,6 +78,18 @@ export const srcset = (image, width, height, rows = 1, cols = 1) => {
 export const SOURCE = {
     zillow: {
         color: "#1277e1"
+    },
+    redfin: {
+        color: "#a02021"
+    },
+    realtor: {
+        color: "#b76e79"
+    },
+    landwatch: {
+        color: "aaa"
+    },
+    mls: {
+        color: "blue"
     }
 }
 

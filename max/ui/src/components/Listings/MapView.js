@@ -8,13 +8,15 @@ import { SOURCE } from '../../constants/constants.js';
 import { USDollar, getZillowUrl } from '../../functions/functions';
 import { ThirdPartyIcon } from '../ThirdPartyIcon';
 
+import GiteIcon from '@mui/icons-material/Gite';
+
 mapboxgl.accessToken = "pk.eyJ1IjoibGFuZHN0YXRzIiwiYSI6ImNsbHd1cDV5czBmNjQzb2xlbnE4c2F6MDkifQ.8VJ8wEZCS_jJFbvtOXwSng";
 
 const markerStyle = {
     backgroundColor: SOURCE.zillow.color,
     border: "1px solid blue",
     color: "white",
-    padding: 5,
+    padding: 4,
     textAlign: "center",
     textDecoration: "none",
     display: "inline-block",
@@ -90,7 +92,7 @@ const Marker = ({ children, listing }) => {
     return (
         <Tooltip title={htmlTitle} placement="top">
             <IconButton style={markerStyle} href={getZillowUrl(listing.zpid)} rel="noreferrer" target="_blank">
-                <ThirdPartyIcon site="zillow" size="xs" />
+                <ThirdPartyIcon site="zillow" fixedWidth size="sm"/> 
             </IconButton>
         </Tooltip>
     );

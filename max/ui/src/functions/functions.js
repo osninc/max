@@ -135,3 +135,5 @@ export const sec2min = seconds => {
 
     return secondString
 }
+
+export const DisplayNumber = new Intl.NumberFormat()

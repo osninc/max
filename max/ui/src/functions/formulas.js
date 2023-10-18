@@ -1,3 +1,5 @@
+import { DisplayNumber } from "./functions.js";
+
 export const getListOfField = (listings, field) => listings.map(listing => listing[field]).filter(el => el);
 
 export const getSum = ary => (ary.length === 0) ? 0 : ary.reduce((a, b) => a + b, 0);
@@ -6,7 +8,8 @@ export const calcPpa = (price, acre) => (acre === 0) ? 0 : parseInt((price / acr
 
 export const calcRatio = (sale, sold) => {
     if (!sold || (sold === 0) || (sold === "N/A")) return "0%";
-    return `${((sale / sold) * 100).toFixed(0)}%`;
+    const formattedNumber = DisplayNumber.format((sale / sold * 100).toFixed(0))
+    return `${formattedNumber}%`;
 }
 
 export const calcMos = (sale, sold, time) => {

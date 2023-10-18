@@ -32,7 +32,7 @@ import testDetails from "./data/details.json";
 import { defaultHeaders } from "./headers.js";
 
 import { DetailsView } from "./components/DetailsView.js";
-import { convertStrToAcre, convertPriceStringToFloat, convertDateToLocal, sec2min, time2epoch } from "./functions/functions.js"
+import { convertStrToAcre, convertPriceStringToFloat, convertDateToLocal, sec2min, time2epoch, DisplayNumber } from "./functions/functions.js"
 import { sqft2acre, calcRatio, calcAbsorption, calcMos, calcPpa, getListOfField, getSum } from "./functions/formulas.js"
 
 import { APIFY, BUILD, modalStyle } from "./constants/constants.js";
@@ -186,7 +186,7 @@ const App = () => {
 
           const saleText = (p.status === "sale") ? "for sale" : "sold"
           const timeText = Object.keys(timeMatrix).find(key => timeMatrix[key] === p.time)
-          setDrawerTitle(`(Count=${p.count} Details=${p.mapCount}) ${sizeStr} acre lots in ${area} ${saleText} within last ${timeText}`)
+          setDrawerTitle(`(Count=${DisplayNumber.format(p.count)} Details=${DisplayNumber.format(p.mapCount)}) ${sizeStr} acre lots in ${area} ${saleText} within last ${timeText}`)
           fetchListingData(
             {
               ...p,

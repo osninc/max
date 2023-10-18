@@ -13,6 +13,21 @@ export const ThirdPartyIcon = props => {
         case "zillow":
             i = icon({ name: 'z' })
             break;
+        case "redfin":
+            i = icon({ name: 'r' })
+            break;
+        case "realtor":
+            i = icon({ name: 'r' })
+            break;
+        case "landwatch":
+            i = icon({ name: 'l' })
+            break;
+        case "mls":
+            i = icon({ name: 'm' })
+            break;
+        default:
+            break;
+
     }
     return <FontAwesomeIcon icon={i} {...props} />
 }

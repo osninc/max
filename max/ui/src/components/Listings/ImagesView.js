@@ -12,11 +12,12 @@ export const ImagesView = ({ listings, onClick }) => {
         }} rowHeight={200}
             gap={8}
             cols={4}>
-            {listings.map((item) => (
-                <ImageListItem key={item.zpid} cols={1} rows={1}>
+            {listings.map((item) => {
+                const newImage = item.imgSrc.includes("googleapis.com") ? "/no-image.png" : item.imgSrc;
+                return <ImageListItem key={item.zpid} cols={1} rows={1}>
                     <img
-                        {...srcset(item.image, 250, 200, 1, 1)}
-                        src={(item.imgSrc.includes("googleapis.com")) ? "/no-image.png" : item.imgSrc}
+                    {...srcset(newImage, 250, 200, 1, 1)}
+                    src={newImage}
                         alt={item.zpid}
                         loading="lazy"
                         onClick={() => onClick(item.zpid)}
@@ -37,7 +38,7 @@ export const ImagesView = ({ listings, onClick }) => {
                         }
                     />
                 </ImageListItem>
-            ))}
+})}
         </ImageList>
     )
 

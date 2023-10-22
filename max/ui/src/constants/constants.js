@@ -52,7 +52,8 @@ export const APIFY = {
     runs: {
         endPoint: "/runs",
         realTime: "https://api.apify.com/v2/acts/OVT9EXRpZMjSZ2lhS/runs?limit=15&token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H",
-        method: "get"
+        method: "get",
+        limit: 15
     },
     datasets: {
         endPoint: "/items",

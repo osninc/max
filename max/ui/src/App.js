@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -35,7 +35,7 @@ import { DetailsView } from "./components/DetailsView.js";
 import { convertStrToAcre, convertPriceStringToFloat, convertDateToLocal, sec2min, time2epoch, DisplayNumber } from "./functions/functions.js"
 import { sqft2acre, calcRatio, calcAbsorption, calcMos, calcPpa, getListOfField, getSum } from "./functions/formulas.js"
 
-import { APIFY, BUILD, modalStyle } from "./constants/constants.js";
+import { APIFY, BUILD, PROXYTYPE, SCRAPER, iconButtonFAStyle, modalStyle } from "./constants/constants.js";
 import { Copyright } from "./components/Copyright.js"
 import { ZillowTable } from "./components/ZillowTable.js";
 import { timeMatrix } from "./constants/matrix.js";
@@ -44,8 +44,8 @@ import { getPropertyParams } from "./zillowGraphQl.js";
 import ListingsView from "./components/ListingsView.js";
 import { CircularProgressTimer } from "./components/Listings/CircularProgressTimer.js";
 
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+import { defaultTheme } from "./constants/theme.js";
+import TabPanel from "./components/TabPanel.js";
 
 const calcAvgPrice = ary => {
   if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
@@ -139,7 +139,7 @@ const normalizeTheData = data => {
     return {};
   })
 
-  //console.log({ c })
+  console.log({ c })
 
   return c
 };
@@ -160,8 +160,8 @@ const App = () => {
   const [area, setArea] = useState("")
   const [countsDate, setCountsDate] = useState("");
   const [openSnack, setOpenSnack] = useState(false);
-  const [scraper, setScraper] = useState("axios");
-  const [proxy, setProxy] = useState("smartproxy-residential")
+  const [scraper, setScraper] = useState(SCRAPER[0]);
+  const [proxy, setProxy] = useState(PROXYTYPE[0])
   const [anchorEl, setAnchorEl] = useState(null);
 
   const searchParams = new URLSearchParams(document.location.search);
@@ -219,9 +219,9 @@ const App = () => {
 
     // Prepare Actor input
     const input = {
-      searchBy,
+      searchType: searchBy,
       [searchBy]: search,
-      proxy,
+      proxyType: proxy,
       scraper,
       "debug": false
     };
@@ -518,13 +518,14 @@ const App = () => {
       <CssBaseline />
       <AppBar
         position="static"
-        color="default"
+        color="transparent"
         elevation={0}
-        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+        //sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
-        <Toolbar sx={{ flexWrap: 'wrap' }}>
+        <Toolbar sx={{ flexWrap: 'wrap' }} variant="dense">
           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            land-stats.com
+            <FontAwesomeIcon icon={icon({ name: 'bullseye' })} fixedWidth color={defaultTheme.palette.primary.main} />
+            Land Stats Logo
           </Typography>
           {isTestingSite && (
             <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
@@ -570,9 +571,9 @@ const App = () => {
                           label="Select scraper"
                           onChange={handleScraperChange}
                         >
-                          <MenuItem value="axios">axios</MenuItem>
-                          <MenuItem value="got">got</MenuItem>
-                          <MenuItem value="crawlee">crawlee</MenuItem>
+                          {SCRAPER.map(scraper => (
+                            <MenuItem value={scraper} key={scraper}>{scraper}</MenuItem>
+                          ))}
                         </Select>
                       </FormControl>
                       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
@@ -584,23 +585,11 @@ const App = () => {
                           label="Select proxy"
                           onChange={handleProxyChange}
                         >
-                          {/* <MenuItem value="none">none</MenuItem> */}
-                          <MenuItem value="smartproxy-residential">Smartproxy Residential</MenuItem>
-                          <MenuItem value="apify-residential">Apify Residential</MenuItem>
+                          {PROXYTYPE.map(proxy => (
+                            <MenuItem value={proxy} key={proxy}>{proxy}</MenuItem>
+                          ))}
                         </Select>
                       </FormControl>
-                      {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                        <FormLabel id="demo-simple-select-helper-label">Select which will use test data</FormLabel>
-                        <ToggleButtonGroup
-                          color="primary"
-                          value={testData}
-                          onChange={handleTestChange}
-                          size="small"
-                        >
-                          <ToggleButton value="counts">Counts</ToggleButton>
-                          <ToggleButton value="details">Details</ToggleButton>
-                        </ToggleButtonGroup>
-                      </FormControl> */}
                     </Stack>
                   </MenuItem>
                 </Menu>
@@ -609,30 +598,43 @@ const App = () => {
 
             <Link
               variant="button"
-              color="text.primary"
+              color="primary"
               href="#"
+              underline="none"
               sx={{ my: 1, mx: 1.5 }}
             >
               Features
             </Link>
             <Link
               variant="button"
-              color="text.primary"
+              color="primary"
               href="#"
+              underline="none"
               sx={{ my: 1, mx: 1.5 }}
             >
-              Enterprise
+              Pricing
             </Link>
             <Link
               variant="button"
-              color="text.primary"
+              color="primary"
               href="#"
+              underline="none"
               sx={{ my: 1, mx: 1.5 }}
             >
-              Support
+              FAQ's
+            </Link>
+            <Link
+              variant="button"
+              color="primary"
+              href="#"
+              underline="none"
+              sx={{ my: 1, mx: 1.5 }}
+            >
+              About Us
             </Link>
           </nav>
-          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+          <Button href="#" variant="contained" sx={{ my: 1, mx: 1.5 }}>
+            <FontAwesomeIcon icon={icon({ name: 'right-to-bracket' })} fixedWidth style={iconButtonFAStyle} />
             Login
           </Button>
         </Toolbar>
@@ -665,15 +667,15 @@ const App = () => {
               elevation={0}
               sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
             >
-              <IconButton sx={{ p: '10px' }} aria-label="menu">
+              {/* <IconButton sx={{ p: '10px' }} aria-label="menu">
                 <FontAwesomeIcon icon={icon({ name: 'map-pin' })} />
-              </IconButton>
+              </IconButton> */}
               <SelectLocation onChange={(value) => handleTextChange(value)} value={search} />
 
-              <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+              {/* <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" /> */}
 
-              <LoadingButton loading={isLoading || datasetLoading} loadingIndicator="Fetching..." variant="contained" onClick={handleClick}>
-                <FontAwesomeIcon icon={icon({ name: 'search' })} fixedWidth />
+              <LoadingButton sx={{ paddingLeft: 1, paddingRight: 1 }} loading={isLoading || datasetLoading} loadingIndicator="Fetching..." variant="contained" onClick={handleClick}>
+                <FontAwesomeIcon icon={icon({ name: 'search' })} fixedWidth style={iconButtonFAStyle} />
                 Search
               </LoadingButton>
 
@@ -731,7 +733,7 @@ const App = () => {
                 </Select>
               </FormControl>
               <LoadingButton loading={isLoading || datasetLoading} loadingIndicator="Fetching..." variant="contained" onClick={handleDatasetSearch}>
-                <FontAwesomeIcon icon={icon({ name: 'download' })} fixedWidth />
+                <FontAwesomeIcon icon={icon({ name: 'download' })} fixedWidth style={iconButtonFAStyle} />
                 Get Dataset
               </LoadingButton>
 
@@ -762,24 +764,37 @@ const App = () => {
               //<DataGrid rows={rows} columns={columns} />
               (Object.keys(counts).length > 0) && (
                 <>
-                  <Tabs value={sourceTabValue} onChange={handleSourceTabChange} aria-label="basic tabs example">
-                    <Tab label="Zillow" {...a11yProps(0)} value="zillow" />
-                    <Tab label="Redfin" {...a11yProps(1)} value="redfin" />
-                    <Tab label="Realtor" {...a11yProps(2)} value="realtor" />
-                    <Tab label="Landwatch" {...a11yProps(3)} value="landwatch" />
-                    <Tab label="MLS" {...a11yProps(4)} value="mls" />
-                  </Tabs>
-                  <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example">
-                    <Tab label="Sales & Listings" {...a11yProps(0)} value={0} />
-                    <Tab label="List/Sale Ratio" {...a11yProps(2)} value={2} />
-                    <Tab label="Months of Supply" {...a11yProps(4)} value={4} />
-                    <Tab label="Absorption Rate" {...a11yProps(4)} value={7} />
-                    <Tab label="Average Prices" {...a11yProps(1)} value={1} />
-                    <Tab label="Price Per Acre" {...a11yProps(3)} value={3} />
-                    <Tab label="Days on Market" {...a11yProps(5)} value={5} />
-                    <Tab label="Realtors" {...a11yProps(6)} value={6} />
-                  </Tabs>
-                  <ZillowTable loadTime={loadTime} area={area} date={countsDate} source={sourceTabValue} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                  <Box
+                    sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: "100%" }}
+                  >
+                    <Tabs
+                      value={sourceTabValue}
+                      onChange={handleSourceTabChange}
+                      aria-label="basic tabs example"
+                      orientation="vertical"
+                      variant="scrollable"
+                      sx={{marginTop:14}}
+                    >
+                      <Tab label="Zillow" {...a11yProps(0)} value="zillow" variant="v" />
+                      <Tab label="Redfin" {...a11yProps(1)} value="redfin" variant="v" />
+                      <Tab label="Realtor" {...a11yProps(2)} value="realtor" variant="v" />
+                      <Tab label="Landwatch" {...a11yProps(3)} value="landwatch" variant="v" />
+                      <Tab label="MLS" {...a11yProps(4)} value="mls" variant="v" />
+                    </Tabs>
+                    <Box>
+                      <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example">
+                        <Tab label="Sales & Listings" {...a11yProps(0)} value={0} variant="h" />
+                        <Tab label="List/Sale Ratio" {...a11yProps(2)} value={2} variant="h" />
+                        <Tab label="Months of Supply" {...a11yProps(4)} value={4} variant="h" />
+                        <Tab label="Absorption Rate" {...a11yProps(4)} value={7} variant="h" />
+                        <Tab label="Average Prices" {...a11yProps(1)} value={1} variant="h" />
+                        <Tab label="Price Per Acre" {...a11yProps(3)} value={3} variant="h" />
+                        <Tab label="Days on Market" {...a11yProps(5)} value={5} variant="h" />
+                        <Tab label="Realtors" {...a11yProps(6)} value={6} variant="h" />
+                      </Tabs>
+                      <ZillowTable loadTime={loadTime} area={area} date={countsDate} source={sourceTabValue} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                    </Box>
+                  </Box>
                 </>
               )}
           </Grid>

@@ -216,10 +216,10 @@ const DataTable = ({ details }) => {
         <Table size="small">
             <TableHead>
                 <TableRow>
-                    <TableCell sx={{ width: 70 }}>
+                    <TableCell sx={{ width: 70 }} variant="header">
                     </TableCell>
                     {Object.keys(fields).map(field => (
-                        <TableCell key={field} component="th">
+                        <TableCell key={field} component="th" variant="header">
                             <Typography variant="caption">
                                 <strong>{field.toUpperCase()}</strong>
                             </Typography>

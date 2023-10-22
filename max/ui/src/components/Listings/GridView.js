@@ -1,14 +1,18 @@
 import PropTypes from "prop-types";
-import { IconButton, Popover, Typography } from "@mui/material";
+import { Card, CardContent, CardMedia, IconButton, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { USDollar, getGoogleMapsUrl, getZillowUrl } from "../../functions/functions";
 import { ThirdPartyIcon } from "../ThirdPartyIcon";
+import { darken, lighten, styled } from '@mui/material/styles';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 import { DataGrid } from '@mui/x-data-grid';
-import { SOURCE, srcset } from "../../constants/constants";
+import { SOURCE } from "../../constants/constants";
 import { useState } from "react";
+import LinkPreview from "../LinkPreview";
+import { defaultTheme } from "../../constants/theme";
+import Iframe from 'react-iframe'
 
 export const GridView = ({ listings, onClick }) => {
     const columns = [
@@ -82,6 +86,7 @@ export const GridView = ({ listings, onClick }) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [value, setValue] = useState('');
+    const [field, setField] = useState("")
 
     const handlePopoverOpen = (event) => {
         const id = event.currentTarget.parentElement.dataset.id;
@@ -90,8 +95,9 @@ export const GridView = ({ listings, onClick }) => {
 
         const ignoreFields = ["zlink", "gmaps", "zpid", "__check__"]
         if (!ignoreFields.includes(field)) {
-            setValue(row.imgSrc);
+            setValue(row);
             setAnchorEl(event.currentTarget);
+            setField(field)
         }
     };
 
@@ -100,8 +106,6 @@ export const GridView = ({ listings, onClick }) => {
     };
 
     const open = Boolean(anchorEl);
-
-
 
     return (
         <>
@@ -126,6 +130,12 @@ export const GridView = ({ listings, onClick }) => {
                         onMouseLeave: handlePopoverClose
                     },
                 }}
+                sx={{
+                    "& .MuiDataGrid-row:hover": {
+                        backgroundColor: defaultTheme.palette.primary.light
+                        // color: "red"
+                    }
+                }}
             />
             <Popover
                 sx={{
@@ -144,13 +154,48 @@ export const GridView = ({ listings, onClick }) => {
                 onClose={handlePopoverClose}
                 disableRestoreFocus
             >
-                <img
-                    {...srcset(value, 250, 200, 1, 1)}
-                    src={value}
-                    height={200}
-                    loading="lazy"
-                />
-            </Popover>
+                {(field === "zlink") ? (
+                    <Iframe url={getZillowUrl(value.zpid)}
+                        width="300px"
+                        height="200px"
+                        id=""
+                        className=""
+                        display="block"
+                        position="relative"
+                        referrerpolicy="no-referrer"
+                        loading="lazy"
+                        sandbox={["allow-same-origin"]}
+                    />
+                    // <LinkPreview url={getZillowUrl(value.zpid)} />
+                ) : (
+                    <Card sx={{ maxWidth: 245, minWidth: 245 }}>
+                        <CardMedia
+                            sx={{ maxHeight: 200, height: 175 }}
+                            image={value.imgSrc}
+                            title="property"
+                        />
+                        <CardContent>
+                            <Table density="dense" size="small">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell align="center" padding="none" variant="header">Price</TableCell>
+                                        <TableCell align="center" padding="none" variant="header">Acres</TableCell>
+                                        <TableCell align="center" padding="none" variant="header">Price/Acre</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell align="center" padding="none">{value.price}</TableCell>
+                                        <TableCell align="center" padding="none">{value.acre}</TableCell>
+                                        <TableCell align="center" padding="none">{USDollar.format(value.unformattedPpa)}</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </CardContent>
+                    </Card>
+                )}
+
+            </Popover >
         </>
     )
 }

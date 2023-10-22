@@ -154,7 +154,10 @@ const SelectLocation = (props) => {
             onInputChange={(e, v) => onChange(v)}
             onChange={(e, v) => onChange(v)}
             id="virtualize-demo"
-            sx={{ width: 300 }}
+            sx={{
+                width: 300,
+                //border: "1px solid red"
+            }}
             disableListWrap
             PopperComponent={StyledPopper}
             ListboxComponent={ListboxComponent}

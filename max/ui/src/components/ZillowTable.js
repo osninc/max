@@ -6,8 +6,8 @@ import { ThirdPartyIcon } from "./ThirdPartyIcon.js";
 import { DisplayNumber, USDollar, convertDateToLocal, sec2min } from "../functions/functions.js";
 
 const columnColor = {
-    "sold": yellow[200],
-    "for sale": blue[200]
+    "sold": "white",
+    "for sale": "white"
 }
 
 const ZillowHeader = props => {
@@ -16,7 +16,7 @@ const ZillowHeader = props => {
     return (
         <>
             {[...Array(columns.cols)].map((_, i) => {
-                return <TableCell key={i} colSpan={columns.colspan} align="center" sx={{ backgroundColor: bg[i] }}><strong>{columns.colText[i]}</strong></TableCell>
+                return <TableCell key={i} colSpan={columns.colspan} sx={{ backgroundColor: bg[i] }} align="center">{columns.colText[i]}</TableCell>
             })}
         </>
     )
@@ -97,7 +97,7 @@ const DataCell = props => {
                     soldTextButton = <ButtonGroup
                         {...buttonGroupParams}
                     >
-                        <Button href="#" onClick={(e) => onClick(e, soldParams)}>{DisplayNumber.format(soldText)}</Button>
+                        <Button href="#" onClick={(e) => onClick(e, soldParams)} sx={{ color: "black" }}><strong>{DisplayNumber.format(soldText)}</strong></Button>
                         <Button href={sold.url} rel="noreferrer" target="_blank">
                             <ThirdPartyIcon site="zillow" size="xs" />
                         </Button>
@@ -273,17 +273,14 @@ const ComingSoon = props => {
     } = props
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
+            <Table size="small" aria-label="simple table">
                 <TableHead>
-                    <TableRow>
-                        <TableCell align="center"><strong>{area} Vacant Land</strong><br />
-                            <Typography variant="caption">
-                                Data from {date}
-                            </Typography>
+                    <TableRow sx={{ backgroundColor: "#dddddd" }}>
+                        <TableCell align="center"><strong>Market Name: {area}</strong>
                         </TableCell>
                     </TableRow>
                     <TableRow sx={{ backgroundColor: header.color }}>
-                        <TableCell align="center"><strong>{header.text}</strong></TableCell>
+                        <TableCell align="center" sx={{ color: header.textColor }} ><strong>{header.text}</strong></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -299,12 +296,16 @@ const ComingSoon = props => {
 export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime }) => {
     const newDate = convertDateToLocal(date)
     const newLoadTime = (loadTime > 0) ? `(${sec2min(loadTime)})` : "";
-    const commonColText = ["Listed", "Sold"]
-    const commonBgColor = [columnColor["for sale"], columnColor["sold"]]
+    const commonColText = [<Typography sx={{ color: "#505050" }} variant="body2">Listed</Typography>, <strong>Sold</strong>]
+    const commonBgColor = ["white", "white"]
+    const commonHeaderParams = {
+        color: "#626262",
+        textColor: "white"
+    }
     const tableHeader = {
         0: {
+            ...commonHeaderParams,
             text: "Sales & Listing Counts",
-            color: yellow[500],
             columns: {
                 cols: 2,
                 colspan: 1,
@@ -315,7 +316,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
         },
         1: {
             text: "Average Prices for Sold & Listed Land",
-            color: yellow[500],
+            ...commonHeaderParams,
             columns: {
                 cols: 2,
                 colspan: 1,
@@ -326,7 +327,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
         },
         2: {
             text: "List/Sale Ratio",
-            color: cyan[200],
+            ...commonHeaderParams,
             columns: {
                 cols: 1,
                 colspan: 2,
@@ -337,7 +338,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
         },
         3: {
             text: "PPA: Price/Per Acre",
-            color: cyan[200],
+            ...commonHeaderParams,
             columns: {
                 cols: 2,
                 colspan: 1,
@@ -348,7 +349,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
         },
         4: {
             text: "Months of Supply",
-            color: cyan[200],
+            ...commonHeaderParams,
             columns: {
                 cols: 1,
                 colspan: 2,
@@ -359,7 +360,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
         },
         5: {
             text: "DOM Days on Market",
-            color: green["A400"],
+            ...commonHeaderParams,
             columns: {
                 cols: 2,
                 colspan: 1,
@@ -370,7 +371,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
         },
         6: {
             text: "Realtors",
-            color: green["A400"],
+            ...commonHeaderParams,
             columns: {
                 cols: 2,
                 colspan: 1,
@@ -381,7 +382,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
         },
         7: {
             text: "Absorption Rate",
-            color: cyan[200],
+            ...commonHeaderParams,
             columns: {
                 cols: 1,
                 colspan: 2,
@@ -392,7 +393,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
         }
     }
 
-    const colSpan = (value === 0) ? 15 : 15;
+    const colSpan = 14;
 
     // For hovering
     const [anchorEl, setAnchorEl] = useState(null);
@@ -415,33 +416,39 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
             <ComingSoon area={area} header={tableHeader[value]} date={newDate} />
         ) : (
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
+                <Table size="small" aria-label="simple table">
                     <TableHead>
-                        <TableRow>
+                        <TableRow sx={{ backgroundColor: "#dddddd" }}>
                             <TableCell>&nbsp;</TableCell>
-                            <TableCell colSpan={colSpan} align="center"><strong>{area} Vacant Land</strong><br />
+                            <TableCell>&nbsp;</TableCell>
+                            <TableCell>&nbsp;</TableCell>
+                            <TableCell colSpan={colSpan} align="center"><strong>Market Name: {area}</strong><br />
                                 <Typography variant="caption">
-                                        Data from {newDate} {(newLoadTime)}
+                                    Data from {newDate} {(newLoadTime)}
                                 </Typography>
                             </TableCell>
                         </TableRow>
                         <TableRow sx={{ backgroundColor: tableHeader[value].color }}>
                             <TableCell>&nbsp;</TableCell>
-                            <TableCell colSpan={colSpan} align="center"><strong>{tableHeader[value].text}</strong></TableCell>
+                            <TableCell>&nbsp;</TableCell>
+                            <TableCell>&nbsp;</TableCell>
+                            <TableCell colSpan={colSpan} align="center" sx={{ color: tableHeader[value].textColor }}><strong>{tableHeader[value].text}</strong></TableCell>
                         </TableRow>
                         <TableRow>
+                            <TableCell>&nbsp;</TableCell>
                             <TableCell>&nbsp;</TableCell>
                             <TableCell>&nbsp;</TableCell>
                             {Object.keys(timeMatrix).map(time => (
                                 (time !== "") &&
                                 (time) &&
-                                <TableCell key={time} align="center" colSpan={2}><strong>{time}</strong></TableCell>
+                                <TableCell key={time} variant="header" sx={{ color: "#808080" }} align="center" colSpan={2}><strong>{time}</strong></TableCell>
                             ))}
                         </TableRow>
                         {(!tableHeader[value].comingSoon) && (
                             <TableRow>
-                                <TableCell><strong>PARCELS</strong></TableCell>
-                                <TableCell><strong>ACRES</strong></TableCell>
+                                <TableCell variant="header"><strong>Total Parcels</strong></TableCell>
+                                <TableCell variant="header"><strong>Vacant Parcels</strong></TableCell>
+                                <TableCell variant="header"><strong>Acres</strong></TableCell>
                                 {colLoop.map((_, i) => (
                                     <ZillowHeader
                                         key={i}
@@ -460,7 +467,8 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell align="center"><Typography variant="caption">TBD</Typography></TableCell>
-                                    <TableCell align="center">{lot}</TableCell>
+                                    <TableCell align="center"><Typography variant="caption">TBD</Typography></TableCell>
+                                    <TableCell align="center">{lot.toUpperCase()}</TableCell>
                                     {Object.keys(timeMatrix).map(time => (
                                         <DataCell
                                             key={`${time}${lot}${tableHeader[value].dataField}`}

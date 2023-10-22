@@ -1,10 +1,22 @@
-export const BUILD = "yir-dev-2"
+export const BUILD = "yir-dev"
 
 export const USETEST = {
     counts: true,
     listings: true,
     details: true
 }
+
+export const SCRAPER = [
+    "AXIOS",
+    "CRAWLEE_SEND_REQUEST"
+]
+
+export const PROXYTYPE = [
+    "SMARTPROXY_RESIDENTIAL",
+    "APIFY_RESIDENTIAL",
+    "SMARTPROXY_DATACENTER",
+    "APIFY_DATACENTER"
+]
 
 export const APIFY = {
     base: {
@@ -91,5 +103,14 @@ export const SOURCE = {
     mls: {
         color: "blue"
     }
+}
+
+export const tableHeaderStyle = {
+    backgroundColor: "black",
+    color: "white"
+}
+
+export const iconButtonFAStyle = {
+    paddingRight: 5
 }
 

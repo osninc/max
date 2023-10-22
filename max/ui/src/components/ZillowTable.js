@@ -411,6 +411,29 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
 
     // calculate columns loop
     const colLoop = [...Array(7)]
+
+    // Calculate 
+    const filteredData = Object.keys(data).map(acreage => Object.keys(data[acreage]).map(time => {
+        const fsListingCount = data[acreage][time]["for sale"].count
+        const fsMapCount = data[acreage][time]["for sale"].mapCount
+        const soldListingCount = data[acreage][time]["sold"].count
+        const soldMapCount = data[acreage][time]["sold"].mapCount
+        return {
+            count: fsListingCount + soldListingCount,
+            mapCount: fsMapCount + soldMapCount
+        }
+    })).map(x => {
+        return {
+            mapCount: x.reduce((a, b) => a + b.mapCount, 0),
+            count: x.reduce((a, b) => a + b.count, 0)
+        }
+    })
+
+    const counts = {
+        mapCount: filteredData.reduce((a, b) => a + b.mapCount, 0),
+        count: filteredData.reduce((a, b) => a + b.count, 0)
+    }
+
     return (
         ((value === 6) || (source !== "zillow")) ? (
             <ComingSoon area={area} header={tableHeader[value]} date={newDate} />
@@ -425,7 +448,10 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                             <TableCell colSpan={colSpan} align="center"><strong>Market Name: {area}</strong><br />
                                 <Typography variant="caption">
                                     Data from {newDate} {(newLoadTime)}
-                                </Typography>
+                                </Typography><br/>
+                                    <Typography variant="caption">
+                                        (Count=<strong>{DisplayNumber.format(counts.count)}</strong> Details=<strong>{DisplayNumber.format(counts.mapCount)}</strong>)
+                                    </Typography>
                             </TableCell>
                         </TableRow>
                         <TableRow sx={{ backgroundColor: tableHeader[value].color }}>

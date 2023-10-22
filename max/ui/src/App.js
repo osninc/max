@@ -139,7 +139,7 @@ const normalizeTheData = data => {
     return {};
   })
 
-  console.log({ c })
+  //console.log({ c })
 
   return c
 };
@@ -460,9 +460,10 @@ const App = () => {
       const url = `${APIFY.inputs.realTime.replace("<STOREID>", storeId)}?token=${APIFY.base.token}`;
       const response = await axios.get(url);
       const data = response.data;
-      const search = data[data.searchBy]
+      // make this backwards compatible
+      const search = (data.searchBy) ? data[data.searchBy] : data[data.searchType];
       return {
-        searchBy: data.searchBy,
+        searchBy: data.searchBy ? data.searchBy : data.searchType,
         search: search
       }
     }
@@ -475,21 +476,58 @@ const App = () => {
     }
   }
 
+  const fetchCountsData = async (id) => {
+    try {
+      const url = `${APIFY.datasets.realTime.replace("<DATASETID>", id)}?token=${APIFY.base.token}`
+      //console.log({ url })
+      const axiosObj = {
+        method: APIFY.datasets.method,
+        url
+      }
+
+      const response = await axios(axiosObj);
+      const data = response.data
+
+      const filteredData = data.filter(el => el.geoSearchType)
+      const listingsCount = filteredData.reduce((a, b) => a + b.mapCount, 0);
+      const agentCount = filteredData.reduce((a, b) => a + b.agentCount, 0);
+      return {
+        counts: {
+          listings: listingsCount,
+          agent: agentCount
+        }
+      }
+    }
+    catch (error) {
+      setMessage(processError("fetchListingsData", error))
+      return {
+        counts: {
+          listings: "N/A",
+          agent: "N/A"
+        }
+      }
+    }
+  }
+
   const fetchDatasets = async () => {
     try {
-      const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true&limit=100`;
+      const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true&limit=15`;
       const response = await axios.get(url);
       const data = response.data;
 
       const aryOfItems = await Promise.all(data.data.items.map(async (item) => {
         const storeId = item.defaultKeyValueStoreId;
         const { searchBy, search } = await fetchStore(storeId);
+        // fetch actual data for counts in dropdown (this is redundant TODO:)
+        const { counts } = await fetchCountsData(item.defaultDatasetId)
+        //console.log({dsData})
         return {
           value: item.defaultDatasetId,
           searchBy: searchBy,
           search: search,
           date: convertDateToLocal(item.startedAt),
           elapsedTime: sec2min(((time2epoch(item.finishedAt) - time2epoch(item.startedAt)) / 1000).toFixed(0)),
+          counts,
           text: <><i>{searchBy}</i>:<strong>{search}</strong> <i>{convertDateToLocal(item.startedAt)}</i> <strong>{item.defaultDatasetId}</strong></>
         }
       }))
@@ -520,7 +558,7 @@ const App = () => {
         position="static"
         color="transparent"
         elevation={0}
-        //sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+      //sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }} variant="dense">
           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
@@ -722,9 +760,10 @@ const App = () => {
                                 variant="body2"
                                 color="text.primary"
                               >
-                                {ds.elapsedTime}
+                                {ds.elapsedTime} - Count:  <b>{DisplayNumber.format(ds.counts.agent)}</b> - Details: <b>{DisplayNumber.format(ds.counts.listings)}</b>
                               </Typography>
-                              {` - ${ds.value}`}
+                              <br />
+                              <Typography variant="caption" >{ds.value}</Typography>
                             </React.Fragment>
                           } />
                         </MenuItem>
@@ -773,7 +812,7 @@ const App = () => {
                       aria-label="basic tabs example"
                       orientation="vertical"
                       variant="scrollable"
-                      sx={{marginTop:14}}
+                      sx={{ marginTop: 14 }}
                     >
                       <Tab label="Zillow" {...a11yProps(0)} value="zillow" variant="v" />
                       <Tab label="Redfin" {...a11yProps(1)} value="redfin" variant="v" />

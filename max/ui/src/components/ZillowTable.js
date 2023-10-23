@@ -421,20 +421,51 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
         const fsMapCount = data[acreage][time]["for sale"]?.mapCount
         const soldListingCount = data[acreage][time]["sold"]?.count
         const soldMapCount = data[acreage][time]["sold"]?.mapCount
+
+
         return {
             count: fsListingCount + soldListingCount,
-            mapCount: fsMapCount + soldMapCount
+            mapCount: fsMapCount + soldMapCount,
+            listings: [...data[acreage][time]["for sale"].listings, ...data[acreage][time]["sold"].listings],
+            fsListings: data[acreage][time]["for sale"].listings,
+            soldListings: data[acreage][time]["sold"].listings,
+            forSale: fsListingCount,
+            sold: soldListingCount
         }
     })).map(x => {
         return {
             mapCount: x.filter(el => el.mapCount !== "N/A").reduce((a, b) => a + b.mapCount, 0),
-            count: x.filter(el => el.count !== "N/A").reduce((a, b) => a + b.count, 0)
+            count: x.filter(el => el.count !== "N/A").reduce((a, b) => a + b.count, 0),
+            listings: x.map(xx => xx.listings),
+            fsListings: x.map(xx => xx.fsListings),
+            soldListings: x.map(xx => xx.soldListings),
+            forSale: x.reduce((a, b) => a + b.forSale, 0),
+            sold: x.reduce((a, b) => a + b.sold, 0)
         }
     })
 
+    const firstFsFlat = filteredData.map(data => data.fsListings.map(d => d.map(e => e.zpid))).flat(1)
+    const secondFsFlat = firstFsFlat.filter(el => el).flat(1)
+    const uniqueFs = secondFsFlat.filter((value, index, array) => array.indexOf(value) === index)
+
+
+    const firstSoldFlat = filteredData.map(data => data.soldListings.map(d => d.map(e => e.zpid))).flat(1)
+    const secondSoldFlat = firstSoldFlat.filter(el => el).flat(1)
+    const uniqueSold = secondSoldFlat.filter((value, index, array) => array.indexOf(value) === index)
+
+    const firstAllFlat = filteredData.map(data => data.listings.map(d => d.map(e => e.zpid))).flat(1)
+    const secondAllFlat = firstAllFlat.filter(el => el).flat(1)
+    const uniqueAll = secondAllFlat.filter((value, index, array) => array.indexOf(value) === index)
+
+
     const counts = {
         mapCount: filteredData.filter(el => el.mapCount !== "N/A").reduce((a, b) => a + b.mapCount, 0),
-        count: filteredData.filter(el => el.count !== "N/A").reduce((a, b) => a + b.count, 0)
+        count: filteredData.filter(el => el.count !== "N/A").reduce((a, b) => a + b.count, 0),
+        unique: uniqueAll.length,
+        uniqueFs: uniqueFs.length,
+        uniqueSold: uniqueSold.length,
+        forSale: filteredData.reduce((a, b) => a + b.forSale, 0),
+        sold: filteredData.reduce((a, b) => a + b.sold, 0)
     }
 
     return (
@@ -453,7 +484,11 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                                     Data from {newDate} {(newLoadTime)}
                                 </Typography><br />
                                 <Typography variant="caption">
-                                    (Count=<strong>{DisplayNumber.format(counts.count)}</strong> Details=<strong>{DisplayNumber.format(counts.mapCount)}</strong>)
+                                    (Count=<strong>{DisplayNumber.format(counts.count)}</strong>&nbsp;
+                                    Details=<strong>{DisplayNumber.format(counts.mapCount)}</strong>&nbsp;
+                                    Uniques=<strong>{DisplayNumber.format(counts.unique)}</strong>&nbsp;
+                                    For Sale=<strong>{DisplayNumber.format(counts.uniqueFs)}</strong>&nbsp;
+                                    Sold=<strong>{DisplayNumber.format(counts.uniqueSold)}</strong>)
                                 </Typography>
                             </TableCell>
                         </TableRow>

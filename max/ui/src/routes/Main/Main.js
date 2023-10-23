@@ -543,8 +543,6 @@ const App = () => {
       // Filter out ones where both listing and agent numbers are zero
       const filteredResults = aryOfItems.filter(item => (item.counts.agent > 0) && (item.counts.listings > 0))
 
-      console.log({ filteredResults })
-
       setDatasets(filteredResults)
     }
     catch (error) {

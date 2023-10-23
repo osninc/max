@@ -8,6 +8,8 @@ import { Button, CircularProgress, CssBaseline, GlobalStyles, ThemeProvider } fr
 
 import { defaultTheme } from "../../constants/theme.js";
 
+const LIMIT = 1000;
+
 const Runs = props => {
     const [message, setMessage] = useState("");
     const [datasets, setDatasets] = useState([]);
@@ -36,10 +38,18 @@ const Runs = props => {
 
     const findUniqueListings = listings => {
         const allZpid = listings.map(item => item.listings.map(property => property.zpid)).flat(1)
-        //console.log({ allZpid })
         const uniqueZpid = allZpid.filter((value, index, array) => array.indexOf(value) === index)
-        //console.log({ uniqueZpid })
-        return uniqueZpid.length;
+
+        const allFsZpid = listings.map(item => item.listings.filter(i => i.statusType === "FOR_SALE").map(property => property.zpid)).flat(1)
+        const allSoldZpid = listings.map(item => item.listings.filter(i => i.statusType === "SOLD").map(property => property.zpid)).flat(1)
+        const uniqueFsZpid = allFsZpid.filter((value, index, array) => array.indexOf(value) === index)
+        const uniqueSoldZpid = allSoldZpid.filter((value, index, array) => array.indexOf(value) === index)
+
+        return {
+            all: uniqueZpid.length,
+            sold: uniqueSoldZpid.length,
+            forSale: uniqueFsZpid.length
+        };
     }
 
     const fetchCountsData = async (id) => {
@@ -59,14 +69,16 @@ const Runs = props => {
             const agentCount = filteredData.filter(el => el.agentCount !== "N/A").reduce((a, b) => a + b.agentCount, 0);
             const agentListingRatio = agentCount === 0 ? 0 : DisplayNumber.format((listingsCount / agentCount * 100).toFixed(2));
             const unique = findUniqueListings(filteredData);
-            const uniqueRatio = listingsCount === 0 ? 0 : (unique / listingsCount * 100).toFixed(2);
+            const uniqueRatio = listingsCount === 0 ? 0 : (unique.all / listingsCount * 100).toFixed(2);
             return {
                 counts: {
                     listings: listingsCount,
                     agent: agentCount,
                     unique,
                     agentListingRatio,
-                    uniqueRatio
+                    uniqueRatio,
+                    uniqueSold: unique.sold,
+                    uniqueForSale: unique.forSale
                 }
             }
         }
@@ -78,7 +90,9 @@ const Runs = props => {
                     agent: "N/A",
                     unique: "N/A",
                     agentListingRatio: "N/A",
-                    uniqueRatio: "N/A"
+                    uniqueRatio: "N/A",
+                    uniqueSold: "N/A",
+                    uniqueForSale: "N/A"
                 }
             }
         }
@@ -86,7 +100,7 @@ const Runs = props => {
 
     const fetchDatasets = async () => {
         try {
-            const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true`;
+            const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true&limit=${LIMIT}`;
             const response = await axios.get(url);
             const data = response.data;
 
@@ -146,8 +160,10 @@ const Runs = props => {
         { field: "counts", flex: 1, headerName: "Count", valueGetter: (params) => DisplayNumber.format(params.row.counts.agent) },
         { field: "mapCounts", flex: 1, headerName: "Details", valueGetter: (params) => DisplayNumber.format(params.row.counts.listings) },
         { field: "countsRatio", flex: 1, headerName: "% Details/Counts", valueGetter: (params) => `${params.row.counts.agentListingRatio}%` },
-        { field: "unique", flex: 1, headerName: "Unique ZPID", valueGetter: (params) => DisplayNumber.format(params.row.counts.unique) },
+        { field: "unique", flex: 1, headerName: "Unique ZPID", valueGetter: (params) => DisplayNumber.format(params.row.counts.unique.all) },
         { field: "uniqueRatio", flex: 1, headerName: "% Unique/Details", valueGetter: (params) => `${params.row.counts.uniqueRatio}%` },
+        { field: "uniqueForSale", flex: 1, headerName: "Unique For Sale", valueGetter: (params) => DisplayNumber.format(params.row.counts.uniqueForSale) },
+        { field: "uniqueSold", flex: 1, headerName: "Unique Sold", valueGetter: (params) => DisplayNumber.format(params.row.counts.uniqueSold) },
         { field: "value", flex: 1, headerName: "DatasetID" },
         { field: "build", flex: 1, headerName: "Build" },
 

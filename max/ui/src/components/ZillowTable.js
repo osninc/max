@@ -52,8 +52,8 @@ const DataCell = props => {
     if (["count", "avgPrice", "avgPpa"].includes(field)) {
 
 
-        const sold = record["sold"];
-        const sale = record["for sale"]
+        const sold = record ? record["sold"] : null
+        const sale = record ? record["for sale"] : null;
 
         const lcLot = lot.toLowerCase();
 
@@ -76,11 +76,12 @@ const DataCell = props => {
         // clicked params
         let soldParams;
         let soldHtml = "N/A"
-        let soldText = sold[field];
         let soldTextButton;
         let soldHover = "";
+        let soldText = "";
 
         if (sold) {
+            soldText = sold[field];
             soldParams = {
                 ...commonParams,
                 "status": statusMatrix["sold"],
@@ -113,11 +114,13 @@ const DataCell = props => {
 
         let saleParams;
         let saleHtml = "N/A"
-        let saleText = sale[field];
         let saleTextButton;
         let saleHover = "";
+        let saleText = ""
 
         if (sale) {
+
+            saleText = sale[field];
             saleParams = {
                 ...commonParams,
                 "status": statusMatrix["for sale"],
@@ -414,24 +417,24 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
 
     // Calculate 
     const filteredData = Object.keys(data).map(acreage => Object.keys(data[acreage]).map(time => {
-        const fsListingCount = data[acreage][time]["for sale"].count
-        const fsMapCount = data[acreage][time]["for sale"].mapCount
-        const soldListingCount = data[acreage][time]["sold"].count
-        const soldMapCount = data[acreage][time]["sold"].mapCount
+        const fsListingCount = data[acreage][time]["for sale"]?.count
+        const fsMapCount = data[acreage][time]["for sale"]?.mapCount
+        const soldListingCount = data[acreage][time]["sold"]?.count
+        const soldMapCount = data[acreage][time]["sold"]?.mapCount
         return {
             count: fsListingCount + soldListingCount,
             mapCount: fsMapCount + soldMapCount
         }
     })).map(x => {
         return {
-            mapCount: x.reduce((a, b) => a + b.mapCount, 0),
-            count: x.reduce((a, b) => a + b.count, 0)
+            mapCount: x.filter(el => el.mapCount !== "N/A").reduce((a, b) => a + b.mapCount, 0),
+            count: x.filter(el => el.count !== "N/A").reduce((a, b) => a + b.count, 0)
         }
     })
 
     const counts = {
-        mapCount: filteredData.reduce((a, b) => a + b.mapCount, 0),
-        count: filteredData.reduce((a, b) => a + b.count, 0)
+        mapCount: filteredData.filter(el => el.mapCount !== "N/A").reduce((a, b) => a + b.mapCount, 0),
+        count: filteredData.filter(el => el.count !== "N/A").reduce((a, b) => a + b.count, 0)
     }
 
     return (
@@ -448,10 +451,10 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                             <TableCell colSpan={colSpan} align="center"><strong>Market Name: {area}</strong><br />
                                 <Typography variant="caption">
                                     Data from {newDate} {(newLoadTime)}
-                                </Typography><br/>
-                                    <Typography variant="caption">
-                                        (Count=<strong>{DisplayNumber.format(counts.count)}</strong> Details=<strong>{DisplayNumber.format(counts.mapCount)}</strong>)
-                                    </Typography>
+                                </Typography><br />
+                                <Typography variant="caption">
+                                    (Count=<strong>{DisplayNumber.format(counts.count)}</strong> Details=<strong>{DisplayNumber.format(counts.mapCount)}</strong>)
+                                </Typography>
                             </TableCell>
                         </TableRow>
                         <TableRow sx={{ backgroundColor: tableHeader[value].color }}>

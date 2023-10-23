@@ -5,21 +5,43 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css';
-import App from './App';
+import Main from './routes/Main';
 import reportWebVitals from './reportWebVitals';
 import ErrorPage from "./error-page";
-import Runs from './Runs';
+import Runs from './routes/Runs';
+import { Layout } from './components';
+import { BlankPage } from './routes/BlankPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Layout><Main /></Layout>,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/runs",
-    element: <Runs />
+    path: "runs",
+    element: <Layout title="Run stats"><Runs /></Layout>
+  },
+  {
+    path: "features",
+    element: <Layout title="Features"><BlankPage/></Layout>
+  },
+
+  {
+    path: "pricing",
+    element: <Layout title="Pricing"><BlankPage /></Layout>
+  },
+
+  {
+    path: "faq",
+    element: <Layout title="FAQ's"><BlankPage /></Layout>
+  },
+
+  {
+    path: "about",
+    element: <Layout title="About Us"><BlankPage /></Layout>
   }
+
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

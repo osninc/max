@@ -1,12 +1,12 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { processError } from "./error";
-import { APIFY } from "./constants/constants";
+import { processError } from "../../error";
+import { APIFY } from "../../constants/constants";
 import axios from "axios";
-import { DisplayNumber, convertDateToLocal, sec2min, time2epoch } from "./functions/functions";
+import { DisplayNumber, convertDateToLocal, sec2min, time2epoch } from "../../functions/functions";
 import { useState } from "react";
 import { Button, CircularProgress, CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 
-import { defaultTheme } from "./constants/theme.js";
+import { defaultTheme } from "../../constants/theme.js";
 
 const Runs = props => {
     const [message, setMessage] = useState("");
@@ -54,14 +54,19 @@ const Runs = props => {
             const response = await axios(axiosObj);
             const data = response.data
 
-            const filteredData = data.filter(el => el.geoSearchType)
-            const listingsCount = filteredData.reduce((a, b) => a + b.mapCount, 0);
-            const agentCount = filteredData.reduce((a, b) => a + b.agentCount, 0);
+            const filteredData = data.filter(el => el.timeStamp)
+            const listingsCount = filteredData.filter(el => el.mapCount !== "N/A").reduce((a, b) => a + b.mapCount, 0);
+            const agentCount = filteredData.filter(el => el.agentCount !== "N/A").reduce((a, b) => a + b.agentCount, 0);
+            const agentListingRatio = agentCount === 0 ? 0 : DisplayNumber.format((listingsCount / agentCount * 100).toFixed(2));
+            const unique = findUniqueListings(filteredData);
+            const uniqueRatio = listingsCount === 0 ? 0 : (unique / listingsCount * 100).toFixed(2);
             return {
                 counts: {
                     listings: listingsCount,
                     agent: agentCount,
-                    unique: findUniqueListings(filteredData)
+                    unique,
+                    agentListingRatio,
+                    uniqueRatio
                 }
             }
         }
@@ -71,7 +76,9 @@ const Runs = props => {
                 counts: {
                     listings: "N/A",
                     agent: "N/A",
-                    unique: "N/A"
+                    unique: "N/A",
+                    agentListingRatio: "N/A",
+                    uniqueRatio: "N/A"
                 }
             }
         }
@@ -88,7 +95,6 @@ const Runs = props => {
                 const { searchBy, search } = await fetchStore(storeId);
                 // fetch actual data for counts in dropdown (this is redundant TODO:)
                 const { counts } = await fetchCountsData(item.defaultDatasetId)
-                //console.log({dsData})
                 return {
                     value: item.defaultDatasetId,
                     searchBy: searchBy,
@@ -96,9 +102,11 @@ const Runs = props => {
                     date: convertDateToLocal(item.startedAt),
                     elapsedTime: sec2min(((time2epoch(item.finishedAt) - time2epoch(item.startedAt)) / 1000).toFixed(0)),
                     counts,
+                    build: item.buildNumber,
                     text: <><i>{searchBy}</i>:<strong>{search}</strong> <i>{convertDateToLocal(item.startedAt)}</i> <strong>{item.defaultDatasetId}</strong></>
                 }
             }))
+
 
             setDatasets(aryOfItems)
         }
@@ -137,11 +145,12 @@ const Runs = props => {
 
         { field: "counts", flex: 1, headerName: "Count", valueGetter: (params) => DisplayNumber.format(params.row.counts.agent) },
         { field: "mapCounts", flex: 1, headerName: "Details", valueGetter: (params) => DisplayNumber.format(params.row.counts.listings) },
+        { field: "countsRatio", flex: 1, headerName: "% Details/Counts", valueGetter: (params) => `${params.row.counts.agentListingRatio}%` },
         { field: "unique", flex: 1, headerName: "Unique ZPID", valueGetter: (params) => DisplayNumber.format(params.row.counts.unique) },
+        { field: "uniqueRatio", flex: 1, headerName: "% Unique/Details", valueGetter: (params) => `${params.row.counts.uniqueRatio}%` },
+        { field: "value", flex: 1, headerName: "DatasetID" },
+        { field: "build", flex: 1, headerName: "Build" },
 
-        {
-            field: "value", flex: 1, headerName: "DatasetID"
-        }
     ]
 
     return (
@@ -149,8 +158,9 @@ const Runs = props => {
             <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
             <CssBaseline />
             {loading ? [<CircularProgress />, `This might take a while.`] : (
-                [<Button onClick={handleClick} variant="contained">Generate Table</Button>,
+                [<Button key={0} onClick={handleClick} variant="contained">Generate Table</Button>,
                 datasets.length > 0 && <DataGrid
+                    key={1}
                     getRowId={row => row.value}
                     rows={datasets}
                     columns={columns}

@@ -12,40 +12,40 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import Timer from "./components/Timer.js";
+import Timer from "../../components/Timer.js";
 
 import TextField from '@mui/material/TextField';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
-import axios from './axios.js';
+import axios from '../../axios.js';
 import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
 import { Alert, Avatar, Box, Chip, CircularProgress, Divider, Drawer, FormControl, FormLabel, IconButton, InputLabel, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Menu, MenuItem, Modal, Paper, Select, Snackbar, Stack, Tab, Tabs, ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { processError } from "./error.js";
+import { processError } from "../../error.js";
 
-import testCounts from "./data/countsWithListings.json";
+import testCounts from "../../data/countsWithListings.json";
 //import testListings from "./data/listings.json";
-import testDetails from "./data/details.json";
+import testDetails from "../../data/details.json";
 
-import { defaultHeaders } from "./headers.js";
+import { defaultHeaders } from "../../headers.js";
 
-import { DetailsView } from "./components/DetailsView.js";
-import { convertStrToAcre, convertPriceStringToFloat, convertDateToLocal, sec2min, time2epoch, DisplayNumber } from "./functions/functions.js"
-import { sqft2acre, calcRatio, calcAbsorption, calcMos, calcPpa, getListOfField, getSum } from "./functions/formulas.js"
+import { DetailsView } from "../../components/DetailsView.js";
+import { convertStrToAcre, convertPriceStringToFloat, convertDateToLocal, sec2min, time2epoch, DisplayNumber } from "../../functions/functions.js"
+import { sqft2acre, calcRatio, calcAbsorption, calcMos, calcPpa, getListOfField, getSum } from "../../functions/formulas.js"
 
-import { APIFY, BUILD, PROXYTYPE, SCRAPER, iconButtonFAStyle, modalStyle } from "./constants/constants.js";
-import { Copyright } from "./components/Copyright.js"
-import { ZillowTable } from "./components/ZillowTable.js";
-import { timeMatrix } from "./constants/matrix.js";
-import SelectLocation from "./components/SelectLocation.js";
-import { getPropertyParams } from "./zillowGraphQl.js";
-import ListingsView from "./components/ListingsView.js";
-import { CircularProgressTimer } from "./components/Listings/CircularProgressTimer.js";
+import { APIFY, BUILD, PROXYTYPE, SCRAPER, iconButtonFAStyle, modalStyle } from "../../constants/constants.js";
+import { Copyright } from "../../components/Copyright.js"
+import { ZillowTable } from "../../components/ZillowTable.js";
+import { timeMatrix } from "../../constants/matrix.js";
+import SelectLocation from "../../components/SelectLocation.js";
+import { getPropertyParams } from "../../zillowGraphQl.js";
+import ListingsView from "../../components/ListingsView.js";
+import { CircularProgressTimer } from "../../components/Listings/CircularProgressTimer.js";
 
-import { defaultTheme } from "./constants/theme.js";
-import TabPanel from "./components/TabPanel.js";
+import { defaultTheme } from "../../constants/theme.js";
+import TabPanel from "../../components/TabPanel.js";
 
 const calcAvgPrice = ary => {
   if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
@@ -218,13 +218,20 @@ const App = () => {
       searchBy = "zipCode"
 
     // Prepare Actor input
-    const input = {
-      searchType: searchBy,
-      [searchBy]: search,
-      proxyType: proxy,
-      scraper,
-      "debug": false
-    };
+    const input = (buildNumber.includes("yir-dev-2") || buildNumber.includes("0.2.")) ? // use old inputs
+      {
+        searchBy,
+        [searchBy]: search,
+        proxyType: proxy.toLowerCase(),
+        scraper: scraper.toLowerCase(),
+        "debug": false
+      } : {
+        searchType: searchBy,
+        [searchBy]: search,
+        proxyType: proxy,
+        scraper,
+        "debug": false
+      };
 
     setSearchBy(searchBy)
 
@@ -488,9 +495,9 @@ const App = () => {
       const response = await axios(axiosObj);
       const data = response.data
 
-      const filteredData = data.filter(el => el.geoSearchType)
-      const listingsCount = filteredData.reduce((a, b) => a + b.mapCount, 0);
-      const agentCount = filteredData.reduce((a, b) => a + b.agentCount, 0);
+      const filteredData = data.filter(el => el.timeStamp)
+      const listingsCount = filteredData.filter(el => el.mapCount !== "N/A").reduce((a, b) => a + b.mapCount, 0);
+      const agentCount = filteredData.filter(el => el.agentCount !== "N/A").reduce((a, b) => a + b.agentCount, 0);
       return {
         counts: {
           listings: listingsCount,
@@ -511,7 +518,7 @@ const App = () => {
 
   const fetchDatasets = async () => {
     try {
-      const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true&limit=15`;
+      const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true&limit=20`;
       const response = await axios.get(url);
       const data = response.data;
 
@@ -528,11 +535,17 @@ const App = () => {
           date: convertDateToLocal(item.startedAt),
           elapsedTime: sec2min(((time2epoch(item.finishedAt) - time2epoch(item.startedAt)) / 1000).toFixed(0)),
           counts,
+          build: item.buildNumber,
           text: <><i>{searchBy}</i>:<strong>{search}</strong> <i>{convertDateToLocal(item.startedAt)}</i> <strong>{item.defaultDatasetId}</strong></>
         }
       }))
 
-      setDatasets(aryOfItems)
+      // Filter out ones where both listing and agent numbers are zero
+      const filteredResults = aryOfItems.filter(item => (item.counts.agent > 0) && (item.counts.listings > 0))
+
+      console.log({ filteredResults })
+
+      setDatasets(filteredResults)
     }
     catch (error) {
       setMessage(processError("fecthDatasets", error))
@@ -551,147 +564,7 @@ const App = () => {
   }
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
-      <CssBaseline />
-      <AppBar
-        position="static"
-        color="transparent"
-        elevation={0}
-      //sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
-      >
-        <Toolbar sx={{ flexWrap: 'wrap' }} variant="dense">
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            <FontAwesomeIcon icon={icon({ name: 'bullseye' })} fixedWidth color={defaultTheme.palette.primary.main} />
-            Land Stats Logo
-          </Typography>
-          {isTestingSite && (
-            <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-              (Testing Site)
-            </Typography>
-          )}
-          <nav>
-            {hasDebugMenu && (
-              <>
-                <Button
-                  id="basic-button"
-                  onClick={handleDebugClick}
-                >
-                  Debug Options
-                </Button>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={openDebugMenu}
-                  onClose={handleDebugClose}
-                  MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                  }}
-                >
-                  <MenuItem>
-                    <Stack spacing={2}>
-                      <TextField
-                        id="outlined-error"
-                        label="Build Number"
-                        size="small"
-                        InputProps={{
-                          startAdornment: <FontAwesomeIcon icon={icon({ name: 'hammer' })} />,
-                        }}
-                        defaultValue={BUILD}
-                        onChange={handleBuildChange}
-                      />
-                      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                        <InputLabel id="demo-simple-select-helper-label">Select Scraper</InputLabel>
-                        <Select
-                          labelId="demo-select-small-label"
-                          id="demo-select-small"
-                          value={scraper}
-                          label="Select scraper"
-                          onChange={handleScraperChange}
-                        >
-                          {SCRAPER.map(scraper => (
-                            <MenuItem value={scraper} key={scraper}>{scraper}</MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                        <InputLabel id="demo-simple-select-helper-label">Select Proxy</InputLabel>
-                        <Select
-                          labelId="demo-select-small-label"
-                          id="demo-select-small"
-                          value={proxy}
-                          label="Select proxy"
-                          onChange={handleProxyChange}
-                        >
-                          {PROXYTYPE.map(proxy => (
-                            <MenuItem value={proxy} key={proxy}>{proxy}</MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                    </Stack>
-                  </MenuItem>
-                </Menu>
-              </>
-            )}
-
-            <Link
-              variant="button"
-              color="primary"
-              href="#"
-              underline="none"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Features
-            </Link>
-            <Link
-              variant="button"
-              color="primary"
-              href="#"
-              underline="none"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Pricing
-            </Link>
-            <Link
-              variant="button"
-              color="primary"
-              href="#"
-              underline="none"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              FAQ's
-            </Link>
-            <Link
-              variant="button"
-              color="primary"
-              href="#"
-              underline="none"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              About Us
-            </Link>
-          </nav>
-          <Button href="#" variant="contained" sx={{ my: 1, mx: 1.5 }}>
-            <FontAwesomeIcon icon={icon({ name: 'right-to-bracket' })} fixedWidth style={iconButtonFAStyle} />
-            Login
-          </Button>
-        </Toolbar>
-      </AppBar>
-
-
-      {/* Hero unit */}
-      <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
-        <Typography
-          component="h1"
-          variant="h2"
-          align="center"
-          color="text.primary"
-          gutterBottom
-        >
-          Search Land Comps
-        </Typography>
-      </Container>
-      {/* End hero unit */}
+    <>
       <Container disableGutters fixed maxWidth={false}>
         <Grid container spacing={5} alignItems="left">
           <Grid
@@ -763,7 +636,7 @@ const App = () => {
                                 {ds.elapsedTime} - Count:  <b>{DisplayNumber.format(ds.counts.agent)}</b> - Details: <b>{DisplayNumber.format(ds.counts.listings)}</b>
                               </Typography>
                               <br />
-                              <Typography variant="caption" >{ds.value}</Typography>
+                              <Typography variant="caption" >{ds.value} - {ds.build}</Typography>
                             </React.Fragment>
                           } />
                         </MenuItem>
@@ -896,9 +769,7 @@ const App = () => {
         <Alert severity="error">An error has occured.  Please try again later<br />
           Message: {message}</Alert>
       </Snackbar>
-
-
-    </ThemeProvider>
+    </>
   );
 }
 

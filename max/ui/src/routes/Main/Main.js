@@ -33,7 +33,7 @@ import { defaultHeaders } from "../../headers.js";
 
 import { DetailsView } from "../../components/DetailsView.js";
 import { convertStrToAcre, convertPriceStringToFloat, convertDateToLocal, sec2min, time2epoch, DisplayNumber } from "../../functions/functions.js"
-import { sqft2acre, calcRatio, calcAbsorption, calcMos, calcPpa, getListOfField, getSum } from "../../functions/formulas.js"
+import { sqft2acre, calcRatio, calcAbsorption, calcMos, calcPpa, getListOfField, getSum, calcDom } from "../../functions/formulas.js"
 
 import { APIFY, BUILD, PROXYTYPE, SCRAPER, iconButtonFAStyle, modalStyle } from "../../constants/constants.js";
 import { Copyright } from "../../components/Copyright.js"
@@ -46,6 +46,7 @@ import { CircularProgressTimer } from "../../components/Listings/CircularProgres
 
 import { defaultTheme } from "../../constants/theme.js";
 import TabPanel from "../../components/TabPanel.js";
+import { BrokerageTable } from "../../components/BrokerageTable.js";
 
 const calcAvgPrice = ary => {
   if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
@@ -55,6 +56,18 @@ const calcAvgPrice = ary => {
   const numListings = listOfPrices.length;
 
   return (numListings === 0) ? 0 : parseInt((totalPrices / numListings).toFixed(0));
+}
+
+const calcAvg = ary => {
+  if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
+
+  const total = getSum(ary)
+  const num = ary.length;
+
+  // if (isNaN(total))
+  //   console.log({ ary })
+
+  return (num === 0) ? 0 : parseFloat((total / num).toFixed(2));
 }
 
 const calcAvgPpa = ary => {
@@ -67,7 +80,7 @@ const calcAvgPpa = ary => {
   return (numListings === 0) ? 0 : parseInt((totalPpa / numListings).toFixed(0));
 }
 
-const fixListings = listings => {
+const fixListings = (listings, details) => {
   const f = listings.map(listing => {
     const newPrice = convertPriceStringToFloat(listing.price)
     const newAcre = convertStrToAcre(listing.lotAreaString)
@@ -75,21 +88,71 @@ const fixListings = listings => {
     //console.log({ newPpa })
     // replace all google images
     const newImage = (listing.imgSrc.includes("googleapis.com")) ? "/no-image.png" : listing.imgSrc
-    // if (listing.imgSrc.includes("googleapis"))
-    //   console.log(listing.imgSrc)
+
+    let secondaryDetails = {}
+    // find listings // There are some records that has no zpid
+    if (details)
+      if (listing.zpid)
+        secondaryDetails = details[listing.zpid]
+      else
+        secondaryDetails = {
+          dom: "N/A",
+          views: "N/A",
+          favorites: "N/A",
+          saves: "N/A"
+        }
+
     return {
       ...listing,
       unformattedPrice: newPrice,
       acre: newAcre,
       unformattedPpa: newPpa,
       imgSrc: newImage,
-      originalImgSrc: listing.imgSrc
+      originalImgSrc: listing.imgSrc,
+      ...secondaryDetails
     }
   })
   return f
 }
 
-const normalizeTheData = data => {
+const fixDetails = details => {
+  let obj = {}
+  const d = details.filter(d => d.zpid).map(detail => {
+    //console.log({ detail })
+    const dom = calcDom(detail.priceHistory)
+    obj = {
+      ...obj,
+      [detail.zpid.toString()]: {
+        dom,
+        agent: {
+          name: detail.attributionInfo?.agentName,
+          number: detail.attributionInfo?.agentPhoneNumber,
+          email: detail.attributionInfo?.agentEmail,
+          licenseNumber: detail.attributionInfo?.agentLicenseNumber,
+        },
+        broker: {
+          name: detail.attributionInfo?.brokerName,
+          number: detail.attributionInfo?.brokerPhoneNumber
+        },
+        parcelNumber: detail.resoFacts?.parcelNumber,
+        views: detail.pageViewCount,
+        favorites: detail.favoriteCount,
+        saves: "N/A"
+      }
+    }
+    //console.log({ obj })
+    return obj;
+  })
+
+  return obj
+}
+
+const normalizeTheData = (data, details) => {
+  // if there are details array, then process that one first before merge
+  let fixedDetails
+  if (details)
+    fixedDetails = fixDetails(details);
+
   let c = {}
   // Put everything in an object to reference faster and easier
   data.map((count, i) => {
@@ -97,9 +160,14 @@ const normalizeTheData = data => {
       const timeDim = (count.status?.toLowerCase() === "sold") ? count?.soldInLast?.toLowerCase() : count?.daysOnZillow?.toLowerCase();
 
       if (timeDim) {
-        const fixedListings = fixListings(count.listings);
+        const fixedListings = fixListings(count.listings, fixedDetails);
         const listOfPrices = getListOfField(fixedListings, "unformattedPrice")
         const numPrices = listOfPrices.length
+        const listingsWithValues = {
+          dom: fixedListings.filter(l => l.dom !== "N/A").map(listing => listing.dom).filter(el => el),
+          views: fixedListings.filter(l => l.views !== "N/A").map(listing => listing.views).filter(el => el),
+          favorites: fixedListings.filter(l => l.favorites !== "N/A").map(listing => listing.favorites).filter(el => el),
+        }
         c[count.acreage?.toLowerCase()] = {
           ...c[count.acreage?.toLowerCase()],
           [timeDim.toLowerCase()]: {
@@ -114,7 +182,9 @@ const normalizeTheData = data => {
               mapCount: count.mapCount,
               otherCount: count.otherCount,
               avgPrice: calcAvgPrice(fixedListings),
-              avgPpa: calcAvgPpa(fixedListings)
+              avgPpa: calcAvgPpa(fixedListings),
+              avgDom: calcAvg(listingsWithValues.dom),
+              domCount: listingsWithValues.dom.length
             }
 
           }
@@ -206,6 +276,48 @@ const App = () => {
     })
   }
 
+  const fetchDetails = async (ds) => {
+    // Get a list of runs
+    const url = `${APIFY.listOfDetails.listOfRuns}?token=${APIFY.base.token}&status=SUCCEEDED`;
+
+    const response = await axios.get(url);
+    const data = response.data
+    const listOfStoreIds = data.data.items.map(d => {
+      return {
+        datasetId: d.defaultDatasetId,
+        storeId: d.defaultKeyValueStoreId
+      }
+    });
+
+
+    // find which store has the input of the current datasetId
+    const listOfMatchingStoreIds = await Promise.all(listOfStoreIds.map(async ({ datasetId, storeId }) => {
+      const url2 = `${APIFY.listOfDetails.listOfInputs.replace("<STOREID>", storeId)}?token=${APIFY.base.token}&status=SUCCEEDED`;
+      const response2 = await axios.get(url2);
+      const data2 = response2.data
+      if (data2.datasetId === ds)
+        return datasetId
+    }))
+
+    const theDatasetId = listOfMatchingStoreIds.filter(el => el)
+
+    // if array is zero length, then there isn't a match, launch the actor
+    if (theDatasetId.length > 0) {
+      const url3 = `${APIFY.listOfDetails.datasetItems.replace("<DATASETID>", theDatasetId[0])}?token=${APIFY.base.token}`;
+      const response3 = await axios.get(url3);
+      const data3 = response3.data
+
+      return data3
+    }
+    else {
+      // Launch actor
+    }
+
+
+
+
+  }
+
   const fetchData = async (ds) => {
     setMessage("");
     setLoading(true);
@@ -287,11 +399,23 @@ const App = () => {
         setSearch(data1["state"])
       }
 
+      // See if this version has a datasetId in the return JSON
+      // Check to see if there are any details already in the system for this dataset ID, if not, then launch a task
+
+
+      let listingsDetails;
+      if (data[0]?.datasetId) {
+        listingsDetails = await fetchDetails(data[0].datasetId)
+      }
+
       setArea(newSearch)
       setCountsDate(data[1]?.timeStamp)
 
-      const normalizedData = normalizeTheData(data)
+      const normalizedData = normalizeTheData(data, listingsDetails)
       setCounts(normalizedData)
+
+
+
     } catch (error) {
       setMessage(processError("fetchData", error))
       setOpenSnack(true)
@@ -300,6 +424,7 @@ const App = () => {
     }
   }
 
+  // TODO: fetchListingData from local
   const fetchListingData = async (params) => {
     const { lot, time, status } = params;
     setMessage("")
@@ -461,6 +586,7 @@ const App = () => {
 
   const [datasetLoading, setDatasetLoading] = useState(false)
   const [datasets, setDatasets] = useState([])
+  const [datasetDetails, setDatasetDetails] = useState([])
 
   const fetchStore = async (storeId) => {
     try {
@@ -646,8 +772,9 @@ const App = () => {
                 <FontAwesomeIcon icon={icon({ name: 'download' })} fixedWidth style={iconButtonFAStyle} />
                 Get Dataset
               </LoadingButton>
-
             </Paper>
+            <br />
+            <Typography variant="caption">Choose dataset (nkKNY73isUey7raQR, qFv1SUksqrs4zjZfQ, oaqwbywjprrh5d5PZ) to see DOM and Realtor info</Typography>
           </Grid>
           <Grid item xs={3}
             sm={3}
@@ -702,8 +829,12 @@ const App = () => {
                         <Tab label="Days on Market" {...a11yProps(5)} value={5} variant="h" />
                         <Tab label="Realtors" {...a11yProps(6)} value={6} variant="h" />
                       </Tabs>
-                      <ZillowTable loadTime={loadTime} area={area} date={countsDate} source={sourceTabValue} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
-                    </Box>
+                      {tabValue === 6 ? (
+                        <BrokerageTable data={counts} />
+                      ) : (
+                          <ZillowTable loadTime={loadTime} area={area} date={countsDate} source={sourceTabValue} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                      )}
+                     </Box>
                   </Box>
                 </>
               )}

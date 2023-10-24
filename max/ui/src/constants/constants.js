@@ -63,6 +63,11 @@ export const APIFY = {
     inputs: {
         realTime: "https://api.apify.com/v2/key-value-stores/<STOREID>/records/INPUT",
         method: "get"
+    },
+    listOfDetails: { // Zillow Details
+        listOfRuns: "https://api.apify.com/v2/acts/cFgGRlqgcB99RCBE5/runs",
+        listOfInputs: "https://api.apify.com/v2/key-value-stores/<STOREID>/records/INPUT",
+        datasetItems: "https://api.apify.com/v2/datasets/<DATASETID>/items"
     }
 }
 

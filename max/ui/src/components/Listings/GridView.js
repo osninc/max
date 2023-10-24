@@ -13,6 +13,7 @@ import { useState } from "react";
 import LinkPreview from "../LinkPreview";
 import { defaultTheme } from "../../constants/theme";
 import Iframe from 'react-iframe'
+import { NotAvailable } from "../NotAvailable";
 
 export const GridView = ({ listings, onClick }) => {
     const columns = [
@@ -38,10 +39,38 @@ export const GridView = ({ listings, onClick }) => {
                 return word.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
             }
         },
-        { field: "dom", headerName: "DOM", valueGetter: () => "N/A" },
-        { field: "views", headerName: "VIEWS", valueGetter: () => "N/A" },
-        { field: "favorites", headerName: "FAVORITES", valueGetter: () => "N/A" },
-        { field: "saves", headerName: "SAVE", valueGetter: () => "N/A" },
+        {
+            field: "dom", headerName: "DOM", renderCell: ({ row }) => {
+                if (!row.dom) {
+                    return <NotAvailable />;
+                }
+                return row.dom;
+            }
+        },
+        {
+            field: "views", headerName: "VIEWS", renderCell: ({ row }) => {
+                if (!row.views) {
+                    return <NotAvailable />;
+                }
+                return row.views;
+            }
+        },
+        {
+            field: "favorites", headerName: "FAVORITES", renderCell: ({ row }) => {
+                if (!row.favorites) {
+                    return <NotAvailable />;
+                }
+                return row.favorites;
+            }
+        },
+        {
+            field: "saves", headerName: "SAVES", renderCell: ({ row }) => {
+                if (!row.saves) {
+                    return <NotAvailable />;
+                }
+                return row.saves;
+            }
+        },
         {
             field: "zlink",
             headerName: "ZILLOW LINK", valueGetter: (params) => getZillowUrl(params.row.zpid),

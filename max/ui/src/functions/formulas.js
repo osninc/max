@@ -40,3 +40,45 @@ export const calcAbsorption = (sale, sold) => {
 }
 
 export const sqft2acre = num => (num === "") ? "" : parseFloat((num / 43560).toFixed(2));
+
+export const calcDom = history => {
+    // if the first item is "listed for sale, then seconds from now to them"
+    if (history.length === 0)
+        return 0
+
+    const epochNow = Date.now()
+    let aryOfMs = []
+
+    let firstEventListed = false;
+    const firstEvent = history[0].event.toLowerCase()
+    if (firstEvent === "listed for sale") {
+        const firstEventTime = history[0].time
+        aryOfMs = [(epochNow - firstEventTime)]
+        firstEventListed = true
+    }
+
+    let startHit = false;
+    // let endHit = false;
+    let startValue;
+    let endValue;
+    for (let i = (firstEventListed ? 1 : 0); i < history.length; i++) {
+        // Find start time
+        if (["listing removed", "sold"].includes(history[i].event.toString().toLowerCase())) {
+            startHit = true;
+            startValue = history[i].time;
+        }
+        if (history[i].event.toString().toLowerCase() === "listed for sale") {
+
+            if (startHit) {
+                endValue = history[i].time;
+                aryOfMs = [...aryOfMs, (startValue - endValue)];
+                startHit = false;
+            }
+        }
+    }
+
+    //console.log({ aryOfMs })
+
+    const totalMs = aryOfMs.reduce((a, b) => a + b, 0)
+    return Math.round(totalMs / 86400000);
+}

@@ -49,7 +49,7 @@ const DataCell = props => {
         variant: "body2"
     }
 
-    if (["count", "avgPrice", "avgPpa"].includes(field)) {
+    if (["count", "avgPrice", "avgPpa", "avgDom"].includes(field)) {
 
 
         const sold = record ? record["sold"] : null
@@ -94,6 +94,9 @@ const DataCell = props => {
                     soldText = USDollar.format(soldText);
                     soldTextButton = <Button href="#" onClick={(e) => onClick(e, soldParams)}>{soldText}</Button>
                     break;
+                case "avgDom":
+                    soldTextButton = <Button href="#" onClick={(e) => onClick(e, soldParams)}>{soldText}</Button>
+                    break;
                 case "count":
                     soldTextButton = <ButtonGroup
                         {...buttonGroupParams}
@@ -118,6 +121,7 @@ const DataCell = props => {
         let saleHover = "";
         let saleText = ""
 
+        //console.log({sale})
         if (sale) {
 
             saleText = sale[field];
@@ -131,6 +135,10 @@ const DataCell = props => {
                 case "avgPrice":
                 case "avgPpa":
                     saleText = USDollar.format(saleText);
+                    saleTextButton = <Button href="#" onClick={(e) => onClick(e, saleParams)}>{saleText}</Button>
+                    break;
+                case "avgDom":
+                    //saleText = saleText;
                     saleTextButton = <Button href="#" onClick={(e) => onClick(e, saleParams)}>{saleText}</Button>
                     break;
                 case "count":
@@ -185,6 +193,20 @@ const DataCell = props => {
                     sum(price/acre) / {record["sold"].numPrices} = {soldText}
                 </Typography>;
                 break;
+                case "avgDom":
+                saleHover = <Typography variant="caption">
+                    {moreSaleText}
+                    This value is the sum of each of the listing's Days On Market
+                    divided by ({record["for sale"].domCount}) listings that had price history<br />
+                    sum(DOM) / {record["for sale"].domCount} = {saleText}
+                </Typography>
+                soldHover = <Typography variant="caption">
+                    {moreSoldText}
+                    This value is the sum of each of the sale's Days On Market
+                    divided by  ({record["sold"].domCount}) sales that had price history<br />
+                    sum(DOM) / {record["sold"].domCount} = {soldText}
+                </Typography>;
+
             default:
                 break;
         }
@@ -369,8 +391,8 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                 colspan: 1,
                 colText: commonColText,
             },
-            comingSoon: true,
-            dataField: "count"
+            comingSoon: false,
+            dataField: "avgDom"
         },
         6: {
             text: "Realtors",

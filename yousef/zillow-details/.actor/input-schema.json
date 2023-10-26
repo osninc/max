@@ -1,0 +1,61 @@
+{
+    "title": "Zillow Details",
+    "description": "Zillow Details",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "datasetId": {
+            "title": "Dataset ID",
+            "type": "string",
+            "description": "Enter a dataset ID",
+            "editor": "textfield"
+        },
+        "proxyType": {
+            "title": "Proxy Type",
+            "type": "string",
+            "description": "Toggles between proxies",
+            "default": "SMARTPROXY_RESIDENTIAL",
+            "enum": [
+                "SMARTPROXY_RESIDENTIAL",
+                "APIFY_RESIDENTIAL",
+                "SMARTPROXY_DATACENTER",
+                "APIFY_DATACENTER"
+            ],
+            "enumTitles": [
+                "Smartproxy Residential",
+                "Apify Residential",
+                "Smartproxy Datacenter",
+                "Apify Datacenter"
+            ]
+        },
+        "scraper": {
+            "title": "Scraper Option",
+            "description": "select the scraper to use",
+            "type": "string",
+            "default": "AXIOS",
+            "enum": [
+                "AXIOS",
+                "CRAWLEE_SEND_REQUEST"
+            ]
+        },
+        "sessionsKvsName": {
+            "title": "Sessions KVS Name",
+            "type": "string",
+            "description": "Enter the sessions KVS Name",
+            "editor": "textfield"
+        },
+        "maxConcurrency": {
+            "title": "Max concurrency",
+            "type": "integer",
+            "description": "Maximum number of tasks running in parallel.",
+            "editor": "number",
+            "default": 50,
+            "prefill": 50,
+            "maximum": 500,
+            "minimum": 1
+        }
+    },
+    "required": [
+        "datasetId"
+    ]
+}

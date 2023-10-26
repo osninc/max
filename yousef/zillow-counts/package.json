@@ -1,0 +1,55 @@
+{
+    "name": "zillow-count",
+    "version": "0.0.1",
+    "description": "",
+    "engines": {
+        "node": ">=16"
+    },
+    "main": "dist/main.js",
+    "dependencies": {
+        "apify": "^3.1.8",
+        "axios": "^1.5.0",
+        "axios-https-proxy-fix": "^0.17.1",
+        "crawlee": "^3.4.2",
+        "fingerprint-injector": "^2.1.42",
+        "lodash": "^4.17.21",
+        "moment": "^2.29.4",
+        "playwright-core": "^1.36.2",
+        "time-span": "^5.1.0"
+    },
+    "devDependencies": {
+        "@onidivo/eslint-config-typescript": "^1.0.38",
+        "@onidivo/prettier-config": "^1.0.23",
+        "@onidivo/tsconfig": "^1.0.30",
+        "@types/cheerio": "^0.22.31",
+        "@types/eslint": "^8.4.5",
+        "@types/jest": "^28.1.6",
+        "@types/lodash": "^4.14.196",
+        "@types/node": "^16.18.39",
+        "@types/prettier": "^2.7.0",
+        "@typescript-eslint/eslint-plugin": "^5.62.0",
+        "@typescript-eslint/parser": "^5.62.0",
+        "eslint": "^8.22.0",
+        "eslint-plugin-import": "^2.28.0",
+        "prettier": "^2.7.1",
+        "ts-jest": "^28.0.7",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.9.5"
+    },
+    "scripts": {
+        "start": "npm run start:dev",
+        "start:prod": "node dist/main.js",
+        "start:dev": "ts-node-esm -T src/main.ts",
+        "build": "tsc",
+        "test": "jest",
+        "coverage": "jest --coverage",
+        "lint": "eslint 'src/**/*.{js,ts,tsx}'",
+        "lint:fix": "eslint 'src/**/*.{js,ts,tsx}' --fix",
+        "apify:debug": "APIFY_PURGE_ON_START=false npm run apify:debug:purge",
+        "apify:debug:purge": "CRAWLEE_VERBOSE_LOG=true APIFY_LOG_LEVEL=DEBUG APIFY_MEMORY_MBYTES=512 apify run",
+        "apify:push:user": "apify push --no-prompt OVT9EXRpZMjSZ2lhS",
+        "apify:call:user": "APIFY_LOCAL_STORAGE_DIR=storage apify call OVT9EXRpZMjSZ2lhS"
+    },
+    "author": "It's not you it's me",
+    "license": "ISC"
+}

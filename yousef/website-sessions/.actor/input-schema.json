@@ -1,0 +1,92 @@
+{
+    "title": "CheerioCrawler Template",
+    "description": "lorem ipsum",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "websiteUrl": {
+            "title": "Website URL",
+            "type": "string",
+            "description": "Enter the website URL",
+            "editor": "textfield"
+        },
+        "medium": {
+            "title": "Medium",
+            "type": "string",
+            "description": "Toggles between mediums",
+            "default": "CRAWLEE_SEND_REQUEST",
+            "enum": [
+                "CRAWLEE_SEND_REQUEST",
+                "BROWSER"
+            ],
+            "enumTitles": [
+                "Crawlee's sendRequest",
+                "Browser"
+            ]
+        },
+        "proxyType": {
+            "title": "Proxy Type",
+            "type": "string",
+            "description": "Toggles between proxies",
+            "default": "SMARTPROXY_RESIDENTIAL",
+            "enum": [
+                "SMARTPROXY_RESIDENTIAL",
+                "APIFY_RESIDENTIAL",
+                "SMARTPROXY_DATACENTER",
+                "APIFY_DATACENTER"
+            ],
+            "enumTitles": [
+                "Smartproxy Residential",
+                "Apify Residential",
+                "Smartproxy Datacenter",
+                "Apify Datacenter"
+            ]
+        },
+        "maxSessions": {
+            "title": "Max Sessions",
+            "type": "integer",
+            "description": "Maximum number of sessions to create.",
+            "editor": "number",
+            "default": 10,
+            "prefill": 10,
+            "maximum": 1000,
+            "minimum": 1
+        },
+        "extraBlockFunc": {
+            "title": "Extra Block Function",
+            "type": "string",
+            "description": "Enter the extra block function",
+            "editor": "textfield"
+        },
+        "sessionsKvsName": {
+            "title": "Sessions KVS Name",
+            "type": "string",
+            "description": "Enter the sessions KVS Name",
+            "editor": "textfield"
+        },
+        "failedSessionsPercent": {
+            "title": "Failed Sessions Percent",
+            "type": "integer",
+            "description": "Failed Sessions Percent",
+            "editor": "number",
+            "default": 10,
+            "prefill": 10,
+            "maximum": 100,
+            "minimum": 0
+        },
+        "maxConcurrency": {
+            "title": "Max concurrency",
+            "type": "integer",
+            "description": "Maximum number of tasks running in parallel.",
+            "editor": "number",
+            "default": 5,
+            "prefill": 5,
+            "maximum": 50,
+            "minimum": 1
+        }
+
+    },
+    "required": [
+        "websiteUrl"
+    ]
+}

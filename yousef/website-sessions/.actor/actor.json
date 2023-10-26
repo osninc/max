@@ -1,0 +1,12 @@
+{
+	"actorSpecification": 1,
+	"name": "website-sessions",
+    "version": "0.0",
+    "buildTag": "latest",
+    "input": "./input-schema.json",
+    "readme": "./README.md",
+    "dockerfile": "./Dockerfile",
+    "environmentVariables": {
+        "APIFY_LOG_LEVEL": "DEBUG"
+    }
+}

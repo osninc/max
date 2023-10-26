@@ -1,0 +1,53 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": [
+                    "county",
+                    "state",
+                    "zipCode",
+                    "acreage",
+                    "status",
+                    "daysOnRedfin",
+                    "soldInLast",
+                    "count",
+                    "timeStamp",
+                    "listings",
+                    "url"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "county": {
+                        "label": "County"
+                    },
+                    "zipCode": {
+                        "label": "Zip Code"
+                    },
+                    "state": {
+                        "label": "State"
+                    }
+                }
+            }
+        },
+        "timers": {
+            "title": "Timed Tests",
+            "transformation": {
+                "fields": [
+                    "proxy",
+                    "scraper",
+                    "area",
+                    "total",
+                    "totalFailed",
+                    "failureRate",
+                    "estimatedCost",
+                    "totalRunTime"
+                ]
+            }
+        }
+    }
+}

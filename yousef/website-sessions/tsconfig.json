@@ -1,0 +1,6 @@
+{
+    "extends": "@onidivo/tsconfig",
+    "compilerOptions": {
+        "outDir": "dist",
+    },
+}

@@ -1,0 +1,29 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": [
+                    "zpid",
+                    "agentName",
+                    "agentPhoneNumber",
+                    "attributionTitle",
+                    "brokerPhoneNumber",
+                    "priceHistory",
+                    "timeStamp",
+                    "url"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "agentName": {
+                        "label": "Agent Name"
+                    }
+                }
+            }
+        }
+    }
+}

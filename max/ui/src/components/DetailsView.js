@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { styled } from '@mui/material/styles';
 import { useState } from "react";
-import { USDollar, convertStrToAcre } from "../functions/functions";
+import { USDollar, convertPriceStringToFloat, convertStrToAcre } from "../functions/functions";
 import { ThirdPartyIcon } from "./ThirdPartyIcon";
 import { calcDom } from "../functions/formulas";
 
@@ -88,7 +88,7 @@ const getRelaventData = (listings, theData, hasError) => {
         coAgentLicenseNumber:
             propertyDetails?.attributionInfo?.coAgentLicenseNumber,
         coAgentName: propertyDetails?.attributionInfo?.coAgentName,
-        priceHistory: propertyDetails?.priceHistory.map((price) => ({
+        priceHistory: propertyDetails?.priceHistory?.map((price) => ({
             date: price.date,
             time: price.time,
             price: price.price,
@@ -197,14 +197,14 @@ const DataTable = ({ details }) => {
         //setExpanded(false);
         setShowPriceDetails(!showPriceDetails);
     }
-
+    const thisPrice = convertPriceStringToFloat(details.price.toString())
     const thisAcre = calcAcre(details.lotAreaValue, details.lotAreaString)
     const word = details.statusText.toLowerCase().replace("_", " ")
     const statusText = word.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
     const fields = {
-        "price": USDollar.format(details.price),
+        "price": USDollar.format(thisPrice),
         "acres": `${thisAcre} acres`,
-        "price/acre": calcPpa(details.price, thisAcre),
+        "price/acre": calcPpa(thisPrice, thisAcre),
         "status": statusText,
         "dom": calcDom(details.priceHistory),
         "views": details.pageViewCount,
@@ -258,7 +258,6 @@ const DataTable = ({ details }) => {
 export const DetailsView = ({ listings, details: theDetails, onClose }) => {
     const [expanded, setExpanded] = useState(false);
     const [showPriceDetails, setShowPriceDetails] = useState(false);
-
 
     const handleExpandClick = () => {
         // Close price

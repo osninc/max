@@ -4,7 +4,7 @@ import { defaultTheme } from "../constants/theme"
 
 const consolidateBrokers = data => {
     let brokers = []
-    const d = Object.keys(data).map(acreage => {
+    const d = Object.keys(data).filter(el=>el !== "meta").map(acreage => {
         Object.keys(data[acreage]).map(time => {
             //console.log(data[acreage][time])
             brokers = [

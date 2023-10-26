@@ -391,7 +391,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                 colspan: 1,
                 colText: commonColText,
             },
-            comingSoon: false,
+            comingSoon: !data.meta.hasDetails,
             dataField: "avgDom"
         },
         6: {
@@ -402,7 +402,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                 colspan: 1,
                 colText: commonColText,
             },
-            comingSoon: true,
+            comingSoon: !data.meta.hasDetails,
             dataField: "count"
         },
         7: {
@@ -438,7 +438,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
     const colLoop = [...Array(7)]
 
     // Calculate 
-    const filteredData = Object.keys(data).map(acreage => Object.keys(data[acreage]).map(time => {
+    const filteredData = Object.keys(data).filter(el=>el !== "meta").map(acreage => Object.keys(data[acreage]).map(time => {
         const fsListingCount = data[acreage][time]["for sale"]?.count
         const fsMapCount = data[acreage][time]["for sale"]?.mapCount
         const soldListingCount = data[acreage][time]["sold"]?.count

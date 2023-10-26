@@ -1,4 +1,12 @@
-export const BUILD = "yir-dev-2"
+export const BUILD = "yir-dev-2";
+export const STARTDETAILSACTOR = false;
+export const DETAILSDATASETS = [
+    "nkKNY73isUey7raQR",
+    "qFv1SUksqrs4zjZfQ",
+    "oaqwbywjprrh5d5PZ",
+    "7jXhphDpV6cZtysm5",
+    "HFUlstfORmP9MW205"
+]
 
 export const USETEST = {
     counts: true,
@@ -24,11 +32,12 @@ export const APIFY = {
         token: "apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H"
     },
     counts: {
+        pastDays: 7,
         use: "realTime",
         method: "post",
         endPoint: "/run-sync-get-dataset-items",
         old: "https://api.apify.com/v2/datasets/RYjTNctyQeqlnFAAI/items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H",
-        realTime: `https://api.apify.com/v2/acts/OVT9EXRpZMjSZ2lhS/run-sync-get-dataset-items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H&build=<BUILD>`
+        realTime: `https://api.apify.com/v2/acts/OVT9EXRpZMjSZ2lhS/run-sync-get-dataset-items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H&build=<BUILD>`,
     },
     listings: {
         use: "realTime",

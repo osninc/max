@@ -1,218 +1,39 @@
 import React, { useState } from "react";
 
-import { ThemeProvider } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import Timer from "../../components/Timer.js";
+import Check from '@mui/icons-material/Check';
+
 
 import TextField from '@mui/material/TextField';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
-import axios from '../../axios.js';
 import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
-import { Alert, Avatar, Box, Chip, CircularProgress, Divider, Drawer, FormControl, FormLabel, IconButton, InputLabel, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Menu, MenuItem, Modal, Paper, Select, Snackbar, Stack, Tab, Tabs, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Alert, Box, CircularProgress, Divider, Drawer, FormControl, InputLabel, ListItemIcon, ListItemText, Menu, MenuItem, Modal, Paper, Select, Snackbar, Stack, Tab, Tabs } from "@mui/material";
 import { processError } from "../../error.js";
 
-import testCounts from "../../data/countsWithListings.json";
-//import testListings from "./data/listings.json";
-import testDetails from "../../data/details.json";
-
-import { defaultHeaders } from "../../headers.js";
 
 import { DetailsView } from "../../components/DetailsView.js";
-import { convertStrToAcre, convertPriceStringToFloat, convertDateToLocal, sec2min, time2epoch, DisplayNumber } from "../../functions/functions.js"
-import { sqft2acre, calcRatio, calcAbsorption, calcMos, calcPpa, getListOfField, getSum, calcDom } from "../../functions/formulas.js"
+import { DisplayNumber } from "../../functions/functions.js"
+import { sqft2acre } from "../../functions/formulas.js"
 
-import { APIFY, BUILD, PROXYTYPE, SCRAPER, iconButtonFAStyle, modalStyle } from "../../constants/constants.js";
+import { BUILD, DETAILSDATASETS, PROXYTYPE, SCRAPER, iconButtonFAStyle, modalStyle } from "../../constants/constants.js";
 import { Copyright } from "../../components/Copyright.js"
 import { ZillowTable } from "../../components/ZillowTable.js";
 import { timeMatrix } from "../../constants/matrix.js";
 import SelectLocation from "../../components/SelectLocation.js";
-import { getPropertyParams } from "../../zillowGraphQl.js";
 import ListingsView from "../../components/ListingsView.js";
 import { CircularProgressTimer } from "../../components/Listings/CircularProgressTimer.js";
 
-import { defaultTheme } from "../../constants/theme.js";
-import TabPanel from "../../components/TabPanel.js";
 import { BrokerageTable } from "../../components/BrokerageTable.js";
-
-const calcAvgPrice = ary => {
-  if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
-
-  const listOfPrices = getListOfField(ary, "unformattedPrice")
-  const totalPrices = getSum(listOfPrices)
-  const numListings = listOfPrices.length;
-
-  return (numListings === 0) ? 0 : parseInt((totalPrices / numListings).toFixed(0));
-}
-
-const calcAvg = ary => {
-  if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
-
-  const total = getSum(ary)
-  const num = ary.length;
-
-  // if (isNaN(total))
-  //   console.log({ ary })
-
-  return (num === 0) ? 0 : parseFloat((total / num).toFixed(2));
-}
-
-const calcAvgPpa = ary => {
-  if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
-
-  const listOfPpa = getListOfField(ary, "unformattedPpa")
-  const totalPpa = getSum(listOfPpa)
-  const numListings = listOfPpa.length;
-
-  return (numListings === 0) ? 0 : parseInt((totalPpa / numListings).toFixed(0));
-}
-
-const fixListings = (listings, details) => {
-  const f = listings.map(listing => {
-    const newPrice = convertPriceStringToFloat(listing.price)
-    const newAcre = convertStrToAcre(listing.lotAreaString)
-    const newPpa = calcPpa(newPrice, newAcre);
-    //console.log({ newPpa })
-    // replace all google images
-    const newImage = (listing.imgSrc.includes("googleapis.com")) ? "/no-image.png" : listing.imgSrc
-
-    let secondaryDetails = {}
-    // find listings // There are some records that has no zpid
-    if (details)
-      if (listing.zpid)
-        secondaryDetails = details[listing.zpid]
-      else
-        secondaryDetails = {
-          dom: "N/A",
-          views: "N/A",
-          favorites: "N/A",
-          saves: "N/A"
-        }
-
-    return {
-      ...listing,
-      unformattedPrice: newPrice,
-      acre: newAcre,
-      unformattedPpa: newPpa,
-      imgSrc: newImage,
-      originalImgSrc: listing.imgSrc,
-      ...secondaryDetails
-    }
-  })
-  return f
-}
-
-const fixDetails = details => {
-  let obj = {}
-  const d = details.filter(d => d.zpid).map(detail => {
-    //console.log({ detail })
-    const dom = calcDom(detail.priceHistory)
-    obj = {
-      ...obj,
-      [detail.zpid.toString()]: {
-        dom,
-        agent: {
-          name: detail.attributionInfo?.agentName,
-          number: detail.attributionInfo?.agentPhoneNumber,
-          email: detail.attributionInfo?.agentEmail,
-          licenseNumber: detail.attributionInfo?.agentLicenseNumber,
-        },
-        broker: {
-          name: detail.attributionInfo?.brokerName,
-          number: detail.attributionInfo?.brokerPhoneNumber
-        },
-        parcelNumber: detail.resoFacts?.parcelNumber,
-        views: detail.pageViewCount,
-        favorites: detail.favoriteCount,
-        saves: "N/A"
-      }
-    }
-    //console.log({ obj })
-    return obj;
-  })
-
-  return obj
-}
-
-const normalizeTheData = (data, details) => {
-  // if there are details array, then process that one first before merge
-  let fixedDetails
-  if (details)
-    fixedDetails = fixDetails(details);
-
-  let c = {}
-  // Put everything in an object to reference faster and easier
-  data.map((count, i) => {
-    if (count.status !== undefined) {
-      const timeDim = (count.status?.toLowerCase() === "sold") ? count?.soldInLast?.toLowerCase() : count?.daysOnZillow?.toLowerCase();
-
-      if (timeDim) {
-        const fixedListings = fixListings(count.listings, fixedDetails);
-        const listOfPrices = getListOfField(fixedListings, "unformattedPrice")
-        const numPrices = listOfPrices.length
-        const listingsWithValues = {
-          dom: fixedListings.filter(l => l.dom !== "N/A").map(listing => listing.dom).filter(el => el),
-          views: fixedListings.filter(l => l.views !== "N/A").map(listing => listing.views).filter(el => el),
-          favorites: fixedListings.filter(l => l.favorites !== "N/A").map(listing => listing.favorites).filter(el => el),
-        }
-        c[count.acreage?.toLowerCase()] = {
-          ...c[count.acreage?.toLowerCase()],
-          [timeDim.toLowerCase()]: {
-            ...(c[count.acreage?.toLowerCase()] ? c[count.acreage?.toLowerCase()][timeDim?.toLowerCase()] : {}),
-            timeStamp: count.timeStamp,
-            [count.status?.toLowerCase()]: {
-              count: count.agentCount,
-              url: count.url,
-              listings: fixedListings,
-              numPrices,
-              sumPrice: getSum(listOfPrices),
-              mapCount: count.mapCount,
-              otherCount: count.otherCount,
-              avgPrice: calcAvgPrice(fixedListings),
-              avgPpa: calcAvgPpa(fixedListings),
-              avgDom: calcAvg(listingsWithValues.dom),
-              domCount: listingsWithValues.dom.length
-            }
-
-          }
-        }
-      }
-    }
-    return {}
-  })
-
-  // Added calculated values
-  Object.keys(c).map(acreage => {
-    Object.keys(c[acreage]).map(time => {
-      c[acreage][time] = {
-        ...c[acreage][time],
-        ratio: calcRatio(c[acreage][time]["for sale"]?.count, c[acreage][time]["sold"]?.count),
-        mos: calcMos(c[acreage][time]["for sale"]?.count, c[acreage][time]["sold"]?.count, time),
-        absorption: calcAbsorption(c[acreage][time]["for sale"]?.count, c[acreage][time]["sold"]?.count, time)
-
-      }
-      return {};
-    });
-    return {};
-  })
-
-  //console.log({ c })
-
-  return c
-};
+import { fetchData, fetchDatasets, fetchDetailsData } from "../../api/apify.js";
 
 const App = () => {
   const [isLoading, setLoading] = useState(false);
@@ -238,7 +59,6 @@ const App = () => {
 
   const hasDebugMenu = searchParams.has("debugMenu")
   const hasBuildOnQS = searchParams.has("build")
-  const isTestingSite = document.location.hostname.includes("sunburst") || document.location.hostname.includes("localhost")
 
   const [buildNumber, setBuildNumber] = useState(hasBuildOnQS ? searchParams.get("build") : BUILD);
 
@@ -276,145 +96,54 @@ const App = () => {
     })
   }
 
-  const fetchDetails = async (ds) => {
-    // Get a list of runs
-    const url = `${APIFY.listOfDetails.listOfRuns}?token=${APIFY.base.token}&status=SUCCEEDED`;
-
-    const response = await axios.get(url);
-    const data = response.data
-    const listOfStoreIds = data.data.items.map(d => {
-      return {
-        datasetId: d.defaultDatasetId,
-        storeId: d.defaultKeyValueStoreId
-      }
-    });
-
-
-    // find which store has the input of the current datasetId
-    const listOfMatchingStoreIds = await Promise.all(listOfStoreIds.map(async ({ datasetId, storeId }) => {
-      const url2 = `${APIFY.listOfDetails.listOfInputs.replace("<STOREID>", storeId)}?token=${APIFY.base.token}&status=SUCCEEDED`;
-      const response2 = await axios.get(url2);
-      const data2 = response2.data
-      if (data2.datasetId === ds)
-        return datasetId
-    }))
-
-    const theDatasetId = listOfMatchingStoreIds.filter(el => el)
-
-    // if array is zero length, then there isn't a match, launch the actor
-    if (theDatasetId.length > 0) {
-      const url3 = `${APIFY.listOfDetails.datasetItems.replace("<DATASETID>", theDatasetId[0])}?token=${APIFY.base.token}`;
-      const response3 = await axios.get(url3);
-      const data3 = response3.data
-
-      return data3
-    }
-    else {
-      // Launch actor
-    }
-
-
-
-
-  }
-
-  const fetchData = async (ds) => {
-    setMessage("");
-    setLoading(true);
-
-    let searchBy = "county"
-    // figure out what kind of search it is
-    if (search.length === 2)
-      searchBy = "state"
-    if (search.length === 5)
-      searchBy = "zipCode"
-
-    // Prepare Actor input
-    const input = (buildNumber.includes("yir-dev-2") || buildNumber.includes("0.2.")) ? // use old inputs
-      {
-        searchBy,
-        [searchBy]: search,
-        proxyType: proxy.toLowerCase(),
-        scraper: scraper.toLowerCase(),
-        "debug": false
-      } : {
-        searchType: searchBy,
-        [searchBy]: search,
-        proxyType: proxy,
-        scraper,
-        "debug": false
-      };
-
-    setSearchBy(searchBy)
-
-    let axiosObj;
-
-    if (ds === "") {
-      const url = `${APIFY.base.url}${APIFY.counts.endPoint}?token=${APIFY.base.token}&build=${buildNumber}`;
-
-      axiosObj = {
-        data: input,
-        method: APIFY.counts.method,
-        url
-      }
-    }
-    else {
-      const url = `${APIFY.datasets.realTime.replace("<DATASETID>", ds)}?token=${APIFY.base.token}`
-      //console.log({ url })
-      axiosObj = {
-        method: APIFY.datasets.method,
-        url
-      }
-    }
-
-    //console.log({ axiosObj })
+  // TODO: fetchListingData from local
+  const fetchListingData = async (params) => {
+    const { lot, time, status } = params;
+    setMessage("")
+    setListingLoading(true);
 
     try {
-      let data;
-      if (testData.includes("counts"))
-        data = testCounts
-      else {
-        const response = await axios(axiosObj);
-        data = response.data
+      const data = counts[lot][time][status].listings
+      setListings(data)
+    } catch (error) {
+      setMessage(processError("fetchListingData", error))
+      setOpenSnack(true)
+    } finally {
+      setListingLoading(false);
+    }
+  }
+
+  const clearStates = () => {
+    // setArea("")
+    // setCountsDate("")
+    // setCounts({})
+    // setSearchBy("")
+    // setSearch("")
+  }
+
+  const loadData = async (ds) => {
+    clearStates()
+    try {
+      setMessage("");
+      setLoading(true);
+
+      // input: { search, ds, buildNumber, proxy, scraper }
+      // output: { data, area, date, searchBy }
+      const params = {
+        search,
+        ds,
+        buildNumber,
+        proxy,
+        scraper
       }
 
-      // Get the name of area
-      // Pre-fill all variables
-      const data1 = data[1];
-      let newSearch = search;
-      if (data1["county"] !== "") {
-        newSearch = data1["county"];
-        setSearchBy("county")
-        setSearch(newSearch)
-      }
-      if (data1["zipCode"] !== "") {
-        newSearch = data1["zipCode"];
-        //console.log({ newSearch })
-        setSearchBy("zipCode")
-        setSearch(data1["zipCode"])
-      }
-      if (data1["state"] !== "") {
-        newSearch = data1["state"];
-        setSearchBy("state")
-        setSearch(data1["state"])
-      }
+      const { data, area, date, searchBy } = await fetchData(params);
 
-      // See if this version has a datasetId in the return JSON
-      // Check to see if there are any details already in the system for this dataset ID, if not, then launch a task
-
-
-      let listingsDetails;
-      if (data[0]?.datasetId) {
-        listingsDetails = await fetchDetails(data[0].datasetId)
-      }
-
-      setArea(newSearch)
-      setCountsDate(data[1]?.timeStamp)
-
-      const normalizedData = normalizeTheData(data, listingsDetails)
-      setCounts(normalizedData)
-
-
+      setArea(area)
+      setCountsDate(date)
+      setCounts(data)
+      setSearchBy(searchBy)
+      setSearch(area)
 
     } catch (error) {
       setMessage(processError("fetchData", error))
@@ -424,90 +153,9 @@ const App = () => {
     }
   }
 
-  // TODO: fetchListingData from local
-  const fetchListingData = async (params) => {
-    const { lot, time, status } = params;
-    setMessage("")
-    setListingLoading(true);
-
-    try {
-
-      const data = counts[lot][time][status].listings
-
-      setListings(data)
-
-
-
-    } catch (error) {
-      setMessage(processError("fetchListingData", error))
-      setOpenSnack(true)
-    } finally {
-      setListingLoading(false);
-    }
-  }
-
-  const fetchDetailsData = async (zpid) => {
-    setMessage("")
-    setDetailsLoading(true);
-
-    const url = APIFY.details.realTime
-
-    const graphQlParams = getPropertyParams(zpid)
-
-    let baseConfig = {
-      headers: {
-        ...defaultHeaders,
-        Referer: "https://www.zillow.com/",
-        "Referrer-Policy": "unsafe-url"
-      },
-      responseType: "json"
-    }
-
-    try {
-
-      let data;
-      if (testData.includes("details")) {
-        data = testDetails
-      }
-      else {
-        const response = await axios.post(url, graphQlParams, baseConfig)
-        data = response.data
-
-      }
-
-      setDetails(data)
-
-
-
-    } catch (error) {
-      try {
-        // getting backup
-        const url = APIFY.details.backup
-
-        // Prepare Actor input
-        const input = {
-          zpid,
-          proxy: "residential",
-        };
-
-        const response = await axios.post(url, input);
-        const data = response.data;
-        setDetails(data[0])
-      }
-      catch (error2) {
-        setMessage(processError("fetchDetailsData", error2))
-        setDetails({})
-        setOpenSnack(true)
-      }
-    } finally {
-      setDetailsLoading(false);
-    }
-  }
-
-
   const handleClick = async () => {
     setLoading(true);
-    await fetchData("");
+    await loadData("");
   }
 
   const handleTextChange = e => {
@@ -516,7 +164,18 @@ const App = () => {
 
   const openDetails = async (zpid) => {
     handleOpenModal()
-    await fetchDetailsData(zpid);
+    try {
+      setMessage("")
+      setDetailsLoading(true);
+      const details = await fetchDetailsData(counts,zpid);
+      setDetails(details)
+    } catch (error) {
+      setMessage(processError("fetchDetailsData", error))
+      setDetails({})
+      setOpenSnack(true)
+    } finally {
+      setDetailsLoading(false);
+    }
   }
 
   const handleOpenModal = () => setOpenModal(true);
@@ -557,14 +216,9 @@ const App = () => {
   const handleDebugClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleDebugClose = () => {
     setAnchorEl(null);
-  };
-
-  const [testData, setTestData] = useState(() => []);
-
-  const handleTestChange = (event, newTests) => {
-    setTestData(newTests);
   };
 
   if (searchParams.has("datasetid")) {
@@ -581,109 +235,29 @@ const App = () => {
 
   const handleDatasetSearch = async () => {
     setLoading(true);
-    await fetchData(dataset);
+    await loadData(dataset);
   }
 
   const [datasetLoading, setDatasetLoading] = useState(false)
   const [datasets, setDatasets] = useState([])
-  const [datasetDetails, setDatasetDetails] = useState([])
 
-  const fetchStore = async (storeId) => {
-    try {
-      const url = `${APIFY.inputs.realTime.replace("<STOREID>", storeId)}?token=${APIFY.base.token}`;
-      const response = await axios.get(url);
-      const data = response.data;
-      // make this backwards compatible
-      const search = (data.searchBy) ? data[data.searchBy] : data[data.searchType];
-      return {
-        searchBy: data.searchBy ? data.searchBy : data.searchType,
-        search: search
-      }
-    }
-    catch (error) {
-      setMessage(processError("fetchStore", error))
-      return {
-        searchBy: "",
-        search: ""
-      }
-    }
-  }
-
-  const fetchCountsData = async (id) => {
-    try {
-      const url = `${APIFY.datasets.realTime.replace("<DATASETID>", id)}?token=${APIFY.base.token}`
-      //console.log({ url })
-      const axiosObj = {
-        method: APIFY.datasets.method,
-        url
-      }
-
-      const response = await axios(axiosObj);
-      const data = response.data
-
-      const filteredData = data.filter(el => el.timeStamp)
-      const listingsCount = filteredData.filter(el => el.mapCount !== "N/A").reduce((a, b) => a + b.mapCount, 0);
-      const agentCount = filteredData.filter(el => el.agentCount !== "N/A").reduce((a, b) => a + b.agentCount, 0);
-      return {
-        counts: {
-          listings: listingsCount,
-          agent: agentCount
-        }
-      }
-    }
-    catch (error) {
-      setMessage(processError("fetchListingsData", error))
-      return {
-        counts: {
-          listings: "N/A",
-          agent: "N/A"
-        }
-      }
-    }
-  }
-
-  const fetchDatasets = async () => {
-    try {
-      const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true&limit=20`;
-      const response = await axios.get(url);
-      const data = response.data;
-
-      const aryOfItems = await Promise.all(data.data.items.map(async (item) => {
-        const storeId = item.defaultKeyValueStoreId;
-        const { searchBy, search } = await fetchStore(storeId);
-        // fetch actual data for counts in dropdown (this is redundant TODO:)
-        const { counts } = await fetchCountsData(item.defaultDatasetId)
-        //console.log({dsData})
-        return {
-          value: item.defaultDatasetId,
-          searchBy: searchBy,
-          search: search,
-          date: convertDateToLocal(item.startedAt),
-          elapsedTime: sec2min(((time2epoch(item.finishedAt) - time2epoch(item.startedAt)) / 1000).toFixed(0)),
-          counts,
-          build: item.buildNumber,
-          text: <><i>{searchBy}</i>:<strong>{search}</strong> <i>{convertDateToLocal(item.startedAt)}</i> <strong>{item.defaultDatasetId}</strong></>
-        }
-      }))
-
-      // Filter out ones where both listing and agent numbers are zero
-      const filteredResults = aryOfItems.filter(item => (item.counts.agent > 0) && (item.counts.listings > 0))
-
-      setDatasets(filteredResults)
-    }
-    catch (error) {
-      setMessage(processError("fecthDatasets", error))
-      setOpenSnack(true)
-      setDatasets([])
-    } finally {
-      setDatasetLoading(false);
-    }
-  }
   const handleDatasetClick = async (event) => {
     if (datasets.length === 0) {
       // update dropdown
-      setDatasetLoading(true)
-      await fetchDatasets()
+      try {
+        setDatasetLoading(true)
+        const datasets = await fetchDatasets();
+        setDatasets(datasets);
+      }
+      catch (error) {
+        setMessage(processError("fecthDatasets", error))
+        setOpenSnack(true)
+        setDatasets([])
+      }
+      finally {
+        setDatasetLoading(false)
+      }
+
     }
   }
 
@@ -693,9 +267,9 @@ const App = () => {
         <Grid container spacing={5} alignItems="left">
           <Grid
             item
-            xs={9}
-            sm={9}
-            md={9}
+            xs={6}
+            sm={6}
+            md={6}
           >
             <Paper
               component="form"
@@ -745,6 +319,9 @@ const App = () => {
                           {/* <ListItemIcon>
                             <FontAwesomeIcon icon={icon({ name: 'database' })} />
                           </ListItemIcon> */}
+                          <ListItemIcon>
+                            {ds.highlight && <FontAwesomeIcon icon={icon({ name: 'check' })} size="xs" />}
+                          </ListItemIcon>
                           <ListItemText primary={
                             <Typography component="span" variant="body2">
                               {ds.searchBy}: <strong>{ds.search}</strong>
@@ -759,8 +336,8 @@ const App = () => {
                               >
                                 {ds.elapsedTime} - Count:  <b>{DisplayNumber.format(ds.counts.agent)}</b> - Details: <b>{DisplayNumber.format(ds.counts.listings)}</b>
                               </Typography>
-                              <br />
-                              <Typography variant="caption" >{ds.value} - {ds.build}</Typography>
+                              {/* <br />
+                              <Typography variant="caption" >{ds.value} - {ds.build}</Typography> */}
                             </React.Fragment>
                           } />
                         </MenuItem>
@@ -773,24 +350,79 @@ const App = () => {
                 Get Dataset
               </LoadingButton>
             </Paper>
-            <br />
-            <Typography variant="caption">Choose dataset (nkKNY73isUey7raQR, qFv1SUksqrs4zjZfQ, oaqwbywjprrh5d5PZ) to see DOM and Realtor info</Typography>
           </Grid>
-          <Grid item xs={3}
-            sm={3}
-            md={3}>
+          <Grid item xs={6}
+            sm={6}
+            md={6}>
             {hasDebugMenu && (
-              <Typography variant="caption">
-                Change these option in the <Link onClick={handleDebugClick} href="#"> debug menu</Link>:<br />
-                build: <strong>{buildNumber}</strong><br />
-                scraper: <strong>{scraper}</strong><br />
-                proxy: <strong>{proxy}</strong><br />
-                {(testData.length > 0) && (
-                  <div>using test data for <strong>{testData.join(", ")}</strong></div>
-                )
-                }
+              <>
+                <Button
+                  id="basic-button"
+                  onClick={handleDebugClick}
+                >
+                  Debug Menu
+                </Button>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={openDebugMenu}
+                  onClose={handleDebugClose}
+                  MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                  }}
+                >
+                  <MenuItem>
+                    <Stack spacing={2}>
+                      <TextField
+                        id="outlined-error"
+                        label="Build Number"
+                        size="small"
+                        InputProps={{
+                          startAdornment: <FontAwesomeIcon icon={icon({ name: 'hammer' })} />,
+                        }}
+                        defaultValue={BUILD}
+                        value={buildNumber}
+                        onChange={handleBuildChange}
+                      />
+                      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                        <InputLabel id="demo-simple-select-helper-label">Select Scraper</InputLabel>
+                        <Select
+                          labelId="demo-select-small-label"
+                          id="demo-select-small"
+                          value={scraper}
+                          label="Select scraper"
+                          onChange={handleScraperChange}
+                        >
+                          {SCRAPER.map(scraper => (
+                            <MenuItem value={scraper} key={scraper}>{scraper}</MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                        <InputLabel id="demo-simple-select-helper-label">Select Proxy</InputLabel>
+                        <Select
+                          labelId="demo-select-small-label"
+                          id="demo-select-small"
+                          value={proxy}
+                          label="Select proxy"
+                          onChange={handleProxyChange}
+                        >
+                          {PROXYTYPE.map(proxy => (
+                            <MenuItem value={proxy} key={proxy}>{proxy}</MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </Stack>
+                  </MenuItem>
+                </Menu>
+                <br />
+                <Typography variant="caption">
+                  build: <strong>{buildNumber}</strong><br />
+                  scraper: <strong>{scraper}</strong><br />
+                  proxy: <strong>{proxy}</strong>
 
-              </Typography>
+                </Typography>
+              </>
             )}
           </Grid>
           <Grid item>
@@ -829,12 +461,12 @@ const App = () => {
                         <Tab label="Days on Market" {...a11yProps(5)} value={5} variant="h" />
                         <Tab label="Realtors" {...a11yProps(6)} value={6} variant="h" />
                       </Tabs>
-                      {tabValue === 6 ? (
+                      {(tabValue === 6) && (counts.meta.hasDetails) ? (
                         <BrokerageTable data={counts} />
                       ) : (
-                          <ZillowTable loadTime={loadTime} area={area} date={countsDate} source={sourceTabValue} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                        <ZillowTable loadTime={loadTime} area={area} date={countsDate} source={sourceTabValue} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
                       )}
-                     </Box>
+                    </Box>
                   </Box>
                 </>
               )}
@@ -885,7 +517,6 @@ const App = () => {
             {isDetailsLoading ? <CircularProgress /> : (
               <DetailsView listings={listings} details={details} onClose={handleCloseModal} />
             )}
-
           </Box>
         </Fade>
       </Modal>

@@ -206,7 +206,7 @@ const DataTable = ({ details }) => {
         "acres": `${thisAcre} acres`,
         "price/acre": calcPpa(thisPrice, thisAcre),
         "status": statusText,
-        "dom": calcDom(details.priceHistory),
+        "dom": details.priceHistory ? calcDom(details.priceHistory) : 0,
         "views": details.pageViewCount,
         "favorites": details.favoriteCount,
         "saves": "N/A"
@@ -217,8 +217,8 @@ const DataTable = ({ details }) => {
         <Table size="small">
             <TableHead>
                 <TableRow>
-                    <TableCell sx={{ width: 70 }} variant="header">
-                    </TableCell>
+                    {details.priceHistory && <TableCell sx={{ width: 70 }} variant="header" />}
+         
                     {Object.keys(fields).map(field => (
                         <TableCell key={field} component="th" variant="header">
                             <Typography variant="caption">
@@ -230,11 +230,11 @@ const DataTable = ({ details }) => {
             </TableHead>
             <TableBody>
                 <TableRow>
-                    <TableCell sx={{ width: "70" }}>
+                    {details.priceHistory  && <TableCell sx={{ width: "70" }}>
                         <IconButton onClick={handlePriceDetailsClick}>
                             <FontAwesomeIcon icon={icon({ name: 'dollar-sign' })} size="xs" />
                         </IconButton>
-                    </TableCell>
+                    </TableCell>}
                     {Object.keys(fields).map(field => (
                         <TableCell key={field}>
                             <Typography variant="caption">

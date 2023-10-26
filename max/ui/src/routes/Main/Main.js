@@ -16,7 +16,7 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
-import { Alert, Box, CircularProgress, Divider, Drawer, FormControl, InputLabel, ListItemIcon, ListItemText, Menu, MenuItem, Modal, Paper, Select, Snackbar, Stack, Tab, Tabs } from "@mui/material";
+import { Alert, Box, CircularProgress, Collapse, Divider, Drawer, FormControl, InputLabel, List, ListItem, ListItemIcon, ListItemText, Menu, MenuItem, Modal, Paper, Select, Snackbar, Stack, Switch, Tab, Tabs } from "@mui/material";
 import { processError } from "../../error.js";
 
 
@@ -24,7 +24,7 @@ import { DetailsView } from "../../components/DetailsView.js";
 import { DisplayNumber } from "../../functions/functions.js"
 import { sqft2acre } from "../../functions/formulas.js"
 
-import { BUILD, DETAILSDATASETS, PROXYTYPE, SCRAPER, iconButtonFAStyle, modalStyle } from "../../constants/constants.js";
+import { BUILD, PROXYTYPE, SCRAPER, iconButtonFAStyle, modalStyle } from "../../constants/constants.js";
 import { Copyright } from "../../components/Copyright.js"
 import { ZillowTable } from "../../components/ZillowTable.js";
 import { timeMatrix } from "../../constants/matrix.js";
@@ -167,7 +167,7 @@ const App = () => {
     try {
       setMessage("")
       setDetailsLoading(true);
-      const details = await fetchDetailsData(counts,zpid);
+      const details = await fetchDetailsData(counts, zpid);
       setDetails(details)
     } catch (error) {
       setMessage(processError("fetchDetailsData", error))
@@ -260,6 +260,9 @@ const App = () => {
 
     }
   }
+
+  const [newOpen, setNewOpen] = useState(true)
+  const handleWhatsNewClick = () => setNewOpen(prev => !prev)
 
   return (
     <>
@@ -354,6 +357,44 @@ const App = () => {
           <Grid item xs={6}
             sm={6}
             md={6}>
+            <Button
+              id="basic-button"
+              variant="text"
+              onClick={handleWhatsNewClick}
+            >
+              <Switch size="small" checked={newOpen}  />
+              What's New: 10/26/23
+            </Button>
+            <Divider />
+            <Collapse in={newOpen}>
+              <List dense={true}>
+                <ListItem>
+                  <ListItemText
+                    primary="Dataset Dropdown: Added a checkmark next to runs that has details associated with them"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Dataset Dropdown: Removed datasetId and build number"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Main Search: If area has been searched within the last 7 days, then it will find that dataset and load it instead of launching a brand new counts search"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Property Details: If details are available, clicking to view details will get data from the dataset.  Otherwise it will launch the actor with it's fallback going to a test record"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Property Details: On new searches or datasets without a corresponding detail dataset, clicking `search` or `get dataset` will launch the actor to get details dataset.  This is done in the background so I haven't found a way to let the UI know it's finished successfully.  Currently OFF"
+                  />
+                </ListItem>
+              </List>
+            </Collapse>
             {hasDebugMenu && (
               <>
                 <Button

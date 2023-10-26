@@ -50,7 +50,23 @@ export const fetchCountsData = async (id) => {
     }
 }
 
+const findAllDetailDatasets = async () => {
+    // Check for at detail datasets
+    const aryOfStoreIds = await getDetailsSuccessfulRuns()
+    //const detailsSets = await findAllDetaillDatasetId()
+    const aryOfResults = await Promise.all(aryOfStoreIds.map(async ({ datasetId, storeId }) => {
+        const url = `${APIFY.listOfDetails.listOfInputs.replace("<STOREID>", storeId)}?token=${APIFY.base.token}&status=SUCCEEDED`;
+        const response = await axios.get(url);
+        const data = response.data
+        return data.datasetId;
+    }))
+    return [...new Set(aryOfResults)]
+}
+
 const getCountsSuccessfulRuns = async () => {
+    // Get a list of details datasets
+    const detailsDatasets = await findAllDetailDatasets();
+
     const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true`;
     const response = await axios.get(url);
     const data = response.data;
@@ -68,8 +84,8 @@ const getCountsSuccessfulRuns = async () => {
             epochTime: time2epoch(item.finishedAt),
             elapsedTime: sec2min(((time2epoch(item.finishedAt) - time2epoch(item.startedAt)) / 1000).toFixed(0)),
             counts,
+            highlight: detailsDatasets.includes(item.defaultDatasetId),
             build: item.buildNumber,
-            highlight: DETAILSDATASETS.includes(item.defaultDatasetId),
             text: <><i>{searchBy}</i>:<strong>{search}</strong> <i>{convertDateToLocal(item.startedAt)}</i> <strong>{item.defaultDatasetId}</strong></>
         }
     }))
@@ -81,7 +97,7 @@ const getCountsSuccessfulRuns = async () => {
 
 export const fetchDatasets = async () => {
     try {
-        return getCountsSuccessfulRuns()
+        return await getCountsSuccessfulRuns()
     }
     catch (error) {
         throw { message: processError("fecthDatasets", error) }
@@ -184,7 +200,7 @@ const getDetailsSuccessfulRuns = async () => {
     });
 }
 
-const findDetailsDatasetIdByRunDatasetId = async (aryOfStoreIds, ds) => {
+const findDetailsDatasetsByRunDatasetId = async (aryOfStoreIds, ds) => {
     const aryOfResults = await Promise.all(aryOfStoreIds.map(async ({ datasetId, storeId }) => {
         const url = `${APIFY.listOfDetails.listOfInputs.replace("<STOREID>", storeId)}?token=${APIFY.base.token}&status=SUCCEEDED`;
         const response = await axios.get(url);
@@ -197,7 +213,7 @@ const findDetailsDatasetIdByRunDatasetId = async (aryOfStoreIds, ds) => {
     const newAry = aryOfResults.filter(el => el)
 
     // Return the latest one if there are results
-    return newAry.length > 0 ? newAry[0] : ""
+    return newAry;//.length > 0 ? newAry[0] : ""
 }
 
 const findCountsDatasetIdByInput = (aryOfRuns, search) => {
@@ -208,15 +224,15 @@ const findCountsDatasetIdByInput = (aryOfRuns, search) => {
     return obj ? obj.value : ""
 }
 
-
 const findDetailsRunByDatasetId = async (ds) => {
     // Get a list of successful runs
     const listOfStoreIds = await getDetailsSuccessfulRuns();
 
     // find which store has the input of the current datasetId
-    const runDatasetId = await findDetailsDatasetIdByRunDatasetId(listOfStoreIds, ds)
+    // Returns array
+    const runDatasetId = await findDetailsDatasetsByRunDatasetId(listOfStoreIds, ds)
 
-    return runDatasetId
+    return runDatasetId.length > 0 ? runDatasetId[0] : "";
 }
 
 export const fetchDetails = async (ds) => {
@@ -236,12 +252,13 @@ export const fetchDetails = async (ds) => {
         console.log(`if true, then sending`)
         console.log(`datasetId: ${ds}`)
         if (STARTDETAILSACTOR) {// Run actor async without waiting
-            const url4 = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}`
+            const url4 = `${APIFY.listOfDetails.listOfRuns}?token=${APIFY.base.token}&build=0.1.15`
             const inputParams = {
                 datasetId: ds
             }
             // POST runs the actor with the params
             const response4 = await axios.post(url4, inputParams);
+            console.log({ response4 })
             // don't have to wait
         }
     }

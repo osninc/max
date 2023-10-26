@@ -5,7 +5,8 @@ export const DETAILSDATASETS = [
     "qFv1SUksqrs4zjZfQ",
     "oaqwbywjprrh5d5PZ",
     "7jXhphDpV6cZtysm5",
-    "HFUlstfORmP9MW205"
+    "HFUlstfORmP9MW205",
+    "SOft1uJjfQpVflPUP"
 ]
 
 export const USETEST = {

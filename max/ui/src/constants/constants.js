@@ -1,4 +1,4 @@
-export const BUILD = "yir-dev-2";
+export const BUILD = "yir-dev";
 export const STARTDETAILSACTOR = false;
 export const DETAILSDATASETS = [
     "nkKNY73isUey7raQR",
@@ -25,6 +25,11 @@ export const PROXYTYPE = [
     "APIFY_RESIDENTIAL",
     "SMARTPROXY_DATACENTER",
     "APIFY_DATACENTER"
+]
+
+export const DATASTORETYPE = [
+    "DATASET",
+    "KVS"
 ]
 
 export const APIFY = {

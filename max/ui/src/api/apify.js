@@ -265,7 +265,20 @@ export const fetchDetails = async (ds) => {
 }
 
 // This is the main search function
-export const fetchData = async ({ search, ds, buildNumber, proxy, scraper }) => {
+export const fetchData = async (params) => {
+    const { 
+        search, 
+        ds, 
+        buildNumber,
+        proxyType,
+        scraper,
+        forceCleanSessionsCreation,
+        maxConcurrency,
+        dataSavingStoreType
+     } = params
+
+     let tempDs = ds;
+
     let searchBy = "county"
     // figure out what kind of search it is
     if (search.length === 2)
@@ -278,27 +291,30 @@ export const fetchData = async ({ search, ds, buildNumber, proxy, scraper }) => 
         {
             searchBy,
             [searchBy]: search,
-            proxyType: proxy.toLowerCase(),
+            proxyType: proxyType.toLowerCase(),
             scraper: scraper.toLowerCase(),
             "debug": false
         } : {
             searchType: searchBy,
             [searchBy]: search,
-            proxyType: proxy,
+            proxyType,
             scraper,
-            "debug": false
+            debug: false,
+            forceCleanSessionsCreation,
+            maxConcurrency,
+            dataSavingStoreType
         };
 
     let axiosObj;
 
     // Check to see if there is an existing Dataset for this search within the last X days
-    if (ds === "") {
+    if (tempDs === "") {
         const existingDs = await findExistingDataset(search)
         if (existingDs !== "")
-            ds = existingDs
+            tempDs = existingDs
     }
 
-    if (ds === "") {
+    if (tempDs === "") {
         const url = `${APIFY.base.url}${APIFY.counts.endPoint}?token=${APIFY.base.token}&build=${buildNumber}`;
 
         axiosObj = {
@@ -308,7 +324,7 @@ export const fetchData = async ({ search, ds, buildNumber, proxy, scraper }) => 
         }
     }
     else {
-        const url = `${APIFY.datasets.realTime.replace("<DATASETID>", ds)}?token=${APIFY.base.token}`
+        const url = `${APIFY.datasets.realTime.replace("<DATASETID>", tempDs)}?token=${APIFY.base.token}`
 
         axiosObj = {
             method: APIFY.datasets.method,
@@ -342,7 +358,8 @@ export const fetchData = async ({ search, ds, buildNumber, proxy, scraper }) => 
 
         let listingsDetails;
         // is there a datasetId in this dataset? if not, then get from param if any
-        const thisDatasetId = data[0]?.datasetId ?? ds
+        const thisDatasetId = data[0]?.datasetId ?? tempDs;
+
         if (thisDatasetId) {
             listingsDetails = await fetchDetails(thisDatasetId)
         }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider,
+  BrowserRouter
 } from "react-router-dom";
 import './index.css';
 import Main from './routes/Main';
@@ -11,11 +12,13 @@ import ErrorPage from "./error-page";
 import Runs from './routes/Runs';
 import { Layout } from './components';
 import { BlankPage } from './routes/BlankPage';
+import ProtectedRoute from './routes/ProtectedRoute';
+import { App } from './routes/App';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout><Main /></Layout>,
+    element: <App />,
     errorElement: <ErrorPage />,
   },
   {
@@ -24,7 +27,7 @@ const router = createBrowserRouter([
   },
   {
     path: "features",
-    element: <Layout title="Features"><BlankPage/></Layout>
+    element: <Layout title="Features"><BlankPage /></Layout>
   },
 
   {

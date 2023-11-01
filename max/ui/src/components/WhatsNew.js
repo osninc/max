@@ -3,6 +3,17 @@ import { Chip, Divider, List, ListItem, ListItemText } from "@mui/material"
 export const WhatsNew = props => {
     return (
         <List dense={true}>
+            <Divider component="li"><Chip label="10/29/2023" /></Divider>
+            <ListItem>
+                <ListItemText
+                    primary="Outseta Integration, added option in debug menu to turn on and off (default OFF for now).  Added buttons to login/signup/profile/signout.  Outseta protected main counts page.  "
+                />
+            </ListItem>
+            <ListItem>
+                <ListItemText
+                    primary="Moved debug menu back up to the top"
+                />
+            </ListItem>
             <Divider component="li"><Chip label="10/28/2023" /></Divider>
             <ListItem>
                 <ListItemText

@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import TextField from '@mui/material/TextField';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
@@ -21,7 +20,7 @@ import { DetailsView } from "../../components/DetailsView.js";
 import { DisplayNumber } from "../../functions/functions.js"
 import { sqft2acre } from "../../functions/formulas.js"
 
-import { BUILD, DATASTORETYPE, PROXYTYPE, SCRAPER, iconButtonFAStyle, modalStyle } from "../../constants/constants.js";
+import { iconButtonFAStyle, modalStyle } from "../../constants/constants.js";
 import { Copyright } from "../../components/Copyright.js"
 import { ZillowTable } from "../../components/ZillowTable.js";
 import { timeMatrix } from "../../constants/matrix.js";
@@ -33,7 +32,7 @@ import { BrokerageTable } from "../../components/BrokerageTable.js";
 import { fetchData, fetchDatasets, fetchDetailsData } from "../../api/apify.js";
 import { WhatsNew } from "../../components/WhatsNew.js";
 
-const App = () => {
+const App = ({ debugOptions }) => {
   const [isLoading, setLoading] = useState(false);
   const [isListingLoading, setListingLoading] = useState(false);
   const [isDetailsLoading, setDetailsLoading] = useState(false);
@@ -49,25 +48,14 @@ const App = () => {
   const [area, setArea] = useState("")
   const [countsDate, setCountsDate] = useState("");
   const [openSnack, setOpenSnack] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
 
   const searchParams = new URLSearchParams(document.location.search);
-
-  const hasDebugMenu = searchParams.has("debugMenu")
-  const hasBuildOnQS = searchParams.has("build")
 
   const [datasetId, setDatasetId] = useState("")
 
   const [loadTime, setLoadTime] = useState(0)
 
-  const [debugOptions, setDebugOptions] = useState({
-    buildNumber: hasBuildOnQS ? searchParams.get("build") : BUILD,
-    scraper: SCRAPER[0],
-    proxyType: PROXYTYPE[0],
-    maxConcurrency: 50,
-    dataSavingStoreType: DATASTORETYPE[0],
-    forceCleanSessionsCreation: false
-  })
+  const hasDebugMenu = searchParams.has("debugMenu")
 
   const toggleDrawer = (event, p) => {
     setOpenDrawer(openDrawer => {
@@ -202,33 +190,6 @@ const App = () => {
     };
   }
 
-  const handleChangeDebugMenu = (e, key) => {
-    setDebugOptions(prev => {
-      return {
-        ...debugOptions,
-        [key]: e.target.value
-      }
-    })
-  }
-
-  const handleChangeCheckbox = (event) => {
-    setDebugOptions(prev => {
-      return {
-        ...debugOptions,
-        forceCleanSessionsCreation: event.target.checked
-      }
-    })
-  };
-
-  const openDebugMenu = Boolean(anchorEl);
-  const handleDebugClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleDebugClose = () => {
-    setAnchorEl(null);
-  };
-
   if (searchParams.has("datasetid")) {
     if (datasetId === "") {
       setDatasetId(searchParams.get("datasetid"));
@@ -272,41 +233,7 @@ const App = () => {
   const [newOpen, setNewOpen] = useState(true)
   const handleWhatsNewClick = () => setNewOpen(prev => !prev)
 
-  const handleSliderChange = (event, newValue) => {
-    setDebugOptions(prev => {
-      return {
-        ...debugOptions,
-        maxConcurrency: newValue
-      }
-    })
-  };
-
-  const handleInputChange = (event) => {
-    setDebugOptions(prev => {
-      return {
-        ...debugOptions,
-        maxConcurrency: event.target.value === '' ? 0 : Number(event.target.value)
-      }
-    })
-  };
-
-  const handleBlur = () => {
-    if (debugOptions.maxConcurrency < 1) {
-      setDebugOptions(prev => {
-        return {
-          ...debugOptions,
-          maxConcurrency: 1
-        }
-      })
-    } else if (debugOptions.maxConcurrency > 50) {
-      setDebugOptions(prev => {
-        return {
-          ...debugOptions,
-          maxConcurrency: 50
-        }
-      })
-    }
-  };
+  const gridWidth = hasDebugMenu ? 4 : 6
 
   return (
     <>
@@ -314,9 +241,7 @@ const App = () => {
         <Grid container spacing={5} alignItems="left">
           <Grid
             item
-            xs={6}
-            sm={6}
-            md={6}
+            xs={gridWidth}
           >
             <Paper
               component="form"
@@ -398,9 +323,19 @@ const App = () => {
               </LoadingButton>
             </Paper>
           </Grid>
-          <Grid item xs={6}
-            sm={6}
-            md={6}>
+          {hasDebugMenu && <Grid item xs={gridWidth}>
+            <Typography variant="caption">
+              build: <strong>{debugOptions.buildNumber}</strong><br />
+              scraper: <strong>{debugOptions.scraper}</strong><br />
+              proxy: <strong>{debugOptions.proxyType}</strong><br />
+              dataSavingStoreType: <strong>{debugOptions.dataSavingStoreType}</strong><br />
+              maxConcurrency: <strong>{debugOptions.maxConcurrency}</strong><br />
+              forceCleanSessionsCreation: <strong>{debugOptions.forceCleanSessionsCreation.toString()}</strong><br />
+              useOutseta: <strong>{debugOptions.useOutseta.toString()}</strong><br />
+            </Typography>
+          </Grid>
+          }
+          <Grid item xs={gridWidth}>
             <Button
               id="basic-button"
               variant="text"
@@ -409,129 +344,9 @@ const App = () => {
               <Switch size="small" checked={newOpen} />
               What's New:
             </Button>
-            <Divider />
             <Collapse in={newOpen}>
               <WhatsNew />
             </Collapse>
-            {hasDebugMenu && (
-              <>
-                <Button
-                  id="basic-button"
-                  onClick={handleDebugClick}
-                >
-                  Debug Menu
-                </Button>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={openDebugMenu}
-                  onClose={handleDebugClose}
-                  MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                  }}
-                >
-                  <MenuItem>
-                    <Stack spacing={2}>
-                      <TextField
-                        id="outlined-error"
-                        label="Build Number"
-                        size="small"
-                        InputProps={{
-                          startAdornment: <FontAwesomeIcon icon={icon({ name: 'hammer' })} />,
-                        }}
-                        defaultValue={BUILD}
-                        value={debugOptions.buildNumber}
-                        onChange={(e) => handleChangeDebugMenu(e, "buildNumber")}
-                      />
-                      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                        <InputLabel id="demo-simple-select-helper-label">Select Scraper</InputLabel>
-                        <Select
-                          labelId="demo-select-small-label"
-                          id="demo-select-small"
-                          value={debugOptions.scraper}
-                          label="Select scraper"
-                          onChange={(e) => handleChangeDebugMenu(e, "scraper")}
-                        >
-                          {SCRAPER.map(scraper => (
-                            <MenuItem value={scraper} key={scraper}>{scraper}</MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                        <InputLabel id="demo-simple-select-helper-label">Select Proxy</InputLabel>
-                        <Select
-                          labelId="demo-select-small-label"
-                          id="demo-select-small"
-                          value={debugOptions.proxyType}
-                          label="Select proxy"
-                          onChange={(e) => handleChangeDebugMenu(e, "proxyType")}
-                        >
-                          {PROXYTYPE.map(proxy => (
-                            <MenuItem value={proxy} key={proxy}>{proxy}</MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                        <InputLabel id="demo-simple-select-helper-label">Select Datastore Type</InputLabel>
-                        <Select
-                          labelId="demo-select-small-label"
-                          id="demo-select-small"
-                          value={debugOptions.dataSavingStoreType}
-                          label="Select Datastore Type"
-                          onChange={(e) => handleChangeDebugMenu(e, "dataSavingStoreType")}
-                        >
-                          {DATASTORETYPE.map(store => (
-                            <MenuItem value={store} key={store}>{store}</MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                      <Box sx={{ width: 250 }}>
-                        <Typography id="input-slider" gutterBottom>
-                          Maximum Concurrency
-                        </Typography>
-                        <Grid container spacing={2} alignItems="center">
-                          <Grid item xs>
-                            <Slider
-                              max={50}
-                              min={1}
-                              value={typeof debugOptions.maxConcurrency === 'number' ? debugOptions.maxConcurrency : 1}
-                              onChange={handleSliderChange}
-                              aria-labelledby="input-slider"
-                            />
-                          </Grid>
-                          <Grid item>
-                            <Input
-                              value={debugOptions.maxConcurrency}
-                              size="small"
-                              onChange={handleInputChange}
-                              onBlur={handleBlur}
-                              inputProps={{
-                                step: 1,
-                                min: 1,
-                                max: 50,
-                                type: 'number',
-                                'aria-labelledby': 'input-slider',
-                              }}
-                            />
-                          </Grid>
-                        </Grid>
-                      </Box>
-                      <FormControlLabel control={<Checkbox checked={debugOptions.forceCleanSessionsCreation} onChange={handleChangeCheckbox} size="small" />} label="Force Clean Sessions Creation" />
-                    </Stack>
-                  </MenuItem>
-                </Menu>
-                <br />
-                <Typography variant="caption">
-                  build: <strong>{debugOptions.buildNumber}</strong><br />
-                  scraper: <strong>{debugOptions.scraper}</strong><br />
-                  proxy: <strong>{debugOptions.proxyType}</strong><br />
-                  dataSavingStoreType: <strong>{debugOptions.dataSavingStoreType}</strong><br />
-                  maxConcurrency: <strong>{debugOptions.maxConcurrency}</strong><br />
-                  forceCleanSessionsCreation: <strong>{debugOptions.forceCleanSessionsCreation.toString()}</strong><br />
-
-                </Typography>
-              </>
-            )}
           </Grid>
           <Grid item>
             {isLoading ? <CircularProgressTimer onUpdate={(sec) => {

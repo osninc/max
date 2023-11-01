@@ -27,6 +27,19 @@
     <title>land-stats.com</title>
     <link href="https://api.mapbox.com/mapbox-assembly/v1.5.1/assembly.min.css" rel="stylesheet" />
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet" />
+        <!-- Outseta Configuration -->
+        <script>
+          var o_options = {
+            domain: "queen.outseta.com",
+            /* Vital setting for a single page application */
+            monitorDom: true,
+            /* Do not load the nocode module */
+            load: "auth,profile"
+          };
+        </script>
+        
+        <!-- Outseta External Script -->
+        <script src="https://cdn.outseta.com/outseta.min.js" data-options="o_options"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

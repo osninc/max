@@ -1,11 +1,11 @@
 import { ThemeProvider } from "@emotion/react"
-import { Grid, AppBar, Box, Checkbox, Link, Button, CssBaseline, GlobalStyles, FormControl, FormControlLabel, Input, InputLabel, Toolbar, Typography, Container, Menu, MenuItem,Select, Slider, Snackbar, Stack } from "@mui/material"
+import { Grid, AppBar, Box, Checkbox, Link, Button, CssBaseline, GlobalStyles, FormControl, FormControlLabel, Input, InputLabel, Toolbar, Typography, Container, Menu, MenuItem,Select, Slider, Stack } from "@mui/material"
 import { defaultTheme } from "../constants/theme.js";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
-import { BUILD, DATASTORETYPE, PROXYTYPE, SCRAPER, iconButtonFAStyle, } from "../constants/constants.js";
+import { ACTORS, DEBUGMENU, iconButtonFAStyle } from "../constants/constants.js";
 
 import PropTypes from 'prop-types';
 import { useAuth } from "../routes/AuthProvider";
@@ -33,11 +33,11 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
     } = useAuth();
 
     const [debugOptions, setDebugOptions] = useState({
-        buildNumber: hasBuildOnQS ? searchParams.get("build") : BUILD,
-        scraper: SCRAPER[0],
-        proxyType: PROXYTYPE[0],
+        buildNumber: hasBuildOnQS ? searchParams.get("build") : ACTORS.ZILLOW.COUNT.BUILD,
+        scraper: DEBUGMENU.SCRAPER[0],
+        proxyType: DEBUGMENU.PROXYTYPE[0],
         maxConcurrency: 50,
-        dataSavingStoreType: DATASTORETYPE[0],
+        dataSavingStoreType: DEBUGMENU.DATASTORETYPE[0],
         forceCleanSessionsCreation: false,
         useOutseta: false
     })
@@ -112,7 +112,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
     useEffect(() => {
         if (onChangeDebugMenu)
             onChangeDebugMenu(debugOptions)
-    }, [debugOptions])
+    }, [debugOptions, onChangeDebugMenu])
     
 
     return (
@@ -168,7 +168,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                                                 InputProps={{
                                                     startAdornment: <FontAwesomeIcon icon={icon({ name: 'hammer' })} />,
                                                 }}
-                                                defaultValue={BUILD}
+                                                defaultValue={ACTORS.ZILLOW.COUNT.BUILD}
                                                 value={debugOptions.buildNumber}
                                                 onChange={(e) => handleChangeDebugMenu(e, "buildNumber")}
                                             />
@@ -181,7 +181,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                                                     label="Select scraper"
                                                     onChange={(e) => handleChangeDebugMenu(e, "scraper")}
                                                 >
-                                                    {SCRAPER.map(scraper => (
+                                                    {DEBUGMENU.SCRAPER.map(scraper => (
                                                         <MenuItem value={scraper} key={scraper}>{scraper}</MenuItem>
                                                     ))}
                                                 </Select>
@@ -195,7 +195,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                                                     label="Select proxy"
                                                     onChange={(e) => handleChangeDebugMenu(e, "proxyType")}
                                                 >
-                                                    {PROXYTYPE.map(proxy => (
+                                                    {DEBUGMENU.PROXYTYPE.map(proxy => (
                                                         <MenuItem value={proxy} key={proxy}>{proxy}</MenuItem>
                                                     ))}
                                                 </Select>
@@ -209,7 +209,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                                                     label="Select Datastore Type"
                                                     onChange={(e) => handleChangeDebugMenu(e, "dataSavingStoreType")}
                                                 >
-                                                    {DATASTORETYPE.map(store => (
+                                                    {DEBUGMENU.DATASTORETYPE.map(store => (
                                                         <MenuItem value={store} key={store}>{store}</MenuItem>
                                                     ))}
                                                 </Select>

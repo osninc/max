@@ -1,38 +1,68 @@
 export const BUILD = "yir-dev";
 export const STARTDETAILSACTOR = false;
-export const DETAILSDATASETS = [
-    "nkKNY73isUey7raQR",
-    "qFv1SUksqrs4zjZfQ",
-    "oaqwbywjprrh5d5PZ",
-    "7jXhphDpV6cZtysm5",
-    "HFUlstfORmP9MW205",
-    "SOft1uJjfQpVflPUP"
-]
 
-export const USETEST = {
-    counts: true,
-    listings: true,
-    details: true
+export const ACTORS = {
+    ZILLOW: {
+        COUNT: {
+            BUILD: BUILD,
+            ID: "OVT9EXRpZMjSZ2lhS"
+        },
+        DETAILS: {
+            BUILD: BUILD,
+            ID: "cFgGRlqgcB99RCBE5"
+        }
+    },
+    REDFIN: {
+        COUNT: {
+            BUILD: BUILD,
+            ID: "Q6imaQAKtun38uOho"
+        },
+        DETAILS: {
+            BUILD: BUILD,
+            ID: ""
+        }
+    },
+    REALTOR: {
+        COUNT: {
+            BUILD: BUILD,
+            ID: "eluFxHcr2G7Z3pzO8"
+        },
+        DETAILS: {
+            BUILD: BUILD,
+            ID: ""
+        }
+    }
 }
 
-export const SCRAPER = [
-    "AXIOS",
-    "CRAWLEE_SEND_REQUEST"
-]
-
-export const PROXYTYPE = [
-    "SMARTPROXY_RESIDENTIAL",
-    "APIFY_RESIDENTIAL",
-    "SMARTPROXY_DATACENTER",
-    "APIFY_DATACENTER"
-]
-
-export const DATASTORETYPE = [
-    "DATASET",
-    "KVS"
-]
+export const DEBUGMENU = {
+    SCRAPER: [
+        "AXIOS",
+        "CRAWLEE_SEND_REQUEST"
+    ],
+    PROXYTYPE: [
+        "SMARTPROXY_RESIDENTIAL",
+        "APIFY_RESIDENTIAL",
+        "SMARTPROXY_DATACENTER",
+        "APIFY_DATACENTER"
+    ],
+    DATASTORETYPE: [
+        "DATASET",
+        "KVS"
+    ]
+}
 
 export const APIFY = {
+    TOKEN: "apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H",
+    BASEURL: "https://api.apify.com/v2",
+    ENDPOINTS: {
+        NEW: "/acts/<ACTORID>/run-sync-get-dataset-items",
+        DATASETS: "/datasets/<DATASETID>/items",
+        INPUT: "/key-value-stores/<STOREID>/records/INPUT",
+        RUNS: "/acts/<ACTORID>/runs"
+    }
+}
+
+export const APIFY2 = {
     base: {
         url: "https://api.apify.com/v2/acts/OVT9EXRpZMjSZ2lhS",
         token: "apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H"

@@ -1,14 +1,18 @@
 import axios from "axios";
-import { APIFY, DETAILSDATASETS, STARTDETAILSACTOR } from "../constants/constants";
+import { APIFY, STARTDETAILSACTOR } from "../constants/constants";
 import { processError } from "../error";
 import { convertDateToLocal, sec2min, time2epoch } from "../functions/functions";
 import { getPropertyParams } from "../zillowGraphQl";
 import { defaultHeaders } from "../headers.js";
 import { normalizeTheData } from "./normalize";
+import { buildApifyUrl } from "./buildApifyUrl.js";
+
+//const buildApifyUrl = 
 
 export const fetchStore = async (storeId) => {
     try {
-        const url = `${APIFY.inputs.realTime.replace("<STOREID>", storeId)}?token=${APIFY.base.token}`;
+        //const url = `${APIFY.inputs.realTime.replace("<STOREID>", storeId)}?token=${APIFY.base.token}`;
+        const url = buildApifyUrl("", "", "input", storeId)
         const response = await axios.get(url);
         const data = response.data;
         // make this backwards compatible
@@ -19,16 +23,17 @@ export const fetchStore = async (storeId) => {
         }
     }
     catch (error) {
-        throw { message: processError("fetchStore", error) }
+        throw new Error({ message: processError("apify:fetchStore", error) })
     }
 }
 
 export const fetchCountsData = async (id) => {
     try {
-        const url = `${APIFY.datasets.realTime.replace("<DATASETID>", id)}?token=${APIFY.base.token}`
+        //const url = `${APIFY.datasets.realTime.replace("<DATASETID>", id)}?token=${APIFY.base.token}`
+        const url = buildApifyUrl("", "", "datasets", id)
         //console.log({ url })
         const axiosObj = {
-            method: APIFY.datasets.method,
+            method: "GET",
             url
         }
 
@@ -46,16 +51,18 @@ export const fetchCountsData = async (id) => {
         }
     }
     catch (error) {
-        throw { message: processError("fetchListingsData", error) }
+        throw new Error({ message: processError("apify:fetchListingsData", error) })
     }
 }
 
-const findAllDetailDatasets = async () => {
+const findAllDetailDatasets = async (source) => {
     // Check for at detail datasets
-    const aryOfStoreIds = await getDetailsSuccessfulRuns()
+    const aryOfStoreIds = await getDetailsSuccessfulRuns(source)
     //const detailsSets = await findAllDetaillDatasetId()
     const aryOfResults = await Promise.all(aryOfStoreIds.map(async ({ datasetId, storeId }) => {
-        const url = `${APIFY.listOfDetails.listOfInputs.replace("<STOREID>", storeId)}?token=${APIFY.base.token}&status=SUCCEEDED`;
+        //const url = `${APIFY.listOfDetails.listOfInputs.replace("<STOREID>", storeId)}?token=${APIFY.base.token}&status=SUCCEEDED`;
+        const url = buildApifyUrl(source, "details", "input", storeId)
+
         const response = await axios.get(url);
         const data = response.data
         return data.datasetId;
@@ -63,11 +70,12 @@ const findAllDetailDatasets = async () => {
     return [...new Set(aryOfResults)]
 }
 
-const getCountsSuccessfulRuns = async () => {
+const getCountsSuccessfulRuns = async (source) => {
     // Get a list of details datasets
-    const detailsDatasets = await findAllDetailDatasets();
+    const detailsDatasets = await findAllDetailDatasets(source);
 
-    const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true`;
+    //const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true`;
+    const url = buildApifyUrl(source, "count", "runs")
     const response = await axios.get(url);
     const data = response.data;
 
@@ -95,12 +103,12 @@ const getCountsSuccessfulRuns = async () => {
 }
 
 
-export const fetchDatasets = async () => {
+export const fetchDatasets = async (source) => {
     try {
-        return await getCountsSuccessfulRuns()
+        return await getCountsSuccessfulRuns(source)
     }
     catch (error) {
-        throw { message: processError("fecthDatasets", error) }
+        throw new Error({ message: processError("apify:fetchDatasets", error) })
     }
 }
 
@@ -179,14 +187,15 @@ export const fetchDetailsData = async (counts, zpid) => {
             return data[0];
         }
         catch (error2) {
-            throw { message: processError("fetchDetailsData", error2) }
+            throw new Error({ message: processError("apify:fetchDetailsData", error2) })
         }
     }
 }
 
-const getDetailsSuccessfulRuns = async () => {
+const getDetailsSuccessfulRuns = async (source) => {
     // Get a list of runs
-    const url = `${APIFY.listOfDetails.listOfRuns}?token=${APIFY.base.token}&status=SUCCEEDED`;
+    //const url = `${APIFY.listOfDetails.listOfRuns}?token=${APIFY.base.token}&status=SUCCEEDED`;
+    const url = buildApifyUrl(source, "details", "runs")
 
     const response = await axios.get(url);
     const data = response.data
@@ -202,7 +211,8 @@ const getDetailsSuccessfulRuns = async () => {
 
 const findDetailsDatasetsByRunDatasetId = async (aryOfStoreIds, ds) => {
     const aryOfResults = await Promise.all(aryOfStoreIds.map(async ({ datasetId, storeId }) => {
-        const url = `${APIFY.listOfDetails.listOfInputs.replace("<STOREID>", storeId)}?token=${APIFY.base.token}&status=SUCCEEDED`;
+        //const url = `${APIFY.listOfDetails.listOfInputs.replace("<STOREID>", storeId)}?token=${APIFY.base.token}&status=SUCCEEDED`;
+        const url = buildApifyUrl("","","input",storeId)
         const response = await axios.get(url);
         const data = response.data
         if (data.datasetId === ds)
@@ -224,9 +234,9 @@ const findCountsDatasetIdByInput = (aryOfRuns, search) => {
     return obj ? obj.value : ""
 }
 
-const findDetailsRunByDatasetId = async (ds) => {
+const findDetailsRunByDatasetId = async (source, ds) => {
     // Get a list of successful runs
-    const listOfStoreIds = await getDetailsSuccessfulRuns();
+    const listOfStoreIds = await getDetailsSuccessfulRuns(source);
 
     // find which store has the input of the current datasetId
     // Returns array
@@ -235,12 +245,13 @@ const findDetailsRunByDatasetId = async (ds) => {
     return runDatasetId.length > 0 ? runDatasetId[0] : "";
 }
 
-export const fetchDetails = async (ds) => {
-    const theDatasetId = await findDetailsRunByDatasetId(ds);
+export const fetchDetails = async (source, ds) => {
+    const theDatasetId = await findDetailsRunByDatasetId(source, ds);
 
     // if array is zero length, then there isn't a match, launch the actor
     if (theDatasetId !== "") {
-        const url = `${APIFY.listOfDetails.datasetItems.replace("<DATASETID>", theDatasetId)}?token=${APIFY.base.token}`;
+        //const url = `${APIFY.listOfDetails.datasetItems.replace("<DATASETID>", theDatasetId)}?token=${APIFY.base.token}`;
+        const url = buildApifyUrl("", "", "datasets", theDatasetId)
         const response = await axios.get(url);
         const data = response.data
         return data
@@ -252,7 +263,8 @@ export const fetchDetails = async (ds) => {
         console.log(`if true, then sending`)
         console.log(`datasetId: ${ds}`)
         if (STARTDETAILSACTOR) {// Run actor async without waiting
-            const url4 = `${APIFY.listOfDetails.listOfRuns}?token=${APIFY.base.token}&build=0.1.15`
+            //const url4 = `${APIFY.listOfDetails.listOfRuns}?token=${APIFY.base.token}&build=0.1.15`
+            const url4 = buildApifyUrl(source,"details","runs")
             const inputParams = {
                 datasetId: ds
             }
@@ -265,19 +277,19 @@ export const fetchDetails = async (ds) => {
 }
 
 // This is the main search function
-export const fetchData = async (params) => {
-    const { 
-        search, 
-        ds, 
+export const fetchData = async (source, params) => {
+    const {
+        search,
+        ds,
         buildNumber,
         proxyType,
         scraper,
         forceCleanSessionsCreation,
         maxConcurrency,
         dataSavingStoreType
-     } = params
+    } = params
 
-     let tempDs = ds;
+    let tempDs = ds;
 
     let searchBy = "county"
     // figure out what kind of search it is
@@ -315,8 +327,8 @@ export const fetchData = async (params) => {
     }
 
     if (tempDs === "") {
-        const url = `${APIFY.base.url}${APIFY.counts.endPoint}?token=${APIFY.base.token}&build=${buildNumber}`;
-
+        //const url = `${APIFY.base.url}${APIFY.counts.endPoint}?token=${APIFY.base.token}&build=${buildNumber}`;
+        const url = buildApifyUrl(source, "count", "new")
         axiosObj = {
             data: input,
             method: APIFY.counts.method,
@@ -324,10 +336,11 @@ export const fetchData = async (params) => {
         }
     }
     else {
-        const url = `${APIFY.datasets.realTime.replace("<DATASETID>", tempDs)}?token=${APIFY.base.token}`
+        //const url = `${APIFY.datasets.realTime.replace("<DATASETID>", tempDs)}?token=${APIFY.base.token}`
+        const url = buildApifyUrl("", "", "datasets", tempDs)
 
         axiosObj = {
-            method: APIFY.datasets.method,
+            method: "get",
             url
         }
     }
@@ -359,9 +372,9 @@ export const fetchData = async (params) => {
         let listingsDetails;
         // is there a datasetId in this dataset? if not, then get from param if any
         const thisDatasetId = data[0]?.datasetId ?? tempDs;
-
+        
         if (thisDatasetId) {
-            listingsDetails = await fetchDetails(thisDatasetId)
+            listingsDetails = await fetchDetails(source, thisDatasetId)
         }
         const normalizedData = normalizeTheData(data, listingsDetails)
 
@@ -373,7 +386,7 @@ export const fetchData = async (params) => {
         }
 
     } catch (error) {
-        throw { message: processError("fetchData", error) }
+        throw new Error({ message: processError("apify:fetchData", error) })
     }
 }
 

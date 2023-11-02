@@ -12,7 +12,7 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
-import { Alert, Box, Checkbox, CircularProgress, Collapse, Divider, Drawer, FormControl, FormControlLabel, Input, InputLabel, List, ListItem, ListItemIcon, ListItemText, Menu, MenuItem, Modal, Paper, Select, Slider, Snackbar, Stack, Switch, Tab, Tabs } from "@mui/material";
+import { Alert, Box, CircularProgress, Collapse, Divider, Drawer, FormControl,InputLabel, ListItemIcon, ListItemText, MenuItem, Modal, Paper, Select, Snackbar, Switch, Tab, Tabs } from "@mui/material";
 import { processError } from "../../error.js";
 
 
@@ -57,6 +57,12 @@ const App = ({ debugOptions }) => {
 
   const hasDebugMenu = searchParams.has("debugMenu")
 
+  const [source, setSource] = useState("zillow");
+
+  const handleSourceTabChange = (event, newValue) => {
+    setSource(newValue);
+  };
+
   const toggleDrawer = (event, p) => {
     setOpenDrawer(openDrawer => {
       // if it wasn't open before, then set the loader and load data
@@ -97,7 +103,7 @@ const App = ({ debugOptions }) => {
       const data = counts[lot][time][status].listings
       setListings(data)
     } catch (error) {
-      setMessage(processError("fetchListingData", error))
+      setMessage(processError("main:fetchListingData", error))
       setOpenSnack(true)
     } finally {
       setListingLoading(false);
@@ -126,7 +132,7 @@ const App = ({ debugOptions }) => {
         ...debugOptions
       }
 
-      const { data, area, date, searchBy } = await fetchData(params);
+      const { data, area, date, searchBy } = await fetchData(source, params);
 
       setArea(area)
       setCountsDate(date)
@@ -135,7 +141,7 @@ const App = ({ debugOptions }) => {
       setSearch(area)
 
     } catch (error) {
-      setMessage(processError("fetchData", error))
+      setMessage(processError("main:fetchData", error))
       setOpenSnack(true)
     } finally {
       setLoading(false);
@@ -156,10 +162,10 @@ const App = ({ debugOptions }) => {
     try {
       setMessage("")
       setDetailsLoading(true);
-      const details = await fetchDetailsData(counts, zpid);
+      const details = await fetchDetailsData(source, counts, zpid);
       setDetails(details)
     } catch (error) {
-      setMessage(processError("fetchDetailsData", error))
+      setMessage(processError("main:fetchDetailsData", error))
       setDetails({})
       setOpenSnack(true)
     } finally {
@@ -177,11 +183,6 @@ const App = ({ debugOptions }) => {
     setTabValue(newValue);
   };
 
-  const [sourceTabValue, setSourceTabValue] = useState("zillow");
-
-  const handleSourceTabChange = (event, newValue) => {
-    setSourceTabValue(newValue);
-  };
 
   const a11yProps = (index) => {
     return {
@@ -215,11 +216,11 @@ const App = ({ debugOptions }) => {
       // update dropdown
       try {
         setDatasetLoading(true)
-        const datasets = await fetchDatasets();
+        const datasets = await fetchDatasets(source);
         setDatasets(datasets);
       }
       catch (error) {
-        setMessage(processError("fecthDatasets", error))
+        setMessage(processError("main:fecthDatasets", error))
         setOpenSnack(true)
         setDatasets([])
       }
@@ -360,7 +361,7 @@ const App = ({ debugOptions }) => {
                     sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: "100%" }}
                   >
                     <Tabs
-                      value={sourceTabValue}
+                      value={source}
                       onChange={handleSourceTabChange}
                       aria-label="basic tabs example"
                       orientation="vertical"
@@ -387,7 +388,7 @@ const App = ({ debugOptions }) => {
                       {(tabValue === 6) && (counts.meta.hasDetails) ? (
                         <BrokerageTable data={counts} />
                       ) : (
-                        <ZillowTable loadTime={loadTime} area={area} date={countsDate} source={sourceTabValue} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                        <ZillowTable loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
                       )}
                     </Box>
                   </Box>

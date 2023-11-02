@@ -9,7 +9,8 @@ export const ACTORS = {
         },
         DETAILS: {
             BUILD: BUILD,
-            ID: "cFgGRlqgcB99RCBE5"
+            ID: "cFgGRlqgcB99RCBE5",
+            GRAPHQL: "https://www.zillow.com/graphql"
         }
     },
     REDFIN: {
@@ -19,7 +20,8 @@ export const ACTORS = {
         },
         DETAILS: {
             BUILD: BUILD,
-            ID: ""
+            ID: "",
+            GRAPHQL: ""
         }
     },
     REALTOR: {
@@ -29,7 +31,8 @@ export const ACTORS = {
         },
         DETAILS: {
             BUILD: BUILD,
-            ID: ""
+            ID: "",
+            GRAPHQL: ""
         }
     }
 }
@@ -55,65 +58,12 @@ export const APIFY = {
     TOKEN: "apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H",
     BASEURL: "https://api.apify.com/v2",
     ENDPOINTS: {
-        NEW: "/acts/<ACTORID>/run-sync-get-dataset-items",
-        DATASETS: "/datasets/<DATASETID>/items",
-        INPUT: "/key-value-stores/<STOREID>/records/INPUT",
-        RUNS: "/acts/<ACTORID>/runs"
-    }
-}
-
-export const APIFY2 = {
-    base: {
-        url: "https://api.apify.com/v2/acts/OVT9EXRpZMjSZ2lhS",
-        token: "apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H"
+        NEW: "/acts/<ACTORID>/run-sync-get-dataset-items?build=<BUILD>",
+        DATASETS: "/datasets/<DATASETID>/items/?",
+        INPUT: "/key-value-stores/<STOREID>/records/INPUT/?",
+        RUNS: "/acts/<ACTORID>/runs/?"
     },
-    counts: {
-        pastDays: 7,
-        use: "realTime",
-        method: "post",
-        endPoint: "/run-sync-get-dataset-items",
-        old: "https://api.apify.com/v2/datasets/RYjTNctyQeqlnFAAI/items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H",
-        realTime: `https://api.apify.com/v2/acts/OVT9EXRpZMjSZ2lhS/run-sync-get-dataset-items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H&build=<BUILD>`,
-    },
-    listings: {
-        use: "realTime",
-        method: "post",
-        old: `https://api.apify.com/v2/acts/land-stats~maxlistings/run-sync-get-dataset-items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H`,
-        realTime: `https://api.apify.com/v2/acts/9mmQQrjPzESssOG3d/run-sync-get-dataset-items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H`
-    },
-    details: {
-        use: "realTime",
-        method: "post",
-        old: "",
-        endPoint: "/run-sync-get-dataset-items",
-        realTime: "https://www.zillow.com/graphql",
-        backup: "https://api.apify.com/v2/acts/Iv8c0Q2qJueBe2sg6/run-sync-get-dataset-items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H"
-    },
-    builds: {
-        endPoint: "/builds",
-        realTime: "https://api.apify.com/v2/acts/land-stats~maxeverythingcount/builds?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H",
-        method: "get"
-    },
-    runs: {
-        endPoint: "/runs",
-        realTime: "https://api.apify.com/v2/acts/OVT9EXRpZMjSZ2lhS/runs?limit=15&token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H",
-        method: "get",
-        limit: 15
-    },
-    datasets: {
-        endPoint: "/items",
-        realTime: "https://api.apify.com/v2/datasets/<DATASETID>/items",
-        method: "get"
-    },
-    inputs: {
-        realTime: "https://api.apify.com/v2/key-value-stores/<STOREID>/records/INPUT",
-        method: "get"
-    },
-    listOfDetails: { // Zillow Details
-        listOfRuns: "https://api.apify.com/v2/acts/cFgGRlqgcB99RCBE5/runs",
-        listOfInputs: "https://api.apify.com/v2/key-value-stores/<STOREID>/records/INPUT",
-        datasetItems: "https://api.apify.com/v2/datasets/<DATASETID>/items"
-    }
+    PASTDAYS: 7
 }
 
 export const modalStyle = {

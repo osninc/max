@@ -1,5 +1,5 @@
 import axios from "axios";
-import { APIFY, STARTDETAILSACTOR } from "../constants/constants";
+import { ACTORS, APIFY, STARTDETAILSACTOR } from "../constants/constants";
 import { processError } from "../error";
 import { convertDateToLocal, sec2min, time2epoch } from "../functions/functions";
 import { getPropertyParams } from "../zillowGraphQl";
@@ -23,7 +23,7 @@ export const fetchStore = async (storeId) => {
         }
     }
     catch (error) {
-        throw new Error({ message: processError("apify:fetchStore", error) })
+        throw { message: processError("apify:fetchStore", error) }
     }
 }
 
@@ -51,7 +51,7 @@ export const fetchCountsData = async (id) => {
         }
     }
     catch (error) {
-        throw new Error({ message: processError("apify:fetchListingsData", error) })
+        throw { message: processError("apify:fetchListingsData", error) }
     }
 }
 
@@ -108,7 +108,7 @@ export const fetchDatasets = async (source) => {
         return await getCountsSuccessfulRuns(source)
     }
     catch (error) {
-        throw new Error({ message: processError("apify:fetchDatasets", error) })
+        throw { message: processError("apify:fetchDatasets", error) }
     }
 }
 
@@ -143,7 +143,7 @@ const fixElement = el => {
     }
 }
 
-export const fetchDetailsData = async (counts, zpid) => {
+export const fetchDetailsData = async (source, counts, zpid) => {
     // Check if counts already has the details, if so, return that data
     if (counts.meta.hasDetails) {
         const returnObj = findListingInObj(counts, zpid)
@@ -152,7 +152,7 @@ export const fetchDetailsData = async (counts, zpid) => {
         }
     }
 
-    const url = APIFY.details.realTime
+    const url = ACTORS[source.toUpperCase()].DETAILS.GRAPHQL
 
     const graphQlParams = getPropertyParams(zpid)
 
@@ -187,7 +187,7 @@ export const fetchDetailsData = async (counts, zpid) => {
             return data[0];
         }
         catch (error2) {
-            throw new Error({ message: processError("apify:fetchDetailsData", error2) })
+            throw { message: processError("apify:fetchDetailsData", error2) }
         }
     }
 }
@@ -318,10 +318,9 @@ export const fetchData = async (source, params) => {
         };
 
     let axiosObj;
-
     // Check to see if there is an existing Dataset for this search within the last X days
     if (tempDs === "") {
-        const existingDs = await findExistingDataset(search)
+        const existingDs = await findExistingDataset(source, search)
         if (existingDs !== "")
             tempDs = existingDs
     }
@@ -331,9 +330,10 @@ export const fetchData = async (source, params) => {
         const url = buildApifyUrl(source, "count", "new")
         axiosObj = {
             data: input,
-            method: APIFY.counts.method,
+            method: "post",
             url
         }
+        console.log({axiosObj})
     }
     else {
         //const url = `${APIFY.datasets.realTime.replace("<DATASETID>", tempDs)}?token=${APIFY.base.token}`
@@ -386,15 +386,15 @@ export const fetchData = async (source, params) => {
         }
 
     } catch (error) {
-        throw new Error({ message: processError("apify:fetchData", error) })
+        throw { message: processError("apify:fetchData", error) }
     }
 }
 
-const findExistingDataset = async (search) => {
+const findExistingDataset = async (source, search) => {
     // Get list of successful runs
-    const listOfRuns = await getCountsSuccessfulRuns();
+    const listOfRuns = await getCountsSuccessfulRuns(source);
     // Filter the runs by last X days
-    const someDaysAgo = new Date(Date.now() - APIFY.counts.pastDays * 24 * 60 * 60 * 1000)
+    const someDaysAgo = new Date(Date.now() - APIFY.PASTDAYS * 24 * 60 * 60 * 1000)
     const runFromSomeDaysAgo = listOfRuns.filter(run => {
         return (run.epochTime >= someDaysAgo)
     })

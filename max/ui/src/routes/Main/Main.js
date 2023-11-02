@@ -141,7 +141,7 @@ const App = ({ debugOptions }) => {
       setSearch(area)
 
     } catch (error) {
-      setMessage(processError("main:fetchData", error))
+      setMessage(processError("main:loadData", error))
       setOpenSnack(true)
     } finally {
       setLoading(false);

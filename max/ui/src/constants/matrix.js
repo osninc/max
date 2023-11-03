@@ -58,18 +58,18 @@ export const matrix = {
             "for sale": "sale"
         },
         time: {
-            "1 day": "7",
-            "3 days": "",
-            "1 week": "90",
-            "14 days": "",
+            "1 day": "1",
+            "3 days": "3",
+            "1 week": "7",
+            "14 days": "14",
             "1 month": "30",
-            "45 days": "",
-            "3 months": "24m",
-            "6 months": "",
-            "1 year": "6m",
-            "2 years": "12m",
-            "3 years": "36m",
-            "5 years": ""
+            "45 days": "45",
+            "3 months": "3m",
+            "6 months": "6m",
+            "1 year": "1y",
+            "2 years": "2y",
+            "3 years": "3y",
+            "5 years": "5y"
         },
         lot: {
             "0-0": {

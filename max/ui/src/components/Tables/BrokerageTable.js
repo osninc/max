@@ -1,6 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid"
 
-import { defaultTheme } from "../constants/theme"
+import { defaultTheme } from "../../constants/theme"
 
 const consolidateBrokers = data => {
     let brokers = []

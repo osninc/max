@@ -1,9 +1,9 @@
 import { Button, ButtonGroup, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { matrix } from "../constants/matrix.js";
-import { ThirdPartyIcon } from "./ThirdPartyIcon.js";
-import { DisplayNumber, USDollar, convertDateToLocal, sec2min } from "../functions/functions.js";
-import { ACTORS } from "../constants/constants.js";
+import { matrix } from "../../constants/matrix.js";
+import { ThirdPartyIcon } from "../ThirdPartyIcon.js";
+import { DisplayNumber, USDollar, convertDateToLocal, sec2min } from "../../functions/functions.js";
+import { ACTORS } from "../../constants/constants.js";
 
 const columnColor = {
     "sold": "white",
@@ -70,7 +70,6 @@ const DataCell = props => {
         const sale = record ? record["for sale"] : null;
 
         const lcLot = lot.toLowerCase();
-
         let commonParams = {
             "time": matrix[source].time[time.toLowerCase()],
             lot: lcLot

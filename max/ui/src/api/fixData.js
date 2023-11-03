@@ -78,7 +78,7 @@ export const fixData = (source, data) => {
         }
     })
 
-    console.log({ newData })
+    //console.log({ newData })
 
     return newData
 

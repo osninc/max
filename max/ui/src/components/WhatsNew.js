@@ -3,6 +3,17 @@ import { Chip, Divider, List, ListItem, ListItemText } from "@mui/material"
 export const WhatsNew = props => {
     return (
         <List dense={true}>
+            <Divider component="li"><Chip label="11/3/2023" /></Divider>
+            <ListItem>
+                <ListItemText
+                    primary="Support for Redfin data"
+                />
+            </ListItem>
+            <ListItem>
+                <ListItemText
+                    primary="Ability to have both zillow and redfin data at the same time"
+                />
+            </ListItem>
             <Divider component="li"><Chip label="10/29/2023" /></Divider>
             <ListItem>
                 <ListItemText

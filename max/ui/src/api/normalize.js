@@ -219,7 +219,7 @@ export const normalizeTheData = (data, details) => {
         }
     }
 
-    console.log({ c })
+    //console.log({ c })
 
     return c
 };

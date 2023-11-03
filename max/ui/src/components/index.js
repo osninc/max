@@ -9,4 +9,4 @@ export { SkeletonTable } from './SkeletonTable';
 export { default as TabPanel } from './TabPanel';
 export { ThirdPartyIcon } from './ThirdPartyIcon';
 export { default as  Timer } from './Timer';
-export { ZillowTable } from './ZillowTable';
+export { BigDataTable } from './BigDataTable';

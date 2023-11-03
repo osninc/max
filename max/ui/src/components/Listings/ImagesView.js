@@ -1,10 +1,11 @@
 
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 import { Button, ImageList, ImageListItem, ImageListItemBar } from "@mui/material"
 import { ThirdPartyIcon } from "../ThirdPartyIcon";
 import { srcset } from "../../constants/constants.js";
+import { getRealtorUrl } from "../../functions/functions.js";
 
-export const ImagesView = ({ listings, onClick }) => {
+export const ImagesView = ({ listings, onClick, source }) => {
     return (
         <ImageList sx={{
 
@@ -16,8 +17,8 @@ export const ImagesView = ({ listings, onClick }) => {
                 const newImage = item.imgSrc.includes("googleapis.com") ? "/no-image.png" : item.imgSrc;
                 return <ImageListItem key={item.zpid} cols={1} rows={1}>
                     <img
-                    {...srcset(newImage, 250, 200, 1, 1)}
-                    src={newImage}
+                        {...srcset(newImage, 250, 200, 1, 1)}
+                        src={newImage}
                         alt={item.zpid}
                         loading="lazy"
                         onClick={() => onClick(item.zpid)}
@@ -30,15 +31,15 @@ export const ImagesView = ({ listings, onClick }) => {
                             <Button
                                 sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
                                 aria-label={`info about ${item.title}`}
-                                href={`https://www.zillow.com/homedetails/${item.zpid}_zpid`} rel="noreferrer" target="_blank"
+                                href={getRealtorUrl(source, item.zpid, item.url)} rel="noreferrer" target="_blank"
                             >
 
-                                <ThirdPartyIcon site="zillow" />
+                                <ThirdPartyIcon site={source} />
                             </Button>
                         }
                     />
                 </ImageListItem>
-})}
+            })}
         </ImageList>
     )
 

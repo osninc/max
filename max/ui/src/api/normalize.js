@@ -1,5 +1,5 @@
 import { calcAbsorption, calcDom, calcMos, calcPpa, calcRatio, getListOfField, getSum } from "../functions/formulas";
-import { convertPriceStringToFloat, convertStrToAcre } from "../functions/functions";
+import { USDollar, convertPriceStringToFloat, convertStrToAcre } from "../functions/functions";
 
 const calcAvgPrice = ary => {
     if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
@@ -35,18 +35,20 @@ const calcAvgPpa = ary => {
 
 const fixListings = (listings, details) => {
     const f = listings.map(listing => {
-        const newPrice = convertPriceStringToFloat(listing.price)
+        //console.log({listing})
+        const newPrice = convertPriceStringToFloat(listing.price.toString())
         const newAcre = convertStrToAcre(listing.lotAreaString)
         const newPpa = calcPpa(newPrice, newAcre);
         //console.log({ newPpa })
         // replace all google images
-        const newImage = (listing.imgSrc.includes("googleapis.com")) ? "/no-image.png" : listing.imgSrc
+        const newImage = (listing.imgSrc.includes("googleapis.com")) || (listing.imgSrc === "") ? "/no-image.png" : listing.imgSrc
+        const newId = listing.zpid ?? listing.id
 
         let secondaryDetails = {}
         // find listings // There are some records that has no zpid
         if (details)
-            if (listing.zpid)
-                secondaryDetails = details[listing.zpid]
+            if (newId)
+                secondaryDetails = details[newId]
             else
                 secondaryDetails = {
                     dom: "N/A",
@@ -57,6 +59,8 @@ const fixListings = (listings, details) => {
 
         return {
             ...listing,
+            zpid: newId,
+            price: USDollar.format(newPrice),
             unformattedPrice: newPrice,
             acre: newAcre,
             unformattedPpa: newPpa,
@@ -113,10 +117,26 @@ export const normalizeTheData = (data, details) => {
         fixedDetails = fixDetails(details);
 
     let c = {}
+
+    // Some default calculated fields
+    const defaultCalcFields = {
+        count: 0,
+        url: "",
+        listings: [],
+        numPrices: 0,
+        sumPrice: 0,
+        mapCount: 0,
+        otherCount: 0,
+        avgPrice: 0,
+        avgPpa: 0,
+        avgDom: 0,
+        domCount: 0
+    }
+
     // Put everything in an object to reference faster and easier
     data.map((count, i) => {
         if (count.status !== undefined) {
-            const timeDim = (count.status?.toLowerCase() === "sold") ? count?.soldInLast?.toLowerCase() : count?.daysOnZillow?.toLowerCase();
+            const timeDim = (count.status?.toLowerCase() === "sold") ? count?.soldInLast?.toLowerCase() : count?.daysOn?.toLowerCase();
 
             if (timeDim) {
                 const fixedListings = fixListings(count.listings, fixedDetails);
@@ -133,13 +153,13 @@ export const normalizeTheData = (data, details) => {
                         ...(c[count.acreage?.toLowerCase()] ? c[count.acreage?.toLowerCase()][timeDim?.toLowerCase()] : {}),
                         timeStamp: count.timeStamp,
                         [count.status?.toLowerCase()]: {
-                            count: count.agentCount,
+                            count: count.agentCount ?? count.count,
                             url: count.url,
                             listings: fixedListings,
                             numPrices,
                             sumPrice: getSum(listOfPrices),
-                            mapCount: count.mapCount,
-                            otherCount: count.otherCount,
+                            mapCount: count.mapCount ?? 0,
+                            otherCount: count.otherCount ?? 0,
                             avgPrice: calcAvgPrice(fixedListings),
                             avgPpa: calcAvgPpa(fixedListings),
                             avgDom: calcAvg(listingsWithValues.dom),
@@ -156,11 +176,33 @@ export const normalizeTheData = (data, details) => {
     // Added calculated values
     Object.keys(c).map(acreage => {
         Object.keys(c[acreage]).map(time => {
+            // Check if there are both for sale and sold object, else add empty obj
+            let missingObj = {}
+            const hasFs = c[acreage][time]["for sale"] ? true : false
+            const hasSold = c[acreage][time]["sold"] ? true : false
+            if (!hasFs) {
+                missingObj = {
+                    ...missingObj,
+                    ["for sale"]: {...defaultCalcFields}
+                }
+            }
+            if (!hasSold) {
+                missingObj = {
+                    ...missingObj,
+                    ["sold"]: { ...defaultCalcFields }
+                }
+            }
+            // Add this so it can calculate in the next steps
             c[acreage][time] = {
                 ...c[acreage][time],
-                ratio: calcRatio(c[acreage][time]["for sale"]?.count, c[acreage][time]["sold"]?.count),
-                mos: calcMos(c[acreage][time]["for sale"]?.count, c[acreage][time]["sold"]?.count, time),
-                absorption: calcAbsorption(c[acreage][time]["for sale"]?.count, c[acreage][time]["sold"]?.count, time)
+                ...missingObj
+            }
+
+            c[acreage][time] = {
+                ...c[acreage][time],
+                ratio: calcRatio(c[acreage][time]["for sale"].count, c[acreage][time]["sold"].count),
+                mos: calcMos(c[acreage][time]["for sale"].count, c[acreage][time]["sold"].count, time),
+                absorption: calcAbsorption(c[acreage][time]["for sale"].count, c[acreage][time]["sold"].count, time)
 
             }
             return {};
@@ -177,7 +219,7 @@ export const normalizeTheData = (data, details) => {
         }
     }
 
-   // console.log({ c })
+    console.log({ c })
 
     return c
 };

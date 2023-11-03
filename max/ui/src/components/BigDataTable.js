@@ -1,16 +1,16 @@
 import { Button, ButtonGroup, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { lotMatrix, statusMatrix, timeMatrix } from "../constants/matrix.js";
-import { blue, cyan, green, yellow } from '@mui/material/colors';
+import { matrix } from "../constants/matrix.js";
 import { ThirdPartyIcon } from "./ThirdPartyIcon.js";
 import { DisplayNumber, USDollar, convertDateToLocal, sec2min } from "../functions/functions.js";
+import { ACTORS } from "../constants/constants.js";
 
 const columnColor = {
     "sold": "white",
     "for sale": "white"
 }
 
-const ZillowHeader = props => {
+const BigDataTableHeader = props => {
     const { bg, columns } = props
 
     return (
@@ -31,19 +31,33 @@ const DataCell = props => {
         field,
         open,
         onMouseEnter,
-        onMouseLeave
+        onMouseLeave,
+        source
     } = props;
     const record = counts[lot][time]
 
     const calcDaysInTimeFrame = {
+        "1 day": 1,
+        "3 days": 3,
         "7 days": 7,
+        "14 days": 14,
+        "1 week": 7,
         "30 days": 30,
+        "1 month": 30,
+        "45 days": 45,
         "90 days": 90,
+        "3 months": 180,
         "6 months": 180,
         "12 months": 360,
+        "1 year": 360,
         "24 months": 720,
-        "36 months": 1080
+        "2 years": 720,
+        "36 months": 1080,
+        "3 years": 1080,
+        "5 years": 1800
     }
+
+
 
     const typographyParams = {
         variant: "body2"
@@ -58,13 +72,13 @@ const DataCell = props => {
         const lcLot = lot.toLowerCase();
 
         let commonParams = {
-            "time": timeMatrix[time.toLowerCase()],
+            "time": matrix[source].time[time.toLowerCase()],
             lot: lcLot
         }
-        if (lotMatrix[lcLot].minLotSize !== "")
-            commonParams = { ...commonParams, "minLotSize": lotMatrix[lcLot].minLotSize.toString() }
-        if (lotMatrix[lcLot].maxLotSize !== "")
-            commonParams = { ...commonParams, "maxLotSize": lotMatrix[lcLot].maxLotSize.toString() }
+        if (matrix[source].lot[lcLot].minLotSize !== "")
+            commonParams = { ...commonParams, "minLotSize": matrix[source].lot[lcLot].minLotSize.toString() }
+        if (matrix[source].lot[lcLot].maxLotSize !== "")
+            commonParams = { ...commonParams, "maxLotSize": matrix[source].lot[lcLot].maxLotSize.toString() }
 
         const buttonGroupParams = {
             disableElevation: true,
@@ -84,7 +98,7 @@ const DataCell = props => {
             soldText = sold[field];
             soldParams = {
                 ...commonParams,
-                "status": statusMatrix["sold"],
+                "status": matrix[source].status["sold"],
                 count: sold.count,
                 mapCount: sold.mapCount
             }
@@ -103,7 +117,7 @@ const DataCell = props => {
                     >
                         <Button href="#" onClick={(e) => onClick(e, soldParams)} sx={{ color: "black" }}><strong>{DisplayNumber.format(soldText)}</strong></Button>
                         <Button href={sold.url} rel="noreferrer" target="_blank">
-                            <ThirdPartyIcon site="zillow" size="xs" />
+                            <ThirdPartyIcon site={source} size="xs" />
                         </Button>
                     </ButtonGroup>
                     break;
@@ -127,7 +141,7 @@ const DataCell = props => {
             saleText = sale[field];
             saleParams = {
                 ...commonParams,
-                "status": statusMatrix["for sale"],
+                "status": matrix[source].status["for sale"],
                 count: sale.count,
                 mapCount: sale.mapCount
             }
@@ -147,7 +161,7 @@ const DataCell = props => {
                     >
                         <Button href="#" onClick={(e) => onClick(e, saleParams)}>{DisplayNumber.format(saleText)}</Button>
                         <Button href={sale.url} rel="noreferrer" target="_blank">
-                            <ThirdPartyIcon site="zillow" size="xs" />
+                            <ThirdPartyIcon site={source} size="xs" />
                         </Button>
                     </ButtonGroup>
                     break;
@@ -160,10 +174,12 @@ const DataCell = props => {
 
         let moreSaleText = "";
         let moreSoldText = "";
-        if (record["for sale"].numPrices >= 500)
-            moreSaleText = <strong>DISCLAIMER: Results are limited to 500 records<br /></strong>;
-        if (record["sold"].numPrices >= 500)
-            moreSoldText = <strong>DISCLAIMER: Results are limited to 500 records<br /></strong>;
+        if (ACTORS[source.toUpperCase()].SHOWDISCLAIMNER) {
+            if (record["for sale"].numPrices >= 500)
+                moreSaleText = <strong>DISCLAIMER: Results are limited to 500 records<br /></strong>;
+            if (record["sold"].numPrices >= 500)
+                moreSoldText = <strong>DISCLAIMER: Results are limited to 500 records<br /></strong>;
+        }
         switch (field) {
             case "avgPrice":
                 saleHover = <Typography variant="caption">
@@ -193,7 +209,7 @@ const DataCell = props => {
                     sum(price/acre) / {record["sold"].numPrices} = {soldText}
                 </Typography>;
                 break;
-                case "avgDom":
+            case "avgDom":
                 saleHover = <Typography variant="caption">
                     {moreSaleText}
                     This value is the sum of each of the listing's Days On Market
@@ -206,7 +222,7 @@ const DataCell = props => {
                     divided by  ({record["sold"].domCount}) sales that had price history<br />
                     sum(DOM) / {record["sold"].domCount} = {soldText}
                 </Typography>;
-
+                break;
             default:
                 break;
         }
@@ -249,24 +265,24 @@ const DataCell = props => {
         switch (field) {
             case "mos":
                 text = <Typography variant="caption">
-                    This value was calculated by Number of Active Listings ({record["for sale"].count})
-                    divided by Number of Sales ({record["sold"].count}) multiplied by the number of days ({calcDaysInTimeFrame[time.toLowerCase()]})
+                    This value was calculated by Number of Active Listings ({record["for sale"]?.count})
+                    divided by Number of Sales ({record["sold"]?.count}) multiplied by the number of days ({calcDaysInTimeFrame[time.toLowerCase()]})
                     divided by 30 days<br />
-                    {record["for sale"].count} / {record["sold"].count} * {calcDaysInTimeFrame[time.toLowerCase()]} / 30 = {record[field]}
+                    {record["for sale"]?.count} / {record["sold"]?.count} * {calcDaysInTimeFrame[time.toLowerCase()]} / 30 = {record[field]}
                 </Typography>
                 break;
             case "absorption":
                 text = <Typography variant="caption">
-                    This value is the percentage of the Number of Sales ({record["sold"].count})
-                    divided by Number of Listings ({record["for sale"].count})<br />
-                    {record["sold"].count} / {record["for sale"].count} * 100% = {record[field]}
+                    This value is the percentage of the Number of Sales ({record["sold"]?.count})
+                    divided by Number of Listings ({record["for sale"]?.count})<br />
+                    {record["sold"]?.count} / {record["for sale"]?.count} * 100% = {record[field]}
                 </Typography>
                 break;
             case "ratio":
                 text = <Typography variant="caption">
-                    This value is the percentage of the Number of Listings ({record["for sale"].count})
-                    divided by Number of Sales ({record["sold"].count})<br />
-                    {record["for sale"].count} / {record["sold"].count} * 100% = {record[field]}
+                    This value is the percentage of the Number of Listings ({record["for sale"]?.count})
+                    divided by Number of Sales ({record["sold"]?.count})<br />
+                    {record["for sale"]?.count} / {record["sold"]?.count} * 100% = {record[field]}
                 </Typography>
                 break;
             default:
@@ -318,7 +334,7 @@ const ComingSoon = props => {
     )
 }
 
-export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime }) => {
+export const BigDataTable = ({ value, data, onClick, area, date, source, loadTime }) => {
     const newDate = convertDateToLocal(date)
     const newLoadTime = (loadTime > 0) ? `(${sec2min(loadTime)})` : "";
     const commonColText = [<Typography sx={{ color: "#505050" }} variant="body2">Listed</Typography>, <strong>Sold</strong>]
@@ -418,7 +434,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
         }
     }
 
-    const colSpan = 14;
+    const colSpan = Object.keys(matrix[source].time).length * 2;
 
     // For hovering
     const [anchorEl, setAnchorEl] = useState(null);
@@ -435,22 +451,27 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
     const open = Boolean(anchorEl);
 
     // calculate columns loop
-    const colLoop = [...Array(7)]
+    const colLoop = [...Array(Object.keys(matrix[source].time).length)]
 
     // Calculate 
-    const filteredData = Object.keys(data).filter(el=>el !== "meta").map(acreage => Object.keys(data[acreage]).map(time => {
-        const fsListingCount = data[acreage][time]["for sale"]?.count
-        const fsMapCount = data[acreage][time]["for sale"]?.mapCount
-        const soldListingCount = data[acreage][time]["sold"]?.count
-        const soldMapCount = data[acreage][time]["sold"]?.mapCount
+    const filteredData = Object.keys(data).filter(el => el !== "meta").map(acreage => Object.keys(data[acreage]).map(time => {
+        const fsListings = data[acreage][time]["for sale"] ? data[acreage][time]["for sale"].listings : [];
+        const soldListings = data[acreage][time]["sold"] ? data[acreage][time]["sold"].listings : [];
 
+        const fsListingCount = data[acreage][time]["for sale"]?.count ?? 0
+        const fsMapCount = data[acreage][time]["for sale"]?.mapCount ?? 0
+        const soldListingCount = data[acreage][time]["sold"]?.count ?? 0
+        const soldMapCount = data[acreage][time]["sold"]?.mapCount ?? 0
 
         return {
             count: fsListingCount + soldListingCount,
             mapCount: fsMapCount + soldMapCount,
-            listings: [...data[acreage][time]["for sale"].listings, ...data[acreage][time]["sold"].listings],
-            fsListings: data[acreage][time]["for sale"].listings,
-            soldListings: data[acreage][time]["sold"].listings,
+            listings: [
+                ...fsListings,
+                ...soldListings
+            ],
+            fsListings: fsListings,
+            soldListings: soldListings,
             forSale: fsListingCount,
             sold: soldListingCount
         }
@@ -479,7 +500,6 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
     const secondAllFlat = firstAllFlat.filter(el => el).flat(1)
     const uniqueAll = secondAllFlat.filter((value, index, array) => array.indexOf(value) === index)
 
-
     const counts = {
         mapCount: filteredData.filter(el => el.mapCount !== "N/A").reduce((a, b) => a + b.mapCount, 0),
         count: filteredData.filter(el => el.count !== "N/A").reduce((a, b) => a + b.count, 0),
@@ -491,7 +511,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
     }
 
     return (
-        ((value === 6) || (source !== "zillow")) ? (
+        ((value === 6) || (!["zillow", "redfin"].includes(source))) ? (
             <ComingSoon area={area} header={tableHeader[value]} date={newDate} />
         ) : (
             <TableContainer component={Paper}>
@@ -507,7 +527,9 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                                 </Typography><br />
                                 <Typography variant="caption">
                                     (Count=<strong>{DisplayNumber.format(counts.count)}</strong>&nbsp;
-                                    Details=<strong>{DisplayNumber.format(counts.mapCount)}</strong>&nbsp;
+                                    {ACTORS[source.toUpperCase()].SHOWDISCLAIMER && (
+                                        <> Details=<strong>{DisplayNumber.format(counts.mapCount)}</strong>&nbsp;</>
+                                    )}
                                     Uniques=<strong>{DisplayNumber.format(counts.unique)}</strong>&nbsp;
                                     For Sale=<strong>{DisplayNumber.format(counts.uniqueFs)}</strong>&nbsp;
                                     Sold=<strong>{DisplayNumber.format(counts.uniqueSold)}</strong>)
@@ -524,7 +546,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                             <TableCell>&nbsp;</TableCell>
                             <TableCell>&nbsp;</TableCell>
                             <TableCell>&nbsp;</TableCell>
-                            {Object.keys(timeMatrix).map(time => (
+                            {Object.keys(matrix[source].time).map(time => (
                                 (time !== "") &&
                                 (time) &&
                                 <TableCell key={time} variant="header" sx={{ color: "#808080" }} align="center" colSpan={2}><strong>{time}</strong></TableCell>
@@ -536,7 +558,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                                 <TableCell variant="header"><strong>Vacant Parcels</strong></TableCell>
                                 <TableCell variant="header"><strong>Acres</strong></TableCell>
                                 {colLoop.map((_, i) => (
-                                    <ZillowHeader
+                                    <BigDataTableHeader
                                         key={i}
                                         bg={commonBgColor}
                                         columns={tableHeader[value].columns}
@@ -547,7 +569,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                     </TableHead>
                     {(!tableHeader[value].comingSoon) ? (
                         <TableBody>
-                            {Object.keys(lotMatrix).map(lot => (
+                            {Object.keys(matrix[source].lot).map(lot => (
                                 <TableRow
                                     key={lot}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -555,7 +577,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                                     <TableCell align="center"><Typography variant="caption">TBD</Typography></TableCell>
                                     <TableCell align="center"><Typography variant="caption">TBD</Typography></TableCell>
                                     <TableCell align="center">{lot.toUpperCase()}</TableCell>
-                                    {Object.keys(timeMatrix).map(time => (
+                                    {Object.keys(matrix[source].time).map(time => (
                                         <DataCell
                                             key={`${time}${lot}${tableHeader[value].dataField}`}
                                             data={data}
@@ -569,6 +591,7 @@ export const ZillowTable = ({ value, data, onClick, area, date, source, loadTime
                                             anchorEl={anchorEl}
                                             onMouseEnter={(e, text) => handlePopoverOpen(e, text)}
                                             onMouseLeave={handlePopoverClose}
+                                            source={source}
                                         />
                                     ))}
                                 </TableRow>

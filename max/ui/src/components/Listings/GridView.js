@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Card, CardContent, CardMedia, IconButton, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import { USDollar, getGoogleMapsUrl, getZillowUrl } from "../../functions/functions";
+import { USDollar, getGoogleMapsUrl, getRealtorUrl } from "../../functions/functions";
 import { ThirdPartyIcon } from "../ThirdPartyIcon";
 import { darken, lighten, styled } from '@mui/material/styles';
 
@@ -15,7 +15,16 @@ import { defaultTheme } from "../../constants/theme";
 import Iframe from 'react-iframe'
 import { NotAvailable } from "../NotAvailable";
 
-export const GridView = ({ listings, onClick }) => {
+export const GridView = ({ source, listings, onClick }) => {
+    const detailsColumn = {
+        field: "zpid", headerName: "DETAILS", renderCell: ({ value }) => {
+            return (
+                <IconButton onClick={() => onClick(value)} color="primary">
+                    <FontAwesomeIcon icon={icon({ name: 'circle-info' })} size="sm" fixedWidth />
+                </IconButton>
+            )
+        }
+    }
     const columns = [
         {
             field: 'price',
@@ -72,15 +81,15 @@ export const GridView = ({ listings, onClick }) => {
             }
         },
         {
-            field: "zlink",
-            headerName: "ZILLOW LINK", valueGetter: (params) => getZillowUrl(params.row.zpid),
+            field: `${source}_link`,
+            headerName: `${source.toUpperCase()} LINK`, valueGetter: (params) => getRealtorUrl(source, params.row.zpid, params.row.url),
             renderCell: ({ value }) => {
                 return (
                     <IconButton
                         href={value} rel="noreferrer" target="_blank"
-                        style={{ color: SOURCE.zillow.color }}
+                        style={{ color: SOURCE[source].color }}
                     >
-                        <ThirdPartyIcon site="zillow" size="xs" />
+                        <ThirdPartyIcon site={source} size="xs" />
                     </IconButton>
                 )
             }
@@ -101,15 +110,6 @@ export const GridView = ({ listings, onClick }) => {
                     </IconButton>
                 )
             }
-        },
-        {
-            field: "zpid", headerName: "DETAILS", renderCell: ({ value }) => {
-                return (
-                    <IconButton onClick={() => onClick(value)} color="primary">
-                        <FontAwesomeIcon icon={icon({ name: 'circle-info' })} size="sm" fixedWidth />
-                    </IconButton>
-                )
-            }
         }
     ];
 
@@ -119,10 +119,10 @@ export const GridView = ({ listings, onClick }) => {
 
     const handlePopoverOpen = (event) => {
         const id = event.currentTarget.parentElement.dataset.id;
-        const row = listings.find(r => r.zpid === id);
+        const row = listings.find(r => r.zpid.toString() === id.toString());
         const field = event.currentTarget.dataset.field;
 
-        const ignoreFields = ["zlink", "gmaps", "zpid", "__check__"]
+        const ignoreFields = ["redfin_link", "zillow_link", "gmaps", "zpid", "__check__"]
         if (!ignoreFields.includes(field)) {
             setValue(row);
             setAnchorEl(event.currentTarget);
@@ -136,12 +136,17 @@ export const GridView = ({ listings, onClick }) => {
 
     const open = Boolean(anchorEl);
 
+    const showColumns = [
+        ...columns,
+        ((source !== "redfin") && detailsColumn)
+    ]
+
     return (
         <>
             <DataGrid
                 getRowId={(row) => row.zpid}
                 rows={listings}
-                columns={columns}
+                columns={showColumns}
                 initialState={{
                     pagination: {
                         paginationModel: {
@@ -184,7 +189,7 @@ export const GridView = ({ listings, onClick }) => {
                 disableRestoreFocus
             >
                 {(field === "zlink") ? (
-                    <Iframe url={getZillowUrl(value.zpid)}
+                    <Iframe url={getRealtorUrl(source, value.zpid)}
                         width="300px"
                         height="200px"
                         id=""

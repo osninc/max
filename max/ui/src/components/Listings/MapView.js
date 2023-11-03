@@ -5,7 +5,7 @@ import { Card, CardContent, CardMedia, IconButton, Tooltip, Typography } from '@
 import { createRoot } from 'react-dom/client';
 
 import { SOURCE } from '../../constants/constants.js';
-import { USDollar, getZillowUrl } from '../../functions/functions';
+import { USDollar, getRealtorUrl } from '../../functions/functions';
 import { ThirdPartyIcon } from '../ThirdPartyIcon';
 
 import GiteIcon from '@mui/icons-material/Gite';
@@ -66,8 +66,13 @@ const findCenter = listings => {
     }
 }
 
-const Marker = ({ children, listing }) => {
-    const htmlTitle = 
+const Marker = ({ children, listing, source }) => {
+    const newMarkerStyle = {
+        ...markerStyle,
+        backgroundColor: SOURCE[source].color,
+        borderColor: SOURCE[source].mapMarkerBorder
+    }
+    const htmlTitle =
         <Card>
             <CardMedia
                 sx={{ height: 140 }}
@@ -76,14 +81,14 @@ const Marker = ({ children, listing }) => {
             />
             <CardContent>
                 <Typography gutterBottom variant="subtitle1" component="div">
-                    {listing.streetAddress}<br/>{listing.city}, {listing.state} {listing.zipcode}
+                    {listing.streetAddress}<br />{listing.city}, {listing.state} {listing.zipcode}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    price: {USDollar.format(listing.unformattedPrice)}<br/>
-                    acreage: {listing.acre} acres<br/>
+                    price: {USDollar.format(listing.unformattedPrice)}<br />
+                    acreage: {listing.acre} acres<br />
                     price per acre: {USDollar.format(listing.unformattedPpa)}<br />
-                    lat: {listing.latitude}<br/>
-                    lng: {listing.longitude}<br/>
+                    lat: {listing.latitude}<br />
+                    lng: {listing.longitude}<br />
                 </Typography>
             </CardContent>
         </Card>
@@ -91,15 +96,15 @@ const Marker = ({ children, listing }) => {
 
     return (
         <Tooltip title={htmlTitle} placement="top">
-            <IconButton style={markerStyle} href={getZillowUrl(listing.zpid)} rel="noreferrer" target="_blank">
-                <ThirdPartyIcon site="zillow" fixedWidth size="sm"/> 
+            <IconButton style={newMarkerStyle} href={getRealtorUrl(source, listing.zpid)} rel="noreferrer" target="_blank">
+                <ThirdPartyIcon site={source} fixedWidth size="sm" />
             </IconButton>
         </Tooltip>
     );
 };
 
 
-export const MapView = ({ listings, onClick }) => {
+export const MapView = ({ listings, onClick, source }) => {
     const mapContainer = useRef(null);
     const map = useRef(null);
     const center = findCenter(listings)
@@ -130,7 +135,7 @@ export const MapView = ({ listings, onClick }) => {
             ref.current = document.createElement('div');
             // Render a Marker Component on our new DOM node
             createRoot(ref.current).render(
-                <Marker onClick={markerClicked} listing={listing} />
+                <Marker onClick={markerClicked} listing={listing} source={source} />
             );
 
             const f = new mapboxgl.Marker(ref.current).setLngLat([listing.longitude, listing.latitude]).addTo(map.current)

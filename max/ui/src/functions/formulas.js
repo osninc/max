@@ -19,13 +19,24 @@ export const calcMos = (sale, sold, time) => {
     }
 
     const calcDaysInTimeFrame = {
+        "1 day": calcDaysOf30(1),
+        "3 days": calcDaysOf30(3),
         "7 days": calcDaysOf30(7),
+        "14 days": calcDaysOf30(14),
+        "1 week": calcDaysOf30(7),
         "30 days": calcDaysOf30(30),
+        "1 month": calcDaysOf30(30),
+        "45 days": calcDaysOf30(45),
         "90 days": calcDaysOf30(90),
+        "3 months": calcDaysOf30(90),
         "6 months": calcDaysOf30(180),
         "12 months": calcDaysOf30(360),
+        "1 year": calcDaysOf30(360),
         "24 months": calcDaysOf30(720),
-        "36 months": calcDaysOf30(1080)
+        "2 years": calcDaysOf30(720),
+        "36 months": calcDaysOf30(1080),
+        "3 years": calcDaysOf30(1080),
+        "5 years": calcDaysOf30(1800)
     }
 
     if (!sold || (sold === 0) || (sold === "N/A")) return "0.00";

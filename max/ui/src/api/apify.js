@@ -6,6 +6,7 @@ import { getPropertyParams } from "../zillowGraphQl";
 import { defaultHeaders } from "../headers.js";
 import { normalizeTheData } from "./normalize";
 import { buildApifyUrl } from "./buildApifyUrl.js";
+import { fixData } from "./fixData.js";
 
 //const buildApifyUrl = 
 
@@ -39,10 +40,10 @@ export const fetchCountsData = async (id) => {
 
         const response = await axios(axiosObj);
         const data = response.data
-
+        
         const filteredData = data.filter(el => el.timeStamp)
-        const listingsCount = filteredData.filter(el => el.mapCount !== "N/A").reduce((a, b) => a + b.mapCount, 0);
-        const agentCount = filteredData.filter(el => el.agentCount !== "N/A").reduce((a, b) => a + b.agentCount, 0);
+        const listingsCount = filteredData.filter(el => el.mapCount !== "N/A").reduce((a, b) => a + (b.mapCount ?? 0), 0);
+        const agentCount = filteredData.filter(el => el.agentCount !== "N/A").reduce((a, b) => a + (b.agentCount ?? b.count), 0);
         return {
             counts: {
                 listings: listingsCount,
@@ -58,6 +59,9 @@ export const fetchCountsData = async (id) => {
 const findAllDetailDatasets = async (source) => {
     // Check for at detail datasets
     const aryOfStoreIds = await getDetailsSuccessfulRuns(source)
+    if (aryOfStoreIds.length === 0)
+        return [];
+
     //const detailsSets = await findAllDetaillDatasetId()
     const aryOfResults = await Promise.all(aryOfStoreIds.map(async ({ datasetId, storeId }) => {
         //const url = `${APIFY.listOfDetails.listOfInputs.replace("<STOREID>", storeId)}?token=${APIFY.base.token}&status=SUCCEEDED`;
@@ -74,8 +78,12 @@ const getCountsSuccessfulRuns = async (source) => {
     // Get a list of details datasets
     const detailsDatasets = await findAllDetailDatasets(source);
 
+    // if (detailsDatasets.length === 0)
+    //     return []
+
     //const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true`;
     const url = buildApifyUrl(source, "count", "runs")
+
     const response = await axios.get(url);
     const data = response.data;
 
@@ -99,7 +107,7 @@ const getCountsSuccessfulRuns = async (source) => {
     }))
 
     // Filter out ones where both listing and agent numbers are zero
-    return aryOfItems.filter(item => (item.counts.agent > 0) && (item.counts.listings > 0))
+    return (ACTORS[source.toUpperCase()].COUNT.IGNORECOUNTFILTER) ? aryOfItems : aryOfItems.filter(item => (item.counts.agent > 0) && (item.counts.listings > 0))
 }
 
 
@@ -197,22 +205,28 @@ const getDetailsSuccessfulRuns = async (source) => {
     //const url = `${APIFY.listOfDetails.listOfRuns}?token=${APIFY.base.token}&status=SUCCEEDED`;
     const url = buildApifyUrl(source, "details", "runs")
 
-    const response = await axios.get(url);
-    const data = response.data
+    try {
+        const response = await axios.get(url);
+        const data = response.data
 
-    // Returns a list of storeId and datasetIds
-    return data.data.items.map(d => {
-        return {
-            datasetId: d.defaultDatasetId,
-            storeId: d.defaultKeyValueStoreId
-        }
-    });
+        // Returns a list of storeId and datasetIds
+        return data.data.items.map(d => {
+            return {
+                datasetId: d.defaultDatasetId,
+                storeId: d.defaultKeyValueStoreId
+            }
+        });
+    }
+    catch (error) {
+        // If there is an error, just return an empty array
+        return []
+    }
 }
 
 const findDetailsDatasetsByRunDatasetId = async (aryOfStoreIds, ds) => {
     const aryOfResults = await Promise.all(aryOfStoreIds.map(async ({ datasetId, storeId }) => {
         //const url = `${APIFY.listOfDetails.listOfInputs.replace("<STOREID>", storeId)}?token=${APIFY.base.token}&status=SUCCEEDED`;
-        const url = buildApifyUrl("","","input",storeId)
+        const url = buildApifyUrl("", "", "input", storeId)
         const response = await axios.get(url);
         const data = response.data
         if (data.datasetId === ds)
@@ -237,9 +251,11 @@ const findCountsDatasetIdByInput = (aryOfRuns, search) => {
 const findDetailsRunByDatasetId = async (source, ds) => {
     // Get a list of successful runs
     const listOfStoreIds = await getDetailsSuccessfulRuns(source);
-
     // find which store has the input of the current datasetId
     // Returns array
+    if (listOfStoreIds.length === 0)
+        return "";
+
     const runDatasetId = await findDetailsDatasetsByRunDatasetId(listOfStoreIds, ds)
 
     return runDatasetId.length > 0 ? runDatasetId[0] : "";
@@ -264,7 +280,7 @@ export const fetchDetails = async (source, ds) => {
         console.log(`datasetId: ${ds}`)
         if (STARTDETAILSACTOR) {// Run actor async without waiting
             //const url4 = `${APIFY.listOfDetails.listOfRuns}?token=${APIFY.base.token}&build=0.1.15`
-            const url4 = buildApifyUrl(source,"details","runs")
+            const url4 = buildApifyUrl(source, "details", "runs")
             const inputParams = {
                 datasetId: ds
             }
@@ -333,7 +349,6 @@ export const fetchData = async (source, params) => {
             method: "post",
             url
         }
-        console.log({axiosObj})
     }
     else {
         //const url = `${APIFY.datasets.realTime.replace("<DATASETID>", tempDs)}?token=${APIFY.base.token}`
@@ -372,11 +387,14 @@ export const fetchData = async (source, params) => {
         let listingsDetails;
         // is there a datasetId in this dataset? if not, then get from param if any
         const thisDatasetId = data[0]?.datasetId ?? tempDs;
-        
+
         if (thisDatasetId) {
             listingsDetails = await fetchDetails(source, thisDatasetId)
         }
-        const normalizedData = normalizeTheData(data, listingsDetails)
+
+        const fixedData = fixData(source, data)
+
+        const normalizedData = normalizeTheData(fixedData, listingsDetails)
 
         return {
             data: normalizedData,

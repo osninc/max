@@ -12,7 +12,7 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
-import { Alert, Box, CircularProgress, Collapse, Divider, Drawer, FormControl,InputLabel, ListItemIcon, ListItemText, MenuItem, Modal, Paper, Select, Snackbar, Switch, Tab, Tabs } from "@mui/material";
+import { Alert, Box, CircularProgress, Collapse, Divider, Drawer, FormControl, InputLabel, ListItemIcon, ListItemText, MenuItem, Modal, Paper, Select, Snackbar, Switch, Tab, Tabs } from "@mui/material";
 import { processError } from "../../error.js";
 
 
@@ -20,10 +20,10 @@ import { DetailsView } from "../../components/DetailsView.js";
 import { DisplayNumber } from "../../functions/functions.js"
 import { sqft2acre } from "../../functions/formulas.js"
 
-import { iconButtonFAStyle, modalStyle } from "../../constants/constants.js";
+import { ACTORS, iconButtonFAStyle, modalStyle } from "../../constants/constants.js";
 import { Copyright } from "../../components/Copyright.js"
-import { ZillowTable } from "../../components/ZillowTable.js";
-import { timeMatrix } from "../../constants/matrix.js";
+import { BigDataTable } from "../../components/BigDataTable.js";
+import { matrix } from "../../constants/matrix.js";
 import SelectLocation from "../../components/SelectLocation.js";
 import ListingsView from "../../components/ListingsView.js";
 import { CircularProgressTimer } from "../../components/Listings/CircularProgressTimer.js";
@@ -49,6 +49,7 @@ const App = ({ debugOptions }) => {
   const [countsDate, setCountsDate] = useState("");
   const [openSnack, setOpenSnack] = useState(false);
 
+
   const searchParams = new URLSearchParams(document.location.search);
 
   const [datasetId, setDatasetId] = useState("")
@@ -57,10 +58,44 @@ const App = ({ debugOptions }) => {
 
   const hasDebugMenu = searchParams.has("debugMenu")
 
-  const [source, setSource] = useState("zillow");
+  const [source, setSource] = useState("redfin");
 
+  const defaultBigDataObj = {
+    area: "",
+    date: "",
+    data: {},
+    searchBy: "",
+    datasets: []
+  }
+
+  const [bigData, setBigData] = useState({})
+  const reInitSource = source => {
+    if (bigData[source]) {
+      setArea(bigData[source].area ?? "")
+      setCountsDate(bigData[source].date ?? "")
+      setCounts(bigData[source].data ?? {})
+      setSearchBy(bigData[source].searchBy ?? "")
+      setSearch(bigData[source].area ?? "")
+      setDatasets(bigData[source].datasets ?? [])
+    }
+    else {
+      setBigData(prev => {
+        return {
+          ...prev,
+          [source]: defaultBigDataObj
+        }
+      })
+      setArea(defaultBigDataObj.area)
+      setCountsDate(defaultBigDataObj.date)
+      setCounts(defaultBigDataObj.data)
+      setSearchBy(defaultBigDataObj.searchBy)
+      setSearch(defaultBigDataObj.area)
+      setDatasets(defaultBigDataObj.datasets)
+    }
+  }
   const handleSourceTabChange = (event, newValue) => {
     setSource(newValue);
+    reInitSource(newValue);
   };
 
   const toggleDrawer = (event, p) => {
@@ -75,8 +110,12 @@ const App = ({ debugOptions }) => {
             sizeStr = `0-${sqft2acre(p.maxLotSize)}`;
 
           const saleText = (p.status === "sale") ? "for sale" : "sold"
-          const timeText = Object.keys(timeMatrix).find(key => timeMatrix[key] === p.time)
-          setDrawerTitle(`(Count=${DisplayNumber.format(p.count)} Details=${DisplayNumber.format(p.mapCount)}) ${sizeStr} acre lots in ${area} ${saleText} within last ${timeText}`)
+          const timeText = Object.keys(matrix[source].time).find(key => matrix[source].time[key] === p.time)
+          let detailsText = ""
+          if (ACTORS[source.toUpperCase()].SHOWDISCLAIMER)
+            detailsText = ` Details = ${DisplayNumber.format(p.mapCount)}`;
+          const title = `(Count=${DisplayNumber.format(p.count)}${detailsText}) ${sizeStr} acre lots in ${area} ${saleText} within last ${timeText}`
+          setDrawerTitle(title)
           fetchListingData(
             {
               ...p,
@@ -133,6 +172,16 @@ const App = ({ debugOptions }) => {
       }
 
       const { data, area, date, searchBy } = await fetchData(source, params);
+
+      setBigData(prev => {
+        return {
+          ...prev,
+          [source]: {
+            ...prev[source],
+            data, area, date, searchBy
+          }
+        }
+      })
 
       setArea(area)
       setCountsDate(date)
@@ -218,9 +267,18 @@ const App = ({ debugOptions }) => {
         setDatasetLoading(true)
         const datasets = await fetchDatasets(source);
         setDatasets(datasets);
+        setBigData(prev => {
+          return {
+            ...prev,
+            [source]: {
+              ...prev[source],
+              datasets
+            }
+          }
+        })
       }
       catch (error) {
-        setMessage(processError("main:fecthDatasets", error))
+        setMessage(processError("main:fetchDatasets", error))
         setOpenSnack(true)
         setDatasets([])
       }
@@ -231,7 +289,7 @@ const App = ({ debugOptions }) => {
     }
   }
 
-  const [newOpen, setNewOpen] = useState(true)
+  const [newOpen, setNewOpen] = useState(false)
   const handleWhatsNewClick = () => setNewOpen(prev => !prev)
 
   const gridWidth = hasDebugMenu ? 4 : 6
@@ -307,7 +365,10 @@ const App = ({ debugOptions }) => {
                                 variant="body2"
                                 color="text.primary"
                               >
-                                {ds.elapsedTime} - Count:  <b>{DisplayNumber.format(ds.counts.agent)}</b> - Details: <b>{DisplayNumber.format(ds.counts.listings)}</b>
+                                {ds.elapsedTime} - Count:  <b>{DisplayNumber.format(ds.counts.agent)}</b>
+                                {ACTORS[source.toUpperCase()].SHOWDISCLAIMER && (
+                                  <> - Details: <b>{DisplayNumber.format(ds.counts.listings)}</b></>
+                                )}
                               </Typography>
                               {/* <br />
                               <Typography variant="caption" >{ds.value} - {ds.build}</Typography> */}
@@ -350,50 +411,48 @@ const App = ({ debugOptions }) => {
             </Collapse>
           </Grid>
           <Grid item>
-            {isLoading ? <CircularProgressTimer onUpdate={(sec) => {
-              setLoadTime(sec)
-            }} />
-              :
-              //<DataGrid rows={rows} columns={columns} />
-              (Object.keys(counts).length > 0) && (
-                <>
-                  <Box
-                    sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: "100%" }}
-                  >
-                    <Tabs
-                      value={source}
-                      onChange={handleSourceTabChange}
-                      aria-label="basic tabs example"
-                      orientation="vertical"
-                      variant="scrollable"
-                      sx={{ marginTop: 14 }}
-                    >
-                      <Tab label="Zillow" {...a11yProps(0)} value="zillow" variant="v" />
-                      <Tab label="Redfin" {...a11yProps(1)} value="redfin" variant="v" />
-                      <Tab label="Realtor" {...a11yProps(2)} value="realtor" variant="v" />
-                      <Tab label="Landwatch" {...a11yProps(3)} value="landwatch" variant="v" />
-                      <Tab label="MLS" {...a11yProps(4)} value="mls" variant="v" />
-                    </Tabs>
-                    <Box>
-                      <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example">
-                        <Tab label="Sales & Listings" {...a11yProps(0)} value={0} variant="h" />
-                        <Tab label="List/Sale Ratio" {...a11yProps(2)} value={2} variant="h" />
-                        <Tab label="Months of Supply" {...a11yProps(4)} value={4} variant="h" />
-                        <Tab label="Absorption Rate" {...a11yProps(4)} value={7} variant="h" />
-                        <Tab label="Average Prices" {...a11yProps(1)} value={1} variant="h" />
-                        <Tab label="Price Per Acre" {...a11yProps(3)} value={3} variant="h" />
-                        <Tab label="Days on Market" {...a11yProps(5)} value={5} variant="h" />
-                        <Tab label="Realtors" {...a11yProps(6)} value={6} variant="h" />
-                      </Tabs>
+            <Box
+              sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: "100%" }}
+            >
+              <Tabs
+                value={source}
+                onChange={handleSourceTabChange}
+                aria-label="basic tabs example"
+                orientation="vertical"
+                variant="scrollable"
+                sx={{ marginTop: 14 }}
+              >
+                <Tab label="Zillow" {...a11yProps(0)} value="zillow" variant="v" />
+                <Tab label="Redfin" {...a11yProps(1)} value="redfin" variant="v" />
+                <Tab label="Realtor" {...a11yProps(2)} value="realtor" variant="v" />
+                <Tab label="Landwatch" {...a11yProps(3)} value="landwatch" variant="v" />
+                <Tab label="MLS" {...a11yProps(4)} value="mls" variant="v" />
+              </Tabs>
+              <Box>
+                <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example">
+                  <Tab label="Sales & Listings" {...a11yProps(0)} value={0} variant="h" />
+                  <Tab label="List/Sale Ratio" {...a11yProps(2)} value={2} variant="h" />
+                  <Tab label="Months of Supply" {...a11yProps(4)} value={4} variant="h" />
+                  <Tab label="Absorption Rate" {...a11yProps(4)} value={7} variant="h" />
+                  <Tab label="Average Prices" {...a11yProps(1)} value={1} variant="h" />
+                  <Tab label="Price Per Acre" {...a11yProps(3)} value={3} variant="h" />
+                  <Tab label="Days on Market" {...a11yProps(5)} value={5} variant="h" />
+                  <Tab label="Realtors" {...a11yProps(6)} value={6} variant="h" />
+                </Tabs>
+                {isLoading ? <CircularProgressTimer onUpdate={(sec) => {
+                  setLoadTime(sec)
+                }} /> :
+                  (Object.keys(counts).length > 0) && (
+                    <>
                       {(tabValue === 6) && (counts.meta.hasDetails) ? (
                         <BrokerageTable data={counts} />
                       ) : (
-                        <ZillowTable loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                        <BigDataTable loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
                       )}
-                    </Box>
-                  </Box>
-                </>
-              )}
+                    </>
+                  )}
+              </Box>
+            </Box>
           </Grid>
         </Grid>
       </Container>
@@ -418,7 +477,7 @@ const App = ({ debugOptions }) => {
         <Typography align="center" variant="h6" gutterBottom color="primary">{drawerTitle}</Typography>
         <Container>
           <Box>
-            {isListingLoading ? <CircularProgress /> : <ListingsView listings={listings} onDetailsClick={(zpid) => openDetails(zpid)} />}
+            {isListingLoading ? <CircularProgress /> : <ListingsView source={source} listings={listings} onDetailsClick={(zpid) => openDetails(zpid)} />}
           </Box>
         </Container>
       </Drawer>

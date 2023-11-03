@@ -5,35 +5,52 @@ export const ACTORS = {
     ZILLOW: {
         COUNT: {
             BUILD: BUILD,
-            ID: "OVT9EXRpZMjSZ2lhS"
+            ID: "OVT9EXRpZMjSZ2lhS",
+            IGNORECOUNTFILTER: false,
+            CONVERTACREAGE: false,
+            RENAMEFIELDS: {
+                daysOnZillow: "daysOn"
+            }
         },
         DETAILS: {
             BUILD: BUILD,
             ID: "cFgGRlqgcB99RCBE5",
             GRAPHQL: "https://www.zillow.com/graphql"
-        }
+        },
+        SHOWDISCLAIMER: true // This is the disclaimer aabout zillow only showing maximum 500 details
     },
     REDFIN: {
         COUNT: {
             BUILD: BUILD,
-            ID: "Q6imaQAKtun38uOho"
+            ID: "Q6imaQAKtun38uOho",
+            IGNORECOUNTFILTER: true,
+            CONVERTACREAGE: true,
+            RENAMEFIELDS: {// The key would be the what exists in the JSON, and the value is what we have the new key to be
+                daysOnRedfin: "daysOn",
+                count: "agentCount"
+            }
+
         },
         DETAILS: {
             BUILD: BUILD,
             ID: "",
             GRAPHQL: ""
-        }
+        },
+        SHOWDISCLAIMER: false
     },
     REALTOR: {
         COUNT: {
             BUILD: BUILD,
-            ID: "eluFxHcr2G7Z3pzO8"
+            ID: "eluFxHcr2G7Z3pzO8",
+            IGNORECOUNTFILTER: false,
+            RENAMEFIELDS: []
         },
         DETAILS: {
             BUILD: BUILD,
             ID: "",
             GRAPHQL: ""
-        }
+        },
+        SHOWDISCLAIMER: false
     }
 }
 
@@ -61,7 +78,7 @@ export const APIFY = {
         NEW: "/acts/<ACTORID>/run-sync-get-dataset-items?build=<BUILD>",
         DATASETS: "/datasets/<DATASETID>/items/?",
         INPUT: "/key-value-stores/<STOREID>/records/INPUT/?",
-        RUNS: "/acts/<ACTORID>/runs/?"
+        RUNS: "/acts/<ACTORID>/runs/?&desc=true"
     },
     PASTDAYS: 7
 }
@@ -90,10 +107,12 @@ export const srcset = (image, width, height, rows = 1, cols = 1) => {
 
 export const SOURCE = {
     zillow: {
-        color: "#1277e1"
+        color: "#1277e1",
+        mapMarkerBorder: "blue"
     },
     redfin: {
-        color: "#a02021"
+        color: "#a02021",
+        mapMarkerBorder: "red"
     },
     realtor: {
         color: "#b76e79"

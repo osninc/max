@@ -108,8 +108,18 @@ export const getGoogleMapsUrl = address => {
     return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
 }
 
-export const getZillowUrl = zpid => {
-    return `https://www.zillow.com/homes/${zpid}_zpid`
+export const getRealtorUrl = (source, zpid, url) => {
+    switch (source) {
+        case "zillow":
+            return `https://www.zillow.com/homes/${zpid}_zpid`;
+            break;
+        case "redfin":
+            return url;
+            break;
+        default:
+            break
+    }
+
 }
 
 export const sec2min = seconds => {

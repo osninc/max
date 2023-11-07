@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -6,18 +6,19 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import LoadingButton from '@mui/lab/LoadingButton';
 
+import TabPanel from "../../components/TabPanel.js";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
-import { Alert, Box, CircularProgress, Collapse, Divider, Drawer, FormControl, InputLabel, ListItemIcon, ListItemText, MenuItem, Modal, Paper, Select, Snackbar, Switch, Tab, Tabs } from "@mui/material";
+import { Alert, Box, Checkbox, CircularProgress, Collapse, Divider, Drawer, FormControl, FormControlLabel, InputLabel, ListItemIcon, ListItemText, MenuItem, Modal, Paper, Radio, RadioGroup, Select, Snackbar, Switch, Tab, Tabs, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { processError } from "../../error.js";
 
 
 import { DetailsView } from "../../components/DetailsView.js";
-import { DisplayNumber, capitalizeFirstLetter } from "../../functions/functions.js"
+import { DisplayNumber, capitalizeFirstLetter, getRandomInt, later } from "../../functions/functions.js"
 import { sqft2acre } from "../../functions/formulas.js"
 
 import { ACTORS, iconButtonFAStyle, modalStyle } from "../../constants/constants.js";
@@ -31,6 +32,8 @@ import { CircularProgressTimer } from "../../components/Listings/CircularProgres
 import { BrokerageTable } from "../../components/Tables/BrokerageTable.js";
 import { fetchData, fetchDatasets, fetchDetailsData } from "../../api/apify.js";
 import { WhatsNew } from "../../components/WhatsNew.js";
+
+const sources = Object.keys(ACTORS).map(actor => actor.toLowerCase())
 
 const App = ({ debugOptions }) => {
   const [isLoading, setLoading] = useState(false);
@@ -58,7 +61,7 @@ const App = ({ debugOptions }) => {
 
   const hasDebugMenu = searchParams.has("debugMenu")
 
-  const [source, setSource] = useState("zillow");
+  const [source, setSource] = useState(sources[0]);
 
   const defaultBigDataObj = {
     area: "",
@@ -69,6 +72,7 @@ const App = ({ debugOptions }) => {
   }
 
   const [bigData, setBigData] = useState({})
+
   const reInitSource = source => {
     if (bigData[source]) {
       setArea(bigData[source].area ?? "")
@@ -96,6 +100,7 @@ const App = ({ debugOptions }) => {
   const handleSourceTabChange = (event, newValue) => {
     setSource(newValue);
     reInitSource(newValue);
+    setPrevDsSource(newValue)
   };
 
   const toggleDrawer = (event, p) => {
@@ -157,22 +162,20 @@ const App = ({ debugOptions }) => {
     // setSearch("")
   }
 
-  const loadData = async (ds) => {
-    clearStates()
+  const loadData = async (source, ds) => {
+    // input: { search, ds, buildNumber, proxy, scraper }
+    // output: { data, area, date, searchBy }
+    const params = {
+      search,
+      ds,
+      ...debugOptions
+    }
+
     try {
-      setMessage("");
-      setLoading(true);
-
-      // input: { search, ds, buildNumber, proxy, scraper }
-      // output: { data, area, date, searchBy }
-      const params = {
-        search,
-        ds,
-        ...debugOptions
-      }
-
       const { data, area, date, searchBy } = await fetchData(source, params);
-
+      //const rInt = getRandomInt(10)
+      //console.log(rInt)
+      //const { data, area, date, searchBy } = await later(rInt * 1000, { data: {meta: {hasDetails: false}, "0-1": {"for sale": {listings: []}}}, area: `hello from ${rInt}`, date: "the date", searchBy: "county" })
       setBigData(prev => {
         return {
           ...prev,
@@ -183,23 +186,67 @@ const App = ({ debugOptions }) => {
         }
       })
 
-      setArea(area)
-      setCountsDate(date)
-      setCounts(data)
-      setSearchBy(searchBy)
-      setSearch(area)
-
+      setSourceLoading(prev => {
+        return {
+          ...prev,
+          [source]: false
+        }
+      })
     } catch (error) {
-      setMessage(processError("main:loadData", error))
+      setMessage(processError(`main:loadData:${source}`, error))
       setOpenSnack(true)
-    } finally {
-      setLoading(false);
     }
   }
 
+  // const loadData2 = async (ds) => {
+  //   // TODO: test Zillow ds = "GkWsC5IhvSTbzurH6"
+  //   // TODO: test redfin ds = "6dM5zesoSsfwBFjd7"
+  //   clearStates()
+  //   try {
+  //     setMessage("");
+  //     setLoading(true);
+
+  //     // input: { search, ds, buildNumber, proxy, scraper }
+  //     // output: { data, area, date, searchBy }
+  //     const params = {
+  //       search,
+  //       ds,
+  //       ...debugOptions
+  //     }
+
+  //     const { data, area, date, searchBy } = await fetchData(source, params);
+
+  //     setBigData(prev => {
+  //       return {
+  //         ...prev,
+  //         [source]: {
+  //           ...prev[source],
+  //           data, area, date, searchBy
+  //         }
+  //       }
+  //     })
+
+  //     setArea(area)
+  //     setCountsDate(date)
+  //     setCounts(data)
+  //     setSearchBy(searchBy)
+  //     setSearch(area)
+
+  //   } catch (error) {
+  //     setMessage(processError("main:loadData", error))
+  //     setOpenSnack(true)
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
+
+  // This function is handling the main search button
   const handleClick = async () => {
-    setLoading(true);
-    await loadData("");
+    setSourceLoading(sourcesSelected)
+    Object.keys(sourcesSelected).map(source => {
+      if (sourcesSelected[source])
+        loadData(source, "")
+    })
   }
 
   const handleTextChange = e => {
@@ -252,10 +299,45 @@ const App = ({ debugOptions }) => {
     setDataset(event.target.value);
   };
 
+  const [sourceLoading, setSourceLoading] = useState(sources.reduce((a, v) => ({ ...a, [v]: false }), {}))
+
   const handleDatasetSearch = async () => {
-    setLoading(true);
-    await loadData(dataset);
+    setSourceLoading(prev => {
+      return {
+        ...prev,
+        [prevDsSource]: true
+      }
+    })
+    await loadData(prevDsSource, dataset);
   }
+
+  const [initialLoad, setInitialLoad] = useState(false)
+  useEffect(() => {
+    if (Object.keys(bigData).length > 0) {
+      // This is the first time to have data
+      if (!initialLoad) {
+        // set my first data
+        const newSource = Object.keys(bigData)[0]
+        setSource(newSource)
+        reInitSource(newSource);
+        // Only set it to true if I truly have data, not a set of datasets
+        if (bigData[newSource].data && (Object.keys(bigData[newSource].data).length > 0))
+          setInitialLoad(true)
+      }
+      else {
+        setSource(source)
+        reInitSource(source);
+      }
+    }
+    else {
+      // Every other time
+      if (initialLoad) {
+        setSource(source)
+        reInitSource(source);
+      }
+    }
+
+  }, [bigData, source])
 
   const [datasetLoading, setDatasetLoading] = useState(false)
   const [datasets, setDatasets] = useState([])
@@ -265,13 +347,13 @@ const App = ({ debugOptions }) => {
       // update dropdown
       try {
         setDatasetLoading(true)
-        const datasets = await fetchDatasets(source);
+        const datasets = await fetchDatasets(prevDsSource);
         setDatasets(datasets);
         setBigData(prev => {
           return {
             ...prev,
-            [source]: {
-              ...prev[source],
+            [prevDsSource]: {
+              ...prev[prevDsSource],
               datasets
             }
           }
@@ -294,6 +376,35 @@ const App = ({ debugOptions }) => {
 
   const gridWidth = hasDebugMenu ? 4 : 6
 
+  const [sourcesSelected, setSourcesSelected] = React.useState(sources.reduce((a, v) => ({ ...a, [v]: ACTORS[v.toUpperCase()].ACTIVE }), {}));
+  const handleSourcesSelected = (event) => {
+    setSourcesSelected(prev => {
+      // Make sure at least one is checked
+      const original = {
+        ...prev
+      }
+      const updated = {
+        ...prev,
+        [event.target.name]: event.target.checked
+      }
+      return (Object.values(updated).filter(p => p === true).length === 0) ? original : updated
+    })
+  };
+
+  const [searchType, setSearchType] = React.useState("new");
+
+  const handleSearchTypeChange = (event, newValue) => {
+    setSearchType(newValue);
+  };
+
+  const [prevDsSource, setPrevDsSource] = React.useState(sources[0]);
+
+  const handlePrevDsSourceChange = (event) => {
+    setSource(event.target.value);
+    reInitSource(event.target.value);
+    setPrevDsSource(event.target.value);
+  };
+
   return (
     <>
       <Container disableGutters fixed maxWidth={false}>
@@ -302,88 +413,138 @@ const App = ({ debugOptions }) => {
             item
             xs={gridWidth}
           >
-            <Paper
-              component="form"
-              elevation={0}
-              sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
-            >
-              {/* <IconButton sx={{ p: '10px' }} aria-label="menu">
+            <Tabs value={searchType} onChange={handleSearchTypeChange} >
+              <Tab icon={<FontAwesomeIcon icon={icon({ name: 'magnifying-glass-plus' })} />} label="New Search" value="new" />
+              <Tab icon={<FontAwesomeIcon icon={icon({ name: 'repeat' })} />} label="Previous Searches" value="previous" />
+            </Tabs>
+
+            <TabPanel value={searchType} index="new">
+              <Paper
+                component="form"
+                elevation={0}
+                sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+              >
+                {/* <IconButton sx={{ p: '10px' }} aria-label="menu">
                 <FontAwesomeIcon icon={icon({ name: 'map-pin' })} />
               </IconButton> */}
-              <SelectLocation onChange={(value) => handleTextChange(value)} value={search} />
+                <SelectLocation onChange={(value) => handleTextChange(value)} value={search} />
 
-              {/* <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" /> */}
+                {/* <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" /> */}
 
-              <LoadingButton sx={{ paddingLeft: 1, paddingRight: 1 }} loading={isLoading || datasetLoading} loadingIndicator="Fetching..." variant="contained" onClick={handleClick}>
-                <FontAwesomeIcon icon={icon({ name: 'search' })} fixedWidth style={iconButtonFAStyle} />
-                Search
-              </LoadingButton>
+                <LoadingButton sx={{ paddingLeft: 1, paddingRight: 1 }} loading={isLoading || datasetLoading} loadingIndicator="Fetching..." variant="contained" onClick={handleClick}>
+                  <FontAwesomeIcon icon={icon({ name: 'search' })} fixedWidth style={iconButtonFAStyle} />
+                  Search
+                </LoadingButton>
+              </Paper>
 
-            </Paper>
-            <Paper
-              component="form"
-              elevation={0}
-              sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "100%" }}
-            >
-              <Typography variant="body2">Or choose from:</Typography>
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small" variant="standard" >
-                <InputLabel id="demo-select-small-label">Dataset</InputLabel>
-                <Select
-                  labelId="demo-select-small-label"
-                  id="demo-select-small"
-                  value={dataset}
-                  label="Dataset ID"
-                  onChange={handleDatasetChange}
-                  onOpen={handleDatasetClick}
-                >
-                  {datasetLoading ? [
-                    <CircularProgress key={0} size={20} />,
-                    <Typography key={1} variant="caption">Updating...</Typography>
-                  ] : (
-                    (datasets.length > 0) && (datasets.map(ds => (
-                      [
-                        <Divider key={`${ds.value}0`}>
-                          <Typography variant="caption">{ds.date}</Typography>
-                        </Divider>
-                        ,
-                        <MenuItem key={`${ds.value}1`} value={ds.value}>
-                          {/* <ListItemIcon>
+              {sources.map(source => (
+                <FormControlLabel control={
+                  <Checkbox
+                    checked={sourcesSelected[source] && ACTORS[source.toUpperCase()].ACTIVE}
+                    onChange={handleSourcesSelected}
+                    name={source}
+                    size="small" />
+                } label={
+                  <>
+                    <img src={`logos/${source}.png`} width={20} height={20} />
+                    {!ACTORS[source.toUpperCase()].ACTIVE && <Typography variant="caption">&nbsp;(Coming soon!)</Typography>}
+                  </>
+                }
+                  disabled={!ACTORS[source.toUpperCase()].ACTIVE}
+                />
+              ))}
+            </TabPanel>
+
+
+            <TabPanel value={searchType} index="previous">
+              <Paper
+                component="form"
+                elevation={0}
+                sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "100%" }}
+              >
+                <FormControl sx={{ m: 1, minWidth: 120 }} size="small" variant="standard" >
+                  <InputLabel id="demo-select-small-label">Dataset</InputLabel>
+                  <Select
+                    labelId="demo-select-small-label"
+                    id="demo-select-small"
+                    value={dataset}
+                    label="Dataset ID"
+                    onChange={handleDatasetChange}
+                    onOpen={handleDatasetClick}
+                  >
+                    {datasetLoading ? [
+                      <CircularProgress key={0} size={20} />,
+                      <Typography key={1} variant="caption">Updating...</Typography>
+                    ] : (
+                      (datasets.length > 0) && (datasets.map(ds => (
+                        [
+                          <Divider key={`${ds.value}0`}>
+                            <Typography variant="caption">{ds.date}</Typography>
+                          </Divider>
+                          ,
+                          <MenuItem key={`${ds.value}1`} value={ds.value}>
+                            {/* <ListItemIcon>
                             <FontAwesomeIcon icon={icon({ name: 'database' })} />
                           </ListItemIcon> */}
-                          <ListItemIcon>
-                            {ds.highlight && <FontAwesomeIcon icon={icon({ name: 'check' })} size="xs" />}
-                          </ListItemIcon>
-                          <ListItemText primary={
-                            <Typography component="span" variant="body2">
-                              {ds.searchBy}: <strong>{ds.search}</strong>
-                            </Typography>
-                          } secondary={
-                            <React.Fragment>
-                              <Typography
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"
-                              >
-                                {ds.elapsedTime} - Count:  <b>{DisplayNumber.format(ds.counts.agent)}</b>
-                                {ACTORS[source.toUpperCase()].SHOWDISCLAIMER && (
-                                  <> - Details: <b>{DisplayNumber.format(ds.counts.listings)}</b></>
-                                )}
+                            <ListItemIcon>
+                              {ds.highlight && <FontAwesomeIcon icon={icon({ name: 'check' })} size="xs" />}
+                            </ListItemIcon>
+                            <ListItemText primary={
+                              <Typography component="span" variant="body2">
+                                {ds.searchBy}: <strong>{ds.search}</strong>
                               </Typography>
-                              {/* <br />
+                            } secondary={
+                              <React.Fragment>
+                                <Typography
+                                  sx={{ display: 'inline' }}
+                                  component="span"
+                                  variant="body2"
+                                  color="text.primary"
+                                >
+                                  {ds.elapsedTime} - Count:  <b>{DisplayNumber.format(ds.counts.agent)}</b>
+                                  {ACTORS[source.toUpperCase()].SHOWDISCLAIMER && (
+                                    <> - Details: <b>{DisplayNumber.format(ds.counts.listings)}</b></>
+                                  )}
+                                </Typography>
+                                {/* <br />
                               <Typography variant="caption" >{ds.value} - {ds.build}</Typography> */}
-                            </React.Fragment>
-                          } />
-                        </MenuItem>
-                      ]
-                    ))))}
-                </Select>
+                              </React.Fragment>
+                            } />
+                          </MenuItem>
+                        ]
+                      ))))}
+                  </Select>
+                </FormControl>
+                <LoadingButton loading={isLoading || datasetLoading} loadingIndicator="Fetching..." variant="contained" onClick={handleDatasetSearch}>
+                  <FontAwesomeIcon icon={icon({ name: 'download' })} fixedWidth style={iconButtonFAStyle} />
+                  Get Dataset
+                </LoadingButton>
+              </Paper>
+              <FormControl>
+                <RadioGroup
+                  row
+                  name="row-radio-buttons-group"
+                  value={prevDsSource}
+                  onChange={handlePrevDsSourceChange}
+                >
+                  {sources.map(source => (
+                    <FormControlLabel control={
+                      <Radio
+                        size="small" />
+                    } label={
+                      <>
+                        <img src={`logos/${source}.png`} width={20} height={20} />
+                        {!ACTORS[source.toUpperCase()].ACTIVE && <Typography variant="caption">&nbsp;(Coming soon!)</Typography>}
+                      </>
+                    }
+                      disabled={!ACTORS[source.toUpperCase()].ACTIVE}
+                      value={source}
+                    />
+                  ))}
+                </RadioGroup>
               </FormControl>
-              <LoadingButton loading={isLoading || datasetLoading} loadingIndicator="Fetching..." variant="contained" onClick={handleDatasetSearch}>
-                <FontAwesomeIcon icon={icon({ name: 'download' })} fixedWidth style={iconButtonFAStyle} />
-                Get Dataset
-              </LoadingButton>
-            </Paper>
+
+            </TabPanel>
           </Grid>
           {hasDebugMenu && <Grid item xs={gridWidth}>
             <Typography variant="caption">
@@ -394,6 +555,7 @@ const App = ({ debugOptions }) => {
               maxConcurrency: <strong>{debugOptions.maxConcurrency}</strong><br />
               forceCleanSessionsCreation: <strong>{debugOptions.forceCleanSessionsCreation.toString()}</strong><br />
               useOutseta: <strong>{debugOptions.useOutseta.toString()}</strong><br />
+              automaticDetails: <strong>{debugOptions.automaticDetails.toString()}</strong><br />
             </Typography>
           </Grid>
           }
@@ -410,53 +572,60 @@ const App = ({ debugOptions }) => {
               <WhatsNew />
             </Collapse>
           </Grid>
+
           <Grid item>
-            <Box
-              sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: "100%" }}
-            >
-              <Tabs
-                value={source}
-                onChange={handleSourceTabChange}
-                aria-label="basic tabs example"
-                orientation="vertical"
-                variant="scrollable"
-                sx={{ marginTop: 14 }}
-              >
-                {Object.keys(ACTORS).map(source => (
-                  <Tab
-                    key={source}
-                    label={capitalizeFirstLetter(source)}
-                    value={source.toLowerCase()}
-                    disabled={!ACTORS[source].ACTIVE}
-                    variant="v"
-                  />
-                ))}
-              </Tabs>
-              <Box>
-                <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example">
-                  <Tab label="Sales & Listings" {...a11yProps(0)} value={0} variant="h" />
-                  <Tab label="List/Sale Ratio" {...a11yProps(2)} value={2} variant="h" />
-                  <Tab label="Months of Supply" {...a11yProps(4)} value={4} variant="h" />
-                  <Tab label="Absorption Rate" {...a11yProps(4)} value={7} variant="h" />
-                  <Tab label="Average Prices" {...a11yProps(1)} value={1} variant="h" />
-                  <Tab label="Price Per Acre" {...a11yProps(3)} value={3} variant="h" />
-                  <Tab label="Days on Market" {...a11yProps(5)} value={5} variant="h" />
-                  <Tab label="Realtors" {...a11yProps(6)} value={6} variant="h" />
-                </Tabs>
-                {isLoading ? <CircularProgressTimer onUpdate={(sec) => {
-                  setLoadTime(sec)
-                }} /> :
-                  (Object.keys(counts).length > 0) && (
-                    <>
-                      {(tabValue === 6) && (counts.meta.hasDetails) ? (
-                        <BrokerageTable data={counts} />
-                      ) : (
-                        <BigDataTable loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
-                      )}
-                    </>
-                  )}
-              </Box>
-            </Box>
+            {sourceLoading[source] && !initialLoad ? <CircularProgressTimer onUpdate={(sec) => {
+              setLoadTime(sec)
+            }} /> :
+              initialLoad && (
+                <Box
+                  sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: "100%" }}
+                >
+                  <Tabs
+                    value={source}
+                    onChange={handleSourceTabChange}
+                    aria-label="basic tabs example"
+                    orientation="vertical"
+                    variant="scrollable"
+                    sx={{ marginTop: 14 }}
+                  >
+                    {sources.map(source => (
+                      <Tab
+                        key={source}
+                        label={capitalizeFirstLetter(source)}
+                        value={source}
+                        disabled={!ACTORS[source.toUpperCase()].ACTIVE}
+                        variant="v"
+                      />
+                    ))}
+                  </Tabs>
+                  <Box>
+                    <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example">
+                      <Tab label="Sales & Listings" {...a11yProps(0)} value={0} variant="h" />
+                      <Tab label="List/Sale Ratio" {...a11yProps(2)} value={2} variant="h" />
+                      <Tab label="Months of Supply" {...a11yProps(4)} value={4} variant="h" />
+                      <Tab label="Absorption Rate" {...a11yProps(4)} value={7} variant="h" />
+                      <Tab label="Average Prices" {...a11yProps(1)} value={1} variant="h" />
+                      <Tab label="Price Per Acre" {...a11yProps(3)} value={3} variant="h" />
+                      <Tab label="Days on Market" {...a11yProps(5)} value={5} variant="h" />
+                      <Tab label="Realtors" {...a11yProps(6)} value={6} variant="h" />
+                    </Tabs>
+                    {sourceLoading[source] && initialLoad ? <CircularProgressTimer onUpdate={(sec) => {
+                      setLoadTime(sec)
+                    }} /> :
+                      (Object.keys(counts).length > 0) && (
+                        <>
+                          {(tabValue === 6) && (counts.meta.hasDetails) ? (
+                            <BrokerageTable data={counts} />
+                          ) : (
+                            <BigDataTable loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                          )}
+                        </>
+                      )
+                    }
+                  </Box>
+                </Box>
+              )}
           </Grid>
         </Grid>
       </Container>

@@ -163,3 +163,6 @@ export const fixRedfinUrl = (url, timeDim, acreage, status) => {
     const baseUrl = url.split("land,")[0]
     return `${baseUrl}land,${lotSizeText},${timeText}`;
 }
+
+export const later = (delay, value) =>
+    new Promise(resolve => setTimeout(resolve, delay, value));

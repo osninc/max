@@ -3,6 +3,32 @@ import { Chip, Divider, List, ListItem, ListItemText } from "@mui/material"
 export const WhatsNew = props => {
     return (
         <List dense={true}>
+            <Divider component="li"><Chip label="11/7/2023" /></Divider>
+            <ListItem>
+                <ListItemText
+                    primary="Cleaned up the UI"
+                />
+            </ListItem>
+            <ListItem>
+                <ListItemText
+                    primary="New searches will kick off all the searches at once by default. The UI doesn't have to wait until all are done.  If one finishes first, then the user will be able to browse that tab.  User has open to disable which site to search."
+                />
+            </ListItem>
+            <ListItem>
+                <ListItemText
+                    primary="Previous searches will have it's own tab.  Can only load 1 previous dataset per source.  Able to have to different data per source."
+                />
+            </ListItem>
+            <ListItem>
+                <ListItemText
+                    primary="Redfin Data has been merged to match Zillow's acreage and time dimensions.  Noticeable differences is that Redfin has acreage of 20-40 and 40-100 acres, and a time dimension of 5 years."
+                />
+            </ListItem>
+            <ListItem>
+                <ListItemText
+                    primary="Added temporary icons for source searching"
+                />
+            </ListItem>
             <Divider component="li"><Chip label="11/3/2023" /></Divider>
             <ListItem>
                 <ListItemText

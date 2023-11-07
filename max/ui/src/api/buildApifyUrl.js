@@ -11,5 +11,6 @@ export const buildApifyUrl = (source, main, type, id) => {
 
     if (theActor)
         endPoint = endPoint.replace("<ACTORID>", theActor["ID"]).replace("<BUILD>",theActor["BUILD"])
+
     return endPoint
 }

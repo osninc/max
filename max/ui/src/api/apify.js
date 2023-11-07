@@ -261,7 +261,7 @@ const findDetailsRunByDatasetId = async (source, ds) => {
     return runDatasetId.length > 0 ? runDatasetId[0] : "";
 }
 
-export const fetchDetails = async (source, ds) => {
+export const fetchDetails = async (source, ds, automaticDetails) => {
     const theDatasetId = await findDetailsRunByDatasetId(source, ds);
 
     // if array is zero length, then there isn't a match, launch the actor
@@ -275,19 +275,21 @@ export const fetchDetails = async (source, ds) => {
     else {
         // don't have to accidentally run the actor so I'll put a flag here
         console.log("Launching new actor with dataset")
-        console.log({ STARTDETAILSACTOR })
+        console.log({ automaticDetails })
         console.log(`if true, then sending`)
         console.log(`datasetId: ${ds}`)
-        if (STARTDETAILSACTOR) {// Run actor async without waiting
+        if (automaticDetails) {// Run actor async without waiting
+            console.log("I'm running the details actor")
+            console.log("TODO: launch but don't wait")
             //const url4 = `${APIFY.listOfDetails.listOfRuns}?token=${APIFY.base.token}&build=0.1.15`
-            const url4 = buildApifyUrl(source, "details", "runs")
-            const inputParams = {
-                datasetId: ds
-            }
-            // POST runs the actor with the params
-            const response4 = await axios.post(url4, inputParams);
-            console.log({ response4 })
-            // don't have to wait
+            // const url4 = buildApifyUrl(source, "details", "runs")
+            // const inputParams = {
+            //     datasetId: ds
+            // }
+            // // POST runs the actor with the params
+            // const response4 = await axios.post(url4, inputParams);
+            // console.log({ response4 })
+            // // don't have to wait
         }
     }
 }
@@ -302,7 +304,8 @@ export const fetchData = async (source, params) => {
         scraper,
         forceCleanSessionsCreation,
         maxConcurrency,
-        dataSavingStoreType
+        dataSavingStoreType,
+        automaticDetails
     } = params
 
     let tempDs = ds;
@@ -389,7 +392,7 @@ export const fetchData = async (source, params) => {
         const thisDatasetId = data[0]?.datasetId ?? tempDs;
 
         if (thisDatasetId) {
-            listingsDetails = await fetchDetails(source, thisDatasetId)
+            listingsDetails = await fetchDetails(source, thisDatasetId, automaticDetails)
         }
 
         const fixedData = fixData(source, data)

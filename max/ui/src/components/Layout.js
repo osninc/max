@@ -39,7 +39,8 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
         maxConcurrency: 50,
         dataSavingStoreType: DEBUGMENU.DATASTORETYPE[0],
         forceCleanSessionsCreation: false,
-        useOutseta: false
+        useOutseta: false,
+        automaticDetails: false
     })
 
 
@@ -247,6 +248,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                                             </Box>
                                             <FormControlLabel control={<Checkbox checked={debugOptions.forceCleanSessionsCreation} onChange={(e) => handleCheckbox(e,"forceCleanSessionsCreation")} size="small" />} label="Force Clean Sessions Creation" />
                                             <FormControlLabel control={<Checkbox checked={debugOptions.useOutseta} onChange={(e) => handleCheckbox(e, "useOutseta")} size="small" />} label="Use Outseta" />
+                                            <FormControlLabel control={<Checkbox checked={debugOptions.automaticDetails} onChange={(e) => handleCheckbox(e, "automaticDetails")} size="small" />} label="Automatically launch details actor when new search is made" />
                                         </Stack>
                                     </MenuItem>
                                 </Menu>

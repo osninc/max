@@ -1,3 +1,4 @@
+import { matrix } from "../constants/matrix.js";
 import { sqft2acre } from "./formulas.js";
 
 export const capitalizeFirstLetter = (string) => {
@@ -154,6 +155,11 @@ export const DisplayNumber = new Intl.NumberFormat()
 // TODO: "https://www.redfin.com/county/2083/NC/Richmond-County/filter/sort=lo-days,property-type=land,max-days-on-market=1wk,min-lot-size=9.5k-sqft,max-lot-size=0.25-acre"
 // TODO: change min/max lots based on combined values
 // TODO: change sqft to acre
-export const fixRedfinUrl = (url, timeDim, minLot, maxLot) => {
-    return url;
+export const fixRedfinUrl = (url, timeDim, acreage, status) => {
+    const source = "redfin"
+    const [min, max] = acreage.split("-")
+    const lotSizeText = (acreage === "100+")? `min-lot-size=100-acre` : `min-lot-size=${min}-acre,max-lot-size=${max}-acre`
+    const timeText = (status.toLowerCase() === "sold") ? `include=sold-${matrix[source].time[timeDim]}` : `max-days-on-market=${matrix[source].time[timeDim]}`;
+    const baseUrl = url.split("land,")[0]
+    return `${baseUrl}land,${lotSizeText},${timeText}`;
 }

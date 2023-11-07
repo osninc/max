@@ -58,14 +58,16 @@ export const matrix = {
             "for sale": "sale"
         },
         time: {
-            "7 days": "7",
-            "30 days": "30",
-            "90 days": "90",
-            "6 months": "6m",
-            "12 months": "12m",
-            "24 months": "24m",
-            "36 months": "36m",
+            // BEGIN combine
+            "7 days": "1wk",
+            "30 days": "1mo",
+            "90 days": "3mo",
+            "6 months": "6mo",
+            "12 months": "12mo",
+            "24 months": "24mo",
+            "36 months": "36mo",
             "5 years": "5y"
+            // END combine
             // "1 day": "1",
             // "3 days": "3",
             // "1 week": "7",
@@ -80,6 +82,7 @@ export const matrix = {
             // "5 years": "5y"
         },
         lot: {
+            // BEGIN combine
             "0-1": {
                 minLotSize:0,
                 maxLotSize: 43560
@@ -112,6 +115,8 @@ export const matrix = {
                 minLotSize: 4356000,
                 maxLotSize: ""
             },
+            // END combine
+
             // "0-0": {
             //     minLotSize: 0,
             //     maxLotSize: 0

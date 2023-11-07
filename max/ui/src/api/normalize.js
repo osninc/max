@@ -202,7 +202,7 @@ export const normalizeTheData = (source, data, details) => {
                         combinedObj = {
                             count: prevObj.count + (currentObj.agentCount ?? currentObj.count),
                             // TODO: URL
-                            url: fixRedfinUrl(currentObj.url, combined.time, combined.acreage),
+                            url: fixRedfinUrl(currentObj.url, combined.time, combined.acreage, currentObj.status),
                             listings: newListings,
                             numPrices: prevObj.numPrices + numPrices,
                             sumPrice: prevObj.sumPrice + getSum(listOfPrices),

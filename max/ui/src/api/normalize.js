@@ -178,7 +178,7 @@ export const normalizeTheData = (source, data, details) => {
                     combined.acreage = (checkAcre.length > 0) ? checkAcre[0] : count.acreage;
                     combined.time = (checkTime.length > 0) ? checkTime[0] : timeDim;
                     //hit = ((combinedAcreage !== "") || (combinedTime !== ""))
-                    hit.acreage = (combined.acreage !== "")
+                    hit.acreage = (combined.acreage !== count.acreage)
                     hit.time = (combined.time !== timeDim)
                 }
                 if (hit.acreage || hit.time) {

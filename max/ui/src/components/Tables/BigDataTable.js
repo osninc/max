@@ -4,6 +4,7 @@ import { matrix } from "../../constants/matrix.js";
 import { ThirdPartyIcon } from "../ThirdPartyIcon.js";
 import { DisplayNumber, USDollar, convertDateToLocal, sec2min } from "../../functions/functions.js";
 import { ACTORS } from "../../constants/constants.js";
+import { Netronline } from "../Netronline.js";
 
 const columnColor = {
     "sold": "white",
@@ -333,7 +334,7 @@ const ComingSoon = props => {
     )
 }
 
-export const BigDataTable = ({ value, data, onClick, area, date, source, loadTime }) => {
+export const BigDataTable = ({ isCountySearch, value, data, onClick, area, date, source, loadTime }) => {
     const newDate = convertDateToLocal(date)
     const newLoadTime = (loadTime > 0) ? `(${sec2min(loadTime)})` : "";
     const commonColText = [<Typography sx={{ color: "#505050" }} variant="body2">Listed</Typography>, <strong>Sold</strong>]
@@ -509,6 +510,9 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
         sold: filteredData.reduce((a, b) => a + b.sold, 0)
     }
 
+    // If this is a county search, include the netronline component
+    const netrNode = isCountySearch ? <Netronline county={area} colSpan={colSpan} /> : "";
+
     return (
         ((value === 6) || (!["zillow", "redfin"].includes(source))) ? (
             <ComingSoon area={area} header={tableHeader[value]} date={newDate} />
@@ -595,6 +599,7 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
                                     ))}
                                 </TableRow>
                             ))}
+                            {netrNode}
                         </TableBody>
                     ) : (
                         <TableBody>

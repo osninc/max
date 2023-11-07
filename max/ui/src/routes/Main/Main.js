@@ -413,7 +413,7 @@ const App = ({ debugOptions }) => {
             item
             xs={gridWidth}
           >
-            <Tabs value={searchType} onChange={handleSearchTypeChange} >
+            <Tabs value={searchType} onChange={handleSearchTypeChange}>
               <Tab icon={<FontAwesomeIcon icon={icon({ name: 'magnifying-glass-plus' })} />} label="New Search" value="new" />
               <Tab icon={<FontAwesomeIcon icon={icon({ name: 'repeat' })} />} label="Previous Searches" value="previous" />
             </Tabs>
@@ -618,7 +618,7 @@ const App = ({ debugOptions }) => {
                           {(tabValue === 6) && (counts.meta.hasDetails) ? (
                             <BrokerageTable data={counts} />
                           ) : (
-                            <BigDataTable loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                            <BigDataTable isCountySearch={searchBy === "county"} loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
                           )}
                         </>
                       )

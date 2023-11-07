@@ -29,6 +29,11 @@ export const WhatsNew = props => {
                     primary="Added temporary icons for source searching"
                 />
             </ListItem>
+            <ListItem>
+                <ListItemText
+                    primary="Added county NETR information"
+                />
+            </ListItem>
             <Divider component="li"><Chip label="11/3/2023" /></Divider>
             <ListItem>
                 <ListItemText

@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@emotion/react"
-import { Grid, AppBar, Box, Checkbox, Link, Button, CssBaseline, GlobalStyles, FormControl, FormControlLabel, Input, InputLabel, Toolbar, Typography, Container, Menu, MenuItem,Select, Slider, Stack } from "@mui/material"
+import { Grid, AppBar, Box, Checkbox, Link, Button, CssBaseline, GlobalStyles, FormControl, FormControlLabel, Input, InputLabel, Toolbar, Typography, Container, Menu, MenuItem, Select, Slider, Stack } from "@mui/material"
 import { defaultTheme } from "../constants/theme.js";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 
 
 import TextField from '@mui/material/TextField';
+import { WhatsNew } from "./WhatsNew.js";
 
 
 const Layout = ({ children, title, onChangeDebugMenu }) => {
@@ -114,7 +115,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
         if (onChangeDebugMenu)
             onChangeDebugMenu(debugOptions)
     }, [debugOptions, onChangeDebugMenu])
-    
+
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -143,6 +144,8 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                         </Typography>
                     )}
                     <nav>
+
+                        <WhatsNew />
                         {hasDebugMenu && (
                             <>
                                 <Button
@@ -246,7 +249,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                                                     </Grid>
                                                 </Grid>
                                             </Box>
-                                            <FormControlLabel control={<Checkbox checked={debugOptions.forceCleanSessionsCreation} onChange={(e) => handleCheckbox(e,"forceCleanSessionsCreation")} size="small" />} label="Force Clean Sessions Creation" />
+                                            <FormControlLabel control={<Checkbox checked={debugOptions.forceCleanSessionsCreation} onChange={(e) => handleCheckbox(e, "forceCleanSessionsCreation")} size="small" />} label="Force Clean Sessions Creation" />
                                             <FormControlLabel control={<Checkbox checked={debugOptions.useOutseta} onChange={(e) => handleCheckbox(e, "useOutseta")} size="small" />} label="Use Outseta" />
                                             <FormControlLabel control={<Checkbox checked={debugOptions.automaticDetails} onChange={(e) => handleCheckbox(e, "automaticDetails")} size="small" />} label="Automatically launch details actor when new search is made" />
                                         </Stack>

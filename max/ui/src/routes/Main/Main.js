@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -13,7 +12,7 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
-import { Alert, Box, Checkbox, CircularProgress, Collapse, Divider, Drawer, FormControl, FormControlLabel, InputLabel, ListItemIcon, ListItemText, MenuItem, Modal, Paper, Radio, RadioGroup, Select, Snackbar, Switch, Tab, Tabs, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Alert, Box, Checkbox, CircularProgress, Divider, Drawer, FormControl, FormControlLabel, InputLabel, ListItemIcon, ListItemText, MenuItem, Modal, Paper, Radio, RadioGroup, Select, Snackbar, Tab, Tabs } from "@mui/material";
 import { processError } from "../../error.js";
 
 
@@ -31,7 +30,6 @@ import { CircularProgressTimer } from "../../components/Listings/CircularProgres
 
 import { BrokerageTable } from "../../components/Tables/BrokerageTable.js";
 import { fetchData, fetchDatasets, fetchDetailsData } from "../../api/apify.js";
-import { WhatsNew } from "../../components/WhatsNew.js";
 
 const sources = Object.keys(ACTORS).map(actor => actor.toLowerCase())
 
@@ -371,10 +369,7 @@ const App = ({ debugOptions }) => {
     }
   }
 
-  const [newOpen, setNewOpen] = useState(false)
-  const handleWhatsNewClick = () => setNewOpen(prev => !prev)
-
-  const gridWidth = hasDebugMenu ? 4 : 6
+  const gridWidth = 6
 
   const [sourcesSelected, setSourcesSelected] = React.useState(sources.reduce((a, v) => ({ ...a, [v]: ACTORS[v.toUpperCase()].ACTIVE }), {}));
   const handleSourcesSelected = (event) => {
@@ -407,8 +402,8 @@ const App = ({ debugOptions }) => {
 
   return (
     <>
-      <Container disableGutters fixed maxWidth={false}>
-        <Grid container spacing={5} alignItems="left">
+      <Container fixed maxWidth={false}>
+        <Grid container spacing={0} alignItems="left">
           <Grid
             item
             xs={gridWidth}
@@ -559,19 +554,6 @@ const App = ({ debugOptions }) => {
             </Typography>
           </Grid>
           }
-          <Grid item xs={gridWidth}>
-            <Button
-              id="basic-button"
-              variant="text"
-              onClick={handleWhatsNewClick}
-            >
-              <Switch size="small" checked={newOpen} />
-              What's New:
-            </Button>
-            <Collapse in={newOpen}>
-              <WhatsNew />
-            </Collapse>
-          </Grid>
 
           <Grid item>
             {sourceLoading[source] && !initialLoad ? <CircularProgressTimer onUpdate={(sec) => {

@@ -1,6 +1,9 @@
-import { Chip, Divider, List, ListItem, ListItemText } from "@mui/material"
+import { Button, Chip, Dialog, DialogContent, DialogContentText, DialogTitle, Divider, List, ListItem, ListItemText, Slide } from "@mui/material"
 
-export const WhatsNew = props => {
+import NewReleasesIcon from '@mui/icons-material/NewReleases';
+import { forwardRef, useState } from "react";
+
+const NewItems = props => {
     return (
         <List dense={true}>
             <Divider component="li"><Chip label="11/7/2023" /></Divider>
@@ -32,6 +35,11 @@ export const WhatsNew = props => {
             <ListItem>
                 <ListItemText
                     primary="Added county NETR information"
+                />
+            </ListItem>
+            <ListItem>
+                <ListItemText
+                    primary="Added Realtor inventory information"
                 />
             </ListItem>
             <Divider component="li"><Chip label="11/3/2023" /></Divider>
@@ -89,5 +97,44 @@ export const WhatsNew = props => {
                 />
             </ListItem>
         </List>
+    )
+}
+
+
+const Transition = forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
+export const WhatsNew = props => {
+
+    const [newOpen, setNewOpen] = useState(false)
+    const handleWhatsNewClick = () => setNewOpen(prev => !prev)
+
+
+    return (
+        <>
+            <Button
+                id="basic-button"
+                onClick={handleWhatsNewClick}
+                variant="outlined" startIcon={<NewReleasesIcon />}
+                size="small"
+            >
+                What's New
+            </Button>
+            <Dialog
+                open={newOpen}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={handleWhatsNewClick}
+                aria-describedby="alert-dialog-slide-description"
+            >
+                <DialogTitle>What's New?</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                        <NewItems />
+                    </DialogContentText>
+                </DialogContent>
+            </Dialog>
+        </>
     )
 }

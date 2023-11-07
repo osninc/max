@@ -5,6 +5,7 @@ import { ThirdPartyIcon } from "../ThirdPartyIcon.js";
 import { DisplayNumber, USDollar, convertDateToLocal, sec2min } from "../../functions/functions.js";
 import { ACTORS } from "../../constants/constants.js";
 import { Netronline } from "../Netronline.js";
+import { InventoryData } from "../InventoryData.js";
 
 const columnColor = {
     "sold": "white",
@@ -334,7 +335,7 @@ const ComingSoon = props => {
     )
 }
 
-export const BigDataTable = ({ isCountySearch, value, data, onClick, area, date, source, loadTime }) => {
+export const BigDataTable = ({ searchType, value, data, onClick, area, date, source, loadTime }) => {
     const newDate = convertDateToLocal(date)
     const newLoadTime = (loadTime > 0) ? `(${sec2min(loadTime)})` : "";
     const commonColText = [<Typography sx={{ color: "#505050" }} variant="body2">Listed</Typography>, <strong>Sold</strong>]
@@ -511,7 +512,7 @@ export const BigDataTable = ({ isCountySearch, value, data, onClick, area, date,
     }
 
     // If this is a county search, include the netronline component
-    const netrNode = isCountySearch ? <Netronline county={area} colSpan={colSpan} /> : "";
+    const netrNode = (searchType === "county") ? <Netronline county={area} /> : "";
 
     return (
         ((value === 6) || (!["zillow", "redfin"].includes(source))) ? (
@@ -599,7 +600,17 @@ export const BigDataTable = ({ isCountySearch, value, data, onClick, area, date,
                                     ))}
                                 </TableRow>
                             ))}
-                            {netrNode}
+                            <TableRow
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell colspan={(colSpan + 3) / 2} align="left">
+                                    {netrNode}
+                                </TableCell>
+                                <TableCell colspan={(colSpan + 3) / 2} align="right">
+                                        <InventoryData searchType={searchType} area={area} />
+                                </TableCell>
+                            </TableRow>
+
                         </TableBody>
                     ) : (
                         <TableBody>

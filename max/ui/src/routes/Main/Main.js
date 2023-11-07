@@ -618,7 +618,7 @@ const App = ({ debugOptions }) => {
                           {(tabValue === 6) && (counts.meta.hasDetails) ? (
                             <BrokerageTable data={counts} />
                           ) : (
-                            <BigDataTable isCountySearch={searchBy === "county"} loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                            <BigDataTable searchType={searchBy} loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
                           )}
                         </>
                       )

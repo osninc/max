@@ -1,5 +1,4 @@
 export const BUILD = "yir-dev";
-export const STARTDETAILSACTOR = false;
 
 export const ACTORS = {
     ZILLOW: {
@@ -96,6 +95,10 @@ export const ACTORS = {
             ID: "",
             GRAPHQL: ""
         },
+        INVENTORY: {
+            BUILD: BUILD,
+            ID: "eluFxHcr2G7Z3pzO8"
+        },
         SHOWDISCLAIMER: false
     },
     LANDWATCH: {
@@ -144,7 +147,8 @@ export const APIFY = {
         NEW: "/acts/<ACTORID>/run-sync-get-dataset-items?build=<BUILD>",
         DATASETS: "/datasets/<DATASETID>/items/?",
         INPUT: "/key-value-stores/<STOREID>/records/INPUT/?",
-        RUNS: "/acts/<ACTORID>/runs/?&desc=true"
+        RUNS: "/acts/<ACTORID>/runs/?&desc=true",
+        LASTDATASET: "/acts/<ACTORID>/runs/last/dataset/items?"
     },
     PASTDAYS: 7
 }

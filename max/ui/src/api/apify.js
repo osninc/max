@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ACTORS, APIFY, STARTDETAILSACTOR } from "../constants/constants";
+import { ACTORS, APIFY } from "../constants/constants";
 import { processError } from "../error";
 import { convertDateToLocal, sec2min, time2epoch } from "../functions/functions";
 import { getPropertyParams } from "../zillowGraphQl";
@@ -8,7 +8,18 @@ import { normalizeTheData } from "./normalize";
 import { buildApifyUrl } from "./buildApifyUrl.js";
 import { fixData } from "./fixData.js";
 
-//const buildApifyUrl = 
+// This is only for realtor inventory data.  Get the latest successful run
+export const fetchInventory = async () => {
+    try {
+        const url = buildApifyUrl("realtor", "inventory", "lastdataset", "")
+        const response = await axios.get(url);
+        const data = response.data;
+        return data
+    }
+    catch (error) {
+        throw { message: processError("apify:fetchInventory", error) }
+    }
+}
 
 export const fetchStore = async (storeId) => {
     try {

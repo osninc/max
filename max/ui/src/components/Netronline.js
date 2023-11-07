@@ -2,7 +2,6 @@ import { Chip, Dialog, DialogContent, DialogContentText, DialogTitle, IconButton
 import netr from "../data/normalNetronline.json"
 import InfoIcon from '@mui/icons-material/Info';
 import { DataGrid } from '@mui/x-data-grid';
-import { NotAvailable } from "./NotAvailable";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
@@ -12,7 +11,7 @@ const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const Netronline = ({ county, colSpan }) => {
+export const Netronline = ({ county }) => {
     const [open, setOpen] = useState(false);
 
 
@@ -53,48 +52,43 @@ export const Netronline = ({ county, colSpan }) => {
     ]
 
     return (
-        <TableRow
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-        >
-            <TableCell colspan={colSpan} align="left">
-                <Chip
-                    variant="outlined"
-                    color="primary"
-                    size="small"
-                    icon={<InfoIcon />}
-                    label={`${county} Netr Information`}
-                    onClick={handleClickOpen}
-                />
-                <Dialog
-                    open={open}
-                    TransitionComponent={Transition}
-                    keepMounted
-                    onClose={handleClose}
-                    aria-describedby="alert-dialog-slide-description"
-                >
-                    <DialogTitle>{county} Netr Information</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-slide-description">
-                            <DataGrid
-                                getRowId={(row) => row.name}
-                                rows={countyData}
-                                columns={columns}
-                                initialState={{
-                                    pagination: {
-                                        paginationModel: {
-                                            pageSize: 10,
-                                        },
+        <>
+            <Chip
+                variant="outlined"
+                color="primary"
+                size="small"
+                icon={<InfoIcon />}
+                label={`${county} Netr Information`}
+                onClick={handleClickOpen}
+            />
+            <Dialog
+                open={open}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={handleClose}
+                aria-describedby="alert-dialog-slide-description"
+            >
+                <DialogTitle>{county} Netr Information</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                        <DataGrid
+                            getRowId={(row) => row.name}
+                            rows={countyData}
+                            columns={columns}
+                            initialState={{
+                                pagination: {
+                                    paginationModel: {
+                                        pageSize: 10,
                                     },
-                                }}
-                                density='compact'
-                                pageSizeOptions={[5]}
-                                disableRowSelectionOnClick
-                            />
-                        </DialogContentText>
-                    </DialogContent>
-                </Dialog>
-                
-            </TableCell>
-        </TableRow>
+                                },
+                            }}
+                            density='compact'
+                            pageSizeOptions={[5]}
+                            disableRowSelectionOnClick
+                        />
+                    </DialogContentText>
+                </DialogContent>
+            </Dialog>
+        </>
     )
 }

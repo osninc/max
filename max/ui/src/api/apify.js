@@ -394,7 +394,7 @@ export const fetchData = async (source, params) => {
 
         const fixedData = fixData(source, data)
 
-        const normalizedData = normalizeTheData(fixedData, listingsDetails)
+        const normalizedData = normalizeTheData(source, fixedData, listingsDetails)
 
         return {
             data: normalizedData,

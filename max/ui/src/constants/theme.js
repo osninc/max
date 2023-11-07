@@ -89,8 +89,8 @@ export const defaultTheme = createTheme({
         MuiTabs: {
             styleOverrides: {
                 indicator: {
-                   bottom: 5,
-                   right: 5
+                    bottom: 5,
+                    right: 5
                 },
 
             },
@@ -106,7 +106,11 @@ export const defaultTheme = createTheme({
                             fontWeight: "bold"
                         }
                     },
-                },
+                    "&.Mui-disabled": {
+                        backgroundColor: '#ccc',
+                        color: "grey"
+                    }
+                }
 
             },
             variants: [

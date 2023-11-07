@@ -3,6 +3,7 @@ export const STARTDETAILSACTOR = false;
 
 export const ACTORS = {
     ZILLOW: {
+        ACTIVE: true,
         COUNT: {
             BUILD: BUILD,
             ID: "OVT9EXRpZMjSZ2lhS",
@@ -10,7 +11,8 @@ export const ACTORS = {
             CONVERTACREAGE: false,
             RENAMEFIELDS: {
                 daysOnZillow: "daysOn"
-            }
+            },
+            COMBINE: false
         },
         DETAILS: {
             BUILD: BUILD,
@@ -20,6 +22,7 @@ export const ACTORS = {
         SHOWDISCLAIMER: true // This is the disclaimer aabout zillow only showing maximum 500 details
     },
     REDFIN: {
+        ACTIVE: true,
         COUNT: {
             BUILD: BUILD,
             ID: "Q6imaQAKtun38uOho",
@@ -28,6 +31,47 @@ export const ACTORS = {
             RENAMEFIELDS: {// The key would be the what exists in the JSON, and the value is what we have the new key to be
                 daysOnRedfin: "daysOn",
                 count: "agentCount"
+            },
+            COMBINE: {
+                ACREAGE: {
+                    ["0-1"]: [
+                        "0-0",
+                        "0-0.05",
+                        "0.1-0.15",
+                        "0.05-0.1",
+                        "0.5-1",
+                        "0.15-0.18",
+                        "0.18-0.22",
+                        "0.22-0.25",
+                        "0.25-0.5"
+                    ],
+                    ["2-5"]: [
+                        "2-3", "3-4", "4-5"
+                    ],
+                    ["100+"]: [
+                        "100-0"
+                    ]
+                },
+                STATUS: {
+                    ["7 days"]: [
+                        "1 day", "1 week", "3 days"
+                    ],
+                    ["30 days"]: [
+                        "1 month", "14 days"
+                    ],
+                    ["90 days"]: [
+                        "3 months", "45 days"
+                    ],
+                    ["12 months"]: [
+                        "1 year"
+                    ],
+                    ["24 months"]: [
+                        "2 years"
+                    ],
+                    ["36 months"]: [
+                        "3 years"
+                    ]
+                }
             }
 
         },
@@ -39,16 +83,38 @@ export const ACTORS = {
         SHOWDISCLAIMER: false
     },
     REALTOR: {
+        ACTIVE: false,
         COUNT: {
             BUILD: BUILD,
             ID: "eluFxHcr2G7Z3pzO8",
             IGNORECOUNTFILTER: false,
-            RENAMEFIELDS: []
+            RENAMEFIELDS: [],
+            COMBINE: false
         },
         DETAILS: {
             BUILD: BUILD,
             ID: "",
             GRAPHQL: ""
+        },
+        SHOWDISCLAIMER: false
+    },
+    LANDWATCH: {
+        ACTIVE: false,
+        COUNT: {
+            COMBINE: false
+        },
+        DETAILS: {
+
+        },
+        SHOWDISCLAIMER: false
+    },
+    MLS: {
+        ACTIVE: false,
+        COUNT: {
+            COMBINE: false
+        },
+        DETAILS: {
+
         },
         SHOWDISCLAIMER: false
     }

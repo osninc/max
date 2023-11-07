@@ -1,5 +1,6 @@
 import { calcAbsorption, calcDom, calcMos, calcPpa, calcRatio, getListOfField, getSum } from "../functions/formulas";
-import { USDollar, convertPriceStringToFloat, convertStrToAcre } from "../functions/functions";
+import { USDollar, convertPriceStringToFloat, convertStrToAcre, fixRedfinUrl } from "../functions/functions";
+import { ACTORS } from "../constants/constants";
 
 const calcAvgPrice = ary => {
     if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
@@ -109,7 +110,18 @@ const fixDetails = details => {
     return obj
 }
 
-export const normalizeTheData = (data, details) => {
+const checkCombine = (source, data, field) => {
+    const combineObjDef = ACTORS[source.toUpperCase()].COUNT.COMBINE[field.toUpperCase()];
+    let actualFieldValue = data[field]
+    if (field.toUpperCase() == "STATUS") {
+        actualFieldValue = (actualFieldValue.toLowerCase() === "sold") ? data?.soldInLast?.toLowerCase() : data?.daysOn?.toLowerCase();
+    }
+
+    // Find what key to combine to if exists in array
+    return Object.keys(combineObjDef).filter(key => combineObjDef[key].includes(actualFieldValue))
+}
+
+export const normalizeTheData = (source, data, details) => {
     // if there are details array, then process that one first before merge
     let fixedDetails
     const checkForDetails = details ? false : true;
@@ -117,6 +129,9 @@ export const normalizeTheData = (data, details) => {
         fixedDetails = fixDetails(details);
 
     let c = {}
+
+    // Check if this source should have fields combined
+    const willCombine = ACTORS[source.toUpperCase()].COUNT.COMBINE !== false
 
     // Some default calculated fields
     const defaultCalcFields = {
@@ -147,25 +162,92 @@ export const normalizeTheData = (data, details) => {
                     views: fixedListings.filter(l => l.views !== "N/A").map(listing => listing.views).filter(el => el),
                     favorites: fixedListings.filter(l => l.favorites !== "N/A").map(listing => listing.favorites).filter(el => el),
                 }
-                c[count.acreage?.toLowerCase()] = {
-                    ...c[count.acreage?.toLowerCase()],
-                    [timeDim.toLowerCase()]: {
-                        ...(c[count.acreage?.toLowerCase()] ? c[count.acreage?.toLowerCase()][timeDim?.toLowerCase()] : {}),
-                        timeStamp: count.timeStamp,
-                        [count.status?.toLowerCase()]: {
-                            count: count.agentCount ?? count.count,
-                            url: count.url,
-                            listings: fixedListings,
-                            numPrices,
-                            sumPrice: getSum(listOfPrices),
-                            mapCount: count.mapCount ?? 0,
-                            otherCount: count.otherCount ?? 0,
-                            avgPrice: calcAvgPrice(fixedListings),
-                            avgPpa: calcAvgPpa(fixedListings),
+
+                // Try to merge records
+                let hit = {
+                    acreage: false,
+                    time: false
+                }
+                let combined = {
+                    acreage: count.acreage,
+                    time: timeDim
+                }
+                if (willCombine) {
+                    const checkAcre = checkCombine(source, count, "acreage")
+                    const checkTime = checkCombine(source, count, "status")
+                    combined.acreage = (checkAcre.length > 0) ? checkAcre[0] : count.acreage;
+                    combined.time = (checkTime.length > 0) ? checkTime[0] : timeDim;
+                    //hit = ((combinedAcreage !== "") || (combinedTime !== ""))
+                    hit.acreage = (combined.acreage !== "")
+                    hit.time = (combined.time !== timeDim)
+                }
+                if (hit.acreage || hit.time) {
+                    // Make sure things exist before trying to build the obj
+                    const hasAcreage = !(c[combined.acreage] === undefined)
+                    const hasTimeDim = (hasAcreage && !(c[combined.acreage][combined.time] === undefined))
+                    const hasStatus = (hasAcreage && hasTimeDim && !(c[combined.acreage][combined.time][count.status.toLowerCase()] === undefined))
+
+                    // if there is a status, then there are listings
+                    let combinedObj = {}
+                    if (hasStatus) {
+                        // Combine from last
+                        // "count" is the individual status group of listings
+                        // Get the previous obj
+                        const prevObj = c[combined.acreage][combined.time][count.status.toLowerCase()]
+                        // Get the current obj and combine with last
+                        const currentObj = count
+
+                        const newListings = [...prevObj.listings, ...fixedListings]
+
+                        combinedObj = {
+                            count: prevObj.count + (currentObj.agentCount ?? currentObj.count),
+                            // TODO: URL
+                            url: fixRedfinUrl(currentObj.url, combined.time, combined.acreage),
+                            listings: newListings,
+                            numPrices: prevObj.numPrices + numPrices,
+                            sumPrice: prevObj.sumPrice + getSum(listOfPrices),
+                            mapCount: prevObj.mapCount + (currentObj.mapCount ?? 0),
+                            otherCount: prevObj.otherCount + (currentObj.otherCount ?? 0),
+                            avgPrice: calcAvgPrice(newListings),
+                            avgPpa: calcAvgPpa(newListings),
+                            // TODO: double check this calculations when combined
                             avgDom: calcAvg(listingsWithValues.dom),
                             domCount: listingsWithValues.dom.length
                         }
+                    }
+                    c[combined.acreage] = {
+                        ...c[combined.acreage],
+                        [combined.time]: {
+                            ...(hasTimeDim ? c[combined.acreage][combined.time] : {}),
+                            timeStamp: count.timeStamp,
+                            [count.status.toLowerCase()]: {
+                                ...(hasStatus ? c[combined.acreage][combined.time][count.status.toLowerCase()] : defaultCalcFields),
+                                ...combinedObj
+                            }
+                        }
+                    }
+                }
+                else {
+                    c[count.acreage?.toLowerCase()] = {
+                        ...c[count.acreage?.toLowerCase()],
+                        [timeDim.toLowerCase()]: {
+                            ...(c[count.acreage?.toLowerCase()] ? c[count.acreage?.toLowerCase()][timeDim?.toLowerCase()] : {}),
+                            timeStamp: count.timeStamp,
+                            [count.status?.toLowerCase()]: {
+                                count: count.agentCount ?? count.count,
+                                url: count.url,
+                                listings: fixedListings,
+                                numPrices,
+                                sumPrice: getSum(listOfPrices),
+                                mapCount: count.mapCount ?? 0,
+                                otherCount: count.otherCount ?? 0,
+                                avgPrice: calcAvgPrice(fixedListings),
+                                avgPpa: calcAvgPpa(fixedListings),
+                                avgDom: calcAvg(listingsWithValues.dom),
+                                domCount: listingsWithValues.dom.length
+                            }
 
+                        }
                     }
                 }
             }
@@ -183,7 +265,7 @@ export const normalizeTheData = (data, details) => {
             if (!hasFs) {
                 missingObj = {
                     ...missingObj,
-                    ["for sale"]: {...defaultCalcFields}
+                    ["for sale"]: { ...defaultCalcFields }
                 }
             }
             if (!hasSold) {
@@ -219,7 +301,7 @@ export const normalizeTheData = (data, details) => {
         }
     }
 
-    //console.log({ c })
+    console.log({ c })
 
     return c
 };

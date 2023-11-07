@@ -17,7 +17,7 @@ import { processError } from "../../error.js";
 
 
 import { DetailsView } from "../../components/DetailsView.js";
-import { DisplayNumber } from "../../functions/functions.js"
+import { DisplayNumber, capitalizeFirstLetter } from "../../functions/functions.js"
 import { sqft2acre } from "../../functions/formulas.js"
 
 import { ACTORS, iconButtonFAStyle, modalStyle } from "../../constants/constants.js";
@@ -422,11 +422,15 @@ const App = ({ debugOptions }) => {
                 variant="scrollable"
                 sx={{ marginTop: 14 }}
               >
-                <Tab label="Zillow" {...a11yProps(0)} value="zillow" variant="v" />
-                <Tab label="Redfin" {...a11yProps(1)} value="redfin" variant="v" />
-                <Tab label="Realtor" {...a11yProps(2)} value="realtor" variant="v" />
-                <Tab label="Landwatch" {...a11yProps(3)} value="landwatch" variant="v" />
-                <Tab label="MLS" {...a11yProps(4)} value="mls" variant="v" />
+                {Object.keys(ACTORS).map(source => (
+                  <Tab
+                    key={source}
+                    label={capitalizeFirstLetter(source)}
+                    value={source.toLowerCase()}
+                    disabled={!ACTORS[source].ACTIVE}
+                    variant="v"
+                  />
+                ))}
               </Tabs>
               <Box>
                 <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example">

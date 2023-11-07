@@ -1,5 +1,9 @@
 import { sqft2acre } from "./formulas.js";
 
+export const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export const USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -146,3 +150,10 @@ export const sec2min = seconds => {
 }
 
 export const DisplayNumber = new Intl.NumberFormat()
+
+// TODO: "https://www.redfin.com/county/2083/NC/Richmond-County/filter/sort=lo-days,property-type=land,max-days-on-market=1wk,min-lot-size=9.5k-sqft,max-lot-size=0.25-acre"
+// TODO: change min/max lots based on combined values
+// TODO: change sqft to acre
+export const fixRedfinUrl = (url, timeDim, minLot, maxLot) => {
+    return url;
+}

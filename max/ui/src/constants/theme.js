@@ -95,7 +95,6 @@ export const defaultTheme = createTheme({
 
             },
         },
-
         MuiTab: {
             styleOverrides: {
                 root: {

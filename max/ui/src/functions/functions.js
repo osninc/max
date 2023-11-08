@@ -2,7 +2,10 @@ import { matrix } from "../constants/matrix.js";
 import { sqft2acre } from "./formulas.js";
 
 export const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    // Capitalize first letter of each word
+    const words = string.split(" ")
+    const wordArray = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    return wordArray.join(" ");
 }
 
 export const USDollar = new Intl.NumberFormat('en-US', {
@@ -158,7 +161,7 @@ export const DisplayNumber = new Intl.NumberFormat()
 export const fixRedfinUrl = (url, timeDim, acreage, status) => {
     const source = "redfin"
     const [min, max] = acreage.split("-")
-    const lotSizeText = (acreage === "100+")? `min-lot-size=100-acre` : `min-lot-size=${min}-acre,max-lot-size=${max}-acre`
+    const lotSizeText = (acreage === "100+") ? `min-lot-size=100-acre` : `min-lot-size=${min}-acre,max-lot-size=${max}-acre`
     const timeText = (status.toLowerCase() === "sold") ? `include=sold-${matrix[source].time[timeDim]}` : `max-days-on-market=${matrix[source].time[timeDim]}`;
     const baseUrl = url.split("land,")[0]
     return `${baseUrl}land,${lotSizeText},${timeText}`;
@@ -166,3 +169,7 @@ export const fixRedfinUrl = (url, timeDim, acreage, status) => {
 
 export const later = (delay, value) =>
     new Promise(resolve => setTimeout(resolve, delay, value));
+
+export const isOdd = num => {
+    return ((num % 2) === 1)
+}

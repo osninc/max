@@ -9,13 +9,10 @@ import { useTheme, styled } from '@mui/material/styles';
 import { VariableSizeList } from 'react-window';
 import Typography from '@mui/material/Typography';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
-
 import countiesData from '../data/counties.json';
 
-const states = [...new Set(countiesData.map(county => county.state_id))]
-const counties = countiesData.map(county => `${county.county_full}, ${county.state_id}`)
+const states = [...new Set(countiesData.map(county => county.state_id))].sort()
+const counties = countiesData.map(county => `${county.county_full}, ${county.state_id}`).sort()
 
 const LISTBOX_PADDING = 8; // px
 

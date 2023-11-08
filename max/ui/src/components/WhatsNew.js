@@ -42,6 +42,11 @@ const NewItems = props => {
                     primary="Added Realtor inventory information"
                 />
             </ListItem>
+            <ListItem>
+                <ListItemText
+                    primary="Changed secondary information look.  Added Logo"
+                />
+            </ListItem>
             <Divider component="li"><Chip label="11/3/2023" /></Divider>
             <ListItem>
                 <ListItemText

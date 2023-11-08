@@ -30,6 +30,8 @@ import { CircularProgressTimer } from "../../components/Listings/CircularProgres
 
 import { BrokerageTable } from "../../components/Tables/BrokerageTable.js";
 import { fetchData, fetchDatasets, fetchDetailsData } from "../../api/apify.js";
+import { InventoryData } from "../../components/InventoryData.js";
+import { Netronline } from "../../components/Netronline.js";
 
 const sources = Object.keys(ACTORS).map(actor => actor.toLowerCase())
 
@@ -369,7 +371,7 @@ const App = ({ debugOptions }) => {
     }
   }
 
-  const gridWidth = 6
+  const gridWidth = hasDebugMenu ? 6 : 12;
 
   const [sourcesSelected, setSourcesSelected] = React.useState(sources.reduce((a, v) => ({ ...a, [v]: ACTORS[v.toUpperCase()].ACTIVE }), {}));
   const handleSourcesSelected = (event) => {
@@ -600,7 +602,18 @@ const App = ({ debugOptions }) => {
                           {(tabValue === 6) && (counts.meta.hasDetails) ? (
                             <BrokerageTable data={counts} />
                           ) : (
-                            <BigDataTable searchType={searchBy} loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                            <>
+                              <BigDataTable loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
+                              <Grid container direction="row" sx={{mt:5}}>
+                                <Grid item xs={6} justifyContent={"center"}>
+                                    {(searchBy === "county") && <Netronline county={area} />}
+                                </Grid>
+                                <Grid item xs={6} justifyContent="flex-end">
+                                  <InventoryData searchType={searchBy} area={area} />
+                                </Grid>
+                              </Grid>
+
+                            </>
                           )}
                         </>
                       )

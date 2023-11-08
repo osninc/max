@@ -133,10 +133,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                         underline="none"
                         sx={{ my: 1, mx: 1.5 }}
                     >
-                        <Typography variant="h6" color="black" noWrap sx={{ flexGrow: 1 }}>
-                            <FontAwesomeIcon icon={icon({ name: 'bullseye' })} fixedWidth color={defaultTheme.palette.primary.main} />
-                            Land Stats Logo
-                        </Typography>
+                        <img src="/logos/land-stats.png"/>
                     </Link>
                     {isTestingSite && (
                         <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
@@ -336,13 +333,12 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                 </Toolbar>
             </AppBar>
             {/* Hero unit */}
-            <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
+            <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 0, pb: 0 }}>
                 <Typography
-                    component="h2"
-                    variant="h2"
+                    component="h3"
+                    variant="h3"
                     align="center"
                     color="primary"
-                    gutterBottom
                 >
                     {title}
                 </Typography>

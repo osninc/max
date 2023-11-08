@@ -173,3 +173,10 @@ export const later = (delay, value) =>
 export const isOdd = num => {
     return ((num % 2) === 1)
 }
+
+export const addLeadingZero = (string, places) => {
+    if (string.length === places) return string
+    //const num = places - string.length;
+    return string.padStart(places, '0')
+
+}

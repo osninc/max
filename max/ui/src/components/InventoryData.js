@@ -3,7 +3,7 @@ import { useEffect, useState, forwardRef } from "react"
 import { fetchInventory } from "../api/apify"
 import InfoIcon from '@mui/icons-material/Info';
 import { defaultTheme } from "../constants/theme.js";
-import { USDollar, capitalizeFirstLetter, isOdd } from "../functions/functions.js";
+import { USDollar, addLeadingZero, capitalizeFirstLetter, isOdd } from "../functions/functions.js";
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -38,7 +38,10 @@ const fieldsToDisplay = [
     {
         show: "zipcode",
         field: "postal_code",
-        fieldText: "Postal Code"
+        fieldText: "Postal Code",
+        render: (value) => {
+            return addLeadingZero(value,5)
+        }
     },
     {
         show: "zipcode",
@@ -155,7 +158,9 @@ export const InventoryData = props => {
                     compareValue = compareValue.replace(" county", "")
                     break;
                 case "zip":
+                    // if there is a leading zero in the zipcode, then it becomes a number
                     field = "postal_code"
+                    compareValue = parseInt(compareValue).toString()
                     break;
                 case "state":
                     field = "state_id"
@@ -171,51 +176,18 @@ export const InventoryData = props => {
     }
 
     useEffect(() => {
-        //if (data === null) {
-            const fetchData = async () => {
-                const returnData = await fetchInventory(searchType, area)
-                const data2 = await findData(returnData)
-                setLoading(false)
-                setData(data2)
-            }
-            fetchData()
-        //}
+        const fetchData = async () => {
+            const returnData = await fetchInventory(searchType, area)
+            const data2 = await findData(returnData)
+            setLoading(false)
+            if (data2 !== null)
+                setData(data2) 
+        }
+        fetchData()
     }, [area])
-
-    // const [open, setOpen] = useState(false);
-
-
-    // const handleClickOpen = () => {
-    //     setOpen(true);
-    // };
-
-    // const handleClose = () => {
-    //     setOpen(false);
-    // };
-
-    //console.log({data})
 
     return (
         loading ? [<CircularProgress key={0} size={20} value="Loading" />, <Typography variant="caption">Loading Inventory Data...</Typography>] : (
-            // <>
-            //     <Chip
-            //         variant="outlined"
-            //         color="primary"
-            //         size="small"
-            //         icon={<InfoIcon />}
-            //         label={`${area} Inventory Data`}
-            //         onClick={handleClickOpen}
-            //     />
-            //     <Dialog
-            //         open={open}
-            //         TransitionComponent={Transition}
-            //         keepMounted
-            //         onClose={handleClose}
-            //         aria-describedby="alert-dialog-slide-description"
-            //     >
-            //         <DialogTitle>{area} Inventory Data</DialogTitle>
-            //         <DialogContent>
-            //             <DialogContentText id="alert-dialog-slide-description">
             <Box sx={{
                 width: 560,
                 border: "1px solid black",
@@ -231,15 +203,20 @@ export const InventoryData = props => {
                             </TableCell>
                         </TableRow>
                     </TableHead>
-                    {fieldsToDisplay.filter(field => ((field.show === true) || (field.show.toLowerCase() === searchType.toLowerCase()))).map((field, i) => (
-                        <DisplayRow field={field} data={data} key={field.field} index={i} />
-                    ))}
+                    {(data === null) ? (
+                        <TableRow>
+                            <TableCell colspan={2} align="center"><Typography variant="caption">No information available for {area}</Typography></TableCell>
+                        </TableRow>
+                    ) : (
+
+                        fieldsToDisplay.filter(field => ((field.show === true) || (field.show.toLowerCase() === searchType.toLowerCase()))).map((field, i) => (
+                            <DisplayRow field={field} data={data} key={field.field} index={i} />
+                        ))
+
+                    )}
+
                 </Table>
             </Box>
-            //             </DialogContentText>
-            //         </DialogContent>
-            //     </Dialog>
-            // </>
         )
     )
 }

@@ -606,7 +606,7 @@ const App = ({ debugOptions }) => {
                               <BigDataTable loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
                               <Grid container direction="row" sx={{mt:5}}>
                                 <Grid item xs={6} justifyContent={"center"}>
-                                    {(searchBy === "county") && <Netronline county={area} />}
+                                    <Netronline searchType={searchBy} area={area} />
                                 </Grid>
                                 <Grid item xs={6} justifyContent="flex-end">
                                   <InventoryData searchType={searchBy} area={area} />

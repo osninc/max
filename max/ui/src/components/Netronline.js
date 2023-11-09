@@ -1,28 +1,56 @@
-import { Box, Chip, Dialog, DialogContent, DialogContentText, DialogTitle, IconButton, Slide, TableCell, TableRow, Typography } from "@mui/material"
+import { Box, Chip, CircularProgress, Dialog, DialogContent, DialogContentText, DialogTitle, IconButton, Slide, TableCell, TableRow, Typography } from "@mui/material"
 import netr from "../data/normalNetronline.json"
 import InfoIcon from '@mui/icons-material/Info';
 import { DataGrid, GridToolbarContainer } from '@mui/x-data-grid';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { defaultTheme } from "../constants/theme.js";
+import { fetchInventory, findInventoryData } from "../api/apify.js";
+import { capitalizeFirstLetter } from "../functions/functions.js";
+import zipCounty from "../data/zip_county.json"
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const Netronline = ({ county }) => {
-    const [open, setOpen] = useState(false);
+export const Netronline = ({ searchType, area }) => {
+    // const [loading, setLoading] = useState(false)
+    // const [data, setData] = useState([])
+    // const [county, setCounty] = useState("")
 
+    // // If its zipcode, lookup county
+    // useEffect(() => {
+    //     if (searchType.toLowerCase() === "zipcode") {
+    //         const fetchData = async () => {
+    //             const returnData = await fetchInventory(searchType, area)
+    //             const data2 = await findInventoryData(returnData, searchType, area)
+    //             setLoading(false)
+    //             if (data2 !== null) {
+    //                 setData(data2)
+    //                 const [county1, state1] = data2.zip_name.split(", ")
+    //                 const zipName = `${capitalizeFirstLetter(county1)}, ${state1.toUpperCase()}`
+    //                 setCounty(zipName)
+    //                 console.log({data2})
+    //                 console.log({ zipName })
+    //             }
+    //         }
+    //         fetchData()
+    //     }
+    //     else {
+    //         setLoading(false)
+    //         setData([])
+    //         setCounty(area)
+    //     }
+    // }, [area])
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    if (["state"].includes(searchType.toLowerCase()))
+        return ""
 
-    const handleClose = () => {
-        setOpen(false);
-    };
+    let county = area
+    if (searchType.toLowerCase() === "zipcode")
+        county = zipCounty[area]
 
     const countyData = netr[county];
     const columns = [
@@ -64,31 +92,14 @@ export const Netronline = ({ county }) => {
     }
 
     return (
-        // <>
-        //     <Chip
-        //         variant="outlined"
-        //         color="primary"
-        //         size="small"
-        //         icon={<InfoIcon />}
-        //         label={`${county} Netr Information`}
-        //         onClick={handleClickOpen}
-        //     />
-        //     <Dialog
-        //         open={open}
-        //         TransitionComponent={Transition}
-        //         keepMounted
-        //         onClose={handleClose}
-        //         aria-describedby="alert-dialog-slide-description"
-        //     >
-        //         <DialogTitle>{county} Netr Information</DialogTitle>
-        //         <DialogContent>
-        //             <DialogContentText id="alert-dialog-slide-description">
-        <Box sx={{ 
-            width: 560, 
+        // loading && (data === null) ? [<CircularProgress key={0} size={20} value="Loading" />, <Typography key={1} variant="caption">Loading County Data...</Typography>] : (
+        <Box sx={{
+            width: 560,
             border: "1px solid black",
             '& .netr--header': {
                 backgroundColor: `${defaultTheme.palette.primary.main} !important`,
-            }, }}>
+            },
+        }}>
             <DataGrid
                 getRowId={(row) => row.name}
                 rows={countyData}
@@ -106,9 +117,6 @@ export const Netronline = ({ county }) => {
                 slots={{ toolbar: CustomToolbar }}
             />
         </Box>
-        //             </DialogContentText>
-        //         </DialogContent>
-        //     </Dialog>
-        // </>
+        //)
     )
 }

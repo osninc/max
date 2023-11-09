@@ -180,3 +180,8 @@ export const addLeadingZero = (string, places) => {
     return string.padStart(places, '0')
 
 }
+
+export const convertCountyStr = (value) => {
+    const [county, state] = value.split(", ")
+    return `${capitalizeFirstLetter(county)}, ${state.toUpperCase()}`
+}

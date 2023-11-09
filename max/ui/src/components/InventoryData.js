@@ -1,6 +1,6 @@
 import { Box, Chip, CircularProgress, Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Table, TableCell, TableHead, TableRow, Typography } from "@mui/material"
 import { useEffect, useState, forwardRef } from "react"
-import { fetchInventory } from "../api/apify"
+import { fetchInventory, findInventoryData } from "../api/apify"
 import InfoIcon from '@mui/icons-material/Info';
 import { defaultTheme } from "../constants/theme.js";
 import { USDollar, addLeadingZero, capitalizeFirstLetter, isOdd } from "../functions/functions.js";
@@ -40,7 +40,8 @@ const fieldsToDisplay = [
         field: "postal_code",
         fieldText: "Postal Code",
         render: (value) => {
-            return addLeadingZero(value,5)
+            if (value)
+                return addLeadingZero(value, 5)
         }
     },
     {
@@ -143,45 +144,13 @@ export const InventoryData = props => {
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState(null)
 
-    const findData = async (data) => {
-        const transformSearchType = (searchType.toLowerCase() === "zipcode") ? "zip" : searchType.toLowerCase()
-        const entry = data.filter(e => e.geoType && (e.geoType.toLowerCase() === transformSearchType))
-        const json = (entry.length > 0) ? entry[0].jsonUrl : ""
-        if (json !== "") {
-            const api_call = await fetch(json);
-            const jsonData = await api_call.json();
-            let field = ""
-            let compareValue = area.toLowerCase()
-            switch (transformSearchType) {
-                case "county":
-                    field = "county_name"
-                    compareValue = compareValue.replace(" county", "")
-                    break;
-                case "zip":
-                    // if there is a leading zero in the zipcode, then it becomes a number
-                    field = "postal_code"
-                    compareValue = parseInt(compareValue).toString()
-                    break;
-                case "state":
-                    field = "state_id"
-                    break;
-                default:
-                    break
-            }
-            const theData = jsonData.filter(entry => (entry[field].toLowerCase() === compareValue.toLowerCase()))
-            return (theData.length > 0) ? theData[0] : null
-        }
-        else
-            return null
-    }
-
     useEffect(() => {
         const fetchData = async () => {
             const returnData = await fetchInventory(searchType, area)
-            const data2 = await findData(returnData)
+            const data2 = await findInventoryData(returnData, searchType, area)
             setLoading(false)
             if (data2 !== null)
-                setData(data2) 
+                setData(data2)
         }
         fetchData()
     }, [area])
@@ -209,8 +178,8 @@ export const InventoryData = props => {
                         </TableRow>
                     ) : (
 
-                        fieldsToDisplay.filter(field => ((field.show === true) || (field.show.toLowerCase() === searchType.toLowerCase()))).map((field, i) => (
-                            <DisplayRow field={field} data={data} key={field.field} index={i} />
+                        fieldsToDisplay.filter(field => ((field.show === true) || (field.show.toLowerCase() === searchType.toLowerCase()))).map((field2, i) => (
+                            <DisplayRow field={field2} data={data} key={field2.field} index={i} />
                         ))
 
                     )}

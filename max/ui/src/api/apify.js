@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ACTORS, APIFY } from "../constants/constants";
 import { processError } from "../error";
-import { convertDateToLocal, sec2min, time2epoch } from "../functions/functions";
+import { convertCountyStr, convertDateToLocal, sec2min, time2epoch } from "../functions/functions";
 import { getPropertyParams } from "../zillowGraphQl";
 import { defaultHeaders } from "../headers.js";
 import { normalizeTheData } from "./normalize";
@@ -19,6 +19,38 @@ export const fetchInventory = async () => {
     catch (error) {
         throw { message: processError("apify:fetchInventory", error) }
     }
+}
+// Get specific data from inventory
+export const findInventoryData = async (data, searchType, area) => {
+    const transformSearchType = (searchType.toLowerCase() === "zipcode") ? "zip" : searchType.toLowerCase()
+    const entry = data.filter(e => e.geoType && (e.geoType.toLowerCase() === transformSearchType))
+    const json = (entry.length > 0) ? entry[0].jsonUrl : ""
+    if (json !== "") {
+        const api_call = await fetch(json);
+        const jsonData = await api_call.json();
+        let field = ""
+        let compareValue = area.toLowerCase()
+        switch (transformSearchType) {
+            case "county":
+                field = "county_name"
+                compareValue = compareValue.replace(" county", "")
+                break;
+            case "zip":
+                // if there is a leading zero in the zipcode, then it becomes a number
+                field = "postal_code"
+                compareValue = parseInt(compareValue).toString()
+                break;
+            case "state":
+                field = "state_id"
+                break;
+            default:
+                break
+        }
+        const theData = jsonData.filter(entry => (entry[field].toLowerCase() === compareValue.toLowerCase()))
+        return (theData.length > 0) ? theData[0] : null
+    }
+    else
+        return null
 }
 
 export const fetchStore = async (storeId) => {
@@ -51,7 +83,7 @@ export const fetchCountsData = async (id) => {
 
         const response = await axios(axiosObj);
         const data = response.data
-        
+
         const filteredData = data.filter(el => el.timeStamp)
         const listingsCount = filteredData.filter(el => el.mapCount !== "N/A").reduce((a, b) => a + (b.mapCount ?? 0), 0);
         const agentCount = filteredData.filter(el => el.agentCount !== "N/A").reduce((a, b) => a + (b.agentCount ?? b.count), 0);
@@ -308,7 +340,6 @@ export const fetchDetails = async (source, ds, automaticDetails) => {
 // This is the main search function
 export const fetchData = async (source, params) => {
     const {
-        search,
         ds,
         buildNumber,
         proxyType,
@@ -319,14 +350,20 @@ export const fetchData = async (source, params) => {
         automaticDetails
     } = params
 
-    let tempDs = ds;
+    let search = params.search
 
+    let tempDs = ds;
     let searchBy = "county"
     // figure out what kind of search it is
     if (search.length === 2)
         searchBy = "state"
     if (search.length === 5)
         searchBy = "zipCode"
+
+    // fix the capitalization if new county search
+    if ((tempDs === "") && (searchBy === "county")) {
+        search = convertCountyStr(search)
+    }
 
     // Prepare Actor input
     const input = (buildNumber.includes("yir-dev-2") || buildNumber.includes("0.2.")) ? // use old inputs

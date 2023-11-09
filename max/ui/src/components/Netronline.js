@@ -76,7 +76,7 @@ export const Netronline = ({ searchType, area }) => {
                     href={value} rel="noreferrer" target="_blank"
                     style={{ color: "#0F9D58" }}
                 >
-                    <FontAwesomeIcon icon={icon({ name: 'link' })} size="xs" />
+                    <FontAwesomeIcon icon={icon({ name: 'link' })} size="xs"  fixedWidth/>
                 </IconButton>
                 )
             }
@@ -86,7 +86,7 @@ export const Netronline = ({ searchType, area }) => {
     function CustomToolbar() {
         return (
             <GridToolbarContainer>
-                <Typography variant="h6" align="center" width={"100%"} marginBlock><strong>{county} Information</strong></Typography>
+                <Typography variant="h6" align="center" width={"100%"} marginBlock><strong>{county} Contact Info</strong></Typography>
             </GridToolbarContainer>
         );
     }

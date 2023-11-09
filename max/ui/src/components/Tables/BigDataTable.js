@@ -54,7 +54,24 @@ const DataCell = props => {
         "2 years": 720,
         "36 months": 1080,
         "3 years": 1080,
-        "5 years": 1800
+        "5 years": 1800,
+        "last 1 month": 30,
+        "last 1 week": 7,
+        "last 1 year": 360,
+        "last 2 years": 720,
+        "last 3 months": 180,
+        "last 3 years": 360 * 3,
+        "last 5 years": 360 * 5,
+        "last 6 months": 30 * 6,
+        "less than 3 days": 3,
+        "less than 7 days": 7,
+        "less than 30 days": 30,
+        "more than 7 days": 7,
+        "more than 14 days": 14,
+        "more than 30 days": 30,
+        "more than 45 days": 45,
+        "more than 90 days": 90,
+        "more than 180 days": 180
     }
 
 
@@ -542,8 +559,7 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
                             <TableCell colSpan={colSpan} align="center" sx={{ color: tableHeader[value].textColor }}><strong>{tableHeader[value].text}</strong></TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>&nbsp;</TableCell>
-                            <TableCell>&nbsp;</TableCell>
+                            <TableCell colSpan={2} align="center">DataTree.com</TableCell>
                             <TableCell>&nbsp;</TableCell>
                             {Object.keys(matrix[source].time).map(time => (
                                 (time !== "") &&
@@ -571,11 +587,18 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
                             {Object.keys(matrix[source].lot).map(lot => (
                                 <TableRow
                                     key={lot}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    sx={{ 
+                                        '&:last-child td, &:last-child th': { border: 0 },
+                                        '& td, & td span, & td a, & td p': (lot.toLowerCase() === "total") ? {
+                                            fontSize: "1.1em !important",
+                                            fontWeight: "bold !important"
+                                        } : {},
+                                        borderTop: (lot.toLowerCase() === "total") ? "5px double rgba(224, 224, 224, 1) !important" : ""                                        
+                                    }}
                                 >
                                     <TableCell align="center"><Typography variant="caption">TBD</Typography></TableCell>
                                     <TableCell align="center"><Typography variant="caption">TBD</Typography></TableCell>
-                                    <TableCell align="center">{lot.toUpperCase()}</TableCell>
+                                    <TableCell align="left" sx={{whiteSpace: "nowrap"}}>{lot.toUpperCase()}</TableCell>
                                     {Object.keys(matrix[source].time).map(time => (
                                         <DataCell
                                             key={`${time}${lot}${tableHeader[value].dataField}`}

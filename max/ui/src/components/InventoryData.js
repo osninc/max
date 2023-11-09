@@ -1,9 +1,11 @@
-import { Box, Chip, CircularProgress, Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Table, TableCell, TableHead, TableRow, Typography } from "@mui/material"
+import { Box, Chip, CircularProgress, Dialog, DialogContent, DialogContentText, DialogTitle, Link, Slide, Table, TableCell, TableHead, TableRow, Typography } from "@mui/material"
 import { useEffect, useState, forwardRef } from "react"
 import { fetchInventory, findInventoryData } from "../api/apify"
 import InfoIcon from '@mui/icons-material/Info';
 import { defaultTheme } from "../constants/theme.js";
 import { USDollar, addLeadingZero, capitalizeFirstLetter, isOdd } from "../functions/functions.js";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -18,6 +20,14 @@ const fieldsToDisplay = [
             const year = value.slice(0, 4)
             const month = value.substr(value.length - 2)
             return `${month}/${year}`
+        }
+    },
+    {
+        show: true,
+        field: "source_link",
+        fieldText: "Source Data",
+        render: (value) => {
+            return <Link href="https://www.realtor.com/research/data/" rel="noreferrer" target="_blank"><FontAwesomeIcon icon={icon({ name: 'link' })} fixedWidth /></Link>
         }
     },
     {
@@ -168,7 +178,7 @@ export const InventoryData = props => {
                     <TableHead>
                         <TableRow>
                             <TableCell colSpan={2}>
-                                <Typography variant="h6" align="center" width={"100%"} marginBlock><strong>Realtor.com Monthly Market Data</strong></Typography>
+                                <Typography variant="h6" align="center" width={"100%"} marginBlock><strong>Realtor.com Monthly Housing Market Data</strong></Typography>
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -176,14 +186,11 @@ export const InventoryData = props => {
                         <TableRow>
                             <TableCell colspan={2} align="center"><Typography variant="caption">No information available for {area}</Typography></TableCell>
                         </TableRow>
-                    ) : (
-
+                    ) :
                         fieldsToDisplay.filter(field => ((field.show === true) || (field.show.toLowerCase() === searchType.toLowerCase()))).map((field2, i) => (
                             <DisplayRow field={field2} data={data} key={field2.field} index={i} />
                         ))
-
-                    )}
-
+                    }
                 </Table>
             </Box>
         )

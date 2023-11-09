@@ -31,7 +31,8 @@ export const ACTORS = {
                 daysOnRedfin: "daysOn",
                 count: "agentCount"
             },
-            COMBINE: {
+            COMBINE: false,
+            COMBINE2: {
                 ACREAGE: {
                     ["0-1"]: [
                         "0-0",
@@ -111,16 +112,16 @@ export const ACTORS = {
         },
         SHOWDISCLAIMER: false
     },
-    MLS: {
-        ACTIVE: false,
-        COUNT: {
-            COMBINE: false
-        },
-        DETAILS: {
+    // MLS: {
+    //     ACTIVE: false,
+    //     COUNT: {
+    //         COMBINE: false
+    //     },
+    //     DETAILS: {
 
-        },
-        SHOWDISCLAIMER: false
-    }
+    //     },
+    //     SHOWDISCLAIMER: false
+    // }
 }
 
 export const DEBUGMENU = {

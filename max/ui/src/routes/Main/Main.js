@@ -435,7 +435,7 @@ const App = ({ debugOptions }) => {
               </Paper>
 
               {sources.map(source => (
-                <FormControlLabel control={
+                <FormControlLabel key={source} control={
                   <Checkbox
                     checked={sourcesSelected[source] && ACTORS[source.toUpperCase()].ACTIVE}
                     onChange={handleSourcesSelected}
@@ -525,7 +525,7 @@ const App = ({ debugOptions }) => {
                   onChange={handlePrevDsSourceChange}
                 >
                   {sources.map(source => (
-                    <FormControlLabel control={
+                    <FormControlLabel key={source} control={
                       <Radio
                         size="small" />
                     } label={

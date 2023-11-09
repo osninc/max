@@ -121,6 +121,20 @@ const checkCombine = (source, data, field) => {
     return Object.keys(combineObjDef).filter(key => combineObjDef[key].includes(actualFieldValue))
 }
 
+const removeDups = ary => {
+    //console.log([...new Set(ary.filter(a => a.id.toString() === "142924834").map(a=>a.price))])
+    //console.log(uniqueListings.map())
+    //console.log({ary})
+    return ary
+}
+
+// const uniqueListings = data.reduce((accumulator, current) => {
+//     if (!accumulator.find((item) => item.id.toString() === current.id.toString())) {
+//         accumulator.push(current);
+//     }
+//     return accumulator;
+// }, []);
+
 export const normalizeTheData = (source, data, details) => {
     // if there are details array, then process that one first before merge
     let fixedDetails
@@ -197,7 +211,7 @@ export const normalizeTheData = (source, data, details) => {
                         // Get the current obj and combine with last
                         const currentObj = count
 
-                        const newListings = [...prevObj.listings, ...fixedListings]
+                        const newListings = removeDups([...prevObj.listings, ...fixedListings])
 
                         combinedObj = {
                             count: prevObj.count + (currentObj.agentCount ?? currentObj.count),

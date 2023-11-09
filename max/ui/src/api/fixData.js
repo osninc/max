@@ -1,5 +1,6 @@
 import { ACTORS } from "../constants/constants"
 import { sqft2acre } from "../functions/formulas"
+import { fixRedfinUrl } from "../functions/functions"
 
 const convertAcreageString = str => {
     // String is in the form of sqft-sqft
@@ -54,7 +55,7 @@ const renameKeys = (objOfKeys, item) => {
 export const fixData = (source, data) => {
     const theSource = ACTORS[source.toUpperCase()].COUNT
 
-    const newData = data.map(item => {
+    const newData = data.filter(x => x.status).map(item => {
         // Days on
         //const renamedKeys = theSource.RENAMEFIELDS.reduce((obj, field) => (obj[Object.values(field)[0]] = item[Object.keys(field)[0]], obj), {});
         const acreage = theSource.CONVERTACREAGE ? convertAcreageString(item.acreage) : item.acreage
@@ -62,10 +63,16 @@ export const fixData = (source, data) => {
 
         let modifiedKeys = {}
         if (source === "redfin") {
+            const timeDim = (item.daysOnRedfin === "") ? item.soldInLast : item.daysOnRedfin
             modifiedKeys = {
-                soldInLast: convertSoldInLastText(item.soldInLast),
-                daysOn: convertDaysOn(renamedKeys.daysOn), 
-                agentCount: item.count
+                //soldInLast: convertSoldInLastText(item.soldInLast),
+                //daysOn: convertDaysOn(renamedKeys.daysOn), 
+                daysOn: renamedKeys.daysOn,
+                agentCount: item.count,
+                url: item.url
+                    .replace("-yr", "yr")
+                    .replace("-wk", "wk")
+                //url: fixRedfinUrl(item.url, timeDim, acreage, item.status)
             }
         }
 

@@ -1,0 +1,2370 @@
+[
+    {
+        "attributionInfo": {
+            "mlsName": "SFAR",
+            "agentEmail": null,
+            "agentLicenseNumber": "DRE #01074839",
+            "agentName": "Mauricio Martinez",
+            "agentPhoneNumber": "650-771-0990",
+            "attributionTitle": null,
+            "brokerName": "Compass",
+            "brokerPhoneNumber": "415-660-9955",
+            "buyerAgentMemberStateLicense": null,
+            "buyerAgentName": null,
+            "buyerBrokerageName": null,
+            "coAgentLicenseNumber": null,
+            "coAgentName": "Ceci Cook",
+            "coAgentNumber": null,
+            "mlsId": "423759694"
+        },
+        "priceHistory": [
+            {
+                "date": "2013-03-13",
+                "time": 1363132800000,
+                "price": 599000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2012-05-18",
+                "time": 1337299200000,
+                "price": 599000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2012-04-29",
+                "time": 1335657600000,
+                "price": 699000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2012-03-15",
+                "time": 1331769600000,
+                "price": 799000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "0 Spring St",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/0-Spring-St-Pacifica-CA-94044/2120718454_zpid/",
+        "homeStatus": "FOR_SALE",
+        "lastSoldPrice": null,
+        "latitude": 37.60381,
+        "longitude": -122.48689,
+        "lotSize": 854982,
+        "price": 9500000,
+        "yearBuilt": 0,
+        "zestimate": null,
+        "zpid": 2120718454,
+        "lotAreaValue": 19.6277,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "87 days",
+        "pageViewCount": 332,
+        "favoriteCount": 3,
+        "daysOnZillow": 87,
+        "description": "Rockaway Beach is a popular coastal area located in Pacifica, California, just 10 minutes south of San Francisco. It's known for its scenic views, sandy shores, and recreational activities such as surfing, beachcombing, fishing, hiking, biking, and more. Right next to Rockaway Beach are restaurants and hotels to spend the day or a weekend away from the hustle and bustle of the city as well as Silicon Valley. This is an opportunity to either develop single-family homes or maximize profit by building condos that can offer mesmerizing ocean and sunset views. Offered here is an approximate 19.5 acres of coastal land, consisting of 10 individual lots all next to each other as one large parcel, each consisting of about an acre. Check with local city planning if SB9 is possible. Buyer to investigate all regulations and permits.",
+        "brokerId": null,
+        "brokerageName": "Compass",
+        "mlsid": "423759694",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "022061180"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "00512797",
+            "agentName": "Larry Franzella",
+            "agentPhoneNumber": "650-871-3601",
+            "attributionTitle": null,
+            "brokerName": "Intero Real Estate Services",
+            "brokerPhoneNumber": "650-589-1000",
+            "buyerAgentMemberStateLicense": "00512797",
+            "buyerAgentName": "Larry Franzella",
+            "buyerBrokerageName": "Intero Real Estate Services",
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81900659"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-08-01",
+                "time": 1690848000000,
+                "price": 1000000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2023-05-12",
+                "time": 1683849600000,
+                "price": 1198000,
+                "event": "Contingent",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2022-07-18",
+                "time": 1658102400000,
+                "price": 1198000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "0 Roberts Rd",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/0-Roberts-Rd-Pacifica-CA-94044/2062349520_zpid/",
+        "homeStatus": "RECENTLY_SOLD",
+        "lastSoldPrice": 1000000,
+        "latitude": 37.599094,
+        "longitude": -122.49697,
+        "lotSize": 92978,
+        "price": 1000000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 2062349520,
+        "lotAreaValue": 2.1345,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "87 days",
+        "pageViewCount": 2,
+        "favoriteCount": 0,
+        "daysOnZillow": 87,
+        "description": "Wonderful  location, build a spectacular home and take advantage of the Ocean Views or a planned unit development",
+        "brokerId": null,
+        "brokerageName": "Intero Real Estate Services",
+        "mlsid": "ML81900659",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "022150560"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "70010022",
+            "agentName": " Team Pete & Christine",
+            "agentPhoneNumber": "650-888-5884",
+            "attributionTitle": null,
+            "brokerName": "RE/MAX Star Properties",
+            "brokerPhoneNumber": "650-359-5800",
+            "buyerAgentMemberStateLicense": null,
+            "buyerAgentName": null,
+            "buyerBrokerageName": null,
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81915732"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-03-15",
+                "time": 1678838400000,
+                "price": 675000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2023-01-07",
+                "time": 1673049600000,
+                "price": 699000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2022-11-19",
+                "time": 1668816000000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2022-07-25",
+                "time": 1658707200000,
+                "price": 899000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-11-30",
+                "time": 1638230400000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-12-26",
+                "time": 1608940800000,
+                "price": 1025000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-11-23",
+                "time": 1606089600000,
+                "price": 475000,
+                "event": "Sold",
+                "buyerAgent": {
+                    "photo": null,
+                    "profileUrl": "/profile/sanpedrovalley/",
+                    "name": "Mike O'Connell"
+                },
+                "sellerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/IS7m8zn4ipftjl0000000000.jpg"
+                    },
+                    "profileUrl": "/profile/Alana-Corso/",
+                    "name": "Alana Corso"
+                }
+            },
+            {
+                "date": "2020-11-12",
+                "time": 1605139200000,
+                "price": 450000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-07-17",
+                "time": 1594944000000,
+                "price": 925000,
+                "event": "Sold",
+                "buyerAgent": {
+                    "photo": null,
+                    "profileUrl": "/profile/alene-Santini/",
+                    "name": "Alene Brisbane Santini"
+                },
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-06-22",
+                "time": 1592784000000,
+                "price": 960000,
+                "event": "Pending sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-06-20",
+                "time": 1592611200000,
+                "price": 960000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2019-12-29",
+                "time": 1577577600000,
+                "price": 995000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2019-07-23",
+                "time": 1563840000000,
+                "price": 1100000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2013-09-21",
+                "time": 1379721600000,
+                "price": 585000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2013-09-12",
+                "time": 1378944000000,
+                "price": 585000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "0 Olympian Way",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/0-Olympian-Way-Pacifica-CA-94044/2111048488_zpid/",
+        "homeStatus": "FOR_SALE",
+        "lastSoldPrice": 475000,
+        "latitude": 37.595325,
+        "longitude": -122.51254,
+        "lotSize": 7225,
+        "price": 675000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 2111048488,
+        "lotAreaValue": 7225,
+        "lotAreaUnits": "Square Feet",
+        "timeOnZillow": "185 days",
+        "pageViewCount": 564,
+        "favoriteCount": 18,
+        "daysOnZillow": 185,
+        "description": "Oversized Ocean view Lot in highly desirable Pedro Point. Included in the price is Architectural plans, soils report, and Survey. This is your opportunity to build your dream home in one of the best areas in Pacifica. Minutes from Ocean, Beach, Hiking Trails, Airport, San Francisco, Bart, and the Peninsula.",
+        "brokerId": null,
+        "brokerageName": "RE/MAX Star Properties",
+        "mlsid": "ML81915732",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "023037030"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "01978236",
+            "agentName": "Matt Aragoni",
+            "agentPhoneNumber": "650-483-8949",
+            "attributionTitle": null,
+            "brokerName": "Coldwell Banker Realty",
+            "brokerPhoneNumber": "650-726-1100",
+            "buyerAgentMemberStateLicense": "00243228",
+            "buyerAgentName": "John Fahey",
+            "buyerBrokerageName": "Coastside Associates Real Estate",
+            "coAgentLicenseNumber": "01446257",
+            "coAgentName": "Cameron Jeffs",
+            "coAgentNumber": "650-504-2002",
+            "mlsId": "ML81909921"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-04-04",
+                "time": 1680566400000,
+                "price": 600000,
+                "event": "Sold",
+                "buyerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/IShrezgpgr344j.jpg"
+                    },
+                    "profileUrl": "/profile/fahey70/",
+                    "name": "JOHN FAHEY"
+                },
+                "sellerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/ISfceji729wpk81000000000.jpg"
+                    },
+                    "profileUrl": "/profile/matthewtaragoni/",
+                    "name": "Matt Aragoni"
+                }
+            },
+            {
+                "date": "2023-01-13",
+                "time": 1673568000000,
+                "price": 699000,
+                "event": "Contingent",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2023-01-05",
+                "time": 1672876800000,
+                "price": 699000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2022-10-08",
+                "time": 1665187200000,
+                "price": 800000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "1995-05-24",
+                "time": 801273600000,
+                "price": 94407,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "2251 Oceana Blvd",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/2251-Oceana-Blvd-Pacifica-CA-94044/181350457_zpid/",
+        "homeStatus": "RECENTLY_SOLD",
+        "lastSoldPrice": 600000,
+        "latitude": 37.63185,
+        "longitude": -122.48889,
+        "lotSize": 11326,
+        "price": 600000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 181350457,
+        "lotAreaValue": 0.26000918273645546,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "206 days",
+        "pageViewCount": 5,
+        "favoriteCount": 0,
+        "daysOnZillow": 206,
+        "description": "Large corner lot with excellent access to the Beaches, Trails, shopping, golf course and schools.  Huge Upside for redevelopment. The lot is fairly flat in the R2 zone, with 4 driveway envelopes at the finished sidewalk. Utilities are adjacent to the property and easily accessible. Great proximity to SFO, the San Mateo peninsula, and downtown San Francisco.  Come enjoy building your coastal lifestyle in Pacifica.",
+        "brokerId": null,
+        "brokerageName": "Coldwell Banker Realty",
+        "mlsid": "ML81909921",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "016242090"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "CRMLS",
+            "agentEmail": null,
+            "agentLicenseNumber": "DRE #01160019",
+            "agentName": "Sonny Harris",
+            "agentPhoneNumber": null,
+            "attributionTitle": "Listing Provided by:",
+            "brokerName": "Realty One Group United",
+            "brokerPhoneNumber": "310-356-0940",
+            "buyerAgentMemberStateLicense": null,
+            "buyerAgentName": null,
+            "buyerBrokerageName": null,
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "SB23136468"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-07-26",
+                "time": 1690329600000,
+                "price": 688000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "0 Avenue",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/0-Avenue-Pacifica-CA-94044/2056279878_zpid/",
+        "homeStatus": "FOR_SALE",
+        "lastSoldPrice": null,
+        "latitude": 37.64826,
+        "longitude": -122.4939,
+        "lotSize": 85377,
+        "price": 688000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 2056279878,
+        "lotAreaValue": 1.96,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "42 days",
+        "pageViewCount": 1469,
+        "favoriteCount": 47,
+        "daysOnZillow": 42,
+        "description": "This is 1.96 acres of a parcel of land that is a secluded beach on the Pacific Ocean, in the City if Pacifica. The access to the beach is from an easement next to 528 Esplanade Ave. Cross Street is Manor Dr. West of Highway 1. This secluded beach is adjacent to the cliff that has Esplanade Beach Overlook Trail.   There are Pacifica Esplanade Beach and Mussel Rock Park on the North, and Pacifica Municipal Pier on the South side. It's just a few minutes walking distance from Starbucks, 24-hour Fitness, Walgreens, Safeway, McDonald's, and Chit-Chat Cafe.",
+        "brokerId": null,
+        "brokerageName": "Realty One Group United",
+        "mlsid": "SB23136468",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "009161150"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "01973493",
+            "agentName": "Lisa Eccleston",
+            "agentPhoneNumber": "650-238-7411",
+            "attributionTitle": null,
+            "brokerName": "Eccleston Incorporated",
+            "brokerPhoneNumber": "650-238-7411",
+            "buyerAgentMemberStateLicense": null,
+            "buyerAgentName": null,
+            "buyerBrokerageName": null,
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81917036"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-01-25",
+                "time": 1674604800000,
+                "price": 650000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2022-11-01",
+                "time": 1667260800000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2022-07-27",
+                "time": 1658880000000,
+                "price": 750000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-10-01",
+                "time": 1633046400000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-04-07",
+                "time": 1617753600000,
+                "price": 750000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-01-10",
+                "time": 1610236800000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-06-24",
+                "time": 1592956800000,
+                "price": 899000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-05-05",
+                "time": 1588636800000,
+                "price": 899000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-02-05",
+                "time": 1580860800000,
+                "price": 899000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "6 Hinton Ranch Rd",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/6-Hinton-Ranch-Rd-Pacifica-CA-94044/181367607_zpid/",
+        "homeStatus": "FOR_SALE",
+        "lastSoldPrice": null,
+        "latitude": 37.596848,
+        "longitude": -122.48632,
+        "lotSize": 92782,
+        "price": 650000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 181367607,
+        "lotAreaValue": 2.13,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "185 days",
+        "pageViewCount": 195,
+        "favoriteCount": 5,
+        "daysOnZillow": 185,
+        "description": "The Hinton Ranch! 2 lots left- each over 2 acres!  The feeling being on this property is something you need to experience for yourself.  It's a dream come true to find 2+ acres to build the house you've always imagined.  Truly live in the country on your own acreage and still commute to SF/SFO within 15 minutes.  6 and 8 Hinton Ranch are vacant land, ready for you to build to suit.  The development plan allows one home per lot.  Utilities are nearby according to the site map.",
+        "brokerId": null,
+        "brokerageName": "Eccleston Incorporated",
+        "mlsid": "ML81917036",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "023160460"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "SFAR",
+            "agentEmail": null,
+            "agentLicenseNumber": "DRE #01830850",
+            "agentName": "Dennis Stavropoulos",
+            "agentPhoneNumber": "415-595-1300",
+            "attributionTitle": null,
+            "brokerName": "Sterling Homes",
+            "brokerPhoneNumber": "415-810-5291",
+            "buyerAgentMemberStateLicense": null,
+            "buyerAgentName": null,
+            "buyerBrokerageName": null,
+            "coAgentLicenseNumber": "DRE #01416042",
+            "coAgentName": "Anna G. Spathis",
+            "coAgentNumber": "415-810-5291",
+            "mlsId": "423715730"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-08-24",
+                "time": 1692835200000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2023-01-20",
+                "time": 1674172800000,
+                "price": 2000000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-12-15",
+                "time": 1639526400000,
+                "price": 1650000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-11-08",
+                "time": 1636329600000,
+                "price": 1650000,
+                "event": "Pending sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-10-31",
+                "time": 1635638400000,
+                "price": 1650000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2012-06-15",
+                "time": 1339718400000,
+                "price": 875000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2001-06-29",
+                "time": 993772800000,
+                "price": 920000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "10 Gypsy Hill Rd",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/10-Gypsy-Hill-Rd-Pacifica-CA-94044/181350871_zpid/",
+        "homeStatus": "FOR_SALE",
+        "lastSoldPrice": 1650000,
+        "latitude": 37.628822,
+        "longitude": -122.48599,
+        "lotSize": 242441,
+        "price": 2000000,
+        "yearBuilt": 0,
+        "zestimate": null,
+        "zpid": 181350871,
+        "lotAreaValue": 5.5657,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "280 days",
+        "pageViewCount": 335,
+        "favoriteCount": 6,
+        "daysOnZillow": 280,
+        "description": "An incredible 5.5 acres lot, atop Pacifica, perched above historic Sharp Park Golf Course, with Ocean Views from Marin Headlands to Pedro Point, surrounded by nature, at the end of newly paved private cul-de-sac and utilities are accessible to site. Incredibly private, devoid of street lights, the revealing night skies are as majestic as the frequent whale sightings & unobstructed sunset Ocean Views. It feels far away yet incredibly close - only 15 min to SFO & San Francisco and 30 min to Palo Alto, minutes from beach, beachfront restaurants, shops, schools, major shopping centers, hiking trails away from traffic. No HOA. Uniquely special - it is outside of coastal commission jurisdiction, not at risk of long-term coastal flooding & benefits from city infrastructure for water, sewer, electric & fiber. Typically properties like these are in the middle of nowhere, on wells, septic & satellite. There is nothing else on or off market like this parcel. It is not in the jurisdiction of coastal commission, not at risk of coastal flooding, and benefits from city infrastructure - water, sewer, electric, and fiber.  The proposed architectural design has 3 levels of grand entertaining, rich amenities, pool & extraordinary spaces connected by balconies & elevator. No HOA. Plans upon request.",
+        "brokerId": null,
+        "brokerageName": "Sterling Homes",
+        "mlsid": "423715730",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "016421120"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "01973493",
+            "agentName": "Lisa Eccleston",
+            "agentPhoneNumber": "650-238-7411",
+            "attributionTitle": null,
+            "brokerName": "Eccleston Incorporated",
+            "brokerPhoneNumber": "650-238-7411",
+            "buyerAgentMemberStateLicense": null,
+            "buyerAgentName": null,
+            "buyerBrokerageName": null,
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81917038"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-01-25",
+                "time": 1674604800000,
+                "price": 550000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2022-11-01",
+                "time": 1667260800000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2022-04-08",
+                "time": 1649376000000,
+                "price": 700000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-10-01",
+                "time": 1633046400000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-04-07",
+                "time": 1617753600000,
+                "price": 750000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-01-10",
+                "time": 1610236800000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-06-24",
+                "time": 1592956800000,
+                "price": 899000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-05-05",
+                "time": 1588636800000,
+                "price": 899000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-02-05",
+                "time": 1580860800000,
+                "price": 899000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "8 Hinton Ranch Rd",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/8-Hinton-Ranch-Rd-Pacifica-CA-94044/181367608_zpid/",
+        "homeStatus": "FOR_SALE",
+        "lastSoldPrice": null,
+        "latitude": 37.596977,
+        "longitude": -122.484985,
+        "lotSize": 100980,
+        "price": 550000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 181367608,
+        "lotAreaValue": 2.3182,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "185 days",
+        "pageViewCount": 291,
+        "favoriteCount": 11,
+        "daysOnZillow": 185,
+        "description": "The Hinton Ranch property contains 4 lots - each over 2 acres!  1 Hinton Ranch Rd sold last year. Lot 4 sold. Lots 6 and 8are still available.  The feeling being on this property is something you need to experience for yourself.  It's a dream come true to find 2+ acres to build the house you've always imagined.  Truly live in the country on your own acreage and still commute to SF/SFO within 15 minutes.    6 and 8 Hinton Ranch are vacant land, ready for you to build to suit.  The development plan allows one home per lot.  Utilities are nearby according to the site map.",
+        "brokerId": null,
+        "brokerageName": "Eccleston Incorporated",
+        "mlsid": "ML81917038",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "023160470"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "01044049",
+            "agentName": "Patrick Ryan",
+            "agentPhoneNumber": "650-759-2430",
+            "attributionTitle": null,
+            "brokerName": "Compass",
+            "brokerPhoneNumber": "650-712-1199",
+            "buyerAgentMemberStateLicense": "02190381",
+            "buyerAgentName": "Yaqeen Muttaqi",
+            "buyerBrokerageName": "Compass",
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81908545"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-01-06",
+                "time": 1672963200000,
+                "price": 275000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2022-12-13",
+                "time": 1670889600000,
+                "price": 275000,
+                "event": "Contingent",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2022-09-26",
+                "time": 1664150400000,
+                "price": 275000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "0 Clarendon Rd",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/0-Clarendon-Rd-Pacifica-CA-94044/2061436947_zpid/",
+        "homeStatus": "RECENTLY_SOLD",
+        "lastSoldPrice": 275000,
+        "latitude": 37.63028,
+        "longitude": -122.48359,
+        "lotSize": 9000,
+        "price": 275000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 2061436947,
+        "lotAreaValue": 9000,
+        "lotAreaUnits": "Square Feet",
+        "timeOnZillow": "294 days",
+        "pageViewCount": 0,
+        "favoriteCount": 0,
+        "daysOnZillow": 294,
+        "description": "Large parcel that will need to have about 30 yards of roadway built for vehicle access. Terrific upside with likely ocean views.",
+        "brokerId": null,
+        "brokerageName": "Compass",
+        "mlsid": "ML81908545",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "016364040"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "SFAR",
+            "agentEmail": null,
+            "agentLicenseNumber": "DRE #01489472",
+            "agentName": "Colm M. Glass",
+            "agentPhoneNumber": "415-845-2965",
+            "attributionTitle": null,
+            "brokerName": "Golden Gate Sotheby's Intl",
+            "brokerPhoneNumber": "415-461-7200",
+            "buyerAgentMemberStateLicense": null,
+            "buyerAgentName": null,
+            "buyerBrokerageName": null,
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "423754758"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-10-25",
+                "time": 1698192000000,
+                "price": 995000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2023-09-05",
+                "time": 1693872000000,
+                "price": 1265000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2023-08-24",
+                "time": 1692835200000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2023-07-08",
+                "time": 1688774400000,
+                "price": 1265000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2015-05-22",
+                "time": 1432252800000,
+                "price": 330000,
+                "event": "Sold",
+                "buyerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/ISib42zu0znz4x0000000000.jpg"
+                    },
+                    "profileUrl": "/profile/user1459351/",
+                    "name": "Edie Halenbeck"
+                },
+                "sellerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/ISib42zu0znz4x0000000000.jpg"
+                    },
+                    "profileUrl": "/profile/user1459351/",
+                    "name": "Edie Halenbeck"
+                }
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "0 Springwood",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/0-Springwood-Pacifica-CA-94044/2104644235_zpid/",
+        "homeStatus": "FOR_SALE",
+        "lastSoldPrice": 330000,
+        "latitude": 37.61044,
+        "longitude": -122.470924,
+        "lotSize": 287496,
+        "price": 995000,
+        "yearBuilt": 0,
+        "zestimate": null,
+        "zpid": 2104644235,
+        "lotAreaValue": 6.6,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "112 days",
+        "pageViewCount": 269,
+        "favoriteCount": 9,
+        "daysOnZillow": 112,
+        "description": "A rare opportunity in esteemed Willowbrook Estates, Pacifica!     Own 6.6 acres with a breathtaking Pacific Ocean panorama. Once-in-a-lifetime prospect not to be missed!  Savor the dramatic vista, unmatched in Linda Mar. Sunrise, sunset, crashing waves - nature's spectacle from your dream home.    Five parcels, endless possibilities. Create a sprawling family compound or explore other development opportunities. Craft your bespoke sanctuary to fulfill your desires and complement your lifestyle.    Convenience and tranquility combined. Close to town, with easy access to amenities, shopping, and dining. Just 2.5 miles from the sandy shores of the Pacific, offering the perfect blend of coastal living and urban accessibility.     Pacifica prides itself on forward-thinking development. The city mandates to build nearly 2,000 new homes, and you'll find yourself in the midst of a visionary landscape where growth meets opportunity. As you plan your own private retreat, you can rest assured that the city's innovative approach to expansion will only enhance the appeal of your investment.    This property promises unparalleled views of the glistening ocean, providing a daily dose of natural inspiration. Embrace the tranquility and beauty of coastal living at its finest.",
+        "brokerId": null,
+        "brokerageName": "Golden Gate Sotheby's Intl",
+        "mlsid": "423754758",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "023391010"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": null,
+            "agentEmail": null,
+            "agentLicenseNumber": null,
+            "agentName": null,
+            "agentPhoneNumber": null,
+            "attributionTitle": null,
+            "brokerName": null,
+            "brokerPhoneNumber": null,
+            "buyerAgentMemberStateLicense": null,
+            "buyerAgentName": null,
+            "buyerBrokerageName": null,
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": null
+        },
+        "priceHistory": [
+            {
+                "date": "2021-05-13",
+                "time": 1620864000000,
+                "price": 1250000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-09-03",
+                "time": 1599091200000,
+                "price": 1750000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-06-02",
+                "time": 1591056000000,
+                "price": 1750000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-04-13",
+                "time": 1586736000000,
+                "price": 1950000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-03-09",
+                "time": 1583712000000,
+                "price": 1950000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-01-01",
+                "time": 1577836800000,
+                "price": 2500000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2019-09-04",
+                "time": 1567555200000,
+                "price": 2500000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2019-08-27",
+                "time": 1566864000000,
+                "price": 3000000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2019-07-24",
+                "time": 1563926400000,
+                "price": 3000000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2019-07-03",
+                "time": 1562112000000,
+                "price": 3000000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2015-02-12",
+                "time": 1423699200000,
+                "price": 720000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2014-12-09",
+                "time": 1418083200000,
+                "price": 100000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2014-12-08",
+                "time": 1417996800000,
+                "price": 795000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2009-07-08",
+                "time": 1247011200000,
+                "price": 975000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2009-04-07",
+                "time": 1239062400000,
+                "price": 975000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2008-12-08",
+                "time": 1228694400000,
+                "price": 1295000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2007-04-18",
+                "time": 1176854400000,
+                "price": 1100000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2004-11-02",
+                "time": 1099353600000,
+                "price": 750000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2002-03-21",
+                "time": 1016668800000,
+                "price": 530000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2000-08-16",
+                "time": 966384000000,
+                "price": 450000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "1335 Adobe Dr",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/1335-Adobe-Dr-Pacifica-CA-94044/15506172_zpid/",
+        "homeStatus": "SOLD",
+        "lastSoldPrice": 1250000,
+        "latitude": 37.587833,
+        "longitude": -122.494354,
+        "lotSize": 18748,
+        "price": 1250000,
+        "yearBuilt": 1950,
+        "zestimate": null,
+        "zpid": 15506172,
+        "lotAreaValue": 0.43039485766758495,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "897 days",
+        "pageViewCount": 0,
+        "favoriteCount": 0,
+        "daysOnZillow": 897,
+        "description": "1335 Adobe Dr, Pacifica, CA 94044 is a vacant land home that contains 1,370 sq ft and was built in 1950. It contains 3 bedrooms and 0 bathroom. This home last sold for $1,250,000 in May 2021. \n \nThe Rent Zestimate for this home is $2,700/mo. ",
+        "brokerId": null,
+        "brokerageName": null,
+        "mlsid": null,
+        "monthlyHoaFee": 83,
+        "resoFacts": {
+            "parcelNumber": "023222080"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "01877393",
+            "agentName": "Edie Halenbeck",
+            "agentPhoneNumber": "650-996-8466",
+            "attributionTitle": null,
+            "brokerName": "Compass",
+            "brokerPhoneNumber": "408-741-1111",
+            "buyerAgentMemberStateLicense": null,
+            "buyerAgentName": null,
+            "buyerBrokerageName": null,
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81935719"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-07-21",
+                "time": 1689897600000,
+                "price": 5000000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "10 Springwood Way",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/10-Springwood-Way-Pacifica-CA-94044/2056354206_zpid/",
+        "homeStatus": "FOR_SALE",
+        "lastSoldPrice": null,
+        "latitude": 37.576572,
+        "longitude": -122.49266,
+        "lotSize": 1858648,
+        "price": 5000000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 2056354206,
+        "lotAreaValue": 42.6687,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "99 days",
+        "pageViewCount": 865,
+        "favoriteCount": 19,
+        "daysOnZillow": 99,
+        "description": "Own an expansive acreage consisting of 30 parcels in beautiful Tobin Park.  Ideally situated at the end of a culdesac in the  Willowbrook Estates neighborhood of Pacifica.  Property is close in town and only 2.5 miles to the beach. Property has  street frontage and runs all the way back with some flat areas and rolling hills.  Enjoy the tranquil surroundings and views of the lush green hills with possible water views at the top of the property.  Possibilities include development for an enclave of private estates, vineyard, horse property, multi-residential, or clearing for growing fields like lavender where demand currently outpaces the supply.  Pacifica's new mandate to build over a thousand new homes makes this a great investment.  The first few photos are renderings to imagine all the possibilities!",
+        "brokerId": null,
+        "brokerageName": "Compass",
+        "mlsid": "ML81935719",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "023384020"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "01876163",
+            "agentName": "Max Reinhardt",
+            "agentPhoneNumber": "415-860-1484",
+            "attributionTitle": null,
+            "brokerName": "Berkshire Hathaway HomeServices DrysdaleProperties",
+            "brokerPhoneNumber": "650-393-5108",
+            "buyerAgentMemberStateLicense": "01876163",
+            "buyerAgentName": "Max Reinhardt",
+            "buyerBrokerageName": "Berkshire Hathaway HomeServices DrysdaleProperties",
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81919022"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-03-07",
+                "time": 1678147200000,
+                "price": 90000,
+                "event": "Sold",
+                "buyerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/ISa99u73a2gzow1000000000.jpg"
+                    },
+                    "profileUrl": "/profile/maxtherealtor2/",
+                    "name": "Max Reinhardt"
+                },
+                "sellerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/ISa99u73a2gzow1000000000.jpg"
+                    },
+                    "profileUrl": "/profile/maxtherealtor2/",
+                    "name": "Max Reinhardt"
+                }
+            },
+            {
+                "date": "2023-02-16",
+                "time": 1676505600000,
+                "price": 100000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-04-10",
+                "time": 1618012800000,
+                "price": 200000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": {
+                    "photo": null,
+                    "profileUrl": "/profile/thecolangelogroupcom/",
+                    "name": "Donna Colangelo"
+                }
+            },
+            {
+                "date": "2021-03-12",
+                "time": 1615507200000,
+                "price": 199950,
+                "event": "Contingent",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-02-25",
+                "time": 1614211200000,
+                "price": 199950,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-10-01",
+                "time": 1601510400000,
+                "price": 249950,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2017-08-24",
+                "time": 1503532800000,
+                "price": 128888,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2016-10-05",
+                "time": 1475625600000,
+                "price": 128888,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2016-05-24",
+                "time": 1464048000000,
+                "price": 189888,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2016-05-24",
+                "time": 1464048000000,
+                "price": 275000,
+                "event": "Pending sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2016-05-16",
+                "time": 1463356800000,
+                "price": 189888,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2016-04-29",
+                "time": 1461888000000,
+                "price": 275000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2016-03-01",
+                "time": 1456790400000,
+                "price": 189888,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2015-02-26",
+                "time": 1424908800000,
+                "price": 275000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2014-12-18",
+                "time": 1418860800000,
+                "price": 275000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2014-07-04",
+                "time": 1404432000000,
+                "price": 175000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "0 Calera Ter",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/0-Calera-Ter-Pacifica-CA-94044/2106172025_zpid/",
+        "homeStatus": "RECENTLY_SOLD",
+        "lastSoldPrice": 90000,
+        "latitude": 37.60504,
+        "longitude": -122.48453,
+        "lotSize": 158209,
+        "price": 90000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 2106172025,
+        "lotAreaValue": 3.632,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "234 days",
+        "pageViewCount": 3,
+        "favoriteCount": 0,
+        "daysOnZillow": 234,
+        "description": "Two large lots in the Rockaway section of Pacifica. Lots are currently zoned B-10/HPD with the City and appear to have no improvements.",
+        "brokerId": null,
+        "brokerageName": "Berkshire Hathaway HomeServices DrysdaleProperties",
+        "mlsid": "ML81919022",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "018140590"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "01860286",
+            "agentName": "John M. Rice",
+            "agentPhoneNumber": "650-438-1953",
+            "attributionTitle": null,
+            "brokerName": "Coastside Associates Real Estate",
+            "brokerPhoneNumber": "650-355-3800",
+            "buyerAgentMemberStateLicense": "01417693",
+            "buyerAgentName": "Abe Matar",
+            "buyerBrokerageName": "Landmark Real Estate Services",
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81779551"
+        },
+        "priceHistory": [
+            {
+                "date": "2022-05-18",
+                "time": 1652832000000,
+                "price": 500000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-07-13",
+                "time": 1626134400000,
+                "price": 485000,
+                "event": "Sold",
+                "buyerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/ISzve4xaripvf61000000000.jpg"
+                    },
+                    "profileUrl": "/profile/abematar/",
+                    "name": "Abe Matar"
+                },
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-03-30",
+                "time": 1617062400000,
+                "price": 498000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-01-19",
+                "time": 1579392000000,
+                "price": 588000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2019-12-11",
+                "time": 1576022400000,
+                "price": 548000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2019-06-12",
+                "time": 1560297600000,
+                "price": 548000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2018-11-22",
+                "time": 1542844800000,
+                "price": 698000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2018-06-02",
+                "time": 1527897600000,
+                "price": 698000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2017-07-12",
+                "time": 1499817600000,
+                "price": 200000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2012-06-18",
+                "time": 1339977600000,
+                "price": 56000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2011-08-29",
+                "time": 1314576000000,
+                "price": 191381,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2007-07-24",
+                "time": 1185235200000,
+                "price": 195000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2004-10-19",
+                "time": 1098144000000,
+                "price": 200000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "1693 Higgins Way",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/1693-Higgins-Way-Pacifica-CA-94044/181368679_zpid/",
+        "homeStatus": "SOLD",
+        "lastSoldPrice": 500000,
+        "latitude": 37.582638,
+        "longitude": -122.49428,
+        "lotSize": 35032,
+        "price": 500000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 181368679,
+        "lotAreaValue": 0.8042240587695133,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "527 days",
+        "pageViewCount": 1,
+        "favoriteCount": 0,
+        "daysOnZillow": 527,
+        "description": "Building plans are approved by the City of Pacifica!...Ready to start the permit process and begin construction of this beautiful 4 bedroom, 3 bath, 3,128 sq. ft. home...Situated on almost 1 acre lot with beautiful Valley and Ocean views makes this a special property...\nThis property is surrounded by open space, next to walking, hiking, biking trails...only a short distance to Linda Mar State Beach offering excellent surfing and fishing...close to shopping and transportation... Build your dream home, live in the country, yet less than 30 minutes to SF and SFO Airport, easy access to the Silicon Valley corridor.... Currently available: building plans, topo/survey map, soils report...All utilities available at street (Higgins Way). Also, has potential to build an Accessary Dwelling Unit (ADU).",
+        "brokerId": null,
+        "brokerageName": "Coastside Associates Real Estate",
+        "mlsid": "ML81779551",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "023341080"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "01077482",
+            "agentName": "Sue Vaterlaus",
+            "agentPhoneNumber": "650-291-0470",
+            "attributionTitle": null,
+            "brokerName": "RE/MAX Star Properties",
+            "brokerPhoneNumber": "650-359-5800",
+            "buyerAgentMemberStateLicense": "01905175",
+            "buyerAgentName": null,
+            "buyerBrokerageName": "RE/MAX Star Properties",
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81756861"
+        },
+        "priceHistory": [
+            {
+                "date": "2022-07-15",
+                "time": 1657843200000,
+                "price": 1400000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/ISpt7f0ebg6mx41000000000.jpg"
+                    },
+                    "profileUrl": "/profile/pacificasue0/",
+                    "name": "Sue Vaterlaus"
+                }
+            },
+            {
+                "date": "2021-07-30",
+                "time": 1627603200000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-10-28",
+                "time": 1603843200000,
+                "price": 1500000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-04-02",
+                "time": 1585785600000,
+                "price": 1500000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "Vacant Lot Corona",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/Vacant-Lot-Corona-Pacifica-CA-94044/2080225206_zpid/",
+        "homeStatus": "SOLD",
+        "lastSoldPrice": 1400000,
+        "latitude": 37.59631,
+        "longitude": -122.49232,
+        "lotSize": 235136,
+        "price": 1400000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 2080225206,
+        "lotAreaValue": 5.398,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "469 days",
+        "pageViewCount": 9,
+        "favoriteCount": 1,
+        "daysOnZillow": 469,
+        "description": null,
+        "brokerId": null,
+        "brokerageName": "RE/MAX Star Properties",
+        "mlsid": "ML81756861",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "022221100"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "01831701",
+            "agentName": "Annie Baker Cleaver",
+            "agentPhoneNumber": "408-375-1478",
+            "attributionTitle": null,
+            "brokerName": "Alta Realty Group CA",
+            "brokerPhoneNumber": "888-504-5327",
+            "buyerAgentMemberStateLicense": "02096406",
+            "buyerAgentName": null,
+            "buyerBrokerageName": "eXp Realty of California Inc",
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81887547"
+        },
+        "priceHistory": [
+            {
+                "date": "2022-06-29",
+                "time": 1656460800000,
+                "price": 701000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/ISx7wx85a89vhx1000000000.jpg"
+                    },
+                    "profileUrl": "/profile/Annie-Baker/",
+                    "name": "Annie Baker"
+                }
+            },
+            {
+                "date": "2022-04-19",
+                "time": 1650326400000,
+                "price": 998000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2022-02-25",
+                "time": 1645747200000,
+                "price": 750000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-09-14",
+                "time": 1631577600000,
+                "price": 1675000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-08-11",
+                "time": 1628640000000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-02-10",
+                "time": 1612915200000,
+                "price": 1675000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-10-11",
+                "time": 1602374400000,
+                "price": 1850000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-09-18",
+                "time": 1600387200000,
+                "price": 1850000,
+                "event": "Price change",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-07-10",
+                "time": 1594339200000,
+                "price": 2100000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2017-09-28",
+                "time": 1506556800000,
+                "price": 1050000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/ISligniax411uk1000000000.jpg"
+                    },
+                    "profileUrl": "/profile/BenJiang/",
+                    "name": "Ben Jiang"
+                }
+            },
+            {
+                "date": "2013-01-25",
+                "time": 1359072000000,
+                "price": 800000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2012-11-02",
+                "time": 1351814400000,
+                "price": 998000,
+                "event": "Pending sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2012-07-03",
+                "time": 1341273600000,
+                "price": 998000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2012-03-09",
+                "time": 1331251200000,
+                "price": 998000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2012-02-23",
+                "time": 1329955200000,
+                "price": 998000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2011-12-02",
+                "time": 1322784000000,
+                "price": 998000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2011-11-17",
+                "time": 1321488000000,
+                "price": 998000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2010-10-29",
+                "time": 1288310400000,
+                "price": 1250000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2010-07-01",
+                "time": 1277942400000,
+                "price": 1250000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2009-12-21",
+                "time": 1261353600000,
+                "price": 1077395,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2003-07-14",
+                "time": 1058140800000,
+                "price": 780000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "1567 Beach Blvd",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/1567-Beach-Blvd-Pacifica-CA-94044/15489036_zpid/",
+        "homeStatus": "SOLD",
+        "lastSoldPrice": 701000,
+        "latitude": 37.636986,
+        "longitude": -122.49385,
+        "lotSize": 18334,
+        "price": 701000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 15489036,
+        "lotAreaValue": 0.42089072543618,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "485 days",
+        "pageViewCount": 16,
+        "favoriteCount": 1,
+        "daysOnZillow": 485,
+        "description": "WOW! 180 degree, UNOBSTRUCTED OCEAN VIEWS! One of the FEW lots on the ENTIRE California coast in a great location, with a blank slate to create your masterpiece with views like this UNDER $1M! Unreal Views! You don't want to miss this opportunity. Previously had verbal approval from the city to build 3 condos. 3 bedroom condos in this area sell for almost $2M! What an opportunity to consider building multiple units to sell, hold for Air B n B/ocean view rental, Or, build one large single family to suit your family's vacation needs or every day use - what a getaway! Imagine the peaceful sound of the ocean lulling you to sleep! Walking distance to the pier, cute coffee shops/restaurant/stores in the downtown area on Palmetto Ave. Lots of remodeling activity in neighborhood houses. Up and coming area! Less than 15 miles to SFO, Pac Bell Stadium in SF, 18 miles to Half Moon Bay, 43 miles to Apple campus. Don't let this once in a lifetime opportunity pass you by!",
+        "brokerId": null,
+        "brokerageName": "Alta Realty Group CA",
+        "mlsid": "ML81887547",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "016011190"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "01877393",
+            "agentName": "Edie Halenbeck",
+            "agentPhoneNumber": "650-996-8466",
+            "attributionTitle": null,
+            "brokerName": "Compass",
+            "brokerPhoneNumber": "408-741-1111",
+            "buyerAgentMemberStateLicense": null,
+            "buyerAgentName": null,
+            "buyerBrokerageName": null,
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81918345"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-02-09",
+                "time": 1675900800000,
+                "price": 550000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2023-01-06",
+                "time": 1672963200000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2022-01-30",
+                "time": 1643500800000,
+                "price": 798000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-07-31",
+                "time": 1627689600000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-10-01",
+                "time": 1601510400000,
+                "price": 799000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-09-01",
+                "time": 1598918400000,
+                "price": 799000,
+                "event": "Pending sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2019-10-14",
+                "time": 1571011200000,
+                "price": 799000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2019-10-05",
+                "time": 1570233600000,
+                "price": 799000,
+                "event": "Pending sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2019-09-14",
+                "time": 1568419200000,
+                "price": 799000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "0 Springwood Way #2",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/0-Springwood-Way-2-Pacifica-CA-94044/2082730656_zpid/",
+        "homeStatus": "FOR_SALE",
+        "lastSoldPrice": null,
+        "latitude": 37.576256,
+        "longitude": -122.49261,
+        "lotSize": 223388,
+        "price": 550000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 2082730656,
+        "lotAreaValue": 5.1283,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "185 days",
+        "pageViewCount": 534,
+        "favoriteCount": 31,
+        "daysOnZillow": 185,
+        "description": "Own over 5 acres at the end of a culdesac in the exclusive Willowbrook Estates neighborhood of Pacifica.  Property is close in town and only 2.5 miles to the beach.  Property starts at the street with some flat areas and runs along rolling hills.  Enjoy the tranquil surroundings and views of the lush green hills with possible water views at the top of the property.  Pacifica's new mandate to build almost 2,000 new homes makes this a great investment.  Develop several homes, private estates with vineyard, horse property or multi-residential.  A total of two parcels APN#023-393-010 & #023-394-020.  Imagine the possibilities!",
+        "brokerId": null,
+        "brokerageName": "Compass",
+        "mlsid": "ML81918345",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "023393010"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "70010078",
+            "agentName": " Len Stone Group",
+            "agentPhoneNumber": "650-580-5680",
+            "attributionTitle": null,
+            "brokerName": "KW Advisors",
+            "brokerPhoneNumber": "650-627-3700",
+            "buyerAgentMemberStateLicense": "70010078",
+            "buyerAgentName": " Len Stone Group",
+            "buyerBrokerageName": "KW Advisors",
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81860721"
+        },
+        "priceHistory": [
+            {
+                "date": "2021-08-31",
+                "time": 1630368000000,
+                "price": 300000,
+                "event": "Sold",
+                "buyerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/ISmmj45r9zjis11000000000.jpg"
+                    },
+                    "profileUrl": "/profile/LenStoneREGroup/",
+                    "name": "Len Stone"
+                },
+                "sellerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/ISmmj45r9zjis11000000000.jpg"
+                    },
+                    "profileUrl": "/profile/LenStoneREGroup/",
+                    "name": "Len Stone"
+                }
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "0 Mirador Terrance Ter",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/0-Mirador-Terrance-Ter-Pacifica-CA-94044/2068644080_zpid/",
+        "homeStatus": "SOLD",
+        "lastSoldPrice": 300000,
+        "latitude": 37.635445,
+        "longitude": -122.48836,
+        "lotSize": 4000,
+        "price": 300000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 2068644080,
+        "lotAreaValue": 4000,
+        "lotAreaUnits": "Square Feet",
+        "timeOnZillow": "787 days",
+        "pageViewCount": 5,
+        "favoriteCount": 0,
+        "daysOnZillow": 787,
+        "description": null,
+        "brokerId": null,
+        "brokerageName": "KW Advisors",
+        "mlsid": "ML81860721",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "016092030"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "02131843",
+            "agentName": "Michelle Arrais",
+            "agentPhoneNumber": "415-823-8658",
+            "attributionTitle": null,
+            "brokerName": "eXp Realty of California Inc",
+            "brokerPhoneNumber": "888-584-9427",
+            "buyerAgentMemberStateLicense": null,
+            "buyerAgentName": null,
+            "buyerBrokerageName": null,
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81940313"
+        },
+        "priceHistory": [
+            {
+                "date": "2023-08-30",
+                "time": 1693353600000,
+                "price": 430000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "755 Rockaway Beach Ave",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/755-Rockaway-Beach-Ave-Pacifica-CA-94044/2055771790_zpid/",
+        "homeStatus": "FOR_SALE",
+        "lastSoldPrice": null,
+        "latitude": 37.603943,
+        "longitude": -122.487785,
+        "lotSize": 2500,
+        "price": 430000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 2055771790,
+        "lotAreaValue": 2500,
+        "lotAreaUnits": "Square Feet",
+        "timeOnZillow": "58 days",
+        "pageViewCount": 362,
+        "favoriteCount": 5,
+        "daysOnZillow": 58,
+        "description": "Residential single family residence zoned vacant land lot located in the Rockaway Beach area of Pacifica for primary residence or secondary residence for vacation.  Beach cottage architectural drawings with hydrology report, soil report, and survey.  Buyer can hire a contractor and use the current architectural drawings that can be modified by the buyer, hire an architect and contractor for their own drawings for a custom built house, or hire the contractor that did the current architectural drawings and submitted the building permit application.  One of the sellers is a CA licensed real estate agent and is the listing agent.\n\nScenic hiking and biking trails nearby at Mori Point, Aramai Point, and Pedro Point.  Surfing at Rockaway Beach and other nearby beaches.  Golfing at Sharp Park.  Fishing and crabbing at shorelines and Pacifica Pier.\n\nBuyer should verify lot information with city and county.\n\nEasy commute to SF, the Peninsula, and SFO.",
+        "brokerId": null,
+        "brokerageName": "eXp Realty of California Inc",
+        "mlsid": "ML81940313",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "022062190"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    },
+    {
+        "attributionInfo": {
+            "mlsName": "MLSListings Inc",
+            "agentEmail": null,
+            "agentLicenseNumber": "01973493",
+            "agentName": "Lisa Eccleston",
+            "agentPhoneNumber": "650-238-7411",
+            "attributionTitle": null,
+            "brokerName": "Eccleston Incorporated",
+            "brokerPhoneNumber": "650-238-7411",
+            "buyerAgentMemberStateLicense": "01417647",
+            "buyerAgentName": "Richard Lee",
+            "buyerBrokerageName": "Home Sales Team Inc",
+            "coAgentLicenseNumber": null,
+            "coAgentName": null,
+            "coAgentNumber": null,
+            "mlsId": "ML81837879"
+        },
+        "priceHistory": [
+            {
+                "date": "2021-06-17",
+                "time": 1623888000000,
+                "price": 700000,
+                "event": "Sold",
+                "buyerAgent": null,
+                "sellerAgent": {
+                    "photo": {
+                        "url": "https://photos.zillowstatic.com/h_e/ISu4vfayehd0ri1000000000.jpg"
+                    },
+                    "profileUrl": "/profile/lisaeccl5/",
+                    "name": "Lisa Eccleston"
+                }
+            },
+            {
+                "date": "2021-04-21",
+                "time": 1618963200000,
+                "price": 750000,
+                "event": "Contingent",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-04-07",
+                "time": 1617753600000,
+                "price": 750000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2021-01-10",
+                "time": 1610236800000,
+                "price": null,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-06-24",
+                "time": 1592956800000,
+                "price": 899000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-05-05",
+                "time": 1588636800000,
+                "price": 899000,
+                "event": "Listing removed",
+                "buyerAgent": null,
+                "sellerAgent": null
+            },
+            {
+                "date": "2020-02-05",
+                "time": 1580860800000,
+                "price": 899000,
+                "event": "Listed for sale",
+                "buyerAgent": null,
+                "sellerAgent": null
+            }
+        ],
+        "address": {
+            "city": "Pacifica",
+            "state": "CA",
+            "streetAddress": "4 Hinton Ranch Rd",
+            "zipcode": "94044"
+        },
+        "hdpUrl": "/homedetails/4-Hinton-Ranch-Rd-Pacifica-CA-94044/181367609_zpid/",
+        "homeStatus": "SOLD",
+        "lastSoldPrice": 700000,
+        "latitude": 37.596455,
+        "longitude": -122.48689,
+        "lotSize": 99578,
+        "price": 700000,
+        "yearBuilt": null,
+        "zestimate": null,
+        "zpid": 181367609,
+        "lotAreaValue": 2.286,
+        "lotAreaUnits": "Acres",
+        "timeOnZillow": "862 days",
+        "pageViewCount": 5,
+        "favoriteCount": 0,
+        "daysOnZillow": 862,
+        "description": "The Hinton Ranch property contains 4 lots - each over 2 acres!  1 Hinton Ranch Rd sold last year. The other 3 lots are still available.  The feeling being on this property is something you need to experience for yourself.  It's a dream come true to find 2+ acres to build the house you've always imagined.  Truly live in the country on your own acreage and still commute to SF/SFO within 15 minutes.   4, 6 and 8 Hinton Ranch are vacant land, ready for you to build to suit.  The development plan allows one home per lot.  Utilities are nearby according to the site map. Buy 1 or Buy Multiples.  ML81781458 for 1 Hinton;  ML81781469 for 4 Hinton; ML81781462 for 6 Hinton. Each of the 4 properties is priced separately. Please check the MLS numbers for complete information.",
+        "brokerId": null,
+        "brokerageName": "Eccleston Incorporated",
+        "mlsid": "ML81837879",
+        "monthlyHoaFee": null,
+        "resoFacts": {
+            "parcelNumber": "023160480"
+        },
+        "timeStamp": "Sat Oct 28 2023 17:21:40 GMT+0000 (Coordinated Universal Time)"
+    }
+]

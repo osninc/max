@@ -103,9 +103,25 @@ const App = ({ debugOptions }) => {
     setPrevDsSource(newValue)
   };
 
-  const toggleDrawer = (event, p) => {
+  const [childRef, setChildRef] = useState()
+  const toggleDrawer = (event, p, ref) => {
     setOpenDrawer(openDrawer => {
       // if it wasn't open before, then set the loader and load data
+      
+      // If the drawer is opening, highlight the ref yellow, otherwise clear it
+      if (ref && ref.current) {
+        // if currently close, then it will open
+        if (!openDrawer) {
+          setChildRef(ref)
+          const me = ref.current
+          me.style.backgroundColor = "yellow"
+        }
+      }
+      else {
+        childRef.current.style.backgroundColor = ""
+        setChildRef(null)
+      }
+
       if (!openDrawer) {
         if (p) {
           let sizeStr = ""
@@ -599,14 +615,25 @@ const App = ({ debugOptions }) => {
                     }} /> :
                       (Object.keys(counts).length > 0) && (
                         <>
-                          {(tabValue === 6) && (counts.meta.hasDetails) ? (
-                            <BrokerageTable data={counts} />
+                          {(tabValue === 6) ? (
+                            <BrokerageTable onFinished={() => {
+                              alert("I'm done")
+                            }}
+                              data={counts}
+                              //datasetId={dataset}
+                              datasetId="HFUlstfORmP9MW205"
+                              area={area}
+                              date={countsDate}
+                              source={source}
+                            />
                           ) : (
                             <>
-                              <BigDataTable loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p) => toggleDrawer(e, p)} />
-                              <Grid container direction="row" sx={{mt:5}}>
+                              <BigDataTable loadTime={loadTime} area={area} date={countsDate} source={source} value={tabValue} data={counts} onClick={(e, p, ref) => {
+                                toggleDrawer(e, p, ref)
+                              }} />
+                              <Grid container direction="row" sx={{ mt: 5 }}>
                                 <Grid item xs={6} justifyContent={"center"}>
-                                    <Netronline searchType={searchBy} area={area} />
+                                  <Netronline searchType={searchBy} area={area} />
                                 </Grid>
                                 <Grid item xs={6} justifyContent="flex-end">
                                   <InventoryData searchType={searchBy} area={area} />

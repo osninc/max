@@ -1,9 +1,10 @@
 import { Button, ButtonGroup, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { matrix } from "../../constants/matrix.js";
 import { ThirdPartyIcon } from "../ThirdPartyIcon.js";
 import { DisplayNumber, USDollar, convertDateToLocal, sec2min } from "../../functions/functions.js";
 import { ACTORS } from "../../constants/constants.js";
+import { ComingSoon } from "./components/ComingSoon.js";
 
 const columnColor = {
     "sold": "white",
@@ -23,6 +24,9 @@ const BigDataTableHeader = props => {
 }
 
 const DataCell = props => {
+    const cellElementSale = useRef()
+    const cellElementSold = useRef()
+
     const {
         data: counts,
         lot,
@@ -122,16 +126,16 @@ const DataCell = props => {
                 case "avgPrice":
                 case "avgPpa":
                     soldText = USDollar.format(soldText);
-                    soldTextButton = <Button href="#" onClick={(e) => onClick(e, soldParams)}>{soldText}</Button>
+                    soldTextButton = <Button href="#" onClick={(e) => onClick(e, soldParams, cellElementSold)}>{soldText}</Button>
                     break;
                 case "avgDom":
-                    soldTextButton = <Button href="#" onClick={(e) => onClick(e, soldParams)}>{soldText}</Button>
+                    soldTextButton = <Button href="#" onClick={(e) => onClick(e, soldParams, cellElementSold)}>{soldText}</Button>
                     break;
                 case "count":
                     soldTextButton = <ButtonGroup
                         {...buttonGroupParams}
                     >
-                        <Button href="#" onClick={(e) => onClick(e, soldParams)} sx={{ color: "black" }}><strong>{DisplayNumber.format(soldText)}</strong></Button>
+                        <Button href="#" onClick={(e) => onClick(e, soldParams, cellElementSold)} sx={{ color: "black" }}><strong>{DisplayNumber.format(soldText)}</strong></Button>
                         <Button href={sold.url} rel="noreferrer" target="_blank">
                             <ThirdPartyIcon site={source} size="xs" />
                         </Button>
@@ -165,17 +169,17 @@ const DataCell = props => {
                 case "avgPrice":
                 case "avgPpa":
                     saleText = USDollar.format(saleText);
-                    saleTextButton = <Button href="#" onClick={(e) => onClick(e, saleParams)}>{saleText}</Button>
+                    saleTextButton = <Button href="#" onClick={(e) => onClick(e, saleParams, cellElementSale)}>{saleText}</Button>
                     break;
                 case "avgDom":
                     //saleText = saleText;
-                    saleTextButton = <Button href="#" onClick={(e) => onClick(e, saleParams)}>{saleText}</Button>
+                    saleTextButton = <Button href="#" onClick={(e) => onClick(e, saleParams, cellElementSale)}>{saleText}</Button>
                     break;
                 case "count":
                     saleTextButton = <ButtonGroup
                         {...buttonGroupParams}
                     >
-                        <Button href="#" onClick={(e) => onClick(e, saleParams)}>{DisplayNumber.format(saleText)}</Button>
+                        <Button href="#" onClick={(e) => onClick(e, saleParams, cellElementSale)}>{DisplayNumber.format(saleText)}</Button>
                         <Button href={sale.url} rel="noreferrer" target="_blank">
                             <ThirdPartyIcon site={source} size="xs" />
                         </Button>
@@ -242,9 +246,10 @@ const DataCell = props => {
             default:
                 break;
         }
+
         return (
             <React.Fragment key={`${lot}${time}`}>
-                <TableCell align="center" sx={{ backgroundColor: columnColor["for sale"] }}>
+                <TableCell align="center" sx={{ backgroundColor: columnColor["for sale"] }} ref={cellElementSale}>
                     {(saleHover === "") ? saleHtml : (
                         <Typography
                             aria-owns={open ? 'mouse-over-popover' : undefined}
@@ -258,7 +263,7 @@ const DataCell = props => {
                     )}
                 </TableCell>
 
-                <TableCell align="center" sx={{ backgroundColor: columnColor["sold"] }}>
+                <TableCell align="center" sx={{ backgroundColor: columnColor["sold"] }} ref={cellElementSold}>
                     {(soldHover === "") ? soldHtml : (
                         <Typography
                             aria-owns={open ? 'mouse-over-popover' : undefined}
@@ -322,33 +327,6 @@ const DataCell = props => {
     }
 }
 
-const ComingSoon = props => {
-    const {
-        area,
-        header,
-        date,
-    } = props
-    return (
-        <TableContainer component={Paper}>
-            <Table size="small" aria-label="simple table">
-                <TableHead>
-                    <TableRow sx={{ backgroundColor: "#dddddd" }}>
-                        <TableCell align="center"><strong>Market Name: {area}</strong>
-                        </TableCell>
-                    </TableRow>
-                    <TableRow sx={{ backgroundColor: header.color }}>
-                        <TableCell align="center" sx={{ color: header.textColor }} ><strong>{header.text}</strong></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    <TableRow>
-                        <TableCell align="center">Coming soon!</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
-        </TableContainer>
-    )
-}
 
 export const BigDataTable = ({ value, data, onClick, area, date, source, loadTime }) => {
     const newDate = convertDateToLocal(date)
@@ -587,18 +565,18 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
                             {Object.keys(matrix[source].lot).map(lot => (
                                 <TableRow
                                     key={lot}
-                                    sx={{ 
+                                    sx={{
                                         '&:last-child td, &:last-child th': { border: 0 },
                                         '& td, & td span, & td a, & td p': (lot.toLowerCase() === "total") ? {
                                             fontSize: "1.1em !important",
                                             fontWeight: "bold !important"
                                         } : {},
-                                        borderTop: (lot.toLowerCase() === "total") ? "5px double rgba(224, 224, 224, 1) !important" : ""                                        
+                                        borderTop: (lot.toLowerCase() === "total") ? "5px double rgba(224, 224, 224, 1) !important" : ""
                                     }}
                                 >
                                     <TableCell align="center"><Typography variant="caption">TBD</Typography></TableCell>
                                     <TableCell align="center"><Typography variant="caption">TBD</Typography></TableCell>
-                                    <TableCell align="left" sx={{whiteSpace: "nowrap"}}>{lot.toUpperCase()}</TableCell>
+                                    <TableCell align="left" sx={{ whiteSpace: "nowrap" }}>{lot.toUpperCase()}</TableCell>
                                     {Object.keys(matrix[source].time).map(time => (
                                         <DataCell
                                             key={`${time}${lot}${tableHeader[value].dataField}`}
@@ -606,8 +584,8 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
                                             lot={lot}
                                             time={time}
                                             field={tableHeader[value].dataField}
-                                            onClick={(e, p) => {
-                                                onClick(e, p)
+                                            onClick={(e, p, ref) => {
+                                                onClick(e, p, ref)
                                             }}
                                             open={open}
                                             anchorEl={anchorEl}

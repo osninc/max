@@ -18,6 +18,13 @@ export const defaultTheme = createTheme({
         },
     },
     components: {
+        MuiButtonGroup: {
+            styleOverrides: {
+                grouped: {
+                    minWidth: 6
+                }
+            }
+        },
         MuiButton: {
 
             styleOverrides: {

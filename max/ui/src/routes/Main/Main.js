@@ -364,6 +364,7 @@ const App = ({ debugOptions }) => {
       try {
         setDatasetLoading(true)
         const datasets = await fetchDatasets(prevDsSource);
+        //console.log({datasets})
         setDatasets(datasets);
         setBigData(prev => {
           return {
@@ -489,7 +490,7 @@ const App = ({ debugOptions }) => {
                       <CircularProgress key={0} size={20} />,
                       <Typography key={1} variant="caption">Updating...</Typography>
                     ] : (
-                      (datasets.length > 0) && (datasets.map(ds => (
+                      (datasets.length > 0) && (datasets.filter(el=> el.counts.agent > 0).map(ds => (
                         [
                           <Divider key={`${ds.value}0`}>
                             <Typography variant="caption">{ds.date}</Typography>
@@ -605,7 +606,7 @@ const App = ({ debugOptions }) => {
                       <Tab label="List/Sale Ratio" {...a11yProps(2)} value={2} variant="h" />
                       <Tab label="Months of Supply" {...a11yProps(4)} value={4} variant="h" />
                       <Tab label="Absorption Rate" {...a11yProps(4)} value={7} variant="h" />
-                      <Tab label="Average Prices" {...a11yProps(1)} value={1} variant="h" />
+                      <Tab label="Median Prices" {...a11yProps(1)} value={1} variant="h" />
                       <Tab label="Price Per Acre" {...a11yProps(3)} value={3} variant="h" />
                       <Tab label="Days on Market" {...a11yProps(5)} value={5} variant="h" />
                       <Tab label="Realtors" {...a11yProps(6)} value={6} variant="h" />

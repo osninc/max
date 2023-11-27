@@ -4,7 +4,7 @@ export const ACTORS = {
     ZILLOW: {
         ACTIVE: true,
         COUNT: {
-            BUILD: "0.1.52",
+            BUILD: "yir-dev",
             ID: "OVT9EXRpZMjSZ2lhS",
             IGNORECOUNTFILTER: false,
             CONVERTACREAGE: false,
@@ -23,7 +23,7 @@ export const ACTORS = {
     REDFIN: {
         ACTIVE: true,
         COUNT: {
-            BUILD: "0.1.11",
+            BUILD: "yir-dev",
             ID: "Q6imaQAKtun38uOho",
             IGNORECOUNTFILTER: true,
             CONVERTACREAGE: true,

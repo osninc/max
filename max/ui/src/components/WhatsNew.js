@@ -6,6 +6,22 @@ import { forwardRef, useState } from "react";
 const NewItems = props => {
     return (
         <List dense={true}>
+            <Divider component="li"><Chip label="11/27/2023" /></Divider>
+            <ListItem>
+                <ListItemText
+                    primary="Changed Average infomation to Median information"
+                />
+            </ListItem>
+            <ListItem>
+                <ListItemText
+                    primary="Default proxy to apify residential"
+                />
+            </ListItem>
+            <ListItem>
+                <ListItemText
+                    primary="Default apify actor to always use the latest builds (Zillow/Redfin)"
+                />
+            </ListItem>
             <Divider component="li"><Chip label="11/7/2023" /></Divider>
             <ListItem>
                 <ListItemText

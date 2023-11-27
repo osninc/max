@@ -35,6 +35,30 @@ const calcAvgPpa = ary => {
     return (numListings === 0) ? 0 : parseInt((totalPpa / numListings).toFixed(0));
 }
 
+const calcMedian = ary => {
+    const newAry = [...ary].sort((a, b) => a - b);
+    const half = Math.floor(newAry.length / 2);
+    const returnValue = (newAry.length % 2
+        ? newAry[half]
+        : (newAry[half - 1] + newAry[half]) / 2
+    )
+    return returnValue
+}
+
+const calcMedianPrice = ary => {
+    if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
+
+    const listOfPrices = getListOfField(ary, "unformattedPrice")
+    return calcMedian(listOfPrices);
+}
+
+const calcMedianPpa = ary => {
+    if ((typeof ary === 'undefined') || (ary.length === 0)) return 0;
+
+    const listOfPpa = getListOfField(ary, "unformattedPpa")
+    return calcMedian(listOfPpa);
+}
+
 const fixListings = (listings, details) => {
     const f = listings.map(listing => {
         //console.log({listing})
@@ -190,6 +214,8 @@ export const normalizeTheData = (source, data, details) => {
                             avgPpa: calcAvgPpa(newListings),
                             // TODO: double check this calculations when combined
                             avgDom: calcAvg(listingsWithValues.dom),
+                            medianPrice: calcMedianPrice(newListings),
+                            medianPpa: calcMedianPpa(newListings),
                             domCount: listingsWithValues.dom.length
                         }
                     }
@@ -222,6 +248,8 @@ export const normalizeTheData = (source, data, details) => {
                                 avgPrice: calcAvgPrice(fixedListings),
                                 avgPpa: calcAvgPpa(fixedListings),
                                 avgDom: calcAvg(listingsWithValues.dom),
+                                medianPrice: calcMedianPrice(fixedListings),
+                                medianPpa: calcMedianPpa(fixedListings),
                                 domCount: listingsWithValues.dom.length
                             }
 

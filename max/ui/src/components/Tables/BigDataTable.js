@@ -84,7 +84,7 @@ const DataCell = props => {
         variant: "body2"
     }
 
-    if (["count", "avgPrice", "avgPpa", "avgDom"].includes(field)) {
+    if (["count", "medianPrice", "medianPpa", "avgDom"].includes(field)) {
 
 
         const sold = record ? record["sold"] : null
@@ -123,8 +123,8 @@ const DataCell = props => {
                 mapCount: sold.mapCount
             }
             switch (field) {
-                case "avgPrice":
-                case "avgPpa":
+                case "medianPrice":
+                case "medianPpa":
                     soldText = USDollar.format(soldText);
                     soldTextButton = <Button href="#" onClick={(e) => onClick(e, soldParams, cellElementSold)}>{soldText}</Button>
                     break;
@@ -166,8 +166,8 @@ const DataCell = props => {
                 mapCount: sale.mapCount
             }
             switch (field) {
-                case "avgPrice":
-                case "avgPpa":
+                case "medianPrice":
+                case "medianPpa":
                     saleText = USDollar.format(saleText);
                     saleTextButton = <Button href="#" onClick={(e) => onClick(e, saleParams, cellElementSale)}>{saleText}</Button>
                     break;
@@ -201,32 +201,24 @@ const DataCell = props => {
                 moreSoldText = <strong>DISCLAIMER: Results are limited to 500 records<br /></strong>;
         }
         switch (field) {
-            case "avgPrice":
+            case "medianPrice":
                 saleHover = <Typography variant="caption">
                     {moreSaleText}
-                    This value is the sum of all {record["for sale"].numPrices} available prices
-                    divided by the Number of Listings that had a price listed<br />
-                    {USDollar.format(record["for sale"].sumPrice)} / {record["for sale"].numPrices} = {saleText}
+                    This value is the middle price of all {record["for sale"].numPrices} available price(s)
                 </Typography>
                 soldHover = <Typography variant="caption">
                     {moreSoldText}
-                    This value is the sum of all {record["sold"].numPrices} available prices
-                    divided by the Number of Sales that had a price listed<br />
-                    {USDollar.format(record["sold"].sumPrice)} / {record["sold"].numPrices} = {soldText}
+                    This value is the middle price of all {record["sold"].numPrices} available price(s)
                 </Typography>;
                 break;
-            case "avgPpa":
+            case "medianPpa":
                 saleHover = <Typography variant="caption">
                     {moreSaleText}
-                    This value is the sum of each of the listing's individual price per acre
-                    divided by  ({record["for sale"].numPrices}) listings<br />
-                    sum(price/acre) / {record["for sale"].numPrices} = {saleText}
+                    This value is the middle of all {record["for sale"].numPrices} listings' individual price per acre
                 </Typography>
                 soldHover = <Typography variant="caption">
                     {moreSoldText}
-                    This value is the sum of each of the sale's individual price per acre
-                    divided by  ({record["sold"].numPrices}) sales <br />
-                    sum(price/acre) / {record["sold"].numPrices} = {soldText}
+                    This value is the middle of all {record["sold"].numPrices} sales' individual price per acre
                 </Typography>;
                 break;
             case "avgDom":
@@ -350,7 +342,7 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
             dataField: "count"
         },
         1: {
-            text: "Average Prices for Sold & Listed Land",
+            text: "Median Prices for Sold & Listed Land",
             ...commonHeaderParams,
             columns: {
                 cols: 2,
@@ -358,7 +350,7 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
                 colText: commonColText,
             },
             comingSoon: false,
-            dataField: "avgPrice"
+            dataField: "medianPrice"
         },
         2: {
             text: "List/Sale Ratio",
@@ -380,7 +372,7 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
                 colText: commonColText,
             },
             comingSoon: false,
-            dataField: "avgPpa"
+            dataField: "medianPpa"
         },
         4: {
             text: "Months of Supply",

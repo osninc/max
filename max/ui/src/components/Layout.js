@@ -36,7 +36,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
     const [debugOptions, setDebugOptions] = useState({
         buildNumber: hasBuildOnQS ? searchParams.get("build") : ACTORS.ZILLOW.COUNT.BUILD,
         scraper: DEBUGMENU.SCRAPER[0],
-        proxyType: DEBUGMENU.PROXYTYPE[0],
+        proxyType: DEBUGMENU.PROXYTYPE[1],
         maxConcurrency: 50,
         dataSavingStoreType: DEBUGMENU.DATASTORETYPE[0],
         forceCleanSessionsCreation: false,

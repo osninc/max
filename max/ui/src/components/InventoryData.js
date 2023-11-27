@@ -184,7 +184,7 @@ export const InventoryData = props => {
                     </TableHead>
                     {(data === null) ? (
                         <TableRow>
-                            <TableCell colspan={2} align="center"><Typography variant="caption">No information available for {area}</Typography></TableCell>
+                            <TableCell colSpan={2} align="center"><Typography variant="caption">No information available for {area}</Typography></TableCell>
                         </TableRow>
                     ) :
                         fieldsToDisplay.filter(field => ((field.show === true) || (field.show.toLowerCase() === searchType.toLowerCase()))).map((field2, i) => (

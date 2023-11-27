@@ -1,4 +1,4 @@
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import mapboxgl from '!mapbox-gl';
 import { createRef, useEffect, useRef, useState } from 'react';
 import { getSum } from '../../functions/formulas';
 import { Card, CardContent, CardMedia, IconButton, Tooltip, Typography } from '@mui/material';

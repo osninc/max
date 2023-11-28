@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 function LinkPreview({ url }) {
     const [previewData, setPreviewData] = useState(null);
@@ -47,5 +48,9 @@ function LinkPreview({ url }) {
         </div>
     );
 }
+
+LinkPreview.propTypes = {
+    url: PropTypes.string,
+};
 
 export default LinkPreview;

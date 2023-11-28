@@ -4,13 +4,13 @@ export const processError = (from, error) => {
         message = `${message} Error code ${error.response.status} - `;
         switch (error.response.status) {
             case 404:
-                message = `${message} This was a bad request`
+                message = `${message} This was a bad request`;
                 break;
             case 403:
-                message = `${message} Failed CAPTCHA: Press & Hold to confirm you are a human (and not a bot)`
+                message = `${message} Failed CAPTCHA: Press & Hold to confirm you are a human (and not a bot)`;
                 break;
             default:
-                message = `${message} ${error.response.data.error.message}`
+                message = `${message} ${error.response.data.error.message}`;
                 break;
         }
     } else if (error.request) {
@@ -20,4 +20,4 @@ export const processError = (from, error) => {
         message = `${message}${error.message}`;
     }
     return message;
-}
+};

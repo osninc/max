@@ -1,13 +1,19 @@
+/* eslint-disable prettier/prettier */
 export const randomHeaders = {
     devices: ['mobile', 'desktop'],
     locales: ['en-US'],
     operatingSystems: ['windows', 'macos', 'android', 'ios', 'linux'],
-    browsers: [{
-        name: 'chrome',
-        minVersion: 87,
-        maxVersion: 89
-    }, 'edge', 'firefox', 'safari'],
-}
+    browsers: [
+        {
+            name: 'chrome',
+            minVersion: 87,
+            maxVersion: 89,
+        },
+        'edge',
+        'firefox',
+        'safari',
+    ],
+};
 
 export const defaultHeaders = {
     'Accept': '*/*',
@@ -29,7 +35,7 @@ export const defaultHeaders = {
     // "Access-Control-Allow-Headers": "Content-Type"
 }
 
-export const graphqlHeaders =  {
+export const graphqlHeaders = {
     'authority': 'www.zillow.com',
     'method': 'POST',
     //'path': '/graphql/?zpid={}'.format(zpid),

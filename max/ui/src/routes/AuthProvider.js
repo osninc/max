@@ -1,5 +1,6 @@
-import { useEffect, useState, createContext, useContext, useRef } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useEffect, useState, createContext, useContext, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 /*
  * Setting up a auth context to be used globally
@@ -15,16 +16,16 @@ export function useAuth() {
 // Outseta is added to the window by the
 // Outseta script added to the head in ../public/index.html
 function getOutseta() {
-    if (window["Outseta"]) {
-        return window["Outseta"];
+    if (window['Outseta']) {
+        return window['Outseta'];
     } else {
-        throw new Error("Outseta is missing, have you added the script to head?");
+        throw new Error('Outseta is missing, have you added the script to head?');
     }
 }
 
 export default function AuthProvider({ children }) {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [status, setStatus] = useState("init");
+    const [status, setStatus] = useState('init');
     const [user, setUser] = useState();
 
     // Save a reference to Outseta
@@ -35,7 +36,7 @@ export default function AuthProvider({ children }) {
         //handleOutsetaUserEvents(updateUser);
 
         // Get the access token from the callback url
-        const accessToken = searchParams.get("access_token");
+        const accessToken = searchParams.get('access_token');
 
         if (accessToken) {
             // If there is an acccess token present
@@ -51,12 +52,12 @@ export default function AuthProvider({ children }) {
             updateUser();
         } else {
             // Outseta initalized without authenticated user.
-            setStatus("ready");
+            setStatus('ready');
         }
 
         return () => {
             // Clean up user related event subscriptions
-            handleOutsetaUserEvents(() => { });
+            handleOutsetaUserEvents(() => {});
         };
     }, [searchParams, setSearchParams]);
 
@@ -66,57 +67,61 @@ export default function AuthProvider({ children }) {
         // Update user state
         setUser(outsetaUser);
         // Make sure status = ready
-        setStatus("ready");
+        setStatus('ready');
     };
 
     const handleOutsetaUserEvents = (onEvent) => {
         // Subscribe to user related events
         // with onEvent function
         const outseta = outsetaRef.current;
-        outseta.on("subscription.update", onEvent);
-        outseta.on("profile.update", onEvent);
-        outseta.on("account.update", onEvent);
+        outseta.on('subscription.update', onEvent);
+        outseta.on('profile.update', onEvent);
+        outseta.on('account.update', onEvent);
     };
 
     const logout = () => {
         // Unset access token
-        outsetaRef.current.setAccessToken("");
+        outsetaRef.current.setAccessToken('');
         // and remove user state
         setUser(null);
     };
 
     const openLogin = (options) => {
         outsetaRef.current.auth.open({
-            widgetMode: "login|register",
+            widgetMode: 'login|register',
             authenticationCallbackUrl: window.location.href,
-            ...options
+            ...options,
         });
     };
 
     const openSignup = (options) => {
         outsetaRef.current.auth.open({
-            widgetMode: "register",
+            widgetMode: 'register',
             authenticationCallbackUrl: window.location.href,
-            ...options
+            ...options,
         });
     };
 
     const openProfile = (options) => {
-        outsetaRef.current.profile.open({ tab: "profile", ...options });
+        outsetaRef.current.profile.open({ tab: 'profile', ...options });
     };
 
     return (
         <AuthContext.Provider
             value={{
                 user,
-                isLoading: status !== "ready",
+                isLoading: status !== 'ready',
                 logout,
                 openLogin,
                 openSignup,
-                openProfile
+                openProfile,
             }}
         >
             {children}
         </AuthContext.Provider>
     );
 }
+
+AuthProvider.propTypes = {
+    children: PropTypes.node,
+};

@@ -1,8 +1,9 @@
-import { useAuth } from "./AuthProvider";
+import { useAuth } from './AuthProvider';
+import PropTypes from 'prop-types';
 
 const PLANS = {
-    PRO: { label: "Pro", uid: "yW1qbyWB" },
-    BASIC: { label: "Basic", uid: "OW4pw3Wg" }
+    PRO: { label: 'Pro', uid: 'yW1qbyWB' },
+    BASIC: { label: 'Basic', uid: 'OW4pw3Wg' },
 };
 
 function hasCorrectPlan(plans, user) {
@@ -30,28 +31,28 @@ export default function ProtectedRoute({ pro, children }) {
         return (
             <>
                 <p>
-                    To access this content you need to upgrade to the{" "}
-                    <strong>{plansWithAccess[0].label}</strong> plan.
+                    To access this content you need to upgrade to the <strong>{plansWithAccess[0].label}</strong> plan.
                 </p>
-                <button onClick={() => openProfile({ tab: "planChange" })}>
-                    Upgrade
-                </button>
+                <button onClick={() => openProfile({ tab: 'planChange' })}>Upgrade</button>
             </>
         );
     } else {
         return (
             <>
                 <p>
-                    To access this content you need to{" "}
-                    <button onClick={openSignup}>signup</button> for the{" "}
+                    To access this content you need to <button onClick={openSignup}>signup</button> for the{' '}
                     <strong>{plansWithAccess[0].label}</strong> plan.
                 </p>
 
                 <p>
-                    Or <button onClick={openLogin}>login</button> if you already have an
-                    account.
+                    Or <button onClick={openLogin}>login</button> if you already have an account.
                 </p>
             </>
         );
     }
 }
+
+ProtectedRoute.propTypes = {
+    pro: PropTypes.bool,
+    children: PropTypes.node,
+};

@@ -1,5 +1,6 @@
-import { Box, CircularProgress, Typography } from "@mui/material"
-import Timer from "../Timer.js"
+import { Box, CircularProgress, Typography } from '@mui/material';
+import Timer from '../Timer.js';
+import PropTypes from 'prop-types';
 
 export const CircularProgressTimer = ({ onUpdate }) => {
     return (
@@ -22,5 +23,9 @@ export const CircularProgressTimer = ({ onUpdate }) => {
                 </Typography>
             </Box>
         </Box>
-    )
-}
+    );
+};
+
+CircularProgressTimer.propTypes = {
+    onUpdate: PropTypes.func,
+};

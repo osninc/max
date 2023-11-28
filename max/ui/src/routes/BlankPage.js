@@ -1,3 +1,3 @@
-export const BlankPage = props => {
-    return "Coming soon!"
-}
+export const BlankPage = () => {
+    return 'Coming soon!';
+};

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+//import { Box, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 
 const TabPanel = (props) => {
@@ -12,21 +12,15 @@ const TabPanel = (props) => {
             aria-labelledby={`vertical-tab-${index}`}
             {...other}
         >
-            {value === index && children }
+            {value === index && children}
         </div>
     );
-}
+};
 
 TabPanel.propTypes = {
     children: PropTypes.node,
-    index: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]).isRequired,
-    value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]).isRequired,
+    index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 export default TabPanel;

@@ -1,12 +1,12 @@
-import { useState } from "react"
-import { Layout } from "../components"
-import Main from "./Main"
-import ProtectedRoute from "./ProtectedRoute"
+import { useState } from 'react';
+import { Layout } from '../components';
+import Main from './Main';
+import ProtectedRoute from './ProtectedRoute';
 
-export const App = props => {
+export const App = () => {
     const [debugMenu, setDebugMenu] = useState({
-        useOutseta: true
-    })
+        useOutseta: true,
+    });
     return (
         <Layout onChangeDebugMenu={(options) => setDebugMenu(options)}>
             {debugMenu.useOutseta ? (
@@ -17,5 +17,5 @@ export const App = props => {
                 <Main debugOptions={debugMenu} />
             )}
         </Layout>
-    )
-}
+    );
+};

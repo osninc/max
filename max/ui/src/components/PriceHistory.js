@@ -1,7 +1,18 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { Avatar, Link, List, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from "@mui/material"
-import { USDollar } from "../functions/functions.js"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+import {
+    Avatar,
+    Link,
+    List,
+    ListItem,
+    ListItemAvatar,
+    //ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    ListSubheader,
+} from '@mui/material';
+import { USDollar } from '../functions/functions.js';
+import PropTypes from 'prop-types';
 
 export const PriceHistory = ({ history }) => {
     //console.log({ history })
@@ -13,17 +24,20 @@ export const PriceHistory = ({ history }) => {
                 </ListSubheader>
             }
         >
-
-            {history.map(list => (
+            {history.map((list) => (
                 <ListItem key={`${list.date}${list.time}${list.event}`}>
-                    {(list.sellerAgent?.photo?.url) ? (
+                    {list.sellerAgent?.photo?.url ? (
                         <ListItemAvatar>
                             {list.sellerAgent?.profileUrl ? (
-                                <Link href={`https://www.zillow.com/${list.sellerAgent.profileUrl}`} rel="noreferrer" target="_blank">
+                                <Link
+                                    href={`https://www.zillow.com/${list.sellerAgent.profileUrl}`}
+                                    rel="noreferrer"
+                                    target="_blank"
+                                >
                                     <Avatar src={list.sellerAgent.photo.url} />
                                 </Link>
                             ) : (
-                                    <Avatar src={list.sellerAgent.photo.url} />
+                                <Avatar src={list.sellerAgent.photo.url} />
                             )}
                         </ListItemAvatar>
                     ) : (
@@ -35,5 +49,9 @@ export const PriceHistory = ({ history }) => {
                 </ListItem>
             ))}
         </List>
-    )
-}
+    );
+};
+
+PriceHistory.propTypes = {
+    history: PropTypes.array,
+};

@@ -1,34 +1,55 @@
-import { Alert, Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Checkbox, Collapse, Divider, IconButton, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
-import testDetails from "../data/details.json";
-import { PriceHistory } from "./PriceHistory.js";
-import { modalStyle } from "../constants/constants.js";
+import {
+    Alert,
+    Avatar,
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardHeader,
+    CardMedia,
+    //Checkbox,
+    Collapse,
+    Divider,
+    IconButton,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    Typography,
+} from '@mui/material';
+import PropTypes from 'prop-types';
+import testDetails from '../data/details.json';
+import { PriceHistory } from './PriceHistory.js';
+import { modalStyle } from '../constants/constants.js';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { styled } from '@mui/material/styles';
-import { useState } from "react";
-import { USDollar, convertPriceStringToFloat, convertStrToAcre } from "../functions/functions";
-import { ThirdPartyIcon } from "./ThirdPartyIcon";
-import { calcDom } from "../functions/formulas";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+//import { styled } from '@mui/material/styles';
+import { useState } from 'react';
+import { USDollar, convertPriceStringToFloat, convertStrToAcre } from '../functions/functions';
+import { ThirdPartyIcon } from './ThirdPartyIcon';
+import { calcDom } from '../functions/formulas';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getRelaventData = (listings, theData, hasError) => {
     //console.log({ theData })
-    if ((Object.keys(theData).length === 0) || theData.errors) {
-        return {}
+    if (Object.keys(theData).length === 0 || theData.errors) {
+        return {};
     }
     //if (hasError)
     //    return theData.data.property;
 
     const propertyDetails = theData.data?.property;
     const address = propertyDetails?.address;
-    const listing = listings.find(l => l.zpid.toString() === propertyDetails.zpid.toString())
+    const listing = listings.find((l) => l.zpid.toString() === propertyDetails.zpid.toString());
 
-    const listing2 = listing ? listing : listings[0]
+    const listing2 = listing ? listing : listings[0];
     // if (listing) {
 
     const {
         imgSrc: image,
-        detailUrl,
+        //detailUrl,
         statusType: statusText,
         price: unformattedPrice,
         // addressStreet,
@@ -42,15 +63,15 @@ const getRelaventData = (listings, theData, hasError) => {
         // latLong,
         latitude: lat,
         longitude: lng,
-        variableData,
-        hdpData,
-        brokerName,
+        // variableData,
+        // hdpData,
+        // brokerName,
     } = listing2;
 
     //console.log({ propertyDetails })
 
     // Modify image
-    const newImage = (image.includes("googleapis.com")) ? "/no-image.png" : image;
+    const newImage = image.includes('googleapis.com') ? '/no-image.png' : image;
 
     return {
         zpid: propertyDetails?.zpid,
@@ -81,12 +102,10 @@ const getRelaventData = (listings, theData, hasError) => {
         attributionTitle: propertyDetails?.attributionInfo?.attributionTitle,
         brokerageName: propertyDetails.brokerageName,
         brokerPhoneNumber: propertyDetails?.attributionInfo?.brokerPhoneNumber,
-        buyerAgentMemberStateLicense:
-            propertyDetails?.attributionInfo?.buyerAgentMemberStateLicense,
+        buyerAgentMemberStateLicense: propertyDetails?.attributionInfo?.buyerAgentMemberStateLicense,
         buyerAgentName: propertyDetails?.attributionInfo?.buyerAgentName,
         buyerBrokerageName: propertyDetails?.attributionInfo?.buyerBrokerageName,
-        coAgentLicenseNumber:
-            propertyDetails?.attributionInfo?.coAgentLicenseNumber,
+        coAgentLicenseNumber: propertyDetails?.attributionInfo?.coAgentLicenseNumber,
         coAgentName: propertyDetails?.attributionInfo?.coAgentName,
         priceHistory: propertyDetails?.priceHistory?.map((price) => ({
             date: price.date,
@@ -96,7 +115,7 @@ const getRelaventData = (listings, theData, hasError) => {
             priceChangeRate: price.priceChangeRate,
             event: price.event,
             buyerAgent: price.buyerAgent,
-            sellerAgent: price.sellerAgent
+            sellerAgent: price.sellerAgent,
         })),
         description: propertyDetails?.description,
         timeOnZillow: propertyDetails?.timeOnZillow,
@@ -110,39 +129,43 @@ const getRelaventData = (listings, theData, hasError) => {
         lotAreaValue: propertyDetails?.lotAreaValue,
         lotAreaUnits: propertyDetails?.lotAreaUnits,
     };
-}
+};
 
 const ErrorDiv = ({ hasError }) => {
-    return hasError ? <Alert severity="error">
-        <div>Error getting property details (fixing)</div>
-        <div>But if it did work, here is an example data dump from test data</div>
-    </Alert>
+    return hasError ? (
+        <Alert severity="error">
+            <div>Error getting property details (fixing)</div>
+            <div>But if it did work, here is an example data dump from test data</div>
+        </Alert>
+    ) : (
+        ''
+    );
+};
 
-        : "";
-}
+ErrorDiv.propTypes = {
+    hasError: PropTypes.bool,
+};
 
-const ExpandMore = styled((props) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-    }),
-}));
+// const ExpandMore = styled((props) => {
+//     const { expand, ...other } = props;
+//     return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+//     transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+//     marginLeft: 'auto',
+//     transition: theme.transitions.create('transform', {
+//         duration: theme.transitions.duration.shortest,
+//     }),
+// }));
 
 const calcAcre = (num, unit) => {
-    return convertStrToAcre(unit)
-}
+    return convertStrToAcre(unit);
+};
 
 const calcPpa = (price, acre) => {
-    if (!isNaN(price && acre))
-        return (acre === 0) ? "$0" : `${USDollar.format((price / acre).toFixed(0))}`
-    else
-        return (price && acre)
+    if (!isNaN(price && acre)) return acre === 0 ? '$0' : `${USDollar.format((price / acre).toFixed(0))}`;
+    else return price && acre;
     return 0;
-}
+};
 // const calcDom = (history) => {
 //     // if the first item is "listed for sale, then seconds from now to them"
 //     if (history.length === 0)
@@ -185,9 +208,9 @@ const calcPpa = (price, acre) => {
 //     return Math.round(totalMs / 86400000);
 // }
 
-const getGoogleMapsUrl = address => {
-    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
-}
+const getGoogleMapsUrl = (address) => {
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+};
 
 const DataTable = ({ details }) => {
     const [showPriceDetails, setShowPriceDetails] = useState(false);
@@ -196,30 +219,29 @@ const DataTable = ({ details }) => {
         // Close details
         //setExpanded(false);
         setShowPriceDetails(!showPriceDetails);
-    }
-    const thisPrice = convertPriceStringToFloat(details.price.toString())
-    const thisAcre = calcAcre(details.lotAreaValue, details.lotAreaString)
-    const word = details.statusText.toLowerCase().replace("_", " ")
-    const statusText = word.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+    };
+    const thisPrice = convertPriceStringToFloat(details.price.toString());
+    const thisAcre = calcAcre(details.lotAreaValue, details.lotAreaString);
+    const word = details.statusText.toLowerCase().replace('_', ' ');
+    const statusText = word.replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
     const fields = {
-        "price": USDollar.format(thisPrice),
-        "acres": `${thisAcre} acres`,
-        "price/acre": calcPpa(thisPrice, thisAcre),
-        "status": statusText,
-        "dom": details.priceHistory ? calcDom(details.priceHistory) : 0,
-        "views": details.pageViewCount,
-        "favorites": details.favoriteCount,
-        "saves": "N/A"
-    }
-
+        price: USDollar.format(thisPrice),
+        acres: `${thisAcre} acres`,
+        'price/acre': calcPpa(thisPrice, thisAcre),
+        status: statusText,
+        dom: details.priceHistory ? calcDom(details.priceHistory) : 0,
+        views: details.pageViewCount,
+        favorites: details.favoriteCount,
+        saves: 'N/A',
+    };
 
     return (
         <Table size="small">
             <TableHead>
                 <TableRow>
                     {details.priceHistory && <TableCell sx={{ width: 70 }} variant="header" />}
-         
-                    {Object.keys(fields).map(field => (
+
+                    {Object.keys(fields).map((field) => (
                         <TableCell key={field} component="th" variant="header">
                             <Typography variant="caption">
                                 <strong>{field.toUpperCase()}</strong>
@@ -230,30 +252,35 @@ const DataTable = ({ details }) => {
             </TableHead>
             <TableBody>
                 <TableRow>
-                    {details.priceHistory  && <TableCell sx={{ width: "70" }}>
-                        <IconButton onClick={handlePriceDetailsClick}>
-                            <FontAwesomeIcon icon={icon({ name: 'dollar-sign' })} size="xs" />
-                        </IconButton>
-                    </TableCell>}
-                    {Object.keys(fields).map(field => (
+                    {details.priceHistory && (
+                        <TableCell sx={{ width: '70' }}>
+                            <IconButton onClick={handlePriceDetailsClick}>
+                                <FontAwesomeIcon icon={icon({ name: 'dollar-sign' })} size="xs" />
+                            </IconButton>
+                        </TableCell>
+                    )}
+                    {Object.keys(fields).map((field) => (
                         <TableCell key={field}>
-                            <Typography variant="caption">
-                                {fields[field]}
-                            </Typography>
+                            <Typography variant="caption">{fields[field]}</Typography>
                         </TableCell>
                     ))}
                 </TableRow>
                 <TableRow>
                     <TableCell colSpan={1 + Object.keys(fields).length}>
                         <Collapse in={showPriceDetails} timeout="auto" unmountOnExit>
-                            <PriceHistory history={details["priceHistory"]} />
+                            <PriceHistory history={details['priceHistory']} />
                         </Collapse>
                     </TableCell>
                 </TableRow>
             </TableBody>
         </Table>
-    )
-}
+    );
+};
+
+DataTable.propTypes = {
+    details: PropTypes.object,
+    area: PropTypes.string,
+};
 
 export const DetailsView = ({ listings, details: theDetails, onClose }) => {
     const [expanded, setExpanded] = useState(false);
@@ -265,20 +292,20 @@ export const DetailsView = ({ listings, details: theDetails, onClose }) => {
         setExpanded(!expanded);
     };
 
-    const handlePriceDetailsClick = () => {
-        // Close details
-        setExpanded(false);
-        setShowPriceDetails(!showPriceDetails);
-    }
+    // const handlePriceDetailsClick = () => {
+    //     // Close details
+    //     setExpanded(false);
+    //     setShowPriceDetails(!showPriceDetails);
+    // };
 
-    let localDetails = theDetails
+    let localDetails = theDetails;
     let hasError = false;
 
-    if ((Object.keys(theDetails).length === 0) || theDetails.errors) {
+    if (Object.keys(theDetails).length === 0 || theDetails.errors) {
         localDetails = testDetails;
-        hasError = true
+        hasError = true;
     }
-    const property = getRelaventData(listings, localDetails, hasError)
+    const property = getRelaventData(listings, localDetails, hasError);
     const imgWidth = modalStyle.width - 100;
     //console.log({ property })
     return (
@@ -287,10 +314,12 @@ export const DetailsView = ({ listings, details: theDetails, onClose }) => {
             <Card>
                 <CardHeader
                     avatar={
-                        <Avatar sx={{ bgcolor: "#1277e1" }} aria-label="recipe">
+                        <Avatar sx={{ bgcolor: '#1277e1' }} aria-label="recipe">
                             <Button
                                 aria-label={`info about ${property.address}`}
-                                href={property["detailUrl"]} rel="noreferrer" target="_blank"
+                                href={property['detailUrl']}
+                                rel="noreferrer"
+                                target="_blank"
                                 variant="link"
                             >
                                 <ThirdPartyIcon site="zillow" />
@@ -302,34 +331,38 @@ export const DetailsView = ({ listings, details: theDetails, onClose }) => {
                             <FontAwesomeIcon icon={icon({ name: 'close' })} size="lg" />
                         </IconButton>
                     }
-                    title={<strong>{property["unformattedPrice"]}</strong>}
-                    subheader={property["address"]}
+                    title={<strong>{property['unformattedPrice']}</strong>}
+                    subheader={property['address']}
                 />
                 <CardMedia
                     component="img"
                     width={imgWidth}
-                    image={property["image"]?.toString()}
+                    image={property['image']?.toString()}
                     loading="lazy"
                     alt={property.zpid}
                 />
                 <CardContent>
                     <DataTable details={property} />
                     <Typography variant="body2" color="text.secondary">
-                        {property["description"]}
+                        {property['description']}
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
                     <Button
                         aria-label={`info about ${property.address}`}
-                        href={property["detailUrl"]} rel="noreferrer" target="_blank"
-                    //variant="link"
+                        href={property['detailUrl']}
+                        rel="noreferrer"
+                        target="_blank"
+                        //variant="link"
                     >
                         Zillow Link
                     </Button>
                     <Button
                         aria-label={`directions to ${property.address}`}
-                        href={getGoogleMapsUrl(property.address)} rel="noreferrer" target="_blank"
-                    //variant="link"
+                        href={getGoogleMapsUrl(property.address)}
+                        rel="noreferrer"
+                        target="_blank"
+                        //variant="link"
                     >
                         Google Maps
                     </Button>
@@ -343,30 +376,36 @@ export const DetailsView = ({ listings, details: theDetails, onClose }) => {
                     </Button>
                 </CardActions>
                 <Collapse in={showPriceDetails} timeout="auto" unmountOnExit>
-                    <PriceHistory history={property["priceHistory"]} />
+                    <PriceHistory history={property['priceHistory']} />
                 </Collapse>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <Divider />
-                        {Object.keys(property).map(k => {
+                        {Object.keys(property).map((k) => {
                             switch (k.toString()) {
-                                case "priceHistory":
-                                case "description":
-                                case "image":
-                                case "detailUrl":
-                                case "unformattedPrice":
+                                case 'priceHistory':
+                                case 'description':
+                                case 'image':
+                                case 'detailUrl':
+                                case 'unformattedPrice':
                                     break;
-                                default: return (
-                                    <div key={k.toString()}>
-                                        <strong>{k.toString()}</strong>: {property[k]?.toString()}
-                                    </div>
-                                )
+                                default:
+                                    return (
+                                        <div key={k.toString()}>
+                                            <strong>{k.toString()}</strong>: {property[k]?.toString()}
+                                        </div>
+                                    );
                             }
                         })}
                     </CardContent>
                 </Collapse>
             </Card>
         </>
+    );
+};
 
-    )
-}
+DetailsView.propTypes = {
+    listings: PropTypes.array,
+    details: PropTypes.object,
+    onClose: PropTypes.func,
+};

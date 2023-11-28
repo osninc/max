@@ -1,12 +1,11 @@
 export const getPropertyParams = (zpid) => {
-  const clientVersion = "home-details/6.0.11.1315.master.2fc8ca5"
-  const timePeriod = "FIVE_YEARS"
-  const metricType = "LOCAL_HOME_VALUES"
-  const forecast = true
+    const clientVersion = 'home-details/6.0.11.1315.master.2fc8ca5';
+    const timePeriod = 'FIVE_YEARS';
+    const metricType = 'LOCAL_HOME_VALUES';
+    const forecast = true;
 
-  return {
-    "query":
-      "query PriceTaxQuery($zpid: ID!) {\
+    return {
+        query: 'query PriceTaxQuery($zpid: ID!) {\
         property(zpid: $zpid) {\
           address {\
             city\
@@ -78,15 +77,14 @@ export const getPropertyParams = (zpid) => {
           }\
         }\
       }\
-        ",
-    "operationName": "PriceTaxQuery",
-    "variables": {
-      "zpid": zpid,
-      "timePeriod": timePeriod,
-      "metricType": metricType,
-      "forecast": forecast
-    },
-    "clientVersion": clientVersion
-  }
-}
-
+        ',
+        operationName: 'PriceTaxQuery',
+        variables: {
+            zpid: zpid,
+            timePeriod: timePeriod,
+            metricType: metricType,
+            forecast: forecast,
+        },
+        clientVersion: clientVersion,
+    };
+};

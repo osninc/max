@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { createContext, forwardRef, useContext, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { autocompleteClasses, createFilterOptions } from '@mui/material/Autocomplete';
@@ -11,13 +11,13 @@ import Typography from '@mui/material/Typography';
 
 import countiesData from '../data/counties.json';
 
-const states = [...new Set(countiesData.map(county => county.state_id))].sort()
-const counties = countiesData.map(county => `${county.county_full}, ${county.state_id}`).sort()
+const states = [...new Set(countiesData.map((county) => county.state_id))].sort();
+const counties = countiesData.map((county) => `${county.county_full}, ${county.state_id}`).sort();
 
 const LISTBOX_PADDING = 8; // px
 
 const filterOptions = createFilterOptions({
-    matchFrom: 'start'
+    matchFrom: 'start',
 });
 
 function renderRow(props) {
@@ -43,16 +43,16 @@ function renderRow(props) {
     );
 }
 
-const OuterElementContext = React.createContext({});
+const OuterElementContext = createContext({});
 
-const OuterElementType = React.forwardRef((props, ref) => {
-    const outerProps = React.useContext(OuterElementContext);
+const OuterElementType = forwardRef((props, ref) => {
+    const outerProps = useContext(OuterElementContext);
     return <div ref={ref} {...props} {...outerProps} />;
 });
 
 function useResetCache(data) {
-    const ref = React.useRef(null);
-    React.useEffect(() => {
+    const ref = useRef(null);
+    useEffect(() => {
         if (ref.current != null) {
             ref.current.resetAfterIndex(0, true);
         }
@@ -61,7 +61,7 @@ function useResetCache(data) {
 }
 
 // Adapter for react-window
-const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
+const ListboxComponent = forwardRef(function ListboxComponent(props, ref) {
     const { children, ...other } = props;
     const itemData = [];
     children.forEach((item) => {
@@ -118,17 +118,16 @@ ListboxComponent.propTypes = {
     children: PropTypes.node,
 };
 
-function random(length) {
-    const characters =
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
+// function random(length) {
+//     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+//     let result = '';
 
-    for (let i = 0; i < length; i += 1) {
-        result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
+//     for (let i = 0; i < length; i += 1) {
+//         result += characters.charAt(Math.floor(Math.random() * characters.length));
+//     }
 
-    return result;
-}
+//     return result;
+// }
 
 const StyledPopper = styled(Popper)({
     [`& .${autocompleteClasses.listbox}`]: {
@@ -140,7 +139,7 @@ const StyledPopper = styled(Popper)({
     },
 });
 
-const OPTIONS = [...counties, ...states]
+const OPTIONS = [...counties, ...states];
 
 const SelectLocation = (props) => {
     const { onChange, value } = props;
@@ -163,19 +162,26 @@ const SelectLocation = (props) => {
             freeSolo
             filterOptions={filterOptions}
             renderInput={(params) => {
-                return <TextField
-                    size="small"
-                    {...params}
-                    label="Choose a county, state, or zipcode"
-                // InputProps={{
-                //     ...params.inputProps,
-                //     //startAdornment: <FontAwesomeIcon icon={icon({ name: 'map-pin' })} />,
-                // }}
-                />
+                return (
+                    <TextField
+                        size="small"
+                        {...params}
+                        label="Choose a county, state, or zipcode"
+                        // InputProps={{
+                        //     ...params.inputProps,
+                        //     //startAdornment: <FontAwesomeIcon icon={icon({ name: 'map-pin' })} />,
+                        // }}
+                    />
+                );
             }}
             renderOption={(props, option, state) => [props, option, state.index]}
         />
     );
-}
+};
+
+SelectLocation.propTypes = {
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+};
 
 export default SelectLocation;

@@ -401,6 +401,7 @@ export const fetchData = async (source, params) => {
               };
 
     let axiosObj;
+
     // Check to see if there is an existing Dataset for this search within the last X days
     if (tempDs === '') {
         const existingDs = await findExistingDataset(source, search);
@@ -437,19 +438,20 @@ export const fetchData = async (source, params) => {
         // Pre-fill all variables
         const firstTrueRecord = filteredData[1];
         // console.log({data1})
-        let newSearch = search;
-        if (firstTrueRecord['county'] !== '') {
-            newSearch = firstTrueRecord['county'];
-            searchBy = 'county';
-        }
-        if (firstTrueRecord['zipCode'] !== '') {
-            newSearch = firstTrueRecord['zipCode'];
-            searchBy = 'zipCode';
-        }
-        if (firstTrueRecord['state'] !== '') {
-            newSearch = STATES[firstTrueRecord['state'].toUpperCase()];
-            searchBy = 'state';
-        }
+        searchBy = firstTrueRecord['searchType'];
+        let newSearch = firstTrueRecord[searchBy];
+        // if (firstTrueRecord['state'] !== '') {
+        //     newSearch = STATES[firstTrueRecord['state'].toUpperCase()];
+        //     searchBy = 'state';
+        // }
+        // if (firstTrueRecord['county'] !== '') {
+        //     newSearch = firstTrueRecord['county'];
+        //     searchBy = 'county';
+        // }
+        // if (firstTrueRecord['zipCode'] !== '') {
+        //     newSearch = firstTrueRecord['zipCode'];
+        //     searchBy = 'zipCode';
+        // }
 
         // See if this version has a datasetId in the return JSON
         // Check to see if there are any details already in the system for this dataset ID, if not, then launch a task

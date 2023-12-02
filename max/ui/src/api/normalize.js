@@ -43,7 +43,6 @@ const calcMedian = (ary) => {
 };
 
 const calcMedianPrice = (ary) => {
-    console.log({ ary });
     if (typeof ary === 'undefined' || ary.length === 0) return 0;
 
     const listOfPrices = getListOfField(ary, 'unformattedPrice');
@@ -318,12 +317,12 @@ export const normalizeTheData = (source, data, details) => {
     c = {
         ...c,
         meta: {
-            hasDetails: details ? true : false,
+            hasDetails: details ? false : false,
             checkForDetails,
         },
     };
 
-    console.log({ c });
+    //console.log({ c });
 
     return c;
 };

@@ -1,4 +1,4 @@
-import { calcAbsorption, calcMos, calcPpa, calcRatio, getListOfField, getSum } from '../functions/formulas';
+import { calcAbsorption, calcAvg, calcMos, calcPpa, calcRatio, getListOfField, getSum } from '../functions/formulas';
 import { USDollar, convertPriceStringToFloat, convertStrToAcre, fixRedfinUrl } from '../functions/functions';
 import { ACTORS } from '../constants/constants';
 import { fixDetails } from './fixDetails';
@@ -13,18 +13,6 @@ const calcAvgPrice = (ary) => {
     return numListings === 0 ? 0 : parseInt((totalPrices / numListings).toFixed(0));
 };
 
-const calcAvg = (ary) => {
-    if (typeof ary === 'undefined' || ary.length === 0) return 0;
-
-    const total = getSum(ary);
-    const num = ary.length;
-
-    // if (isNaN(total))
-    //   console.log({ ary })
-
-    return num === 0 ? 0 : parseFloat((total / num).toFixed(2));
-};
-
 const calcAvgPpa = (ary) => {
     if (typeof ary === 'undefined' || ary.length === 0) return 0;
 
@@ -36,6 +24,7 @@ const calcAvgPpa = (ary) => {
 };
 
 const calcMedian = (ary) => {
+    if (ary.length === 0) return 0;
     const newAry = [...ary].sort((a, b) => a - b);
     const half = Math.floor(newAry.length / 2);
     const returnValue = newAry.length % 2 ? newAry[half] : (newAry[half - 1] + newAry[half]) / 2;
@@ -56,7 +45,7 @@ const calcMedianPpa = (ary) => {
     return calcMedian(listOfPpa);
 };
 
-const fixListings = (listings, details) => {
+export const fixListings = (listings, details) => {
     const f = listings.map((listing) => {
         //console.log({listing})
         const newPrice = convertPriceStringToFloat(listing.price.toString());
@@ -317,7 +306,7 @@ export const normalizeTheData = (source, data, details) => {
     c = {
         ...c,
         meta: {
-            hasDetails: details ? false : false,
+            hasDetails: details ? true : false,
             checkForDetails,
         },
     };

@@ -19,6 +19,15 @@ const NewItems = () => {
     return (
         <List dense={true}>
             <Divider component="li">
+                <Chip label="12/2/2023" />
+            </Divider>
+            <ListItem>
+                <ListItemText primary="Fixed NaN error when all listings don't have a price value" />
+            </ListItem>
+            <ListItem>
+                <ListItemText primary="Fixed Days On Market calculations if a listing was listed for sale, but had multiple price changes and is still on the market" />
+            </ListItem>
+            <Divider component="li">
                 <Chip label="11/27/2023" />
             </Divider>
             <ListItem>
@@ -117,7 +126,7 @@ export const WhatsNew = () => {
                 id="basic-button"
                 onClick={handleWhatsNewClick}
                 variant="outlined"
-                startIcon={<NewReleasesIcon />}
+                startIcon={<NewReleasesIcon sx={{ color: 'blue' }} />}
                 size="small"
             >
                 What&apos;s New

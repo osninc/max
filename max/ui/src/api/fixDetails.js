@@ -6,7 +6,6 @@ export const fixDetails = (details) => {
     const d = details
         .filter((d) => d.zpid)
         .map((detail) => {
-            //console.log({ detail })
             const dom = calcDom(detail.priceHistory);
             obj = {
                 ...obj,

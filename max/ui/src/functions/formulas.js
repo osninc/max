@@ -53,7 +53,7 @@ export const calcAbsorption = (sale, sold) => {
 export const sqft2acre = (num) => (num === '' ? '' : parseFloat((num / 43560).toFixed(2)));
 
 export const calcDom = (history) => {
-    // if the first item is 'listed for sale, then seconds from now to them'
+    // if the first item is 'listed for sale, then seconds from now to then'
     if (history.length === 0) return 0;
 
     const epochNow = Date.now();
@@ -86,8 +86,29 @@ export const calcDom = (history) => {
         }
     }
 
-    //console.log({ aryOfMs })
+    // Check to see if there is no ending date
+    if (history.length > 0 && aryOfMs.length === 0) {
+        //console.log('I have history, but no DOM');
+        // Check which element has the 'listed for sale' and take that time
+        const theEvent = history.find((h) => h.event.toLowerCase() === 'listed for sale');
+        if (theEvent) {
+            const firstEventTime = theEvent.time;
+            aryOfMs = [epochNow - firstEventTime];
+        }
+    }
 
     const totalMs = aryOfMs.reduce((a, b) => a + b, 0);
     return Math.round(totalMs / 86400000);
+};
+
+export const calcAvg = (ary) => {
+    if (typeof ary === 'undefined' || ary.length === 0) return 0;
+
+    const total = getSum(ary);
+    const num = ary.length;
+
+    // if (isNaN(total))
+    //   console.log({ ary })
+
+    return num === 0 ? 0 : parseFloat((total / num).toFixed(2));
 };

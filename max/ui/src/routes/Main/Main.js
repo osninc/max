@@ -39,7 +39,7 @@ import { processError } from '../../error.js';
 
 import { DetailsView } from '../../components/DetailsView.js';
 import { DisplayNumber, capitalizeFirstLetter } from '../../functions/functions.js';
-import { sqft2acre } from '../../functions/formulas.js';
+import { sqft2acre } from '../../functions/formulas';
 
 import { ACTORS, iconButtonFAStyle, modalStyle } from '../../constants/constants.js';
 import { Copyright } from '../../components/Copyright.js';

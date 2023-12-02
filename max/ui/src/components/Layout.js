@@ -38,8 +38,7 @@ import TextField from '@mui/material/TextField';
 import { WhatsNew } from './WhatsNew.js';
 
 const Layout = ({ children, title, onChangeDebugMenu }) => {
-    const isTestingSite =
-        document.location.hostname.includes('sunburst') || document.location.hostname.includes('localhost');
+    const isTestingSite = !document.location.hostname.includes('sunflower');
     const searchParams = new URLSearchParams(document.location.search);
     const hasDebugMenu = searchParams.has('debugMenu');
     const hasBuildOnQS = searchParams.has('build');

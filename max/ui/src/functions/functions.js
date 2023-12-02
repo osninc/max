@@ -1,5 +1,5 @@
 import { matrix } from '../constants/matrix.js';
-import { sqft2acre } from './formulas.js';
+import { sqft2acre } from './formulas';
 
 export const capitalizeFirstLetter = (string) => {
     // Capitalize first letter of each word

@@ -132,11 +132,11 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
             <AppBar position="static" color="transparent" elevation={0}>
                 <Toolbar sx={{ flexWrap: 'wrap' }} variant="dense">
                     <Link component={RouterLink} to="/" underline="none" sx={{ my: 1, mx: 1.5 }}>
-                        <img src="/logos/land-stats.png" />
+                        <img src="/logos/land-stats.png" height={75} />
                     </Link>
                     {isTestingSite && (
                         <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-                            (Staging Site)
+                            (Demo Site)
                         </Typography>
                     )}
                     <nav>

@@ -1,6 +1,7 @@
 import {
     Button,
     ButtonGroup,
+    CircularProgress,
     Paper,
     Popover,
     Table,
@@ -18,6 +19,8 @@ import { ThirdPartyIcon } from '../ThirdPartyIcon.js';
 import { DisplayNumber, USDollar, convertDateToLocal, sec2min } from '../../functions/functions.js';
 import { ACTORS } from '../../constants/constants.js';
 import { ComingSoon } from './components/ComingSoon.js';
+import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
+import HelpIcon from '@mui/icons-material/Help';
 
 const columnColor = {
     sold: 'white',
@@ -399,7 +402,17 @@ DataCell.propTypes = {
     source: PropTypes.string,
 };
 
-export const BigDataTable = ({ value, data, onClick, area, date, source, loadTime }) => {
+export const BigDataTable = ({
+    value,
+    data,
+    onClick,
+    area,
+    date,
+    source,
+    loadTime,
+    onGetDetailsClick,
+    detailsLoading,
+}) => {
     const newDate = convertDateToLocal(date);
     const newLoadTime = loadTime > 0 ? `(${sec2min(loadTime)})` : '';
     const commonColText = [
@@ -504,7 +517,7 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
         },
     };
 
-    const colSpan = Object.keys(matrix[source].time).length * 2;
+    const colSpan = Object.keys(matrix[source].time).length * 2 + 3;
 
     // For hovering
     const [anchorEl, setAnchorEl] = useState(null);
@@ -581,6 +594,19 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
         sold: filteredData.reduce((a, b) => a + b.sold, 0),
     };
 
+    // Handle help icon popover
+    const [anchorHelpEl, setAnchorHelpEl] = useState(null);
+
+    const handleHelpPopoverOpen = (event) => {
+        setAnchorHelpEl(event.currentTarget);
+    };
+
+    const handleHelpPopoverClose = () => {
+        setAnchorHelpEl(null);
+    };
+
+    const openHelp = Boolean(anchorHelpEl);
+
     return value === 6 || !['zillow', 'redfin'].includes(source) ? (
         <ComingSoon area={area} header={tableHeader[value]} date={newDate} />
     ) : (
@@ -588,9 +614,9 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
             <Table size="small" aria-label="simple table">
                 <TableHead>
                     <TableRow sx={{ backgroundColor: '#dddddd' }}>
+                        {/* <TableCell>&nbsp;</TableCell>
                         <TableCell>&nbsp;</TableCell>
-                        <TableCell>&nbsp;</TableCell>
-                        <TableCell>&nbsp;</TableCell>
+                        <TableCell>&nbsp;</TableCell> */}
                         <TableCell colSpan={colSpan} align="center">
                             <strong>Market Name: {area}</strong>
                             <br />
@@ -609,13 +635,76 @@ export const BigDataTable = ({ value, data, onClick, area, date, source, loadTim
                                 Uniques=<strong>{DisplayNumber.format(counts.unique)}</strong>&nbsp; For Sale=
                                 <strong>{DisplayNumber.format(counts.uniqueFs)}</strong>&nbsp; Sold=
                                 <strong>{DisplayNumber.format(counts.uniqueSold)}</strong>)
+                                <HelpIcon
+                                    color="info"
+                                    fontSize="small"
+                                    onMouseEnter={handleHelpPopoverOpen}
+                                    onMouseLeave={handleHelpPopoverClose}
+                                />
+                                <Popover
+                                    id="mouse-over-popover"
+                                    sx={{
+                                        pointerEvents: 'none',
+                                    }}
+                                    open={openHelp}
+                                    anchorEl={anchorHelpEl}
+                                    anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'left',
+                                    }}
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                                    onClose={handleHelpPopoverClose}
+                                    disableRestoreFocus
+                                >
+                                    <Typography sx={{ p: 2 }}>
+                                        <Typography variant="caption">
+                                            <b>Count:</b> Total number of agent listings (details and non-details)
+                                            <br />
+                                            {ACTORS[source.toUpperCase()].SHOWDISCLAIMER && (
+                                                <>
+                                                    {' '}
+                                                    <b>Details:</b> Total numbers of listings that has details
+                                                    <br />
+                                                </>
+                                            )}
+                                            <b>Uniques:</b> Total number of unique listings
+                                            <br />
+                                            <b>For Sale:</b> Total number of unique listings for sale
+                                            <br />
+                                            <b>Sold:</b> Total number of unique listings that were sold
+                                        </Typography>
+                                    </Typography>
+                                </Popover>
                             </Typography>
+                            {detailsLoading ? (
+                                <div width="100%">
+                                    <CircularProgress size={20} />
+                                    <Typography variant="caption">Please wait...Loading Listing Details...</Typography>
+                                </div>
+                            ) : (
+                                !data.meta.hasDetails &&
+                                source === 'zillow' && (
+                                    <div width="100%">
+                                        <Button
+                                            variant="outlined"
+                                            onClick={onGetDetailsClick}
+                                            startIcon={<BrowserUpdatedIcon />}
+                                            size="small"
+                                        >
+                                            More details
+                                        </Button>
+                                    </div>
+                                )
+                            )}
                         </TableCell>
                     </TableRow>
                     <TableRow sx={{ backgroundColor: tableHeader[value].color }}>
+                        {/* <TableCell>&nbsp;</TableCell>
                         <TableCell>&nbsp;</TableCell>
-                        <TableCell>&nbsp;</TableCell>
-                        <TableCell>&nbsp;</TableCell>
+                        <TableCell>&nbsp;</TableCell> */}
                         <TableCell colSpan={colSpan} align="center" sx={{ color: tableHeader[value].textColor }}>
                             <strong>{tableHeader[value].text}</strong>
                         </TableCell>
@@ -749,4 +838,10 @@ BigDataTable.propTypes = {
     date: PropTypes.string,
     source: PropTypes.string,
     loadTime: PropTypes.string,
+    onGetDetailsClick: PropTypes.func,
+    detailsLoading: PropTypes.bool,
+};
+
+BigDataTable.defaultProps = {
+    detailsLoading: false,
 };

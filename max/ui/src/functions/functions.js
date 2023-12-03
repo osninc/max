@@ -96,7 +96,10 @@ export const convertDateToLocal = (dateStr) => {
         minute: 'numeric',
     };
 
-    const newDate = time2epoch(dateStr).toLocaleString('en-US', options);
+    const newDate =
+        typeof dateStr === 'number'
+            ? new Date(dateStr).toLocaleString('en-US', options)
+            : time2epoch(dateStr).toLocaleString('en-US', options);
     return newDate;
 };
 

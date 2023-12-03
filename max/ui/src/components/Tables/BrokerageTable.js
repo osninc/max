@@ -191,7 +191,7 @@ BrokerageData.propTypes = {
     data: PropTypes.object,
 };
 
-export const BrokerageTable = ({ data, datasetId, area, date, source }) => {
+export const BrokerageTable = ({ data, datasetId, area, date, source, detailsLoading, onGetDetailsClick }) => {
     const [brokerData, setBrokerData] = useState(data);
 
     if (source === 'zillow') {
@@ -222,6 +222,7 @@ export const BrokerageTable = ({ data, datasetId, area, date, source }) => {
                         textColor: 'white',
                     }}
                     date={date}
+                    onGetDetailsClick={onGetDetailsClick}
                 />
             );
     } else {
@@ -234,6 +235,7 @@ export const BrokerageTable = ({ data, datasetId, area, date, source }) => {
                     textColor: 'white',
                 }}
                 date={date}
+                onGetDetailsClick={onGetDetailsClick}
             />
         );
     }
@@ -245,4 +247,10 @@ BrokerageTable.propTypes = {
     area: PropTypes.string,
     date: PropTypes.string,
     source: PropTypes.string,
+    detailsLoading: PropTypes.bool,
+    onGetDetailsClick: PropTypes.func,
+};
+
+BrokerageTable.defaultProps = {
+    detailsLoading: false,
 };

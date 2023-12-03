@@ -7,7 +7,7 @@ export const processError = (from, error) => {
                 message = `${message} This was a bad request`;
                 break;
             case 403:
-                message = `${message} Failed CAPTCHA: Press & Hold to confirm you are a human (and not a bot)`;
+                message = `${message} Forbidden: Refused to provide access to the resource`; //Failed CAPTCHA: Press & Hold to confirm you are a human (and not a bot)`;
                 break;
             default:
                 message = `${message} ${error.response.data.error.message}`;

@@ -22,10 +22,28 @@ const NewItems = () => {
                 <Chip label="12/2/2023" />
             </Divider>
             <ListItem>
+                <ListItemText primary="Will automatically launch the details actor on any search.  Changed the way details are loaded if it exists already" />
+            </ListItem>
+            <ListItem>
+                <ListItemText primary="Added a more details button to get listing details after a count has been displayed (can't test because Apify is over limit)" />
+            </ListItem>
+            <ListItem>
                 <ListItemText primary="Fixed NaN error when all listings don't have a price value" />
             </ListItem>
             <ListItem>
                 <ListItemText primary="Fixed Days On Market calculations if a listing was listed for sale, but had multiple price changes and is still on the market" />
+            </ListItem>
+            <ListItem>
+                <ListItemText primary="Fixed Market Name display always showing the state no matter what kind of search it was" />
+            </ListItem>
+            <ListItem>
+                <ListItemText primary="Fixed time display from Redfin dataset being in epoch time instead of date string" />
+            </ListItem>
+            <ListItem>
+                <ListItemText primary="Fixed header column span problem" />
+            </ListItem>
+            <ListItem>
+                <ListItemText primary="Added infobox for counts/details/uniques" />
             </ListItem>
             <Divider component="li">
                 <Chip label="11/27/2023" />
@@ -126,7 +144,7 @@ export const WhatsNew = () => {
                 id="basic-button"
                 onClick={handleWhatsNewClick}
                 variant="outlined"
-                startIcon={<NewReleasesIcon sx={{ color: 'blue' }} />}
+                startIcon={<NewReleasesIcon color="info" />}
                 size="small"
             >
                 What&apos;s New

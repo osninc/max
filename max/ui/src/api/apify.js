@@ -341,14 +341,29 @@ export const fetchDetails = async (source, ds, automaticDetails) => {
             console.log("I'm running the details actor");
             console.log("TODO: launch but don't wait");
             //const url4 = `${APIFY.listOfDetails.listOfRuns}?token=${APIFY.base.token}&build=0.1.15`
-            // const url4 = buildApifyUrl(source, 'details', 'runs')
-            // const inputParams = {
-            //     datasetId: ds
-            // }
-            // // POST runs the actor with the params
-            // const response4 = await axios.post(url4, inputParams);
-            // console.log({ response4 })
-            // // don't have to wait
+            const url4 = buildApifyUrl(source, 'details', 'runs');
+            console.log({ url4 });
+            const inputParams = {
+                datasetId: ds,
+                maxConcurrency: 500,
+                proxyType: 'APIFY_RESIDENTIAL',
+                scraper: 'AXIOS',
+                sessionsKvsName: ds,
+            };
+            // POST runs the actor with the params
+            // I don't need the data now
+            const obj = {
+                method: 'POST',
+                data: inputParams,
+                url: url4,
+            };
+            const response4 = await axios(obj);
+            console.log({ response4 });
+            const data = response4.data;
+            return data;
+            // don't have to wait, return a Promise
+            //return await later(5 * 1000, {});
+            // throw 'hi';
         }
     }
 };
@@ -363,7 +378,7 @@ export const fetchData = async (source, params) => {
         forceCleanSessionsCreation,
         maxConcurrency,
         dataSavingStoreType,
-        automaticDetails,
+        //automaticDetails,
     } = params;
 
     let search = params.search;
@@ -456,13 +471,19 @@ export const fetchData = async (source, params) => {
         // See if this version has a datasetId in the return JSON
         // Check to see if there are any details already in the system for this dataset ID, if not, then launch a task
 
+        // Merge listing details later
         let listingsDetails;
         // is there a datasetId in this dataset? if not, then get from param if any
-        const thisDatasetId = filteredData[0]?.datasetId ?? tempDs;
+        // const thisDatasetId = filteredData[0]?.datasetId ?? tempDs;
 
-        if (thisDatasetId) {
-            listingsDetails = await fetchDetails(source, thisDatasetId, automaticDetails);
-        }
+        // if (thisDatasetId) {
+        //     // fail gracefully if I can't get the details
+        //     try {
+        //         listingsDetails = await fetchDetails(source, thisDatasetId, automaticDetails);
+        //     } catch (error) {
+        //         console.log('Can not get details');
+        //     }
+        // }
 
         const fixedData = fixData(source, filteredData);
 

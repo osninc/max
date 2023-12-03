@@ -180,7 +180,7 @@ export const InventoryData = (props) => {
 
     return loading ? (
         [
-            <CircularProgress key={0} size={20} value="Loading" />,
+            <CircularProgress key={0} size={20} />,
             <Typography key={1} variant="caption">
                 Loading Inventory Data...
             </Typography>,

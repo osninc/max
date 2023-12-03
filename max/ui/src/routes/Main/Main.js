@@ -39,7 +39,7 @@ import { processError } from '../../error.js';
 
 import { DetailsView } from '../../components/DetailsView.js';
 import { DisplayNumber, capitalizeFirstLetter } from '../../functions/functions.js';
-import { sqft2acre } from '../../functions/formulas';
+import { calcAvg, sqft2acre } from '../../functions/formulas';
 
 import { ACTORS, iconButtonFAStyle, modalStyle } from '../../constants/constants.js';
 import { Copyright } from '../../components/Copyright.js';
@@ -50,9 +50,11 @@ import ListingsView from '../../components/ListingsView.js';
 import { CircularProgressTimer } from '../../components/Listings/CircularProgressTimer.js';
 
 import { BrokerageTable } from '../../components/Tables/BrokerageTable.js';
-import { fetchData, fetchDatasets, fetchDetailsData } from '../../api/apify.js';
+import { fetchData, fetchDatasets, fetchDetailsData, fetchDetails } from '../../api/apify.js';
 import { InventoryData } from '../../components/InventoryData.js';
 import { Netronline } from '../../components/Netronline.js';
+import { fixDetails } from '../../api/fixDetails.js';
+import { fixListings } from '../../api/normalize.js';
 
 const sources = Object.keys(ACTORS).map((actor) => actor.toLowerCase());
 
@@ -209,6 +211,8 @@ const Main = ({ debugOptions }) => {
 
         try {
             const { data, area, date, searchBy } = await fetchData(source, params);
+
+            //console.log({ data, area, date, searchBy });
             //const rInt = getRandomInt(10)
             //console.log(rInt)
             //const { data, area, date, searchBy } = await later(rInt * 1000, { data: {meta: {hasDetails: false}, "0-1": {"for sale": {listings: []}}}, area: `hello from ${rInt}`, date: "the date", searchBy: "county" })
@@ -372,6 +376,16 @@ const Main = ({ debugOptions }) => {
         }
     }, [bigData, source]);
 
+    useEffect(() => {
+        const f = async () => {
+            if (debugOptions.automaticDetails) {
+                await launchGetDetails(source);
+            }
+        };
+
+        if (Object.keys(counts).length > 0) f();
+    }, [counts]);
+
     const [datasetLoading, setDatasetLoading] = useState(false);
     const [datasets, setDatasets] = useState([]);
 
@@ -433,6 +447,55 @@ const Main = ({ debugOptions }) => {
         setSource(event.target.value);
         reInitSource(event.target.value);
         setPrevDsSource(event.target.value);
+    };
+
+    // This function will modify the original data
+    const mergeDetailsWithCounts = (data, details) => {
+        const d = data.data;
+        const keys = ['for sale', 'sold'];
+        Object.keys(d)
+            .filter((el) => el !== 'meta')
+            .map((acreage) => {
+                Object.keys(d[acreage]).map((timeDim) => {
+                    keys.map((status) => {
+                        const oldListings = d[acreage][timeDim][status].listings;
+                        const newListings = fixListings(oldListings, details);
+                        const listingsWithValues = {
+                            dom: newListings
+                                .filter((l) => l.dom !== 'N/A')
+                                .map((listing) => listing.dom)
+                                .filter((el) => el),
+                        };
+                        d[acreage][timeDim][status].listings = newListings;
+                        // Calculate DOM
+                        d[acreage][timeDim][status].avgDom = calcAvg(listingsWithValues.dom);
+                        d[acreage][timeDim][status].domCount = listingsWithValues.dom.length;
+                    });
+                });
+            });
+        d.meta.hasDetails = true;
+        d.meta.checkForDetails = false;
+    };
+
+    const [loadingDetails, setLoadingDetails] = useState(false);
+
+    const launchGetDetails = async (source) => {
+        try {
+            setLoadingDetails(true);
+            const listingsDetails = await fetchDetails(source, dataset, true);
+            if (listingsDetails) {
+                const fixedDetails = fixDetails(listingsDetails);
+                // This will modify the original data
+                mergeDetailsWithCounts(bigData[source], fixedDetails);
+                reInitSource(source);
+                //setTabValue(tabValue);
+            }
+        } catch (error) {
+            setMessage(processError('main:launchGetDetails', error));
+            setOpenSnack(true);
+        } finally {
+            setLoadingDetails(false);
+        }
     };
 
     return (
@@ -709,11 +772,15 @@ const Main = ({ debugOptions }) => {
                                                                 alert("I'm done");
                                                             }}
                                                             data={counts}
-                                                            //datasetId={dataset}
-                                                            datasetId="HFUlstfORmP9MW205"
+                                                            datasetId={dataset}
+                                                            //datasetId="HFUlstfORmP9MW205"
                                                             area={area}
                                                             date={countsDate}
                                                             source={source}
+                                                            detailsLoading={loadingDetails}
+                                                            onGetDetailsClick={() => {
+                                                                launchGetDetails(source);
+                                                            }}
                                                         />
                                                     ) : (
                                                         <>
@@ -727,6 +794,10 @@ const Main = ({ debugOptions }) => {
                                                                 onClick={(e, p, ref) => {
                                                                     toggleDrawer(e, p, ref);
                                                                 }}
+                                                                onGetDetailsClick={() => {
+                                                                    launchGetDetails(source);
+                                                                }}
+                                                                detailsLoading={loadingDetails}
                                                             />
                                                             <Grid container direction="row" sx={{ mt: 5 }}>
                                                                 <Grid item xs={6} justifyContent={'center'}>

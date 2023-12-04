@@ -1,14 +1,14 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { processError } from '../../error';
-import { APIFY } from '../../constants/constants';
 import axios from 'axios';
 import { DisplayNumber, convertDateToLocal, sec2min, time2epoch } from '../../functions/functions';
 import { useState } from 'react';
 import { Button, CircularProgress, CssBaseline, GlobalStyles, ThemeProvider } from '@mui/material';
 
 import { defaultTheme } from '../../constants/theme.js';
+import { buildApifyUrl } from '../../api/buildApifyUrl';
 
-const LIMIT = 1000;
+//const LIMIT = 1000;
 
 const Runs = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -18,7 +18,8 @@ const Runs = () => {
 
     const fetchStore = async (storeId) => {
         try {
-            const url = `${APIFY.inputs.realTime.replace('<STOREID>', storeId)}?token=${APIFY.base.token}`;
+            //const url = `${APIFY.inputs.realTime.replace('<STOREID>', storeId)}?token=${APIFY.base.token}`;
+            const url = buildApifyUrl('', '', 'input', storeId);
             const response = await axios.get(url);
             const data = response.data;
             // make this backwards compatible
@@ -58,10 +59,10 @@ const Runs = () => {
 
     const fetchCountsData = async (id) => {
         try {
-            const url = `${APIFY.datasets.realTime.replace('<DATASETID>', id)}?token=${APIFY.base.token}`;
-            //console.log({ url })
+            //const url = `${APIFY.datasets.realTime.replace('<DATASETID>', id)}?token=${APIFY.base.token}`;
+            const url = buildApifyUrl('', '', 'datasets', id);
             const axiosObj = {
-                method: APIFY.datasets.method,
+                method: 'GET',
                 url,
             };
 
@@ -108,7 +109,8 @@ const Runs = () => {
 
     const fetchDatasets = async () => {
         try {
-            const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true&limit=${LIMIT}`;
+            //const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true&limit=${LIMIT}`;
+            const url = buildApifyUrl('zillow', 'count', 'runs');
             const response = await axios.get(url);
             const data = response.data;
 

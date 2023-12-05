@@ -28,11 +28,11 @@ import { fixDetails } from '../../api/fixDetails';
 
 const consolidateBrokers = (data) => {
     let brokers = [];
+    //console.log({ data });
     const d = Object.keys(data)
         .filter((el) => el !== 'meta')
         .map((acreage) => {
             Object.keys(data[acreage]).map((time) => {
-                //console.log(data[acreage][time])
                 brokers = [
                     ...brokers,
                     ...data[acreage][time]['for sale'].listings.map((listing) => listing.broker).filter((el) => el),
@@ -41,7 +41,7 @@ const consolidateBrokers = (data) => {
             });
         });
 
-    // console.log({d})
+    //console.log({ brokers });
 
     // Clean up TODO: make more efficient
     const b = brokers

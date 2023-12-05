@@ -24,6 +24,12 @@ const NewItems = () => {
             <ListItem>
                 <ListItemText primary="Rounded the values of the DOM to a full day" />
             </ListItem>
+            <ListItem>
+                <ListItemText primary="Run stats now include the dataset name. If there is no name, then show the ID" />
+            </ListItem>
+            <ListItem>
+                <ListItemText primary="Automatic Details and get details now work.  Using run-sync-get-dataset API now" />
+            </ListItem>
             <Divider component="li">
                 <Chip label="12/2/2023" />
             </Divider>

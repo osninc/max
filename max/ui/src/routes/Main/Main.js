@@ -210,8 +210,8 @@ const Main = ({ debugOptions }) => {
         };
 
         try {
-            const { data, area, date, searchBy } = await fetchData(source, params);
-
+            const { data, area, date, searchBy, datasetId } = await fetchData(source, params);
+            setDataset(datasetId);
             //console.log({ data, area, date, searchBy });
             //const rInt = getRandomInt(10)
             //console.log(rInt)

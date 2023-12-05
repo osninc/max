@@ -331,18 +331,8 @@ export const fetchDetails = async (source, ds, automaticDetails) => {
         const data = response.data;
         return data;
     } else {
-        // don't have to accidentally run the actor so I'll put a flag here
-        console.log('Launching new actor with dataset');
-        console.log({ automaticDetails });
-        console.log(`if true, then sending`);
-        console.log(`datasetId: ${ds}`);
         if (automaticDetails) {
-            // Run actor async without waiting
-            console.log("I'm running the details actor");
-            console.log("TODO: launch but don't wait");
-            //const url4 = `${APIFY.listOfDetails.listOfRuns}?token=${APIFY.base.token}&build=0.1.15`
-            const url4 = buildApifyUrl(source, 'details', 'runs');
-            console.log({ url4 });
+            const url4 = buildApifyUrl(source, 'details', 'runsync');
             const inputParams = {
                 datasetId: ds,
                 maxConcurrency: 500,
@@ -351,19 +341,14 @@ export const fetchDetails = async (source, ds, automaticDetails) => {
                 sessionsKvsName: ds,
             };
             // POST runs the actor with the params
-            // I don't need the data now
             const obj = {
                 method: 'POST',
                 data: inputParams,
                 url: url4,
             };
             const response4 = await axios(obj);
-            console.log({ response4 });
             const data = response4.data;
             return data;
-            // don't have to wait, return a Promise
-            //return await later(5 * 1000, {});
-            // throw 'hi';
         }
     }
 };
@@ -474,7 +459,7 @@ export const fetchData = async (source, params) => {
         // Merge listing details later
         let listingsDetails;
         // is there a datasetId in this dataset? if not, then get from param if any
-        // const thisDatasetId = filteredData[0]?.datasetId ?? tempDs;
+        const thisDatasetId = filteredData[0]?.datasetId ?? tempDs;
 
         // if (thisDatasetId) {
         //     // fail gracefully if I can't get the details
@@ -500,6 +485,7 @@ export const fetchData = async (source, params) => {
             data: normalizedData,
             area: newSearch,
             date: filteredData[1]?.timeStamp,
+            datasetId: thisDatasetId,
             searchBy,
         };
     } catch (error) {

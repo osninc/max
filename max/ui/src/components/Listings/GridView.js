@@ -41,31 +41,10 @@ export const GridView = ({ source, listings, onClick }) => {
             );
         },
     };
-    const columns = [
-        {
-            field: 'price',
-            headerName: 'PRICE',
-            valueGetter: (params) => USDollar.format(params.row.unformattedPrice),
-        },
-        {
-            field: 'acres',
-            headerName: 'ACRES',
-
-            valueGetter: (params) => `${params.row.acre} acres`,
-        },
-        {
-            field: 'ppa',
-            headerName: 'PRICE/ACRE',
-            valueGetter: (params) => USDollar.format(params.row.unformattedPpa),
-        },
-        {
-            field: 'statusType',
-            headerName: 'STATUS',
-            valueGetter: (params) => {
-                const word = params.row.statusType.toLowerCase().replace('_', ' ');
-                return word.replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
-            },
-        },
+    // There is an agent for this listing
+    const hasAgent = listings[0]?.agent?.name;
+    let additionalCol = [];
+    const defaultCol = [
         {
             field: 'dom',
             headerName: 'DOM',
@@ -106,6 +85,69 @@ export const GridView = ({ source, listings, onClick }) => {
                 return row.saves;
             },
         },
+    ];
+    if (hasAgent) {
+        additionalCol = [
+            {
+                field: 'agent',
+                headerName: 'Agent Name',
+                valueGetter: ({ row }) => {
+                    return row.agent.name;
+                },
+            },
+            {
+                field: 'agent2',
+                headerName: 'Agent Number',
+                valueGetter: ({ row }) => {
+                    return row.agent.number;
+                },
+            },
+            {
+                field: 'agent3',
+                headerName: 'Agent Email',
+                valueGetter: ({ row }) => {
+                    return row.agent.email;
+                },
+            },
+            {
+                field: 'agent4',
+                headerName: 'Agent License Number',
+                valueGetter: ({ row }) => {
+                    return row.agent.licenseNumber;
+                },
+            },
+        ];
+    }
+
+    let showCol = !hasAgent ? defaultCol : [];
+
+    const columns = [
+        ...additionalCol,
+        {
+            field: 'price',
+            headerName: 'PRICE',
+            valueGetter: (params) => USDollar.format(params.row.unformattedPrice),
+        },
+        {
+            field: 'acres',
+            headerName: 'ACRES',
+
+            valueGetter: (params) => `${params.row.acre} acres`,
+        },
+        {
+            field: 'ppa',
+            headerName: 'PRICE/ACRE',
+            valueGetter: (params) => USDollar.format(params.row.unformattedPpa),
+        },
+        {
+            field: 'statusType',
+            headerName: 'STATUS',
+            valueGetter: (params) => {
+                const word = params.row.statusType.toLowerCase().replace('_', ' ');
+                return word.replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
+            },
+        },
+        ...showCol,
         {
             field: `${source}_link`,
             headerName: `${source.toUpperCase()} LINK`,

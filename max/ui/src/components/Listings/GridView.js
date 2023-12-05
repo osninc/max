@@ -29,7 +29,7 @@ import { defaultTheme } from '../../constants/theme';
 import Iframe from 'react-iframe';
 import { NotAvailable } from '../NotAvailable';
 
-export const GridView = ({ source, listings, onClick }) => {
+export const GridView = ({ source, listings, onClick, from }) => {
     const detailsColumn = {
         field: 'zpid',
         headerName: 'DETAILS',
@@ -42,7 +42,7 @@ export const GridView = ({ source, listings, onClick }) => {
         },
     };
     // There is an agent for this listing
-    const hasAgent = listings[0]?.agent?.name;
+    const hasAgent = from === 'brokerage';
     let additionalCol = [];
     const defaultCol = [
         {
@@ -307,4 +307,5 @@ GridView.propTypes = {
     listings: PropTypes.array,
     source: PropTypes.string,
     onClick: PropTypes.func,
+    from: PropTypes.string,
 };

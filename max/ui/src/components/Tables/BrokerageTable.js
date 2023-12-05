@@ -308,9 +308,10 @@ const BrokerageData = ({ data }) => {
                 <Container>
                     <Box>
                         <ListingsView
-                            source={'zillow'}
+                            source="zillow"
                             listings={listings}
                             onDetailsClick={(zpid) => openDetails(zpid)}
+                            from="brokerage"
                         />
                     </Box>
                 </Container>

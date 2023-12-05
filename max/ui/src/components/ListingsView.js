@@ -7,12 +7,13 @@ import { ImagesView } from './Listings/ImagesView';
 import { GridView } from './Listings/GridView';
 import { MapView } from './Listings/MapView';
 
-const ListingsView = ({ variant, listings, onDetailsClick, source }) => {
+const ListingsView = ({ variant, listings, onDetailsClick, source, from }) => {
     const [viewAs, setViewAs] = useState(variant);
     const defaultParams = {
         listings,
         onClick: (zpid) => onDetailsClick(zpid),
         source,
+        from,
     };
 
     let finalComponent;
@@ -52,6 +53,7 @@ ListingsView.propTypes = {
     listings: PropTypes.array.isRequired,
     onDetailsClick: PropTypes.func,
     source: PropTypes.string,
+    from: PropTypes.string,
 };
 
 ListingsView.defaultProps = {

@@ -30,6 +30,9 @@ const NewItems = () => {
             <ListItem>
                 <ListItemText primary="Automatic Details and get details now work.  Using run-sync-get-dataset API now" />
             </ListItem>
+            <ListItem>
+                <ListItemText primary="Changed the way broker details are displayed." />
+            </ListItem>
             <Divider component="li">
                 <Chip label="12/2/2023" />
             </Divider>

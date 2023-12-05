@@ -57,6 +57,22 @@ const Runs = () => {
         };
     };
 
+    const fetchDatasetInfo = async (id) => {
+        try {
+            const url = buildApifyUrl('', '', 'datasetinfo', id);
+            const axiosObj = {
+                method: 'GET',
+                url,
+            };
+            const response = await axios(axiosObj);
+            const data = response.data;
+            return data?.data;
+        } catch (error) {
+            setMessage(processError('fetchDatasetInfo', error));
+            return {};
+        }
+    };
+
     const fetchCountsData = async (id) => {
         try {
             //const url = `${APIFY.datasets.realTime.replace('<DATASETID>', id)}?token=${APIFY.base.token}`;
@@ -120,8 +136,10 @@ const Runs = () => {
                     const { searchBy, search } = await fetchStore(storeId);
                     // fetch actual data for counts in dropdown (this is redundant TODO:)
                     const { counts } = await fetchCountsData(item.defaultDatasetId);
+                    const { name: datasetName } = await fetchDatasetInfo(item.defaultDatasetId);
                     return {
                         value: item.defaultDatasetId,
+                        name: datasetName ?? item.defaultDatasetId,
                         searchBy: searchBy,
                         search: search,
                         date: convertDateToLocal(item.startedAt),
@@ -217,7 +235,7 @@ const Runs = () => {
             headerName: 'Unique Sold',
             valueGetter: (params) => DisplayNumber.format(params.row.counts.uniqueSold),
         },
-        { field: 'value', flex: 1, headerName: 'DatasetID' },
+        { field: 'name', flex: 1, headerName: 'Dataset ID or Name' },
         { field: 'build', flex: 1, headerName: 'Build' },
     ];
 

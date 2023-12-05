@@ -157,6 +157,7 @@ export const APIFY = {
     BASEURL: 'https://api.apify.com/v2',
     ENDPOINTS: {
         NEW: '/acts/<ACTORID>/run-sync-get-dataset-items?build=<BUILD>',
+        DATASETINFO: '/datasets/<DATASETID>/?',
         DATASETS: '/datasets/<DATASETID>/items/?',
         INPUT: '/key-value-stores/<STOREID>/records/INPUT/?',
         RUNS: '/acts/<ACTORID>/runs/?&desc=true',

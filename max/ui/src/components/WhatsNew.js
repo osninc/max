@@ -19,6 +19,12 @@ const NewItems = () => {
     return (
         <List dense={true}>
             <Divider component="li">
+                <Chip label="12/4/2023" />
+            </Divider>
+            <ListItem>
+                <ListItemText primary="Rounded the values of the DOM to a full day" />
+            </ListItem>
+            <Divider component="li">
                 <Chip label="12/2/2023" />
             </Divider>
             <ListItem>

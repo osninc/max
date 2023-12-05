@@ -144,9 +144,10 @@ const DataCell = (props) => {
                     );
                     break;
                 case 'avgDom':
+                    // Round up the days on market to full day
                     soldTextButton = (
                         <Button href="#" onClick={(e) => onClick(e, soldParams, cellElementSold)}>
-                            {soldText}
+                            {Math.ceil(parseFloat(soldText))}
                         </Button>
                     );
                     break;
@@ -200,9 +201,10 @@ const DataCell = (props) => {
                     break;
                 case 'avgDom':
                     //saleText = saleText;
+                    // Round up the days on market to full day
                     saleTextButton = (
                         <Button href="#" onClick={(e) => onClick(e, saleParams, cellElementSale)}>
-                            {saleText}
+                            {Math.ceil(parseFloat(saleText))}
                         </Button>
                     );
                     break;
@@ -281,6 +283,8 @@ const DataCell = (props) => {
                         {record['for sale'].domCount}) listings that had price history
                         <br />
                         sum(DOM) / {record['for sale'].domCount} = {saleText}
+                        <br />
+                        The value is rounded up to the full day.
                     </Typography>
                 );
                 soldHover = (
@@ -291,6 +295,8 @@ const DataCell = (props) => {
                         ) sales that had price history
                         <br />
                         sum(DOM) / {record['sold'].domCount} = {soldText}
+                        <br />
+                        The value is rounded up to the full day.
                     </Typography>
                 );
                 break;

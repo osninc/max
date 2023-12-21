@@ -39,9 +39,7 @@ import { WhatsNew } from './WhatsNew.js';
 import { Copyright } from './Copyright.js';
 
 const Layout = ({ children, title, onChangeDebugMenu }) => {
-    const isTestingSite =
-        !document.location.hostname.includes('live-landstats') &&
-        !document.location.hostname.includes('land-stats.com');
+    const isTestingSite = !document.location.hostname.includes('land-stats.com');
     const searchParams = new URLSearchParams(document.location.search);
     const hasDebugMenu = searchParams.has('debugMenu');
     const hasBuildOnQS = searchParams.has('build');
@@ -139,7 +137,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                         <img src="/logos/land-stats.png" height={75} />
                     </Link>
                     <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-                        {isTestingSite ? `(Demo Site)` : ` `}
+                        {isTestingSite ? `(Staging Site)` : ` `}
                     </Typography>
                     <nav>
                         <WhatsNew />

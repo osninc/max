@@ -38,7 +38,9 @@ import TextField from '@mui/material/TextField';
 import { WhatsNew } from './WhatsNew.js';
 
 const Layout = ({ children, title, onChangeDebugMenu }) => {
-    const isTestingSite = !document.location.hostname.includes('sunflower');
+    const isTestingSite =
+        !document.location.hostname.includes('live-landstats') &&
+        !document.location.hostname.includes('land-stats.com');
     const searchParams = new URLSearchParams(document.location.search);
     const hasDebugMenu = searchParams.has('debugMenu');
     const hasBuildOnQS = searchParams.has('build');

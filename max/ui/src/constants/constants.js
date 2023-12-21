@@ -165,7 +165,7 @@ export const APIFY = {
         LASTDATASET: '/acts/<ACTORID>/runs/last/dataset/items?',
     },
     NETR: 'https://api.apify.com/v2/acts/T7PVYo0sUSJ6XBnw6/runs/last/dataset/items?token=apify_api_eVR6ZxQGjhIbayqnfEDxPwGa8p4EF61kQe2H',
-    PASTDAYS: 7,
+    PASTDAYS: 45,
 };
 
 export const modalStyle = {

@@ -44,6 +44,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
     const hasBuildOnQS = searchParams.has('build');
 
     const { user, logout, openLogin, openSignup, openProfile, isLoading } = useAuth();
+    //console.log({ user, logout, openLogin, openSignup, openProfile, isLoading });
 
     const [debugOptions, setDebugOptions] = useState({
         buildNumber: hasBuildOnQS ? searchParams.get('build') : ACTORS.ZILLOW.COUNT.BUILD,
@@ -52,7 +53,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
         maxConcurrency: 50,
         dataSavingStoreType: DEBUGMENU.DATASTORETYPE[0],
         forceCleanSessionsCreation: false,
-        useOutseta: false,
+        useOutseta: true,
         automaticDetails: false,
     });
 

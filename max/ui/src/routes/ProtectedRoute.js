@@ -1,9 +1,9 @@
+import { Button, Container, Grid, Typography } from '@mui/material';
 import { useAuth } from './AuthProvider';
 import PropTypes from 'prop-types';
 
 const PLANS = {
-    PRO: { label: 'Pro', uid: 'yW1qbyWB' },
-    BASIC: { label: 'Basic', uid: 'OW4pw3Wg' },
+    FULL: { label: 'FULL ACCESS', uid: 'wQXwbnmK' },
 };
 
 function hasCorrectPlan(plans, user) {
@@ -15,12 +15,12 @@ function hasCorrectPlan(plans, user) {
     }
 }
 
-export default function ProtectedRoute({ pro, children }) {
+export default function ProtectedRoute({ children }) {
     const { user, openLogin, openSignup, openProfile, isLoading } = useAuth();
 
     // Pro routes only accessible with pro plan
     // Basic routes accessible with basic or pro plan
-    const plansWithAccess = pro ? [PLANS.PRO] : [PLANS.BASIC, PLANS.PRO];
+    const plansWithAccess = [PLANS.FULL];
     const allowAccess = hasCorrectPlan(plansWithAccess, user);
 
     if (isLoading) return <p>Authenticating...</p>;
@@ -29,25 +29,44 @@ export default function ProtectedRoute({ pro, children }) {
         return children;
     } else if (user) {
         return (
-            <>
-                <p>
-                    To access this content you need to upgrade to the <strong>{plansWithAccess[0].label}</strong> plan.
-                </p>
-                <button onClick={() => openProfile({ tab: 'planChange' })}>Upgrade</button>
-            </>
+            <Container fixed maxWidth={false}>
+                <Grid container spacing={0} alignItems="left">
+                    <p>
+                        To access this content you need to upgrade to the <strong>{plansWithAccess[0].label}</strong>{' '}
+                        plan.
+                    </p>
+                    <button onClick={() => openProfile({ tab: 'planChange' })}>Upgrade</button>
+                </Grid>
+            </Container>
         );
     } else {
         return (
-            <>
-                <p>
-                    To access this content you need to <button onClick={openSignup}>signup</button> for the{' '}
-                    <strong>{plansWithAccess[0].label}</strong> plan.
-                </p>
+            <Container maxWidth="sm">
+                <Grid item spacing={0} justifyContent="center" alignItems="center">
+                    <Typography align="center">
+                        To access this content you need to{' '}
+                        <Button
+                            variant="link"
+                            color="primary"
+                            onClick={openSignup}
+                            underline="none"
+                            //sx={{ my: 1, mx: 1.5 }}
+                        >
+                            signup
+                        </Button>
+                        {' for the  '}
+                        <strong>{plansWithAccess[0].label}</strong> plan.
+                    </Typography>
 
-                <p>
-                    Or <button onClick={openLogin}>login</button> if you already have an account.
-                </p>
-            </>
+                    <Typography align="center">
+                        Or{' '}
+                        <Button variant="link" color="primary" onClick={openLogin} underline="none">
+                            login
+                        </Button>{' '}
+                        if you already have an account.
+                    </Typography>
+                </Grid>
+            </Container>
         );
     }
 }

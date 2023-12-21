@@ -10,13 +10,27 @@ import { Layout } from './components';
 import { BlankPage } from './routes/BlankPage';
 //import ProtectedRoute from './routes/ProtectedRoute';
 import { App } from './routes/App';
+import AuthProvider from './routes/AuthProvider';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <App />,
+        element: (
+            <AuthProvider>
+                <App />
+            </AuthProvider>
+        ),
         errorElement: <ErrorPage />,
     },
+    // {
+    //     path: '/home',
+    //     element: (
+    //         <AuthProvider>
+    //             <App />
+    //         </AuthProvider>
+    //     ),
+    //     errorElement: <ErrorPage />,
+    // },
     {
         path: 'runs',
         element: (

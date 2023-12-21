@@ -9,6 +9,10 @@ export const Copyright = (props) => {
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
+            <br />
+            build: {process.env.REACT_APP_BUILD_ID}
+            <br />
+            at: {process.env.REACT_APP_BUILD_TIME}
         </Typography>
     );
 };

@@ -36,6 +36,7 @@ import { useEffect, useState } from 'react';
 
 import TextField from '@mui/material/TextField';
 import { WhatsNew } from './WhatsNew.js';
+import { Copyright } from './Copyright.js';
 
 const Layout = ({ children, title, onChangeDebugMenu }) => {
     const isTestingSite =
@@ -393,6 +394,19 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
             </Container>
             {/* End hero unit */}
             {children}
+            {/* Footer */}
+            <Container
+                maxWidth="md"
+                component="footer"
+                sx={{
+                    borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+                    mt: 8,
+                    py: [3, 2],
+                }}
+            >
+                <Copyright sx={{ mt: 0 }} />
+            </Container>
+            {/* End footer */}
         </ThemeProvider>
     );
 };

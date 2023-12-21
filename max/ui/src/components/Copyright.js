@@ -13,7 +13,7 @@ export const Copyright = (props) => {
             <br />
             build: {process.env.REACT_APP_BUILD_ID}
             <br />
-            built at: {convertDateToLocal(process.env.REACT_APP_BUILD_TIME)}
+            build at: {convertDateToLocal(process.env.REACT_APP_BUILD_TIME)}
         </Typography>
     );
 };

@@ -137,11 +137,9 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                     <Link component={RouterLink} to="/" underline="none" sx={{ my: 1, mx: 1.5 }}>
                         <img src="/logos/land-stats.png" height={75} />
                     </Link>
-                    {isTestingSite && (
-                        <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-                            (Demo Site)
-                        </Typography>
-                    )}
+                    <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+                        {isTestingSite ? `(Demo Site)` : ` `}
+                    </Typography>
                     <nav>
                         <WhatsNew />
                         {hasDebugMenu && (

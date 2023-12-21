@@ -1,4 +1,5 @@
 import { Link, Typography } from '@mui/material';
+import { convertDateToLocal } from '../functions/functions';
 
 export const Copyright = (props) => {
     return (
@@ -12,7 +13,7 @@ export const Copyright = (props) => {
             <br />
             build: {process.env.REACT_APP_BUILD_ID}
             <br />
-            at: {process.env.REACT_APP_BUILD_TIME}
+            {convertDateToLocal(process.env.REACT_APP_BUILD_TIME)}
         </Typography>
     );
 };

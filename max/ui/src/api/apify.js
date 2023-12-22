@@ -364,6 +364,7 @@ export const fetchData = async (source, params) => {
         maxConcurrency,
         dataSavingStoreType,
         //automaticDetails,
+        force,
     } = params;
 
     let search = params.search;
@@ -403,7 +404,7 @@ export const fetchData = async (source, params) => {
     let axiosObj;
 
     // Check to see if there is an existing Dataset for this search within the last X days
-    if (tempDs === '') {
+    if (tempDs === '' && !force) {
         const existingDs = await findExistingDataset(source, search);
         if (existingDs !== '') tempDs = existingDs;
     }

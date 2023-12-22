@@ -74,6 +74,7 @@ const Main = ({ debugOptions }) => {
     const [area, setArea] = useState('');
     const [countsDate, setCountsDate] = useState('');
     const [openSnack, setOpenSnack] = useState(false);
+    const [forceData, setForceData] = useState(false);
 
     const searchParams = new URLSearchParams(document.location.search);
 
@@ -200,13 +201,14 @@ const Main = ({ debugOptions }) => {
         // setSearch("")
     };
 
-    const loadData = async (source, ds) => {
+    const loadData = async (source, ds, force) => {
         // input: { search, ds, buildNumber, proxy, scraper }
         // output: { data, area, date, searchBy }
         const params = {
             search,
             ds,
             ...debugOptions,
+            force,
         };
 
         try {
@@ -241,53 +243,11 @@ const Main = ({ debugOptions }) => {
         }
     };
 
-    // const loadData2 = async (ds) => {
-    //   // TODO: test Zillow ds = "GkWsC5IhvSTbzurH6"
-    //   // TODO: test redfin ds = "6dM5zesoSsfwBFjd7"
-    //   clearStates()
-    //   try {
-    //     setMessage("");
-    //     setLoading(true);
-
-    //     // input: { search, ds, buildNumber, proxy, scraper }
-    //     // output: { data, area, date, searchBy }
-    //     const params = {
-    //       search,
-    //       ds,
-    //       ...debugOptions
-    //     }
-
-    //     const { data, area, date, searchBy } = await fetchData(source, params);
-
-    //     setBigData(prev => {
-    //       return {
-    //         ...prev,
-    //         [source]: {
-    //           ...prev[source],
-    //           data, area, date, searchBy
-    //         }
-    //       }
-    //     })
-
-    //     setArea(area)
-    //     setCountsDate(date)
-    //     setCounts(data)
-    //     setSearchBy(searchBy)
-    //     setSearch(area)
-
-    //   } catch (error) {
-    //     setMessage(processError("main:loadData", error))
-    //     setOpenSnack(true)
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // }
-
     // This function is handling the main search button
     const handleClick = async () => {
         setSourceLoading(sourcesSelected);
         Object.keys(sourcesSelected).map((source) => {
-            if (sourcesSelected[source]) loadData(source, '');
+            if (sourcesSelected[source]) loadData(source, '', forceData);
         });
     };
 
@@ -349,7 +309,8 @@ const Main = ({ debugOptions }) => {
                 [prevDsSource]: true,
             };
         });
-        await loadData(prevDsSource, dataset);
+        // Searching old data, don't pass the force flag
+        await loadData(prevDsSource, dataset, false);
     };
 
     const [initialLoad, setInitialLoad] = useState(false);
@@ -433,6 +394,10 @@ const Main = ({ debugOptions }) => {
             };
             return Object.values(updated).filter((p) => p === true).length === 0 ? original : updated;
         });
+    };
+
+    const handleForceData = (event) => {
+        setForceData(event.target.checked);
     };
 
     const [searchType, setSearchType] = React.useState('new');
@@ -544,7 +509,11 @@ const Main = ({ debugOptions }) => {
                                     Search
                                 </LoadingButton>
                             </Paper>
-
+                            <FormControlLabel
+                                control={<Checkbox checked={forceData} onChange={handleForceData} size="small" />}
+                                label="Force updated data"
+                            />
+                            <br />
                             {sources.map((source) => (
                                 <FormControlLabel
                                     key={source}

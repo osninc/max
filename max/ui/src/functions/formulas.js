@@ -54,6 +54,7 @@ export const sqft2acre = (num) => (num === '' ? '' : parseFloat((num / 43560).to
 
 export const calcDom = (history) => {
     // if the first item is 'listed for sale, then seconds from now to then'
+    if (history === null) return 0;
     if (history.length === 0) return 0;
 
     const epochNow = Date.now();

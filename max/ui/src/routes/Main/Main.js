@@ -58,6 +58,8 @@ import { fixListings } from '../../api/normalize.js';
 
 const sources = Object.keys(ACTORS).map((actor) => actor.toLowerCase());
 
+import useIsMounted from '../../hooks/useIsMounted.js';
+
 const Main = ({ debugOptions }) => {
     const [isLoading, setLoading] = useState(false);
     const [isListingLoading, setListingLoading] = useState(false);
@@ -400,7 +402,7 @@ const Main = ({ debugOptions }) => {
         setForceData(event.target.checked);
     };
 
-    const [searchType, setSearchType] = React.useState('new');
+    const [searchType, setSearchType] = useState('new');
 
     const handleSearchTypeChange = (event, newValue) => {
         setSearchType(newValue);
@@ -463,6 +465,43 @@ const Main = ({ debugOptions }) => {
         }
     };
 
+    // This is specifically for loading the map
+    // const isMounted = useIsMounted();
+    // if (isMounted()) {
+    //     console.log("I'm mounted!");
+    //     simplemaps_countymap.load();
+    //     // can set state because component is mounted
+    // }
+    useEffect(() => {
+        console.log("Im' here only once");
+        simplemaps_countymap.load();
+        // do whatever you need to do when the component mounts
+        // Clicking on a county at the very end
+        // simplemaps_countymap.hooks.click_state = (id) => {
+        //     console.log(simplemaps_countymap_mapdata.state_specific[id].name);
+        // };
+        simplemaps_countymap.hooks.zoomable_click_state = (id) => {
+            console.log({ id });
+            //console.log(simplemaps_countymap_mapdata.state_specific[id]);
+            console.log(simplemaps_countymap_mapdata.state_specific[id]);
+        };
+        simplemaps_countymap.hooks.zoomable_click_location = (id) => {
+            console.log('location');
+            console.log({ id });
+            console.log(simplemaps_countymap_mapdata.state_specific[id]);
+        };
+        simplemaps_countymap.hooks.zoomable_click_region = (id) => {
+            console.log('region');
+            console.log({ id });
+            //console.log(simplemaps_countymap_mapdata.state_specific[id]);
+        };
+        simplemaps_countymap.hooks.click_region = (id) => {
+            console.log('non zoom region');
+            console.log({ id });
+            //console.log(simplemaps_countymap_mapdata.state_specific[id]);
+        };
+    }, []);
+
     return (
         <>
             <Container fixed maxWidth={false}>
@@ -479,7 +518,14 @@ const Main = ({ debugOptions }) => {
                                 label="Previous Searches"
                                 value="previous"
                             />
+                            {/* <Tab
+                                icon={<FontAwesomeIcon icon={icon({ name: 'map' })} />}
+                                label="Search by Map"
+                                value="map"
+                            /> */}
                         </Tabs>
+
+                        <div id="map"></div>
 
                         <TabPanel value={searchType} index="new">
                             <Paper

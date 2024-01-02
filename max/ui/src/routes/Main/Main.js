@@ -466,39 +466,35 @@ const Main = ({ debugOptions }) => {
     };
 
     // This is specifically for loading the map
-    // const isMounted = useIsMounted();
-    // if (isMounted()) {
-    //     console.log("I'm mounted!");
-    //     simplemaps_countymap.load();
-    //     // can set state because component is mounted
-    // }
+    const [currentMapState, setCurrentMapState] = useState('');
+    const [currentMapCounty, setCurrentMapCounty] = useState('');
+    const updateSearch = (county) => {
+        const searchStr = `${county} County, ${currentMapState}`;
+        setSearch(searchStr);
+    };
+    const updateSearchState = (state) => {
+        // clear the county
+        setCurrentMapCounty('');
+        setCurrentMapState(state);
+        setSearch(state);
+    };
+    // This gets the county id
+    simplemaps_countymap.hooks.zoomable_click_state = (id) => {
+        const countyName = simplemaps_countymap_mapdata.state_specific[id].name;
+        setCurrentMapCounty(countyName);
+        updateSearch(countyName);
+    };
+
     useEffect(() => {
-        console.log("Im' here only once");
         simplemaps_countymap.load();
         // do whatever you need to do when the component mounts
-        // Clicking on a county at the very end
-        // simplemaps_countymap.hooks.click_state = (id) => {
-        //     console.log(simplemaps_countymap_mapdata.state_specific[id].name);
-        // };
-        simplemaps_countymap.hooks.zoomable_click_state = (id) => {
-            console.log({ id });
-            //console.log(simplemaps_countymap_mapdata.state_specific[id]);
-            console.log(simplemaps_countymap_mapdata.state_specific[id]);
-        };
-        simplemaps_countymap.hooks.zoomable_click_location = (id) => {
-            console.log('location');
-            console.log({ id });
-            console.log(simplemaps_countymap_mapdata.state_specific[id]);
-        };
+        // This gets the US State user clicked on
         simplemaps_countymap.hooks.zoomable_click_region = (id) => {
-            console.log('region');
-            console.log({ id });
-            //console.log(simplemaps_countymap_mapdata.state_specific[id]);
+            updateSearchState(id);
         };
+        // This gets the US State user clicked on
         simplemaps_countymap.hooks.click_region = (id) => {
-            console.log('non zoom region');
-            console.log({ id });
-            //console.log(simplemaps_countymap_mapdata.state_specific[id]);
+            updateSearchState(id);
         };
     }, []);
 
@@ -507,6 +503,8 @@ const Main = ({ debugOptions }) => {
             <Container fixed maxWidth={false}>
                 <Grid container spacing={0} alignItems="left">
                     <Grid item xs={gridWidth}>
+                        {currentMapCounty}
+                        {currentMapState}
                         <Tabs value={searchType} onChange={handleSearchTypeChange}>
                             <Tab
                                 icon={<FontAwesomeIcon icon={icon({ name: 'magnifying-glass-plus' })} />}

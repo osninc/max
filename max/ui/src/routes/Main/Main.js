@@ -239,6 +239,8 @@ const Main = ({ debugOptions }) => {
                     [source]: false,
                 };
             });
+
+            processMap(area);
         } catch (error) {
             setMessage(processError(`main:loadData:${source}`, error));
             setOpenSnack(true);
@@ -253,7 +255,58 @@ const Main = ({ debugOptions }) => {
         });
     };
 
+    const splitCountyState = (countyWithState) => {
+        if (countyWithState) {
+            const [county, state] = countyWithState.split(', ');
+            if (state && state.length === 2) {
+                const sameAsCounty = [' County', ' Parish', ' Borough', ' Census Area', ' City', ' Municipality'];
+                let justCounty = county;
+                const replacing = sameAsCounty.map((txt) => {
+                    // Only exception is "carson city"
+                    if (justCounty.toLowerCase() === 'carson city') return justCounty;
+                    justCounty = justCounty.replace(txt, '');
+                    return justCounty;
+                });
+                return [justCounty, state];
+            } else return [];
+        }
+    };
+
+    const processMap = (selectedValue) => {
+        if (selectedValue && selectedValue.length >= 2) {
+            if (selectedValue.length === 2)
+                // This is a state
+                // Highlight the state (region)
+                simplemaps_countymap.region_zoom(selectedValue);
+            else {
+                // This is a county, get just the county name
+                const cs = splitCountyState(selectedValue);
+                if (cs.length > 0) {
+                    const [countyName, state] = cs;
+
+                    // Get all the county
+                    const counties = simplemaps_countymap_mapdata.state_specific;
+                    //const x = Object.keys(counties).filter((key) => counties[key].name === countyName);
+                    const countiesInState = simplemaps_countymap_mapdata.regions[state].states;
+                    const countyId = Object.keys(counties).find(
+                        (key) => counties[key].name === countyName && countiesInState.includes(key),
+                    );
+                    if (countyId) simplemaps_countymap.state_zoom(countyId);
+                }
+            }
+        } else {
+            // zoom the map out, only if map is not 'out' yet
+            if (simplemaps_countymap.zoom_level !== 'out') {
+                simplemaps_countymap.back(() => {
+                    simplemaps_countymap.back();
+                });
+            }
+        }
+    };
+
     const handleTextChange = (e) => {
+        // Change the map view
+        processMap(e);
         setSearch(e);
     };
 
@@ -473,29 +526,50 @@ const Main = ({ debugOptions }) => {
         setSearch(searchStr);
     };
     const updateSearchState = (state) => {
+        const defaultColor = '#48ba2d';
+        const clickedColor = 'orange';
+
+        // if (state !== currentMapState) {
+        //     // Reset previous state
+        //     if (currentMapState !== '') simplemaps_countymap_mapdata.regions[currentMapState].color = defaultColor;
+        setCurrentMapState(state);
+        // }
         // clear the county
         setCurrentMapCounty('');
-        setCurrentMapState(state);
+        // console.log(simplemaps_countymap_mapdata.regions[state]);
+        // simplemaps_countymap_mapdata.regions[state].color = clickedColor;
+        // simplemaps_countymap.refresh();
         setSearch(state);
     };
     // This gets the county id
     simplemaps_countymap.hooks.zoomable_click_state = (id) => {
+        const defaultColor = '#48ba2d';
+        const clickedColor = 'red';
+
+        if (id !== currentMapCounty) {
+            // Reset previous county
+            if (currentMapCounty !== '')
+                simplemaps_countymap_mapdata.state_specific[currentMapCounty].color = defaultColor;
+            simplemaps_countymap_mapdata.state_specific[id].color = clickedColor;
+            simplemaps_countymap.refresh();
+            setCurrentMapCounty(id);
+        }
         const countyName = simplemaps_countymap_mapdata.state_specific[id].name;
-        setCurrentMapCounty(countyName);
         updateSearch(countyName);
+    };
+
+    // This gets the US State user clicked on
+    simplemaps_countymap.hooks.zoomable_click_region = (id) => {
+        updateSearchState(id);
+    };
+    // This gets the US State user clicked on
+    simplemaps_countymap.hooks.click_region = (id) => {
+        updateSearchState(id);
     };
 
     useEffect(() => {
         simplemaps_countymap.load();
         // do whatever you need to do when the component mounts
-        // This gets the US State user clicked on
-        simplemaps_countymap.hooks.zoomable_click_region = (id) => {
-            updateSearchState(id);
-        };
-        // This gets the US State user clicked on
-        simplemaps_countymap.hooks.click_region = (id) => {
-            updateSearchState(id);
-        };
     }, []);
 
     return (
@@ -503,8 +577,6 @@ const Main = ({ debugOptions }) => {
             <Container fixed maxWidth={false}>
                 <Grid container spacing={0} alignItems="left">
                     <Grid item xs={gridWidth}>
-                        {currentMapCounty}
-                        {currentMapState}
                         <Tabs value={searchType} onChange={handleSearchTypeChange}>
                             <Tab
                                 icon={<FontAwesomeIcon icon={icon({ name: 'magnifying-glass-plus' })} />}
@@ -522,8 +594,6 @@ const Main = ({ debugOptions }) => {
                                 value="map"
                             /> */}
                         </Tabs>
-
-                        <div id="map"></div>
 
                         <TabPanel value={searchType} index="new">
                             <Paper
@@ -702,6 +772,8 @@ const Main = ({ debugOptions }) => {
                                 </RadioGroup>
                             </FormControl>
                         </TabPanel>
+
+                        <div id="map"></div>
                     </Grid>
                     {hasDebugMenu && (
                         <Grid item xs={gridWidth}>

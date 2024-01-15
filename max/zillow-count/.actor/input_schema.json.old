@@ -2,9 +2,9 @@
   "title": "Zillow Scraping",
   "description": "Description",
   "type": "object",
-  "schemaVersion": 2,
+  "schemaVersion": 1,
   "properties": {
-    "searchType": {
+    "searchBy": {
       "title": "Choose county (default), zip code, or state",
       "type": "string",
       "editor": "select",
@@ -3305,75 +3305,41 @@
       "minLength": 5,
       "maxLength": 5
     },
-    "proxyType": {
+    "proxy": {
       "title": "Proxy Type",
       "type": "string",
-      "description": "Toggles between proxies",
-      "default": "SMARTPROXY_RESIDENTIAL",
+      "description": "Toggles between datacenters and residentials",
+      "default": "none",
       "enum": [
-        "SMARTPROXY_RESIDENTIAL",
-        "APIFY_RESIDENTIAL",
-        "SMARTPROXY_DATACENTER",
-        "APIFY_DATACENTER",
+        "default",
+        "residential",
         "none"
       ],
       "enumTitles": [
-        "Smartproxy Residential",
-        "Apify Residential",
-        "Smartproxy Datacenter",
-        "Apify Datacenter",
-        "None"
+        "Datacenters (default)",
+        "Residentials",
+        "Don't use proxy"
       ]
     },
     "scraper": {
       "title": "Scraper Option",
       "description": "select the scraper to use",
       "type": "string",
-      "default": "AXIOS",
+      "default": "axios",
       "enum": [
-        "AXIOS",
-        "CRAWLEE_SEND_REQUEST"
+        "axios",
+        "got",
+        "crawlee"
       ]
     },
-    "sessionsKvsName": {
-      "title": "Sessions KVS Name",
-      "type": "string",
-      "description": "Enter the sessions KVS Name",
-      "editor": "textfield"
-    },
-    "forceCleanSessionsCreation": {
-      "title": "Force Clean Sessions Creation",
+    "debug": {
+      "title": "Debug Mode",
       "type": "boolean",
-      "description": "Activate Force Clean Sessions Creation",
-      "default": false,
-      "editor": "checkbox"
-    },
-    "maxConcurrency": {
-      "title": "Max concurrency",
-      "type": "integer",
-      "description": "Maximum number of tasks running in parallel.",
-      "editor": "number",
-      "default": 50,
-      "prefill": 50,
-      "maximum": 200,
-      "minimum": 1
-    },
-    "dataSavingStoreType": {
-      "title": "Data Saving Store Type",
-      "type": "string",
-      "description": "Choose the data saving store type",
-      "default": "KVS",
-      "enum": [
-        "KVS",
-        "DATASET"
-      ],
-      "enumTitles": [
-        "Key-Value Store",
-        "Dataset"
-      ]
+      "description": "turn on console.log messages.",
+      "default": false
     }
   },
   "required": [
-    "searchType"
+    "searchBy"
   ]
 }

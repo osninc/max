@@ -79,12 +79,25 @@ const input = await Actor.getInput();
 const {
     county,
     debug,
-    proxy,
-    searchBy,
+    proxyType: proxyInput,
+    searchType: searchBy,
     state,
     zipCode,
-    scraper
+    scraper: scraperInput
 } = input;
+
+const scraper = scraperInput === "CRAWLEE_SEND_REQUEST" ? "crawlee" : "axios";
+let proxy = proxyInput; 
+switch(proxyInput) {
+    case "APIFY_DATACENTER":
+        proxy = "default";
+        break;
+    case "none":
+        proxy = "none";
+        break;
+    default:
+        proxy = "residential";
+}
 
 const ts = new Date();
 

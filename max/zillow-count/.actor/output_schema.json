@@ -13,9 +13,12 @@
                     "status",
                     "daysOnZillow",
                     "soldInLast",
-                    "count",
-                    "url",
-                    "timeStamp"
+                    "agentCount",
+                    "otherCount",
+                    "mapCount",
+                    "timeStamp",
+                    "listings",
+                    "url"
                 ]
             },
             "display": {
@@ -37,14 +40,16 @@
             "title": "Timed Tests",
             "transformation": {
                 "fields": [
-                    "proxy",
+                    "proxyType",
                     "scraper",
                     "area",
                     "total",
                     "totalFailed",
                     "failureRate",
                     "estimatedCost",
-                    "totalRunTime"
+                    "totalRunTime",
+                    "smartproxyConsumption",
+                    "datasetId"
                 ]
             }
         }

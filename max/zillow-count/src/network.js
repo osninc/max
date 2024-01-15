@@ -50,7 +50,7 @@ export const getLocationInfo = async (searchType, search, proxy, isTest, scraper
                 case "got":
                     data = await gotGetLocationData(searchType, proxy, search, nameForUrl)
                     break;
-                    case "crawlee":
+                case "crawlee":
                     data = await crawleeGetLocationData(searchType, proxy, search, nameForUrl)
                     break;
 

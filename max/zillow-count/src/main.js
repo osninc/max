@@ -211,6 +211,7 @@ if (true) {
                     else {
                         startTime = performance.now();
                         results = await getSearchResults(searchParams, url, proxy, USETEST, scraper);
+                        console.log({ results });
                         endTime = performance.now();
 
                         const searchByText = (searchBy === "state") ? getState(realSearch) : realSearch;
@@ -226,15 +227,15 @@ if (true) {
 
                         const finalResults = {
                             ...blankFields,
-                            [searchBy]: searchByText,
+                            searchType: searchByText,
                             timeStamp: ts.toString(),
                             status,
                             [daysKey]: t[1],
                             acreage: lotStr,
                             url,
                             timeToGetInfo: `${((endTime - startTime) / 1000).toFixed(2)} seconds`,
-                            proxy,
-                            scraper,
+                            proxyType: proxyInput,
+                            scraper: scraperInput,
                             ...results,
 
                         }
@@ -279,8 +280,8 @@ if (true) {
         const totalRunTime = `${secDiff.toFixed(2)} seconds`
 
         await Actor.pushData({
-            proxy,
-            scraper,
+            proxyType: proxyInput,
+            scraper: scraperInput,
             area: realSearch,
             total: totalResults,
             totalFailed: totalNA,

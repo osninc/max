@@ -44,8 +44,8 @@ export const transformData = data => {
         return mappedResult
     })
         
-    const agentCount = ("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A"
-    const otherCount = ("totalResultCount" in data.categoryTotals.cat2) ? data.categoryTotals.cat2.totalResultCount : "N/A"
+    const agentCount = data?.categoryTotals?.cat1?.totalResultCount ?? 'N/A';
+    const otherCount = data?.categoryTotals?.cat2?.totalResultCount ?? 'N/A'; 
     const mapCount = listings?.length ?? 'N/A'
     //const count = ("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A"
 

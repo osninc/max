@@ -240,7 +240,7 @@ const Main = ({ debugOptions }) => {
                 };
             });
 
-            processMap(area);
+            // processMap(area);
         } catch (error) {
             setMessage(processError(`main:loadData:${source}`, error));
             setOpenSnack(true);
@@ -306,7 +306,7 @@ const Main = ({ debugOptions }) => {
 
     const handleTextChange = (e) => {
         // Change the map view
-        processMap(e);
+        // processMap(e);
         setSearch(e);
     };
 
@@ -542,35 +542,35 @@ const Main = ({ debugOptions }) => {
         setSearch(state);
     };
     // This gets the county id
-    simplemaps_countymap.hooks.zoomable_click_state = (id) => {
-        const defaultColor = '#48ba2d';
-        const clickedColor = 'red';
+    // simplemaps_countymap.hooks.zoomable_click_state = (id) => {
+    //     const defaultColor = '#48ba2d';
+    //     const clickedColor = 'red';
 
-        if (id !== currentMapCounty) {
-            // Reset previous county
-            if (currentMapCounty !== '')
-                simplemaps_countymap_mapdata.state_specific[currentMapCounty].color = defaultColor;
-            simplemaps_countymap_mapdata.state_specific[id].color = clickedColor;
-            simplemaps_countymap.refresh();
-            setCurrentMapCounty(id);
-        }
-        const countyName = simplemaps_countymap_mapdata.state_specific[id].name;
-        updateSearch(countyName);
-    };
+    //     if (id !== currentMapCounty) {
+    //         // Reset previous county
+    //         if (currentMapCounty !== '')
+    //             simplemaps_countymap_mapdata.state_specific[currentMapCounty].color = defaultColor;
+    //         simplemaps_countymap_mapdata.state_specific[id].color = clickedColor;
+    //         simplemaps_countymap.refresh();
+    //         setCurrentMapCounty(id);
+    //     }
+    //     const countyName = simplemaps_countymap_mapdata.state_specific[id].name;
+    //     updateSearch(countyName);
+    // };
 
-    // This gets the US State user clicked on
-    simplemaps_countymap.hooks.zoomable_click_region = (id) => {
-        updateSearchState(id);
-    };
-    // This gets the US State user clicked on
-    simplemaps_countymap.hooks.click_region = (id) => {
-        updateSearchState(id);
-    };
+    // // This gets the US State user clicked on
+    // simplemaps_countymap.hooks.zoomable_click_region = (id) => {
+    //     updateSearchState(id);
+    // };
+    // // This gets the US State user clicked on
+    // simplemaps_countymap.hooks.click_region = (id) => {
+    //     updateSearchState(id);
+    // };
 
-    useEffect(() => {
-        simplemaps_countymap.load();
-        // do whatever you need to do when the component mounts
-    }, []);
+    // useEffect(() => {
+    //     simplemaps_countymap.load();
+    //     // do whatever you need to do when the component mounts
+    // }, []);
 
     return (
         <>
@@ -773,7 +773,7 @@ const Main = ({ debugOptions }) => {
                             </FormControl>
                         </TabPanel>
 
-                        <div id="map"></div>
+                        {/* <div id="map"></div> */}
                     </Grid>
                     {hasDebugMenu && (
                         <Grid item xs={gridWidth}>

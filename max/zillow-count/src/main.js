@@ -257,10 +257,27 @@ if (true) {
         const totalResults = newData.length;
         const totalNA = newData.filter(data => data.count === "N/A").length;
         const failureRate = `${(totalNA / totalResults).toFixed(2) * 100} %`
-        const secDiff = (endScript - startScript) / 1000;
+        //const secDiff = (endScript - startScript) / 1000;
+        let secDiff = 0;
         const howMany10Seconds = parseInt(secDiff / 10);
-        const estimatedCost = `$${((howMany10Seconds === 0 ? 1 : howMany10Seconds) * rate[proxy]).toFixed(3)}`;
-        const totalRunTime = `${(secDiff).toFixed(2)} seconds`
+        //const estimatedCost = `$${((howMany10Seconds === 0 ? 1 : howMany10Seconds) * rate[proxy]).toFixed(3)}`;
+        let estimatedCost = 0;
+        //const totalRunTime = `${(secDiff).toFixed(2)} seconds`
+        const { actorRunId, defaultDatasetId } = Actor.getEnv();
+        const datasetId = defaultDatasetId
+        const actorRun = await Actor.apifyClient.run(actorRunId ?? '').get()
+        if (actorRun) {
+            secDiff = actorRun.stats.runTimeSecs
+            estimatedCost = actorRun.stats.computeUnits
+        } else {
+            secDiff = 0
+            estimatedCost = 0
+        }
+        secDiff += 4
+        estimatedCost += 4
+        const estimatedCostStr = `$${estimatedCost?.toFixed(3)}`
+        const totalRunTime = `${secDiff.toFixed(2)} seconds`
+
         await Actor.pushData({
             proxy,
             scraper,
@@ -268,8 +285,9 @@ if (true) {
             total: totalResults,
             totalFailed: totalNA,
             failureRate,
-            estimatedCost,
-            totalRunTime: totalRunTime
+            estimatedCost: estimatedCostStr,
+            totalRunTime,
+            datasetId
         })
 
 

@@ -23,7 +23,7 @@ export const transformData = data => {
             city,
             state,
             homeStatus,
-            daysOnZillow } = result.hdpData.homeInfo;
+            daysOnZillow } = result.hdpData?.homeInfo;
         mappedResult = {
             ...mappedResult,
             latitude,

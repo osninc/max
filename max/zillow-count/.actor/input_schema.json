@@ -2,7 +2,7 @@
   "title": "Zillow Scraping",
   "description": "Description",
   "type": "object",
-  "schemaVersion": 2,
+  "schemaVersion": 1,
   "properties": {
     "searchType": {
       "title": "Choose county (default), zip code, or state",

@@ -19,6 +19,18 @@ const NewItems = () => {
     return (
         <List dense={true}>
             <Divider component="li">
+                <Chip label="1/12/2024" />
+            </Divider>
+            <ListItem>
+                <ListItemText primary="Removed extra paths from header" />
+            </ListItem>
+            <Divider component="li">
+                <Chip label="1/2/2024" />
+            </Divider>
+            <ListItem>
+                <ListItemText primary="Added Simplemaps.com map for county locations on search" />
+            </ListItem>
+            <Divider component="li">
                 <Chip label="12/4/2023" />
             </Divider>
             <ListItem>

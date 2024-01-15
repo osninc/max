@@ -34,7 +34,7 @@ import { useAuth } from '../routes/AuthProvider';
 import { Link as RouterLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import TextField from '@mui/material/TextField';
+//import TextField from '@mui/material/TextField';
 import { WhatsNew } from './WhatsNew.js';
 import { Copyright } from './Copyright.js';
 
@@ -157,7 +157,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                                 >
                                     <MenuItem>
                                         <Stack spacing={2}>
-                                            <TextField
+                                            {/* <TextField
                                                 id="outlined-error"
                                                 label="Build Number"
                                                 size="small"
@@ -167,7 +167,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                                                 defaultValue={ACTORS.ZILLOW.COUNT.BUILD}
                                                 value={debugOptions.buildNumber}
                                                 onChange={(e) => handleChangeDebugMenu(e, 'buildNumber')}
-                                            />
+                                            /> */}
                                             <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                                                 <InputLabel id="demo-simple-select-helper-label">
                                                     Select Scraper
@@ -303,46 +303,6 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                             sx={{ my: 1, mx: 1.5 }}
                         >
                             Run stats
-                        </Link>
-                        <Link
-                            component={RouterLink}
-                            variant="button"
-                            color="primary"
-                            to="/features"
-                            underline="none"
-                            sx={{ my: 1, mx: 1.5 }}
-                        >
-                            Features
-                        </Link>
-                        <Link
-                            component={RouterLink}
-                            variant="button"
-                            color="primary"
-                            to="/pricing"
-                            underline="none"
-                            sx={{ my: 1, mx: 1.5 }}
-                        >
-                            Pricing
-                        </Link>
-                        <Link
-                            component={RouterLink}
-                            variant="button"
-                            color="primary"
-                            to="/faq"
-                            underline="none"
-                            sx={{ my: 1, mx: 1.5 }}
-                        >
-                            FAQ&apos;s
-                        </Link>
-                        <Link
-                            variant="button"
-                            color="primary"
-                            component={RouterLink}
-                            to="/about"
-                            underline="none"
-                            sx={{ my: 1, mx: 1.5 }}
-                        >
-                            About Us
                         </Link>
                     </nav>
                     {user && (

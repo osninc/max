@@ -1,7 +1,4 @@
-import { createSessionFunctionBuilder, GlobalContext } from '../base-utils'
-
 import { IMapBounds } from './types'
-import { getSmartproxyProxyUrl } from './proxy'
 
 export const createCoordinateGrid = (mapBounds: IMapBounds, gridSize = 2) => {
     const { east, west, north, south } = mapBounds
@@ -27,29 +24,4 @@ export const createCoordinateGrid = (mapBounds: IMapBounds, gridSize = 2) => {
     }
 
     return grid
-}
-
-export const createSessionFunctionBuilderCustom = (globalContext: GlobalContext<any, any, any>) => {
-    return createSessionFunctionBuilder({
-        websiteUrl: 'https://www.zillow.com/',
-        // withProxyInfo: true
-        extraRequestOptions: {
-            headers: {
-                Referer: 'https://www.zillow.com/',
-                'Referrer-Policy': 'unsafe-url'
-            }
-        },
-        proxyUrlBuilder: () => {
-            let foundProxyUrl = false
-            let proxyUrl: string | undefined
-
-            while (!foundProxyUrl) {
-                proxyUrl = getSmartproxyProxyUrl(globalContext.input)
-                if (!globalContext.shared.inUseOrBlockedProxies.includes(proxyUrl)) {
-                    foundProxyUrl = true
-                }
-            }
-            return proxyUrl
-        }
-    })
 }

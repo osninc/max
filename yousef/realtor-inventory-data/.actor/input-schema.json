@@ -1,0 +1,63 @@
+{
+  "title": "Realtor Inventory Data",
+  "description": "Realtor Inventory Data",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+      "proxyType": {
+          "title": "Proxy Type",
+          "type": "string",
+          "description": "Toggles between proxies",
+          "default": "SMARTPROXY_RESIDENTIAL",
+          "enum": [
+              "SMARTPROXY_RESIDENTIAL",
+              "APIFY_RESIDENTIAL",
+              "SMARTPROXY_DATACENTER",
+              "APIFY_DATACENTER",
+              "NONE"
+          ],
+          "enumTitles": [
+              "Smartproxy Residential",
+              "Apify Residential",
+              "Smartproxy Datacenter",
+              "Apify Datacenter",
+              "None"
+          ]
+      },
+      "scraper": {
+          "title": "Scraper Option",
+          "description": "select the scraper to use",
+          "type": "string",
+          "default": "AXIOS",
+          "enum": [
+              "AXIOS",
+              "CRAWLEE_SEND_REQUEST"
+          ]
+      },
+      "sessionsKvsName": {
+          "title": "Sessions KVS Name",
+          "type": "string",
+          "description": "Enter the sessions KVS Name",
+          "editor": "textfield"
+      },
+      "scheduleId": {
+          "title": "Schedule ID",
+          "type": "string",
+          "description": "Enter the schedule ID",
+          "editor": "textfield"
+      },
+      "maxConcurrency": {
+          "title": "Max concurrency",
+          "type": "integer",
+          "description": "Maximum number of tasks running in parallel.",
+          "editor": "number",
+          "default": 50,
+          "prefill": 50,
+          "maximum": 200,
+          "minimum": 1
+      }
+  },
+  "required": [
+    "scheduleId"
+  ]
+}

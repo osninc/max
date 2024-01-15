@@ -1,0 +1,9 @@
+export declare const getRandomInt: (max: number) => number;
+export declare const sqft2acre: (num: any) => number | "";
+export declare const alphaNum: (str: string) => string;
+export declare const alphaNumWithoutSpace: (str: string) => string;
+export declare const camelizeStr: (str: string) => string;
+export declare const lotSizeToString: (min: any, max: any) => string;
+export declare const randomXToY: (minVal: number, maxVal: number) => number;
+export declare const getValidKVSRecordKey: (str: string, hashKey?: boolean) => string;
+export declare const transformHeaders: (object: any) => any;

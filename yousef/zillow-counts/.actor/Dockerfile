@@ -1,23 +1,16 @@
-# using multistage build, as we need dev deps to build the TS source code
-FROM apify/actor-node:16 AS builder
-
-# copy all files, install all dependencies (including dev deps) and build the project
-COPY . ./
-RUN npm install --include=dev \
-    && npm run build
-
-# create final image
 FROM apify/actor-node:16
 # copy only necessary files
-COPY --from=builder /usr/src/app/package*.json ./
-COPY --from=builder /usr/src/app/dist ./dist
-COPY --from=builder /usr/src/app/.actor ./.actor
+COPY ./package*.json ./
+COPY ./dist ./dist
+COPY ./.actor ./.actor
 
 # install only prod deps
 RUN npm --quiet set progress=false \
     && npm install --only=prod --no-optional \
     && echo "Installed NPM packages:" \
     && (npm list --only=prod --no-optional --all || true) \
+    && echo "Files:" \
+    && ls \
     && echo "Node.js version:" \
     && node --version \
     && echo "NPM version:" \

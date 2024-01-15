@@ -1,18 +1,20 @@
 import { gotScraping } from 'got-scraping'
+import { Actor } from 'apify'
 
 import { GlobalContext } from '../base-utils'
 
-import { IFinalInput, IGlobalContextShared } from './types'
+import { IBaseFinalInput, IBaseGlobalContextShared } from './types'
 import { randomXToY } from './atom'
 
 export const PROXY_TYPE = {
     APIFY_RESIDENTIAL: 'APIFY_RESIDENTIAL',
     SMARTPROXY_RESIDENTIAL: 'SMARTPROXY_RESIDENTIAL',
     APIFY_DATACENTER: 'APIFY_DATACENTER',
-    SMARTPROXY_DATACENTER: 'SMARTPROXY_DATACENTER'
+    SMARTPROXY_DATACENTER: 'SMARTPROXY_DATACENTER',
+    NONE: 'NONE'
 }
 
-export const getSmartproxyProxyUrl = (input: IFinalInput) => {
+export const getSmartproxyProxyUrl = (input: IBaseFinalInput) => {
     const sessionDurationMinutes = input.sessionDurationMinutes ?? 30
     const username = 'sp9tvo5x4o'
     const password = input.proxyType === PROXY_TYPE.SMARTPROXY_DATACENTER ? 'TestProxy!' : 'g59iYxEz22awOontwB'
@@ -28,7 +30,7 @@ export const getSmartproxyProxyUrl = (input: IFinalInput) => {
     return proxyUrl
 }
 
-export const getSmartproxyProxyUrls = (input: IFinalInput, maxProxyCount = 500) => {
+export const getSmartproxyProxyUrls = (input: IBaseFinalInput, maxProxyCount = 1000) => {
     const sessionDurationMinutes = input.sessionDurationMinutes ?? 30
     const username = 'sp9tvo5x4o'
     const password = input.proxyType === PROXY_TYPE.SMARTPROXY_DATACENTER ? 'TestProxy!' : 'g59iYxEz22awOontwB'
@@ -75,9 +77,25 @@ export const parseProxyUrl = (proxyUrl: string) => {
 }
 
 // let apifyProxyConfiguration: ProxyConfiguration | undefined
-export const getProxyUrl = async (globalContext: GlobalContext<any, any, IGlobalContextShared>) => {
+let apifyProxyPassword: string | undefined
+export const getProxyUrl = async (globalContext: GlobalContext<any, any, IBaseGlobalContextShared>) => {
     const proxyType = globalContext.input.proxyType
     const defaultProxyUrls = globalContext.shared.defaultProxyUrls
+
+    if ([PROXY_TYPE.APIFY_DATACENTER, PROXY_TYPE.APIFY_RESIDENTIAL].includes(proxyType)) {
+        // if (!apifyProxyConfiguration) {
+        //     apifyProxyConfiguration = await proxyConfigurationFunction({
+        //         proxyConfig: { useApifyProxy: true, groups: ['RESIDENTIAL'], countryCode: 'US' },
+        //         required: true,
+        //         force: true
+        //     })
+        // }
+        if (!apifyProxyPassword) {
+            const user = await Actor.apifyClient.user(Actor.getEnv()?.userId ?? undefined).get()
+            apifyProxyPassword = user?.proxy?.password ?? process.env.APIFY_PROXY_PASSWORD
+            // apifyProxyPassword = (Actor.getEnv() as any)?.proxyPassword ?? process.env.APIFY_PROXY_PASSWORD
+        }
+    }
 
     let proxyUrls: string[]
 
@@ -92,9 +110,10 @@ export const getProxyUrl = async (globalContext: GlobalContext<any, any, IGlobal
             // }
 
             // const apifyProxyUrl = await apifyProxyConfiguration?.newUrl(randomXToY(1, 10000))
-            const apifyProxyUrl = `http://groups-RESIDENTIAL,countryCode-US,session-${randomXToY(1, 10000)}:${
-                process.env.APIFY_PROXY_PASSWORD
-            }@proxy.apify.com:8000`
+            const apifyProxyUrl = `http://groups-RESIDENTIAL,country-US,session-${randomXToY(
+                1,
+                10000
+            )}:${apifyProxyPassword}@proxy.apify.com:8000`
             proxyUrls = apifyProxyUrl ? [apifyProxyUrl] : defaultProxyUrls
             break
         }
@@ -108,9 +127,10 @@ export const getProxyUrl = async (globalContext: GlobalContext<any, any, IGlobal
             // }
             // http://groups-BUYPROXIES94952,session-123:PWDW@proxy.apify.com:8000
             // const apifyProxyUrl = await apifyProxyConfiguration?.newUrl(randomXToY(1, 10000))
-            const apifyProxyUrl = `http://groups-BUYPROXIES94952,session-${randomXToY(1, 10000)}:${
-                process.env.APIFY_PROXY_PASSWORD
-            }@proxy.apify.com:8000`
+            const apifyProxyUrl = `http://groups-BUYPROXIES94952,session-${randomXToY(
+                1,
+                10000
+            )}:${apifyProxyPassword}@proxy.apify.com:8000`
             proxyUrls = apifyProxyUrl ? [apifyProxyUrl] : defaultProxyUrls
             break
         }
@@ -126,7 +146,7 @@ export const getProxyUrl = async (globalContext: GlobalContext<any, any, IGlobal
 const SMARTPROXY_API_KEY =
     // eslint-disable-next-line max-len
     '372e2e8c70bc824529f2c2af144867ceb17baf0e6fa6e35481952e2d2e75f486855a518606be4e1687250573806f0daa1195e409644496922fc7c16acaa48ac318d7c7f3a0e073437c'
-export const getSmartproxyConsumption = async (input: IFinalInput) => {
+export const getSmartproxyConsumption = async (input: IBaseFinalInput) => {
     const { proxyType } = input
     let consumption = 0
     let subscription: any

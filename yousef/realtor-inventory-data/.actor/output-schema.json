@@ -1,0 +1,47 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": [
+                    "csvUrl",
+                    "geoType",
+                    "kind",
+                    "timeStamp",
+                    "jsonUrl",
+                    "scraper"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "csvUrl": {
+                        "label": "CSV File URL"
+                    },
+                    "jsonUrl": {
+                        "label": "JSON File URL"
+                    },
+                    "state": {
+                        "label": "State"
+                    }
+                }
+            }
+        },
+        "timers": {
+            "title": "Timed Tests",
+            "transformation": {
+                "fields": [
+                    "proxyType",
+                    "scraper",
+                    "total",
+                    "totalFailed",
+                    "failureRate",
+                    "estimatedCost",
+                    "totalRunTime"
+                ]
+            }
+        }
+    }
+}

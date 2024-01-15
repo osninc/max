@@ -1,22 +1,12 @@
 import { Log } from 'crawlee'
 
-import {
-    alphaNum,
-    DESTINATION,
-    getRequestConfig,
-    IFinalInput,
-    ILocation,
-    ISearch,
-    LOT_SIZE,
-    lotSizeToString,
-    sqft2acre,
-    STATUS_MATRIX,
-    TIME_MATRIX,
-    ZILLOW
-} from '../utils'
-import { buildZillowUrl, zoomParams } from '../utils/zillowUrl'
+import { alphaNum, ILocation, IPreRequest, lotSizeToString, sqft2acre } from '../utils'
 import { getValidKey } from '../base-utils'
-import { LABELS } from '../consts'
+import { buildZillowUrl, LOT_SIZE, STATUS_MATRIX, TIME_MATRIX, ZILLOW, zoomParams } from '../utils/zillow'
+
+import { IFinalInput } from './types'
+import { DESTINATION, LABELS } from './consts'
+import { getRequestConfig } from './request'
 
 export const prepareSearchRequests = async (
     input: IFinalInput,
@@ -115,7 +105,7 @@ export const prepareSearchRequests = async (
 
     // @ts-ignore
     // const mapGrids: IMapBounds[] = createCoordinateGrid(mapBounds, 2)
-    const searches: ISearch[] = []
+    const searches: IPreRequest[] = []
     statusMatrix.forEach((status) => {
         additionalFilters = {}
         if (status === 'Sold') {

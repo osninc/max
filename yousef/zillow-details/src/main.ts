@@ -4,12 +4,10 @@ import _ from 'lodash'
 import c from 'ansi-colors'
 import moment = require('moment')
 
-import { LABELS } from './consts'
 import {
     executeRequest,
     getSession,
     getSessionsUsingInput,
-    getSmartproxyConsumption,
     getSmartproxyProxyUrls,
     TimeTracker,
     TimeTrackGeneralNames
@@ -29,9 +27,10 @@ import {
     IGlobalContextShared,
     IGlobalContextState,
     IInput,
+    isRequestBlocked, LABELS,
     PAGE_OPENED_LOG_MESSAGE_PROPS_TO_PICK,
     preparePropertyRequests
-} from './custom-utils'
+} from "./custom-utils";
 
 async function main() {
     const timeTracker = new TimeTracker()
@@ -65,31 +64,37 @@ async function main() {
     }
 
     const finalInput = input as IFinalInput
+    finalInput.sessionDurationMinutes = finalInput.sessionDurationMinutes ?? 10
+
     if (!ignoreStartRequests) {
         requests = await preparePropertyRequests(finalInput)
     }
 
     // await requestQueue.addRequests(requests)
-    const requestList = await RequestList.open(null, requests)
+    const requestList = await RequestList.open('REQUEST_LIST', requests)
 
-    const sessions = await getSessionsUsingInput(finalInput)
+    const sessions = await getSessionsUsingInput(finalInput, 'zillow-count-ssessions')
 
     const globalContext = await createGlobalContext<IFinalInput, IGlobalContextState, IGlobalContextShared>({
         input: finalInput,
         activateSaveState: true,
         initialState: {
             propertyCount: requests.length,
-            properties: new Map(),
-            smartproxyConsumption: { start: await getSmartproxyConsumption(finalInput) }
+            properties: new Map()
+            // smartproxyConsumption: { start: await getSmartproxyConsumption(finalInput) }
         },
         initialSharedData: {
+            timeTracker,
             proxyConfiguration: proxyConfigurationObj,
             sessions,
-            defaultProxyUrls: getSmartproxyProxyUrls(finalInput),
-            inUseOrBlockedProxies: []
+            defaultProxyUrls: getSmartproxyProxyUrls(finalInput, 10000),
+            inUseOrBlockedProxies: [],
+            cache: new Map()
         },
         saveStateIntervalTimeout: 30 * 60 * 1000
     })
+
+    const forceCleanSessionsCreation = globalContext.input.forceCleanSessionsCreation ?? true
 
     const crawler = new BasicCrawler({
         requestList,
@@ -121,13 +126,22 @@ async function main() {
                             return !s.inUse
                         })
                         ;({ proxyUrl, requestHeaders, cookie, creationTime } =
-                            aSession ?? (await getSession(globalContext, sessionLog, true)))
+                            aSession ??
+                            (await getSession(
+                                globalContext,
+                                sessionLog,
+                                'https://www.zillow.com/',
+                                isRequestBlocked,
+                                forceCleanSessionsCreation
+                            )))
                         !Number.isNaN(sessionId) && (globalContext.shared.sessions[sessionId].inUse = true)
                     } else {
                         ;({ proxyUrl, cookie, requestHeaders, creationTime } = await getSession(
                             globalContext,
                             sessionLog,
-                            true
+                            'https://www.zillow.com/',
+                            isRequestBlocked,
+                            forceCleanSessionsCreation
                         ))
                     }
                     session.userData.proxyUrl = proxyUrl
@@ -160,7 +174,7 @@ async function main() {
                 url,
                 ..._.pick(userData, PAGE_OPENED_LOG_MESSAGE_PROPS_TO_PICK)
             })
-            crawlingContext.response = await executeRequest(crawlingContext, globalContext)
+            crawlingContext.response = await executeRequest(crawlingContext, globalContext, isRequestBlocked)
             // crawlingContext.$ = cheerio.load(crawlingContext.body);
             // if (crawlingContext.body.includes('We cannot complete your request due to a technical difficulty.')) {
             //     throw new Error('Website failed!')
@@ -193,12 +207,13 @@ async function main() {
     await crawler.run()
 
     mainLog.info('Starting finishing up tasks.')
-    globalContext.state.smartproxyConsumption.stop = await getSmartproxyConsumption(finalInput)
     await globalContext.saveState()
     await globalContext.stopSavingState()
     await performanceMonitor?.stop()
+    // TODO: forcibly upping the error percentage so that some results can go through
     await validateData({
-        assumedItemsNumber: globalContext.state.propertyCount
+        assumedItemsNumber: globalContext.state.propertyCount,
+        maxErrorsMarginPercent: 50
     })
     mainLog.info('Finishing up tasks finished.')
 

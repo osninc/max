@@ -3,6 +3,7 @@ import { ProxyConfiguration } from 'apify'
 import { RequestObject, RequestObjectArray } from '../base-utils'
 
 import { LocationManager } from './location-manager'
+import { TimeTracker } from './time-tracker'
 
 export interface IBaseInput {
     maxConcurrency?: number
@@ -29,16 +30,25 @@ export interface IBaseGlobalContextState extends IBaseInput {
 }
 
 export interface IBaseGlobalContextShared {
+    timeTracker: TimeTracker
     proxyConfiguration: ProxyConfiguration | undefined
     locationManager: LocationManager
     sessions: any[]
     defaultProxyUrls: string[]
     inUseOrBlockedProxies: string[]
+    cache: Map<any, any>
 }
 
 export interface ISearch {
     url?: string
     requestParams?: RequestObject
+
+    [key: string]: any
+}
+
+export interface IRequestResponse {
+    statusCode: number
+    body: any
 
     [key: string]: any
 }

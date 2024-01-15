@@ -50,6 +50,7 @@ function timeSpan() {
 
     return returnValue
 }
+
 export const TimeTrackGeneralNames = {
     RUN_DURATION: 'RUN_DURATION',
     PRE_CONFIGURATION: 'PRE_CONFIGURATION',

@@ -5,26 +5,30 @@ import { labeledLog } from '../base-utils'
 
 interface ILocationManagerOptions {
     activateCaching?: boolean
+    kvsName?: string
 }
 
-export const LOCATION_MANAGER_KVS_NAME = 'zillow-location'
+export const LOCATION_MANAGER_KVS_NAME = 'land-stats-locations'
 
 export class LocationManager {
     private activateCaching: boolean
+
+    private kvsName: string
 
     private log: Log
 
     private kvs: KeyValueStore | undefined
 
     constructor(options: ILocationManagerOptions) {
-        const { activateCaching = true } = options
+        const { activateCaching = true, kvsName = LOCATION_MANAGER_KVS_NAME } = options
         this.activateCaching = activateCaching
+        this.kvsName = kvsName
         this.log = labeledLog({ label: 'LocationManager' })
     }
 
     async init() {
         if (this.activateCaching) {
-            this.kvs = await KeyValueStore.open(LOCATION_MANAGER_KVS_NAME)
+            this.kvs = await KeyValueStore.open(this.kvsName)
         }
     }
 

@@ -2,20 +2,16 @@ import { BasicCrawlingContext, Dictionary, sleep } from 'crawlee'
 import _ from 'lodash'
 
 import { GlobalContext, persistResponseDataIntoRequest } from './base-utils'
+import { getMapBoundsFromHtml, getValidKVSRecordKey, ILocation, IRequestResponse, START_DATETIME } from './utils'
 import {
     DEFAULT_OUTPUT,
-    getMapBoundsFromHtml,
-    getValidKVSRecordKey,
     IFinalInput,
     IGlobalContextShared,
     IGlobalContextState,
-    ILocation,
-    IRequestResponse,
     OUTPUT_FIELDS,
-    START_TIMESTAMP,
-    ZILLOW
-} from './utils'
-import { prepareSearchRequests } from './custom-utils'
+    prepareSearchRequests
+} from './custom-utils'
+import { ZILLOW } from './utils/zillow'
 
 export const handleLocationMapBounds = async (
     crawlingContext: BasicCrawlingContext<Dictionary<any>>,
@@ -256,7 +252,7 @@ export const handleSearch = async (
         ...DEFAULT_OUTPUT,
         ..._.pick(globalContext.input, ['searchType', 'county', 'state', 'zipCode']),
         // [request.userData.searchType]: searchTypeText,
-        timeStamp: START_TIMESTAMP,
+        timeStamp: START_DATETIME,
         status,
         [daysKey]: time,
         [OUTPUT_FIELDS.ACREAGE]: lot,

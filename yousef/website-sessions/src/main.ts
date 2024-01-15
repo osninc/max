@@ -2,8 +2,12 @@ import { BasicCrawler, Dataset, KeyValueStore, RequestQueue } from 'crawlee'
 import { Actor } from 'apify'
 import _ from 'lodash'
 
-import { LABELS, PAGE_OPENED_LOG_MESSAGE_PROPS_TO_PICK } from './consts'
-import { IFinalInput, IGlobalContextShared, IGlobalContextState, IInput } from './types'
+import {
+    LABELS, PAGE_OPENED_LOG_MESSAGE_PROPS_TO_PICK, IFinalInput, IGlobalContextShared, IGlobalContextState, IInput,  executeRequest,
+    prepareStartSessionRequests,
+    validateInput
+} from './custom-utils'
+
 import {
     createGlobalContext,
     createPerformanceMonitor,
@@ -13,14 +17,14 @@ import {
     toPascalCase,
     validateData
 } from './base-utils'
+
 import * as routes from './routes'
+
 import {
-    executeRequest,
     getSmartproxyConsumption,
-    getSmartproxyProxyUrls,
-    prepareStartSessionRequests,
-    validateInput
+    getSmartproxyProxyUrls
 } from './utils'
+
 
 async function main() {
     await Actor.init()

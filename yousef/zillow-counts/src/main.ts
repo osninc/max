@@ -4,22 +4,16 @@ import _ from 'lodash'
 import c from 'ansi-colors'
 import moment = require('moment')
 
-import { LABELS } from './consts'
 import {
     createLocationManager,
-    DESTINATION,
     executeRequest,
-    getRequestConfig,
     getSearchQuery,
     getSession,
     getSessionsUsingInput,
     getSmartproxyProxyUrls,
     getValidKVSRecordKey,
-    IFinalInput,
-    IGlobalContextShared,
-    IGlobalContextState,
-    IInput,
-    PAGE_OPENED_LOG_MESSAGE_PROPS_TO_PICK
+    TimeTracker,
+    TimeTrackGeneralNames
 } from './utils'
 import {
     createGlobalContext,
@@ -27,13 +21,22 @@ import {
     failedRequestHandler,
     getValidKey,
     labeledLog,
-    proxyConfiguration,
     toPascalCase
 } from './base-utils'
 import * as routes from './routes'
-import { TimeTracker, TimeTrackGeneralNames } from './utils/time-tracker'
-import { prepareSearchRequests } from './custom-utils'
-import { saveData } from './custom-utils/output'
+import {
+    DESTINATION,
+    getRequestConfig,
+    IFinalInput,
+    IGlobalContextShared,
+    IGlobalContextState,
+    IInput,
+    isRequestBlocked,
+    LABELS,
+    PAGE_OPENED_LOG_MESSAGE_PROPS_TO_PICK,
+    prepareSearchRequests,
+    saveData
+} from './custom-utils'
 
 async function main() {
     const timeTracker = new TimeTracker()
@@ -54,13 +57,10 @@ async function main() {
         monitorPerformance = false
     } = input
 
-    const proxyConfigurationObj = await proxyConfiguration({
-        proxyConfig: { useApifyProxy: true, groups: ['RESIDENTIAL'], countryCode: 'US' },
-        required: true,
-        force: true
+    const locationManager = await createLocationManager({
+        activateCaching: input.activateLocationCaching ?? true,
+        kvsName: 'zillow-locations'
     })
-
-    const locationManager = await createLocationManager()
 
     // const requestQueue = await RequestQueue.open()
     let requests = []
@@ -69,6 +69,8 @@ async function main() {
     }
 
     const finalInput = input as IFinalInput
+    finalInput.sessionDurationMinutes = finalInput.sessionDurationMinutes ?? 5
+
     if (!ignoreStartRequests) {
         const query = getSearchQuery(finalInput)
         const location = await locationManager.loadLocation(getValidKVSRecordKey(query))
@@ -99,7 +101,7 @@ async function main() {
     }
 
     // await requestQueue.addRequests(requests)
-    const requestList = await RequestList.open(null, requests)
+    const requestList = await RequestList.open('REQUEST_LIST', requests)
 
     const sessions = await getSessionsUsingInput(finalInput)
 
@@ -113,11 +115,11 @@ async function main() {
         },
         initialSharedData: {
             timeTracker,
-            proxyConfiguration: proxyConfigurationObj,
             locationManager,
             sessions,
             defaultProxyUrls: getSmartproxyProxyUrls(finalInput),
-            inUseOrBlockedProxies: []
+            inUseOrBlockedProxies: [],
+            cache: new Map()
         },
         saveStateIntervalTimeout: 30 * 60 * 1000
     })
@@ -146,23 +148,25 @@ async function main() {
                     let requestHeaders: any
                     let cookie: any
                     let creationTime: any
-
                     if (globalContext.shared.sessions.length) {
                         let sessionId = NaN
                         const aSession = globalContext.shared.sessions.find((s, i) => {
                             sessionId = i
                             return !s.inUse
                         })
-                        ;({ proxyUrl, requestHeaders, cookie, creationTime } =
-                            aSession ?? (await getSession(globalContext, sessionLog, forceCleanSessionsCreation)))
+                        ;({ proxyUrl, requestHeaders, cookie, creationTime } = aSession ?? {})
                         !Number.isNaN(sessionId) && (globalContext.shared.sessions[sessionId].inUse = true)
-                    } else {
+                    }
+                    if (!proxyUrl) {
                         ;({ proxyUrl, cookie, requestHeaders, creationTime } = await getSession(
                             globalContext,
                             sessionLog,
+                            'https://www.zillow.com/homes/',
+                            isRequestBlocked,
                             forceCleanSessionsCreation
                         ))
                     }
+
                     session.userData.proxyUrl = proxyUrl
                     session.userData.cookie = cookie
                     session.userData.requestHeaders = requestHeaders
@@ -193,7 +197,7 @@ async function main() {
                 url,
                 ..._.pick(userData, PAGE_OPENED_LOG_MESSAGE_PROPS_TO_PICK)
             })
-            crawlingContext.response = await executeRequest(crawlingContext, globalContext)
+            crawlingContext.response = await executeRequest(crawlingContext, globalContext, isRequestBlocked)
             // crawlingContext.$ = cheerio.load(crawlingContext.body);
             // if (crawlingContext.body.includes('We cannot complete your request due to a technical difficulty.')) {
             //     throw new Error('Website failed!')

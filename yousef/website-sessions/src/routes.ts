@@ -1,8 +1,13 @@
 import { Dataset, Dictionary, PlaywrightCrawlingContext } from 'crawlee'
 
 import { GlobalContext, persistResponseDataIntoRequest } from './base-utils'
-import { DEFAULT_OUTPUT, OUTPUT_FIELDS } from './consts'
-import { IExecuteRequestResponse, IFinalInput, IGlobalContextState } from './types'
+import {
+    IExecuteRequestResponse,
+    IFinalInput,
+    IGlobalContextState,
+    DEFAULT_OUTPUT,
+    OUTPUT_FIELDS
+} from './custom-utils'
 
 export const isRequestBlocked = (statusCode: number, body: any, extraBlockFunc?: Function) => {
     return statusCode === 403 || (extraBlockFunc && extraBlockFunc(statusCode, body))

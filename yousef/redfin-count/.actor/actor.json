@@ -1,0 +1,12 @@
+{
+	"actorSpecification": 1,
+	"name": "redfin-count",
+	"version": "0.0",
+	"buildTag": "latest",
+    "input": "./input-schema.json",
+    "readme": "./README.md",
+    "dockerfile": "./Dockerfile",
+    "storages": {
+        "dataset": "./output-schema.json"
+    }
+}

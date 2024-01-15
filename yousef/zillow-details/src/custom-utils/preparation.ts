@@ -2,11 +2,10 @@ import { Actor } from 'apify'
 import _ from 'lodash'
 
 import { getValidKey, labeledLog } from '../base-utils'
-import { LABELS } from '../consts'
 
 import { IFinalInput } from './types'
 import { getRequestConfig } from './request'
-import { DESTINATION } from './consts'
+import { LABELS, DESTINATION } from './consts'
 
 export const preparePropertyRequests = async (input: IFinalInput) => {
     const log = labeledLog({ label: 'preparePropertyRequests' })

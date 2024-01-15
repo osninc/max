@@ -42,3 +42,8 @@ export const getRequestConfig = (destination: string, _input: IFinalInput, extra
     }
     return requestConfig
 }
+
+export const isRequestBlocked = (statusCode: number, body: any) =>
+    statusCode === 403 ||
+    (typeof body === 'string' && body?.includes('Request blocked')) ||
+    (typeof body === 'object' && body?.blockScript?.includes('captcha'))

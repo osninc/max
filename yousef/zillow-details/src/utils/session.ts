@@ -8,15 +8,14 @@ import { GlobalContext, labeledLog } from '../base-utils'
 
 import { IBaseFinalInput, IBaseGlobalContextShared } from './types'
 import { getProxyUrl, parseProxyUrl } from './proxy'
-import { DEFAULT_HEADERS } from './headers'
-import { isRequestBlocked } from './request'
+import { HOMES_PAGE_HEADERS } from './headers'
 
-export const DEFAULT_SESSIONS_KVS_NAME = 'zillow-count-sessions'
-export const getSessionsUsingInput = async (input: IBaseFinalInput) => {
+export const DEFAULT_SESSIONS_KVS_NAME = 'land-stats-count-sessions'
+export const getSessionsUsingInput = async (input: IBaseFinalInput, defaultKvsName?: string) => {
     const label = 'getSessions'
     const log = labeledLog({ label })
 
-    const { sessionsKvsName = DEFAULT_SESSIONS_KVS_NAME, sessions: inputSessions = [] } = input
+    const { sessionsKvsName = defaultKvsName ?? DEFAULT_SESSIONS_KVS_NAME, sessions: inputSessions = [] } = input
     const keyValueStore = await Actor.apifyClient.keyValueStores().getOrCreate(sessionsKvsName)
     const kvsClient = Actor.apifyClient.keyValueStore(keyValueStore.id)
     // const sessionsKvsKeysResult = await kvsClient.listKeys({ limit: 1 })
@@ -50,22 +49,39 @@ export const getSessionsUsingInput = async (input: IBaseFinalInput) => {
 export const getSession = async (
     globalContext: GlobalContext<any, any, IBaseGlobalContextShared>,
     log: Log,
+    websiteUrl: string,
+    isRequestBlocked: Function,
     forceClean = true
 ) => {
     const result: { proxyUrl?: string; cookie?: string; requestHeaders?: any; creationTime?: number } = {
         creationTime: new Date().getTime()
     }
     let retries = 0
-    const url = 'https://www.zillow.com/'
+    const url = websiteUrl
     while (!result.proxyUrl) {
         const proxyUrl = await getProxyUrl(globalContext)
         if (!forceClean) {
             result.proxyUrl = proxyUrl
             break
         }
+        const generatedHeaders = new HeaderGenerator().getHeaders({
+            devices: ['desktop'],
+            operatingSystems: ['macos'],
+            locales: ['en-US'],
+            browsers: [
+                {
+                    name: 'chrome',
+                    minVersion: 87,
+                    maxVersion: 89
+                },
+                // { name: 'edge' },
+                // { name: 'firefox' },
+                { name: 'safari' }
+            ]
+        })
         const requestHeaders = {
-            ...new HeaderGenerator().getHeaders({ devices: ['desktop'] }),
-            ...DEFAULT_HEADERS,
+            ...HOMES_PAGE_HEADERS,
+            ..._.pick(generatedHeaders, ['user-agent']),
             Referer: url,
             'Referrer-Policy': 'unsafe-url'
         }

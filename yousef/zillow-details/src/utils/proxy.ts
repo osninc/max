@@ -1,4 +1,5 @@
 import { gotScraping } from 'got-scraping'
+import { Actor } from 'apify'
 
 import { GlobalContext } from '../base-utils'
 
@@ -22,13 +23,13 @@ export const getSmartproxyProxyUrl = (input: IBaseFinalInput) => {
         input.proxyType === PROXY_TYPE.SMARTPROXY_DATACENTER
             ? `http://${username}:${password}@gate.dc.smartproxy.com:${20000 + start}`
             : // eslint-disable-next-line max-len
-              `http://user-${username}-sessionduration-${sessionDurationMinutes}:${password}@gate.smartproxy.com:${
+              `http://user-${username}-sessionduration-${sessionDurationMinutes}:${password}@us.smartproxy.com:${
                   10000 + start
               }`
     return proxyUrl
 }
 
-export const getSmartproxyProxyUrls = (input: IBaseFinalInput, maxProxyCount = 500) => {
+export const getSmartproxyProxyUrls = (input: IBaseFinalInput, maxProxyCount = 1000) => {
     const sessionDurationMinutes = input.sessionDurationMinutes ?? 30
     const username = 'sp9tvo5x4o'
     const password = input.proxyType === PROXY_TYPE.SMARTPROXY_DATACENTER ? 'TestProxy!' : 'g59iYxEz22awOontwB'
@@ -40,7 +41,7 @@ export const getSmartproxyProxyUrls = (input: IBaseFinalInput, maxProxyCount = 5
             input.proxyType === PROXY_TYPE.SMARTPROXY_DATACENTER
                 ? `http://${username}:${password}@gate.dc.smartproxy.com:${20000 + i}`
                 : // eslint-disable-next-line max-len
-                  `http://user-${username}-sessionduration-${sessionDurationMinutes}:${password}@gate.smartproxy.com:${
+                  `http://user-${username}-sessionduration-${sessionDurationMinutes}:${password}@us.smartproxy.com:${
                       10000 + i
                   }`
 
@@ -75,9 +76,25 @@ export const parseProxyUrl = (proxyUrl: string) => {
 }
 
 // let apifyProxyConfiguration: ProxyConfiguration | undefined
+let apifyProxyPassword: string | undefined
 export const getProxyUrl = async (globalContext: GlobalContext<any, any, IBaseGlobalContextShared>) => {
     const proxyType = globalContext.input.proxyType
     const defaultProxyUrls = globalContext.shared.defaultProxyUrls
+
+    if ([PROXY_TYPE.APIFY_DATACENTER, PROXY_TYPE.APIFY_RESIDENTIAL].includes(proxyType)) {
+        // if (!apifyProxyConfiguration) {
+        //     apifyProxyConfiguration = await proxyConfigurationFunction({
+        //         proxyConfig: { useApifyProxy: true, groups: ['RESIDENTIAL'], countryCode: 'US' },
+        //         required: true,
+        //         force: true
+        //     })
+        // }
+        if (!apifyProxyPassword) {
+            const user = await Actor.apifyClient.user(Actor.getEnv()?.userId ?? undefined).get()
+            apifyProxyPassword = user?.proxy?.password ?? process.env.APIFY_PROXY_PASSWORD
+            // apifyProxyPassword = (Actor.getEnv() as any)?.proxyPassword ?? process.env.APIFY_PROXY_PASSWORD
+        }
+    }
 
     let proxyUrls: string[]
 
@@ -92,9 +109,10 @@ export const getProxyUrl = async (globalContext: GlobalContext<any, any, IBaseGl
             // }
 
             // const apifyProxyUrl = await apifyProxyConfiguration?.newUrl(randomXToY(1, 10000))
-            const apifyProxyUrl = `http://groups-RESIDENTIAL,countryCode-US,session-${randomXToY(1, 10000)}:${
-                process.env.APIFY_PROXY_PASSWORD
-            }@proxy.apify.com:8000`
+            const apifyProxyUrl = `http://groups-RESIDENTIAL,country-US,session-${randomXToY(
+                1,
+                10000
+            )}:${apifyProxyPassword}@proxy.apify.com:8000`
             proxyUrls = apifyProxyUrl ? [apifyProxyUrl] : defaultProxyUrls
             break
         }
@@ -108,9 +126,10 @@ export const getProxyUrl = async (globalContext: GlobalContext<any, any, IBaseGl
             // }
             // http://groups-BUYPROXIES94952,session-123:PWDW@proxy.apify.com:8000
             // const apifyProxyUrl = await apifyProxyConfiguration?.newUrl(randomXToY(1, 10000))
-            const apifyProxyUrl = `http://groups-BUYPROXIES94952,session-${randomXToY(1, 10000)}:${
-                process.env.APIFY_PROXY_PASSWORD
-            }@proxy.apify.com:8000`
+            const apifyProxyUrl = `http://groups-BUYPROXIES94952,session-${randomXToY(
+                1,
+                10000
+            )}:${apifyProxyPassword}@proxy.apify.com:8000`
             proxyUrls = apifyProxyUrl ? [apifyProxyUrl] : defaultProxyUrls
             break
         }

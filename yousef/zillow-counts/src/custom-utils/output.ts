@@ -1,14 +1,13 @@
 import { Actor } from 'apify'
 import _ from 'lodash'
 
-import { getSearchQuery, IFinalInput, IGlobalContextShared, IGlobalContextState } from '../utils'
+import { getSearchQuery, TimeTrackGeneralNames } from '../utils'
 import { GlobalContext, labeledLog } from '../base-utils'
-import { TimeTrackGeneralNames } from '../utils/time-tracker'
+import { DATA_SAVING_STORE_TYPE, getDatasetName } from '../utils/output'
 
-const DATA_SAVING_STORE_TYPE = {
-    KVS: 'KVS',
-    DATASET: 'DATASET'
-}
+import { IFinalInput, IGlobalContextShared, IGlobalContextState } from './types'
+import { WEBSITE_NAME } from './consts'
+
 export const saveData = async (
     globalContext: GlobalContext<IFinalInput, IGlobalContextState, IGlobalContextShared>
 ) => {
@@ -23,7 +22,7 @@ export const saveData = async (
     const totalNA =
         searchCount !== searchResults.length
             ? searchCount - searchResults.length
-            : searchResults.filter((data) => data.count === 'N/A').length
+            : searchResults.filter((data: any) => data.count === 'N/A').length
     // @ts-ignore
     const failureRate = totalResults ? `${(totalNA / totalResults).toFixed(2) * 100} %` : '100 %'
     let secDiff: number
@@ -78,5 +77,17 @@ export const saveData = async (
             // ...orderSearchResults(searchResults)
         ])
     }
+
+    if (Actor.isAtHome() && dataSavingStoreType === DATA_SAVING_STORE_TYPE.DATASET) {
+        const { defaultDatasetId } = Actor.getEnv()
+        if (defaultDatasetId) {
+            const datasetName = getDatasetName(globalContext.input, WEBSITE_NAME)
+            log.info('Updating dataset name', { ...logInfo, datasetName })
+            await Actor.apifyClient.dataset(defaultDatasetId).update({
+                name: datasetName
+            })
+        }
+    }
+
     log.info('Saving finished', { ...logInfo, itemCount: outputData.length })
 }

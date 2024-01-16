@@ -6,6 +6,7 @@ import { getSearchResults, getLocationInfo } from "./network.js";
 import { getState } from "./state.js";
 import { rate } from "./constants/rate.js";
 import { createCrawleeObj, processAryOfUrls } from "./network/crawlee.js";
+import { getSearchInfo } from "./output.js";
 
 const USETEST = false;
 const USEDEV = false;
@@ -100,6 +101,7 @@ switch(proxyInput) {
 }
 
 const ts = new Date();
+const START_TIMESTAMP = ts.getTime();
 
 // change search terms depending on searchby option
 let realSearch = county;
@@ -291,11 +293,18 @@ if (true) {
             datasetId
         })
 
-
         if (debug)
             await console.log(newData)
 
         await Actor.pushData(newData);
+
+        // Lastly, update the dataset with a name
+        const searchInfo = getSearchInfo(input)
+        const datasetName = `Zillow-${searchInfo.geo}-${searchInfo.code}-${START_TIMESTAMP}`
+        await Actor.apifyClient.dataset(datasetId).update({
+            name: datasetName
+        })
+     
     }
 }
 // Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().

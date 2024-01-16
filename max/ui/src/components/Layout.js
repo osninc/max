@@ -20,6 +20,7 @@ import {
     Select,
     Slider,
     Stack,
+    TextField,
 } from '@mui/material';
 import { defaultTheme } from '../constants/theme.js';
 
@@ -34,7 +35,6 @@ import { useAuth } from '../routes/AuthProvider';
 import { Link as RouterLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-//import TextField from '@mui/material/TextField';
 import { WhatsNew } from './WhatsNew.js';
 import { Copyright } from './Copyright.js';
 
@@ -157,7 +157,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                                 >
                                     <MenuItem>
                                         <Stack spacing={2}>
-                                            {/* <TextField
+                                            <TextField
                                                 id="outlined-error"
                                                 label="Build Number"
                                                 size="small"
@@ -167,7 +167,7 @@ const Layout = ({ children, title, onChangeDebugMenu }) => {
                                                 defaultValue={ACTORS.ZILLOW.COUNT.BUILD}
                                                 value={debugOptions.buildNumber}
                                                 onChange={(e) => handleChangeDebugMenu(e, 'buildNumber')}
-                                            /> */}
+                                            />
                                             <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                                                 <InputLabel id="demo-simple-select-helper-label">
                                                     Select Scraper

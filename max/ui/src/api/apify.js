@@ -74,7 +74,6 @@ export const fetchCountsData = async (id) => {
     try {
         //const url = `${APIFY.datasets.realTime.replace('<DATASETID>', id)}?token=${APIFY.base.token}`
         const url = buildApifyUrl('', '', 'datasets', id);
-        //console.log({ url })
         const axiosObj = {
             method: 'GET',
             url,
@@ -130,7 +129,6 @@ const getCountsSuccessfulRuns = async (source) => {
 
     //const url = `${APIFY.base.url}${APIFY.runs.endPoint}?token=${APIFY.base.token}&status=SUCCEEDED&desc=true`;
     const url = buildApifyUrl(source, 'count', 'runs');
-
     const response = await axios.get(url);
     const data = response.data;
 
@@ -164,7 +162,6 @@ const getCountsSuccessfulRuns = async (source) => {
             };
         }),
     );
-
     // Filter out ones where both listing and agent numbers are zero
     return ACTORS[source.toUpperCase()].COUNT.IGNORECOUNTFILTER
         ? aryOfItems
@@ -411,7 +408,7 @@ export const fetchData = async (source, params) => {
 
     if (tempDs === '') {
         //const url = `${APIFY.base.url}${APIFY.counts.endPoint}?token=${APIFY.base.token}&build=${buildNumber}`;
-        const url = buildApifyUrl(source, 'count', 'new');
+        const url = buildApifyUrl(source, 'count', 'new', '', buildNumber);
         axiosObj = {
             data: input,
             method: 'post',

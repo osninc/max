@@ -229,7 +229,7 @@ if (true) {
 
                         const finalResults = {
                             ...blankFields,
-                            [searchType]: searchByText,
+                            [searchBy]: searchByText,
                             timeStamp: ts.toString(),
                             status,
                             [daysKey]: t[1],

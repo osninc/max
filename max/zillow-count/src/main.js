@@ -238,7 +238,6 @@ if (true) {
                             proxyType: proxyInput,
                             scraper: scraperInput,
                             ...results,
-
                         }
                         newData = [
                             ...newData,
@@ -279,6 +278,11 @@ if (true) {
         estimatedCost += 4
         const estimatedCostStr = `$${estimatedCost?.toFixed(3)}`
         const totalRunTime = `${secDiff.toFixed(2)} seconds`
+
+        // Push 1st row to match debug row
+        await Actor.pushData({
+            '#debug': {}
+        })
 
         await Actor.pushData({
             proxyType: proxyInput,

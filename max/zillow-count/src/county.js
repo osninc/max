@@ -1,4 +1,4 @@
-import countiesJson from './data/counties.json'
+import countiesJson from './data/counties.json' assert { type: "json" }
 
 export const getCounty = (county) => {
     const [name, stateAbbr] = county.replace(' County', '').split(', ')

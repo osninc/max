@@ -219,6 +219,7 @@ if (true) {
                         const daysKey = (status === "Sold") ? "soldInLast" : "daysOnZillow";
 
                         const blankFields = {
+                            geoSearchType: "",
                             county: "",
                             state: "",
                             zipCode: "",
@@ -228,7 +229,7 @@ if (true) {
 
                         const finalResults = {
                             ...blankFields,
-                            searchType: searchByText,
+                            [searchType]: searchByText,
                             timeStamp: ts.toString(),
                             status,
                             [daysKey]: t[1],
@@ -237,7 +238,7 @@ if (true) {
                             timeToGetInfo: `${((endTime - startTime) / 1000).toFixed(2)} seconds`,
                             proxyType: proxyInput,
                             scraper: scraperInput,
-                            ...results,
+                            ...results
                         }
                         newData = [
                             ...newData,
@@ -278,11 +279,6 @@ if (true) {
         estimatedCost += 4
         const estimatedCostStr = `$${estimatedCost?.toFixed(3)}`
         const totalRunTime = `${secDiff.toFixed(2)} seconds`
-
-        // Push 1st row to match debug row
-        await Actor.pushData({
-            '#debug': {}
-        })
 
         await Actor.pushData({
             proxyType: proxyInput,

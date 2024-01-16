@@ -5,9 +5,9 @@ export const zillow = {
         search: "https://www.zillow.com/search/GetSearchPageState.htm"
     },
     wants: {
-        cat1: ["mapResults"],
-        cat2: ["total"],
-        regionResults: ["regionResults"]
+        cat1: ['mapResults', 'listResults'],
+        cat2: ['total']
+        //regionResults: ["regionResults"]
     },
     regionType: {
         county: 4,

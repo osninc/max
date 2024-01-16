@@ -100,6 +100,6 @@ export const getSearchResults = async (searchQueryState, refererUrl, proxy, isTe
     } catch (error) {
         //console.log(JSON.stringify(error))
         processError("getSearchResults", error);
-        return { count: "N/A" }
+        return { agentCount: 0, otherCount: 0, mapCount: 0, listings: [] }
     }
 }

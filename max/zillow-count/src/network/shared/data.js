@@ -49,5 +49,5 @@ export const transformData = data => {
     const mapCount = listings?.length ?? 0
     //const count = ("totalResultCount" in data.categoryTotals.cat1) ? data.categoryTotals.cat1.totalResultCount : "N/A"
 
-    return { agentCount, otherCount, mapCount, listings };
+    return { agentCount, otherCount, mapCount, listings: (listings ? listings : []) };
 }

@@ -120,8 +120,6 @@ export const getSearchData = async (searchQueryState, refererUrl, proxy) => {
     const response = await axios.get(url, finalConfig);
     const data = response.data;
 
-    console.log({ data });
-
     return transformData(data)
 }
 

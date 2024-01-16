@@ -213,7 +213,6 @@ if (true) {
                     else {
                         startTime = performance.now();
                         results = await getSearchResults(searchParams, url, proxy, USETEST, scraper);
-                        console.log({ results });
                         endTime = performance.now();
 
                         const searchByText = (searchBy === "state") ? getState(realSearch) : realSearch;

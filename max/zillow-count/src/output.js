@@ -1,5 +1,5 @@
-import { getCounty } from './county'
-import { getStateFips } from './state'
+import { getCounty } from './county.js'
+import { getStateFips } from './state.js'
 
 export const getSearchInfo = (input) => {
     const { county, searchType, state, zipCode } = input

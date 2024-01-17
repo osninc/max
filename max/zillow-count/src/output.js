@@ -10,12 +10,12 @@ export const getSearchInfo = (input) => {
         case 'state':
             geo = 'S'
             const stateItem = getStateFips(state)
-            code = stateItem?.fips ?? `NA-${state}`
+            code = stateItem ? stateItem.fips : `NA-${state}`
             break
         case 'county':
             geo = 'C'
             const countyItem = getCounty(county)
-            code = countyItem?.fips ?? `NA-${county}`
+            code = countyItem ? countyItem.fips : `NA-${county}`
             break
         case 'zipcode':
             geo = 'Z'

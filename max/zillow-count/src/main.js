@@ -88,8 +88,8 @@ const {
 } = input;
 
 const scraper = scraperInput === "CRAWLEE_SEND_REQUEST" ? "crawlee" : "axios";
-let proxy = proxyInput; 
-switch(proxyInput) {
+let proxy = proxyInput;
+switch (proxyInput) {
     case "APIFY_DATACENTER":
         proxy = "default";
         break;
@@ -304,7 +304,7 @@ if (true) {
         await Actor.apifyClient.dataset(datasetId).update({
             name: datasetName
         })
-     
+
     }
 }
 // Gracefully exit the Actor process. It's recommended to quit all Actors with an exit().

@@ -300,6 +300,7 @@ if (true) {
 
         // Lastly, update the dataset with a name
         const searchInfo = getSearchInfo(input)
+        console.log({ searchInfo })
         const datasetName = `Zillow-${searchInfo.geo}-${searchInfo.code}-${START_TIMESTAMP}`
         await Actor.apifyClient.dataset(datasetId).update({
             name: datasetName

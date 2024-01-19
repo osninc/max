@@ -73,7 +73,7 @@ for (let x = 0; x < outsideLoop + 1; x++) {
                 let countyName = ""
                 if (v.status === "rejected") {
                     const dataJson = JSON.parse(v.reason.config.data)
-                    reason = v.reason.response.data.error.message
+                    reason = v.reason?.response?.data?.error?.message ?? "Actor returned an unexpected error that couldn't be processed";
                     countyName = `${dataJson.index} ${dataJson.county}`
                 }
                 else {

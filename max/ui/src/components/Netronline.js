@@ -64,7 +64,7 @@ export const Netronline = ({ searchType, area }) => {
     let county = area;
     if (searchType.toLowerCase() === 'zipcode') county = zipCounty[area];
 
-    const countyData = netr[county];
+    const countyData = netr[county] ? netr[county] : [];
     const columns = [
         {
             field: 'name',

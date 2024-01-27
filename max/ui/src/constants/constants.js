@@ -217,3 +217,5 @@ export const tableHeaderStyle = {
 export const iconButtonFAStyle = {
     paddingRight: 5,
 };
+
+export const SAMEASCOUNTY = [' County', ' Parish', ' Borough', ' Census Area', ' City', ' Municipality'];

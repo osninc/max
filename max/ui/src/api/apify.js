@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ACTORS, APIFY } from '../constants/constants';
+import { ACTORS, APIFY, SAMEASCOUNTY } from '../constants/constants';
 import { processError } from '../error';
 import { convertCountyStr, convertDateToLocal, sec2min, time2epoch } from '../functions/functions';
 import { getPropertyParams } from '../zillowGraphQl';
@@ -24,6 +24,12 @@ export const fetchInventory = async () => {
 };
 // Get specific data from inventory
 export const findInventoryData = async (data, searchType, area) => {
+    const removeCountyExt = (county) => {
+        let returnCounty = county;
+        const strReplace = [...SAMEASCOUNTY, ' City and'];
+        strReplace.map((ext) => (returnCounty = returnCounty.replace(ext.toLowerCase(), '')));
+        return returnCounty;
+    };
     const transformSearchType = searchType.toLowerCase() === 'zipcode' ? 'zip' : searchType.toLowerCase();
     const entry = data.filter((e) => e.geoType && e.geoType.toLowerCase() === transformSearchType);
     const json = entry.length > 0 ? entry[0].jsonUrl : '';
@@ -35,7 +41,7 @@ export const findInventoryData = async (data, searchType, area) => {
         switch (transformSearchType) {
             case 'county':
                 field = 'county_name';
-                compareValue = compareValue.replace(' county', '');
+                compareValue = removeCountyExt(compareValue);
                 break;
             case 'zip':
                 // if there is a leading zero in the zipcode, then it becomes a number

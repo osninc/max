@@ -610,7 +610,7 @@
       "onlineUrl": "https://map.netronline.com/alabama-dallas/01047"
     }
   ],
-  "De Kalb County, AL": [],
+  "DeKalb County, AL": [],
   "Elmore County, AL": [
     {
       "name": "Elmore Mapping / GIS",
@@ -1545,7 +1545,7 @@
       "onlineUrl": "https://map.netronline.com/alabama-tallapoosa/01123"
     }
   ],
-  "St Clair County, AL": [],
+  "St. Clair County, AL": [],
   "Sumter County, AL": [
     {
       "name": "Sumter Revenue Commission",
@@ -1713,9 +1713,9 @@
       "onlineUrl": "https://map.netronline.com/alabama-tuscaloosa/01125"
     }
   ],
-  "Aleutians East County, AK": [],
-  "Aleutians West County, AK": [],
-  "Anchorage County, AK": [
+  "Aleutians East Borough, AK": [],
+  "Aleutians West Census Area, AK": [],
+  "Anchorage Municipality, AK": [
     {
       "name": "Anchorage Assessor",
       "phone": "(907) 343-6770",
@@ -1742,7 +1742,7 @@
       "onlineUrl": "https://map.netronline.com/alaska-anchorage/02020"
     }
   ],
-  "Bethel County, AK": [
+  "Bethel Census Area, AK": [
     {
       "name": "Bethel Clerk",
       "phone": "(907) 543-3391",
@@ -1759,29 +1759,25 @@
       "onlineUrl": ""
     }
   ],
-  "Bristol Bay County, AK": [],
-  "Denali County, AK": [],
-  "Dillingham County, AK": [],
-  "Fairbanks North Star County, AK": [],
-  "Kenai Peninsula County, AK": [],
-  "Haines County, AK": [],
-  "Juneau County, AK": [],
-  "Ketchikan Gateway County, AK": [],
-  "Kodiak Island County, AK": [],
-  "Lakeand Peninsula County, AK": [],
-  "Matanuska - Susitna County, AK": [],
-  "Nome County, AK": [],
-  "Northwest Arctic County, AK": [],
-  "Princeof Wales - Outer Ketchikan County, AK": [],
-  "North Slope County, AK": [],
-  "Skagway - Hoonah - Angoon County, AK": [],
-  "Sitka County, AK": [],
-  "Southeast Fairbanks County, AK": [],
-  "Valdez - Cordova County, AK": [],
-  "Wade Hampton County, AK": [],
-  "Wrangell - Petersburg County, AK": [],
-  "Yakutat County, AK": [],
-  "Yukon - Koyukuk County, AK": [],
+  "Bristol Bay Borough, AK": [],
+  "Denali Borough, AK": [],
+  "Dillingham Census Area, AK": [],
+  "Fairbanks North Star Borough, AK": [],
+  "Kenai Peninsula Borough, AK": [],
+  "Haines Borough, AK": [],
+  "Juneau City and Borough, AK": [],
+  "Ketchikan Gateway Borough, AK": [],
+  "Kodiak Island Borough, AK": [],
+  "Lake and Peninsula Borough, AK": [],
+  "Matanuska-Susitna Borough, AK": [],
+  "Nome Census Area, AK": [],
+  "Northwest Arctic Borough, AK": [],
+  "North Slope Borough, AK": [],
+  "Sitka City and Borough, AK": [],
+  "Southeast Fairbanks Census Area, AK": [],
+  "Wrangell City and Borough, AK": [],
+  "Yakutat City and Borough, AK": [],
+  "Yukon-Koyukuk Census Area, AK": [],
   "Apache County, AZ": [
     {
       "name": "Apache Treasurer",
@@ -2216,33 +2212,6 @@
     }
   ],
   "Arkansas County, AR": [],
-  "Ashley County, AR": [
-    {
-      "name": "Ashley Assessor",
-      "phone": "(870) 853-2060",
-      "onlineUrl": "http://www.actdatascout.com/default.aspx?CI=1"
-    },
-    {
-      "name": "Ashley Recorder",
-      "phone": "(870) 853-2030",
-      "onlineUrl": "http://ashleycircuitclerk.com/"
-    },
-    {
-      "name": "Ashley Tax Collector",
-      "phone": "(870) 853-2050",
-      "onlineUrl": "https://www.actdatascout.com/TaxCollector/Arkansas/Ashley"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Ashley NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/arkansas-ashley/05003"
-    }
-  ],
   "Yuma County, AZ": [
     {
       "name": "Yuma Recorder",
@@ -3796,7 +3765,7 @@
       "onlineUrl": "https://map.netronline.com/arkansas-randolph/05121"
     }
   ],
-  "St Francis County, AR": [
+  "St. Francis County, AR": [
     {
       "name": "St Francis Assessor",
       "phone": "(870) 261-1710",
@@ -8045,48 +8014,6 @@
       "onlineUrl": "https://map.netronline.com/delaware-new_castle/10003"
     }
   ],
-  "Washington County, DC": [
-    {
-      "name": "Washington Real Property Assessment",
-      "phone": "(202) 727-4829",
-      "onlineUrl": "https://mytax.dc.gov/_/#1"
-    },
-    {
-      "name": "Washington Office of Tax and Revenue",
-      "phone": "(202) 727-4829",
-      "onlineUrl": "https://otr.cfo.dc.gov/page/real-property-tax-database-search"
-    },
-    {
-      "name": "Washington Mapping / GIS",
-      "phone": "",
-      "onlineUrl": "https://otr.cfo.dc.gov/page/real-property-geographic-information-systems-gis-program"
-    },
-    {
-      "name": "Washington DC Zoning Map",
-      "phone": "",
-      "onlineUrl": "https://maps.dcoz.dc.gov/"
-    },
-    {
-      "name": "Washington Office of the Surveyor",
-      "phone": "(202) 442-4400",
-      "onlineUrl": "https://dcraonline-rms.dcra.dc.gov/SurDocsPublic/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Washington Recorder of Deeds",
-      "phone": "(202) 727-5374",
-      "onlineUrl": "https://countyfusion4.kofiletech.us/countyweb/loginDisplay.action?countyname=WashingtonDC"
-    },
-    {
-      "name": "Washington NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/district_of_columbia-washington/11001"
-    }
-  ],
   "Alachua County, FL": [
     {
       "name": "Alachua Clerk / Recorder",
@@ -8340,7 +8267,7 @@
       "onlineUrl": "https://qpublic.schneidercorp.com/Application.aspx?AppID=830&LayerID=15008&PageTypeID=1&PageID=6753"
     }
   ],
-  "De Soto County, FL": [],
+  "DeSoto County, FL": [],
   "Dixie County, FL": [
     {
       "name": "Dixie Tax Collector",
@@ -9245,7 +9172,7 @@
       "onlineUrl": "https://map.netronline.com/florida-martin/12085"
     }
   ],
-  "Miami - Dade County, FL": [],
+  "Miami-Dade County, FL": [],
   "Monroe County, FL": [
     {
       "name": "Monroe Tax Collector",
@@ -9573,7 +9500,7 @@
       "onlineUrl": "https://map.netronline.com/florida-santa_rosa/12113"
     }
   ],
-  "St Johns County, FL": [
+  "St. Johns County, FL": [
     {
       "name": "St Johns Property Appraiser",
       "phone": "(904) 827-5500",
@@ -9664,7 +9591,7 @@
       "onlineUrl": "https://map.netronline.com/florida-putnam/12107"
     }
   ],
-  "St Lucie County, FL": [
+  "St. Lucie County, FL": [
     {
       "name": "St Lucie Clerk / Recorder",
       "phone": "(772) 462-6928",
@@ -9912,28 +9839,6 @@
       "onlineUrl": "https://map.netronline.com/florida-volusia/12127"
     }
   ],
-  "Atkinson County, GA": [
-    {
-      "name": "Atkinson Assessor",
-      "phone": "(912) 422-7382",
-      "onlineUrl": "http://www.qpublic.net/ga/atkinson/"
-    },
-    {
-      "name": "Atkinson Tax Commissioner",
-      "phone": "(912) 422-7381",
-      "onlineUrl": "http://www.atkinsoncounty.org/tag.html"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Atkinson Clerk of Court",
-      "phone": "(912) 422-3343",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    }
-  ],
   "Appling County, GA": [
     {
       "name": "Appling Assessor",
@@ -9959,28 +9864,6 @@
       "name": "Appling NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/georgia-appling/13001"
-    }
-  ],
-  "Bacon County, GA": [
-    {
-      "name": "Bacon Assessor",
-      "phone": "(912) 632-5215",
-      "onlineUrl": "http://www.qpublic.net/ga/bacon/"
-    },
-    {
-      "name": "Bacon Clerk of Court",
-      "phone": "(912) 632-4915",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Bacon NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/georgia-bacon/13005"
     }
   ],
   "Washington County, FL": [
@@ -10042,33 +9925,6 @@
       "onlineUrl": "https://map.netronline.com/georgia-banks/13011"
     }
   ],
-  "Barrow County, GA": [
-    {
-      "name": "Barrow Clerk of Court",
-      "phone": "(770) 307-3035",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Barrow Assessor",
-      "phone": "(770) 307-3108",
-      "onlineUrl": "https://qpublic.schneidercorp.com/Application.aspx?AppID=635&LayerID=11218&PageTypeID=2&PageID=4614"
-    },
-    {
-      "name": "Barrow Tax Commissioner",
-      "phone": "(770) 307-3106",
-      "onlineUrl": "https://barrowcountyga.governmentwindow.com/captcha.html?requested_page=%2Ftax.html"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Barrow NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/georgia-barrow/13013"
-    }
-  ],
   "Baldwin County, GA": [
     {
       "name": "Baldwin Assessor",
@@ -10128,28 +9984,6 @@
       "onlineUrl": "https://map.netronline.com/georgia-bartow/13015"
     }
   ],
-  "Ben Hill County, GA": [
-    {
-      "name": "Ben Hill Assessor",
-      "phone": "(229) 426-5147",
-      "onlineUrl": "http://www.qpublic.net/ga/benhill/"
-    },
-    {
-      "name": "Ben Hill Clerk of Court",
-      "phone": "(229) 426-5135",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Ben Hill Tax Commissioner",
-      "phone": "(229) 426-5144",
-      "onlineUrl": "https://benhillcountyga.governmentwindow.com/captcha.html?requested_page=%2Ftax.html"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    }
-  ],
   "Baker County, GA": [
     {
       "name": "Baker Assessor",
@@ -10202,33 +10036,6 @@
       "name": "Berrien NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/georgia-berrien/13019"
-    }
-  ],
-  "Bleckley County, GA": [
-    {
-      "name": "Bleckley Clerk of Court",
-      "phone": "(478) 934-3210",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Bleckley Assessor",
-      "phone": "(478) 934-3209",
-      "onlineUrl": "https://qpublic.schneidercorp.com/Application.aspx?App=BleckleyCountyGA&Layer=Parcels&PageType=Search"
-    },
-    {
-      "name": "Bleckley Tax Commissioner",
-      "phone": "(478) 934-3203",
-      "onlineUrl": "https://bleckleycountyga.governmentwindow.com/start.html"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Bleckley NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/georgia-bleckley/13023"
     }
   ],
   "Bryan County, GA": [
@@ -10411,33 +10218,6 @@
       "name": "Burke NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/georgia-burke/13033"
-    }
-  ],
-  "Butts County, GA": [
-    {
-      "name": "Butts Assessor",
-      "phone": "(770) 775-8207",
-      "onlineUrl": "http://www.qpublic.net/ga/butts/"
-    },
-    {
-      "name": "Butts Clerk of Court",
-      "phone": "(770) 775-8215",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Butts Tax Office",
-      "phone": "(770) 775-8206",
-      "onlineUrl": "https://buttscountyga.governmentwindow.com/captcha.html?requested_page=%2Ftax.html"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Butts NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/georgia-butts/13035"
     }
   ],
   "Camden County, GA": [
@@ -10629,28 +10409,6 @@
       "onlineUrl": "https://map.netronline.com/georgia-chattooga/13055"
     }
   ],
-  "Chattahoochee County, GA": [
-    {
-      "name": "Chattahoochee Clerk of Court",
-      "phone": "(706) 989-3424",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Chattahoochee Tax Office",
-      "phone": "(706) 989-3897",
-      "onlineUrl": "https://chattahoocheecountyga.governmentwindow.com/tax.html"
-    },
-    {
-      "name": "Chattahoochee Assessor",
-      "phone": "(706) 989-3249",
-      "onlineUrl": "http://www.qpublic.net/ga/chattahoochee/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    }
-  ],
   "Clarke County, GA": [
     {
       "name": "Clarke Assessor",
@@ -10676,33 +10434,6 @@
       "name": "Clarke NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/georgia-clarke/13059"
-    }
-  ],
-  "Clay County, GA": [
-    {
-      "name": "Clay Assessor",
-      "phone": "(229) 768-2000",
-      "onlineUrl": "http://www.qpublic.net/ga/clay/"
-    },
-    {
-      "name": "Clay Clerk of Court",
-      "phone": "(229) 768-2631",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Clay Tax Collector",
-      "phone": "(229) 768-2915",
-      "onlineUrl": "http://www.claycountyga.net/tax-commissioner"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Clay NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/georgia-clay/13061"
     }
   ],
   "Cherokee County, GA": [
@@ -11101,38 +10832,6 @@
       "onlineUrl": "https://map.netronline.com/georgia-columbia/13073"
     }
   ],
-  "Dawson County, GA": [
-    {
-      "name": "Dawson Clerk of Court",
-      "phone": "(706) 344-3510",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Dawson Assessor",
-      "phone": "(706) 344-3590",
-      "onlineUrl": "https://qpublic.schneidercorp.com/Application.aspx?App=DawsonCountyGA&Layer=Parcels&PageType=Search"
-    },
-    {
-      "name": "Dawson Appraiser",
-      "phone": "",
-      "onlineUrl": "https://dawsoncounty.paytaxes.net/customer/launch.php"
-    },
-    {
-      "name": "Dawson Tax Commissioner",
-      "phone": "",
-      "onlineUrl": "http://www.dawsoncountytax.com/property"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Dawson NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/georgia-dawson/13085"
-    }
-  ],
   "Early County, GA": [
     {
       "name": "Early Assessor",
@@ -11153,33 +10852,6 @@
       "name": "Historic Aerials",
       "phone": "",
       "onlineUrl": "https://www.historicaerials.com/"
-    }
-  ],
-  "Dodge County, GA": [
-    {
-      "name": "Dodge Assessor",
-      "phone": "(478) 374-8122",
-      "onlineUrl": "http://www.qpublic.net/ga/dodge/"
-    },
-    {
-      "name": "Dodge Clerk of Court",
-      "phone": "(478) 374-2871",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Dodge Tax Commissioner",
-      "phone": "(478) 374-2154",
-      "onlineUrl": "https://dodgecountyga.governmentwindow.com/tax.html"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Dodge NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/georgia-dodge/13091"
     }
   ],
   "Decatur County, GA": [
@@ -11258,7 +10930,7 @@
       "onlineUrl": "https://map.netronline.com/georgia-dooly/13093"
     }
   ],
-  "De Kalb County, GA": [],
+  "DeKalb County, GA": [],
   "Douglas County, GA": [
     {
       "name": "Douglas Clerk of Court",
@@ -11397,33 +11069,6 @@
       "name": "Echols NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/georgia-echols/13101"
-    }
-  ],
-  "Elbert County, GA": [
-    {
-      "name": "Elbert Assessor",
-      "phone": "(706) 283-2008",
-      "onlineUrl": "http://www.elbertassessors.com/"
-    },
-    {
-      "name": "Elbert Clerk of Court",
-      "phone": "(706) 283-2005",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Elbert Tax Commissioner",
-      "phone": "(706) 283-2018",
-      "onlineUrl": "http://www.elbertcountytax.com/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Elbert NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/georgia-elbert/13105"
     }
   ],
   "Fannin County, GA": [
@@ -11630,28 +11275,6 @@
       "onlineUrl": "https://map.netronline.com/georgia-gilmer/13123"
     }
   ],
-  "Glascock County, GA": [
-    {
-      "name": "Glascock Assessor",
-      "phone": "(706) 598-2863",
-      "onlineUrl": "http://www.qpublic.net/ga/glascock/"
-    },
-    {
-      "name": "Glascock Clerk of Court",
-      "phone": "(706) 598-2084",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Glascock NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/georgia-glascock/13125"
-    }
-  ],
   "Glynn County, GA": [
     {
       "name": "Glynn Clerk of Court",
@@ -11842,33 +11465,6 @@
       "name": "Habersham NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/georgia-habersham/13137"
-    }
-  ],
-  "Hancock County, GA": [
-    {
-      "name": "Hancock Assessor",
-      "phone": "(706) 444-5721",
-      "onlineUrl": "http://www.qpublic.net/ga/hancock/"
-    },
-    {
-      "name": "Hancock Clerk of Court",
-      "phone": "(706) 444-6644",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Hancock Tax Commissioner",
-      "phone": "(706) 444-5148",
-      "onlineUrl": "http://hancockcountyga.gov/?page_id=3977"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Hancock NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/georgia-hancock/13141"
     }
   ],
   "Hall County, GA": [
@@ -12431,34 +12027,7 @@
       "onlineUrl": "https://map.netronline.com/georgia-lee/13177"
     }
   ],
-  "Lincoln County, GA": [
-    {
-      "name": "Lincoln Clerk of Court",
-      "phone": "(706) 359-5505",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Lincoln Tax Commissioner",
-      "phone": "(706) 359-5536",
-      "onlineUrl": "https://lincolncountyga.governmentwindow.com/tax.html"
-    },
-    {
-      "name": "Lincoln Assessor",
-      "phone": "(706) 359-5502",
-      "onlineUrl": "http://www.qpublic.net/ga/lincoln/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Lincoln NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/georgia-lincoln/13181"
-    }
-  ],
-  "Mc Intosh County, GA": [],
+  "McIntosh County, GA": [],
   "Lowndes County, GA": [
     {
       "name": "Lowndes Assessor",
@@ -12540,7 +12109,7 @@
       "onlineUrl": "https://map.netronline.com/georgia-macon/13193"
     }
   ],
-  "Mc Duffie County, GA": [],
+  "McDuffie County, GA": [],
   "Madison County, GA": [
     {
       "name": "Madison Assessor",
@@ -12787,23 +12356,6 @@
       "name": "Morgan NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/georgia-morgan/13211"
-    }
-  ],
-  "Marion County, GA": [
-    {
-      "name": "Marion Assessor",
-      "phone": "(229) 649-5504",
-      "onlineUrl": "http://www.qpublic.net/ga/marion/"
-    },
-    {
-      "name": "Marion Clerk of Court",
-      "phone": "(229) 649-7321",
-      "onlineUrl": "https://www.gsccca.org/Search/RealEstate/deedindex.asp"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
   "Montgomery County, GA": [
@@ -16122,7 +15674,7 @@
       "onlineUrl": "https://map.netronline.com/illinois-crawford/17033"
     }
   ],
-  "De Kalb County, IL": [],
+  "DeKalb County, IL": [],
   "Cumberland County, IL": [
     {
       "name": "Cumberland Assessor",
@@ -16160,43 +15712,6 @@
       "onlineUrl": "https://map.netronline.com/illinois-cumberland/17035"
     }
   ],
-  "De Witt County, IL": [
-    {
-      "name": "De Witt Assessor",
-      "phone": "(217) 935-2242",
-      "onlineUrl": "http://www.dewittcountyill.com/assessments.htm"
-    },
-    {
-      "name": "De Witt Treasurer",
-      "phone": "(217) 935-7820",
-      "onlineUrl": "http://propertytaxonline.org/Home/Home.aspx"
-    },
-    {
-      "name": "De Witt Clerk/Recorder of Deeds",
-      "phone": "(217) 935-2119",
-      "onlineUrl": "http://www.dewittcountyill.com/countyclerk.htm"
-    },
-    {
-      "name": "De Witt Mapping/GIS",
-      "phone": "",
-      "onlineUrl": "http://dewittil.mygisonline.com/"
-    },
-    {
-      "name": "Recorder of Deeds - Tapestry",
-      "phone": "",
-      "onlineUrl": "https://tapestry.fidlar.com"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "De Witt NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/illinois-de_witt/17039"
-    }
-  ],
   "Douglas County, IL": [
     {
       "name": "Douglas Assessor",
@@ -16229,7 +15744,7 @@
       "onlineUrl": "https://map.netronline.com/illinois-douglas/17041"
     }
   ],
-  "Du Page County, IL": [],
+  "DuPage County, IL": [],
   "Edgar County, IL": [
     {
       "name": "Edgar Recorder of Deeds",
@@ -17086,7 +16601,7 @@
       "onlineUrl": "https://map.netronline.com/illinois-knox/17095"
     }
   ],
-  "La Salle County, IL": [
+  "LaSalle County, IL": [
     {
       "name": "La Salle Assessor",
       "phone": "(815) 434-8233",
@@ -17145,8 +16660,8 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Mc Donough County, IL": [],
-  "Mc Henry County, IL": [],
+  "McDonough County, IL": [],
+  "McHenry County, IL": [],
   "Logan County, IL": [
     {
       "name": "Logan Assessor",
@@ -17184,7 +16699,7 @@
       "onlineUrl": "https://map.netronline.com/illinois-logan/17107"
     }
   ],
-  "Mc Lean County, IL": [],
+  "McLean County, IL": [],
   "Macoupin County, IL": [
     {
       "name": "Macoupin Recorder of Deeds",
@@ -18014,7 +17529,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "St Clair County, IL": [
+  "St. Clair County, IL": [
     {
       "name": "St Clair Assessor",
       "phone": "(618) 825-2704",
@@ -18718,43 +18233,6 @@
       "onlineUrl": "https://map.netronline.com/indiana-bartholomew/18005"
     }
   ],
-  "Blackford County, IN": [
-    {
-      "name": "Blackford Assessor",
-      "phone": "(765) 348-1707",
-      "onlineUrl": "http://beacon.schneidercorp.com/Application.aspx?AppID=113&LayerID=1281&PageTypeID=2&PageID=730"
-    },
-    {
-      "name": "Blackford Recorder",
-      "phone": "(765) 348-2207",
-      "onlineUrl": "http://www.doxpop.com/prod/recorder/"
-    },
-    {
-      "name": "Blackford Treasurer",
-      "phone": "(765) 348-2504",
-      "onlineUrl": "https://www.blackfordcounty.com/treasurer"
-    },
-    {
-      "name": "Statewide Finance System",
-      "phone": "",
-      "onlineUrl": "https://www.in.gov/dlgf/understanding-your-tax-bill/assessed-value-search/"
-    },
-    {
-      "name": "Blackford Mapping / GIS",
-      "phone": "",
-      "onlineUrl": "http://beacon.schneidercorp.com/Application.aspx?AppID=113&LayerID=1281&PageTypeID=2&PageID=730"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Blackford NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/indiana-blackford/18009"
-    }
-  ],
   "Boone County, IN": [
     {
       "name": "Boone Recorder",
@@ -19231,7 +18709,7 @@
       "onlineUrl": "https://map.netronline.com/indiana-delaware/18035"
     }
   ],
-  "De Kalb County, IN": [
+  "DeKalb County, IN": [
     {
       "name": "De Kalb Assessor",
       "phone": "(260) 925-1824",
@@ -20238,8 +19716,8 @@
       "onlineUrl": "https://map.netronline.com/indiana-jay/18075"
     }
   ],
-  "La Grange County, IN": [],
-  "La Porte County, IN": [],
+  "LaGrange County, IN": [],
+  "LaPorte County, IN": [],
   "Lake County, IN": [
     {
       "name": "Lake Treasurer",
@@ -21259,7 +20737,7 @@
       "onlineUrl": "https://map.netronline.com/indiana-scott/18143"
     }
   ],
-  "St Joseph County, IN": [
+  "St. Joseph County, IN": [
     {
       "name": "St Joseph Recorder",
       "phone": "(574) 235-9525",
@@ -23953,7 +23431,7 @@
       "onlineUrl": "https://map.netronline.com/iowa-muscatine/19139"
     }
   ],
-  "O Brien County, IA": [],
+  "O'Brien County, IA": [],
   "Osceola County, IA": [
     {
       "name": "Osceola Assessor",
@@ -25230,38 +24708,6 @@
       "onlineUrl": "https://map.netronline.com/kansas-crawford/20037"
     }
   ],
-  "Decatur County, KS": [
-    {
-      "name": "Decatur Appraiser",
-      "phone": "(785) 475-8109",
-      "onlineUrl": "https://www.dccoks.org/appraiser"
-    },
-    {
-      "name": "Decatur Register of Deeds",
-      "phone": "(785) 475-8105",
-      "onlineUrl": "https://www.dccoks.org/register-of-deeds"
-    },
-    {
-      "name": "Decatur Treasurer",
-      "phone": "(785) 475-8103",
-      "onlineUrl": "https://www.dccoks.org/treasurer"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Decatur Mapping/GIS",
-      "phone": "",
-      "onlineUrl": "https://www.kansasgis.org/orka/intro.cfm?countyName=Decatur"
-    },
-    {
-      "name": "Decatur NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/kansas-decatur/20039"
-    }
-  ],
   "Cowley County, KS": [
     {
       "name": "Cowley Register of Deeds",
@@ -25843,38 +25289,6 @@
       "onlineUrl": "https://map.netronline.com/kansas-gray/20069"
     }
   ],
-  "Grant County, KS": [
-    {
-      "name": "Grant Treasurer",
-      "phone": "(620) 356-1551",
-      "onlineUrl": "http://www.ecountyworks.com/grant/"
-    },
-    {
-      "name": "Grant Appraiser",
-      "phone": "(620) 356-3362",
-      "onlineUrl": "http://www.grantcoks.org/216/Appraisal"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Grant Register of Deeds",
-      "phone": "(620) 356-1538",
-      "onlineUrl": "http://www.grantcoks.org/126/Register-of-Deeds"
-    },
-    {
-      "name": "Grant Mapping/GIS",
-      "phone": "",
-      "onlineUrl": "https://www.kansasgis.org/orka/intro.cfm?countyName=Grant"
-    },
-    {
-      "name": "Grant NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/kansas-grant/20067"
-    }
-  ],
   "Hamilton County, KS": [
     {
       "name": "Hamilton Register of Deeds",
@@ -26001,38 +25415,6 @@
       "name": "Harvey NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/kansas-harvey/20079"
-    }
-  ],
-  "Haskell County, KS": [
-    {
-      "name": "Haskell Register of Deeds",
-      "phone": "(620) 675-8343",
-      "onlineUrl": "http://www.haskellcounty.org/CountyDepartments/RegisterofDeeds/tabid/10157/Default.aspx"
-    },
-    {
-      "name": "Haskell Treasurer",
-      "phone": "(620) 675-2265",
-      "onlineUrl": "http://ecountyworks.com/haskell/"
-    },
-    {
-      "name": "Haskell Appraiser",
-      "phone": "(620) 675-8269",
-      "onlineUrl": "https://www.haskellcounty.org/county-appraiser"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "(480) 967-6752",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Haskell Mapping/GIS",
-      "phone": "",
-      "onlineUrl": "https://www.kansasgis.org/orka/intro.cfm?countyName=Haskell"
-    },
-    {
-      "name": "Haskell NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/kansas-haskell/20081"
     }
   ],
   "Hodgeman County, KS": [
@@ -26488,7 +25870,7 @@
       "onlineUrl": "https://map.netronline.com/kansas-leavenworth/20103"
     }
   ],
-  "Mc Pherson County, KS": [],
+  "McPherson County, KS": [],
   "Lincoln County, KS": [
     {
       "name": "Lincoln Register of Deeds",
@@ -26519,38 +25901,6 @@
       "name": "Lincoln NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/kansas-lincoln/20105"
-    }
-  ],
-  "Logan County, KS": [
-    {
-      "name": "Logan Appraiser",
-      "phone": "(785) 671-4821",
-      "onlineUrl": "http://ks-logan.manatron.com/"
-    },
-    {
-      "name": "Logan Register of Deeds",
-      "phone": "(785) 671-4224",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Logan Treasurer",
-      "phone": "(785) 671-3216",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Logan Mapping/GIS",
-      "phone": "",
-      "onlineUrl": "https://www.kansasgis.org/orka/intro.cfm?countyName=Logan"
-    },
-    {
-      "name": "Logan NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/kansas-logan/20109"
     }
   ],
   "Marion County, KS": [
@@ -28099,28 +27449,6 @@
       "onlineUrl": "https://map.netronline.com/kansas-wyandotte/20209"
     }
   ],
-  "Anderson County, KY": [
-    {
-      "name": "Anderson County Clerk",
-      "phone": "(502) 839-3041",
-      "onlineUrl": "http://andersoncountyclerk.ky.gov/"
-    },
-    {
-      "name": "Anderson Property Valuation",
-      "phone": "(502) 839-4061",
-      "onlineUrl": "https://qpublic.schneidercorp.com/Application.aspx?App=AndersonCountyKY&PageType=Search"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Anderson Sheriff Tax Office",
-      "phone": "(502) 839-4021",
-      "onlineUrl": "https://view.properlytaxes.com/index.aspx?id=43&loc=2"
-    }
-  ],
   "Allen County, KY": [
     {
       "name": "Allen Property Valuation",
@@ -28412,28 +27740,6 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Caldwell County, KY": [
-    {
-      "name": "Caldwell County Clerk",
-      "phone": "(270) 365-6754",
-      "onlineUrl": "http://216.135.47.158/recordsearch/"
-    },
-    {
-      "name": "Caldwell Property Valuation",
-      "phone": "(270) 365-7227",
-      "onlineUrl": "http://www.qpublic.net/ky/caldwell/"
-    },
-    {
-      "name": "Caldwell Sheriff/Tax Collector",
-      "phone": "(270) 365-2088",
-      "onlineUrl": "http://caldwellcounty.ky.gov/Elected/Pages/Sheriff.aspx"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    }
-  ],
   "Butler County, KY": [
     {
       "name": "Butler County Clerk",
@@ -28527,23 +27833,6 @@
       "name": "Breathitt Property Valuation",
       "phone": "(606) 666-7973",
       "onlineUrl": "https://breathittcounty.ky.gov/elected/Pages/other-officials.aspx"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    }
-  ],
-  "Carroll County, KY": [
-    {
-      "name": "Carroll County Clerk",
-      "phone": "(502) 732-7005",
-      "onlineUrl": "http://www.carrollcountygov.us/clerk.asp"
-    },
-    {
-      "name": "Carroll Property Valuation",
-      "phone": "(502) 732-5448",
-      "onlineUrl": "https://qpublic.schneidercorp.com/Application.aspx?App=CarrollCountyKY&PageType=Search"
     },
     {
       "name": "Historic Aerials",
@@ -28659,23 +27948,6 @@
       "name": "Clay Sheriff/Tax Collector",
       "phone": "(606) 598-3471",
       "onlineUrl": "http://clay.clerkinfo.net/?page_id=146"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    }
-  ],
-  "Clinton County, KY": [
-    {
-      "name": "Clinton Property Valuation",
-      "phone": "(606) 387-5938",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Clinton County Clerk",
-      "phone": "(606) 387-5943",
-      "onlineUrl": "http://clintonwp.clerkinfo.net/#"
     },
     {
       "name": "Historic Aerials",
@@ -29167,33 +28439,6 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Harrison County, KY": [
-    {
-      "name": "Harrison County Clerk",
-      "phone": "(859) 235-0513",
-      "onlineUrl": "http://kysearch.kofile.us/Search/Default.aspx"
-    },
-    {
-      "name": "Harrison Property Valuation",
-      "phone": "(859) 234-7133",
-      "onlineUrl": "https://www.harrisoncountypva.com/"
-    },
-    {
-      "name": "Harrison Sheriffs Office (Tax Collector)",
-      "phone": "(859) 234-7135",
-      "onlineUrl": "https://www.hcsoky.com/"
-    },
-    {
-      "name": "City of Cynthiana Tax",
-      "phone": "(859) 234-7150",
-      "onlineUrl": "https://payments.cynthianaky.com/taxes.html#/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    }
-  ],
   "Henderson County, KY": [
     {
       "name": "Henderson Property Valuation",
@@ -29600,8 +28845,8 @@
       "onlineUrl": "https://lincoln.kysheriff.org/"
     }
   ],
-  "Mc Cracken County, KY": [],
-  "Mc Creary County, KY": [],
+  "McCracken County, KY": [],
+  "McCreary County, KY": [],
   "Livingston County, KY": [
     {
       "name": "Livingston County Clerk",
@@ -29624,7 +28869,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Mc Lean County, KY": [],
+  "McLean County, KY": [],
   "Madison County, KY": [
     {
       "name": "Madison County Clerk",
@@ -30630,7 +29875,7 @@
       "onlineUrl": "https://woodford.countyclerk.us/"
     }
   ],
-  "Acadia County, LA": [
+  "Acadia Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -30667,7 +29912,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-acadia/22001"
     }
   ],
-  "Allen County, LA": [
+  "Allen Parish, LA": [
     {
       "name": "Allen Clerk of Court",
       "phone": "(337) 639-4351",
@@ -30694,7 +29939,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Ascension County, LA": [
+  "Ascension Parish, LA": [
     {
       "name": "Ascension Clerk of Court",
       "phone": "(225) 473-9866 4",
@@ -30731,7 +29976,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-ascension/22005"
     }
   ],
-  "Assumption County, LA": [
+  "Assumption Parish, LA": [
     {
       "name": "Assumption Clerk of Court",
       "phone": "(985) 369-6653",
@@ -30763,7 +30008,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-assumption/22007"
     }
   ],
-  "Avoyelles County, LA": [
+  "Avoyelles Parish, LA": [
     {
       "name": "Avoyelles Clerk of Court",
       "phone": "(318) 253-7523",
@@ -30795,7 +30040,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-avoyelles/22009"
     }
   ],
-  "Beauregard County, LA": [
+  "Beauregard Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -30827,7 +30072,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-beauregard/22011"
     }
   ],
-  "Bienville County, LA": [
+  "Bienville Parish, LA": [
     {
       "name": "Bienville Clerk of Court",
       "phone": "(318) 263-2123",
@@ -30854,7 +30099,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Caldwell County, LA": [
+  "Caldwell Parish, LA": [
     {
       "name": "Caldwell Clerk of Court",
       "phone": "(318) 649-2272",
@@ -30876,7 +30121,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Calcasieu County, LA": [
+  "Calcasieu Parish, LA": [
     {
       "name": "Calcasieu Clerk of Court",
       "phone": "(337) 437-3550",
@@ -30913,7 +30158,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-calcasieu/22019"
     }
   ],
-  "Bossier County, LA": [
+  "Bossier Parish, LA": [
     {
       "name": "Bossier Assessor",
       "phone": "(318) 965-2213",
@@ -30950,7 +30195,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-bossier/22015"
     }
   ],
-  "Caddo County, LA": [
+  "Caddo Parish, LA": [
     {
       "name": "Caddo Clerk of Court",
       "phone": "(318) 226-6780",
@@ -30982,7 +30227,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Cameron County, LA": [
+  "Cameron Parish, LA": [
     {
       "name": "Cameron Clerk of Court",
       "phone": "(337) 775-5316",
@@ -31004,7 +30249,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Catahoula County, LA": [
+  "Catahoula Parish, LA": [
     {
       "name": "Catahoula Clerk of Court",
       "phone": "(318) 744-5497",
@@ -31026,7 +30271,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Claiborne County, LA": [
+  "Claiborne Parish, LA": [
     {
       "name": "Claiborne Clerk of Court",
       "phone": "(318) 927-9601",
@@ -31053,7 +30298,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "East Carroll County, LA": [
+  "East Carroll Parish, LA": [
     {
       "name": "East Carroll Clerk of Court",
       "phone": "(318) 559-2399",
@@ -31075,7 +30320,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "East Baton Rouge County, LA": [
+  "East Baton Rouge Parish, LA": [
     {
       "name": "East Baton Rouge Clerk of Court",
       "phone": "(225) 389-3950",
@@ -31112,7 +30357,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-east_baton_rouge/22033"
     }
   ],
-  "De Soto County, LA": [
+  "De Soto Parish, LA": [
     {
       "name": "De Soto Clerk of Court",
       "phone": "(318) 872-3110",
@@ -31144,7 +30389,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "East Feliciana County, LA": [
+  "East Feliciana Parish, LA": [
     {
       "name": "East Feliciana Clerk of Court",
       "phone": "(225) 683-5145",
@@ -31166,7 +30411,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Evangeline County, LA": [
+  "Evangeline Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -31193,7 +30438,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-evangeline/22039"
     }
   ],
-  "Franklin County, LA": [
+  "Franklin Parish, LA": [
     {
       "name": "Franklin Clerk of Court",
       "phone": "(318) 435-5133",
@@ -31220,7 +30465,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Grant County, LA": [
+  "Grant Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -31252,7 +30497,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-grant/22043"
     }
   ],
-  "Concordia County, LA": [
+  "Concordia Parish, LA": [
     {
       "name": "Concordia Clerk of Court",
       "phone": "(318) 336-4204",
@@ -31279,7 +30524,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Iberia County, LA": [
+  "Iberia Parish, LA": [
     {
       "name": "Iberia Assessor",
       "phone": "(337) 369-4415",
@@ -31316,7 +30561,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-iberia/22045"
     }
   ],
-  "Iberville County, LA": [
+  "Iberville Parish, LA": [
     {
       "name": "Iberville Clerk of Court",
       "phone": "(225) 687-5160",
@@ -31353,7 +30598,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-iberville/22047"
     }
   ],
-  "Jefferson County, LA": [
+  "Jefferson Parish, LA": [
     {
       "name": "Jefferson Clerk of Court",
       "phone": "(504) 364-2900",
@@ -31385,7 +30630,7 @@
       "onlineUrl": "https://www.jpassessor.net/"
     }
   ],
-  "Jackson County, LA": [
+  "Jackson Parish, LA": [
     {
       "name": "Jackson Clerk of Court",
       "phone": "(318) 259-2424",
@@ -31412,7 +30657,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Jefferson Davis County, LA": [
+  "Jefferson Davis Parish, LA": [
     {
       "name": "Jefferson Davis Assessor",
       "phone": "(337) 824-3451",
@@ -31439,7 +30684,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Lafayette County, LA": [
+  "Lafayette Parish, LA": [
     {
       "name": "Lafayette Assessor",
       "phone": "(337) 291-7080",
@@ -31471,7 +30716,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-lafayette/22055"
     }
   ],
-  "Lafourche County, LA": [
+  "Lafourche Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -31498,7 +30743,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "La Salle County, LA": [
+  "LaSalle Parish, LA": [
     {
       "name": "La Salle Assessor",
       "phone": "(318) 992-8256",
@@ -31520,7 +30765,7 @@
       "onlineUrl": "https://laclerksportal.org/"
     }
   ],
-  "Lincoln County, LA": [
+  "Lincoln Parish, LA": [
     {
       "name": "Lincoln Clerk of Court",
       "phone": "(318) 251-5130",
@@ -31557,7 +30802,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-lincoln/22061"
     }
   ],
-  "Livingston County, LA": [
+  "Livingston Parish, LA": [
     {
       "name": "Livingston Clerk of Court",
       "phone": "(225) 686-2216",
@@ -31594,7 +30839,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-livingston/22063"
     }
   ],
-  "Madison County, LA": [
+  "Madison Parish, LA": [
     {
       "name": "Madison Clerk of Court",
       "phone": "(318) 574-0655",
@@ -31621,7 +30866,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Ouachita County, LA": [
+  "Ouachita Parish, LA": [
     {
       "name": "Ouachita Clerk of Court",
       "phone": "(318) 327-1444",
@@ -31648,7 +30893,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Morehouse County, LA": [
+  "Morehouse Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -31675,7 +30920,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Plaquemines County, LA": [
+  "Plaquemines Parish, LA": [
     {
       "name": "Plaquemines Clerk of Court",
       "phone": "(504) 934-6610",
@@ -31707,7 +30952,7 @@
       "onlineUrl": "https://www.latax.state.la.us/Menu_ParishTaxRolls/TaxRolls.aspx"
     }
   ],
-  "Rapides County, LA": [
+  "Rapides Parish, LA": [
     {
       "name": "Rapides Assessor",
       "phone": "(318) 448-8511",
@@ -31734,7 +30979,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Natchitoches County, LA": [
+  "Natchitoches Parish, LA": [
     {
       "name": "Natchitoches Clerk of Court",
       "phone": "(318) 352-8152",
@@ -31761,7 +31006,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Pointe Coupee County, LA": [
+  "Pointe Coupee Parish, LA": [
     {
       "name": "Pointe Coupee Clerk of Court",
       "phone": "(225) 638-9596",
@@ -31793,7 +31038,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-pointe_coupee/22077"
     }
   ],
-  "Red River County, LA": [
+  "Red River Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -31820,7 +31065,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-red_river/22081"
     }
   ],
-  "Richland County, LA": [
+  "Richland Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -31852,7 +31097,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-richland/22083"
     }
   ],
-  "Orleans County, LA": [
+  "Orleans Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -31889,7 +31134,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-orleans/22071"
     }
   ],
-  "Sabine County, LA": [
+  "Sabine Parish, LA": [
     {
       "name": "Sabine Clerk of Court",
       "phone": "(318) 256-6223",
@@ -31911,7 +31156,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "St Bernard County, LA": [
+  "St. Bernard Parish, LA": [
     {
       "name": "St Bernard Clerk of Court",
       "phone": "(504) 271-3434",
@@ -31938,7 +31183,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "St Charles County, LA": [
+  "St. Charles Parish, LA": [
     {
       "name": "St Charles Clerk of Court",
       "phone": "(985) 783-6632",
@@ -31970,7 +31215,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-st_charles/22089"
     }
   ],
-  "St Helena County, LA": [
+  "St. Helena Parish, LA": [
     {
       "name": "St Helena Clerk of Court",
       "phone": "(225) 222-4514",
@@ -31997,7 +31242,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "St James County, LA": [
+  "St. James Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -32034,8 +31279,8 @@
       "onlineUrl": "https://map.netronline.com/louisiana-st_james/22093"
     }
   ],
-  "St Johnthe Baptist County, LA": [],
-  "St Landry County, LA": [
+  "St. John the Baptist Parish, LA": [],
+  "St. Landry Parish, LA": [
     {
       "name": "St Landry Clerk of Court",
       "phone": "(337) 942-5606 119",
@@ -32072,7 +31317,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-st_landry/22097"
     }
   ],
-  "St Martin County, LA": [
+  "St. Martin Parish, LA": [
     {
       "name": "St Martin Clerk of Court",
       "phone": "(337) 394-2210",
@@ -32099,7 +31344,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "St Mary County, LA": [
+  "St. Mary Parish, LA": [
     {
       "name": "St Mary Clerk of Court",
       "phone": "(337) 828-4100 200",
@@ -32136,8 +31381,8 @@
       "onlineUrl": "https://map.netronline.com/louisiana-st_mary/22101"
     }
   ],
-  "St Tammany County, LA": [],
-  "Tangipahoa County, LA": [
+  "St. Tammany Parish, LA": [],
+  "Tangipahoa Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -32164,7 +31409,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Tensas County, LA": [
+  "Tensas Parish, LA": [
     {
       "name": "Tensas Clerk of Court",
       "phone": "(318) 766-3921",
@@ -32186,7 +31431,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Terrebonne County, LA": [
+  "Terrebonne Parish, LA": [
     {
       "name": "Terrebonne Clerk of Court",
       "phone": "(985) 868-5660",
@@ -32223,7 +31468,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-terrebonne/22109"
     }
   ],
-  "Union County, LA": [
+  "Union Parish, LA": [
     {
       "name": "Union Clerk of Court",
       "phone": "(318) 368-3055",
@@ -32250,7 +31495,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Vermilion County, LA": [
+  "Vermilion Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -32277,7 +31522,7 @@
       "onlineUrl": "https://www.vpcocwebinquiry.net/duprocesswebinquiry"
     }
   ],
-  "Vernon County, LA": [
+  "Vernon Parish, LA": [
     {
       "name": "Vernon Clerk of Court",
       "phone": "(337) 238-4824",
@@ -32304,7 +31549,7 @@
       "onlineUrl": "https://www.vernonassessor.org/"
     }
   ],
-  "Washington County, LA": [
+  "Washington Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -32331,7 +31576,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Webster County, LA": [
+  "Webster Parish, LA": [
     {
       "name": "Webster Clerk of Court",
       "phone": "(318) 371-0366",
@@ -32358,7 +31603,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "West Baton Rouge County, LA": [
+  "West Baton Rouge Parish, LA": [
     {
       "name": "West Baton Rouge Clerk of Court",
       "phone": "(225) 383-0378",
@@ -32385,7 +31630,7 @@
       "onlineUrl": "https://map.netronline.com/louisiana-west_baton_rouge/22121"
     }
   ],
-  "West Carroll County, LA": [
+  "West Carroll Parish, LA": [
     {
       "name": "State Tax Commission",
       "phone": "",
@@ -32407,8 +31652,8 @@
       "onlineUrl": "https://laclerksportal.org/"
     }
   ],
-  "West Feliciana County, LA": [],
-  "Winn County, LA": [
+  "West Feliciana Parish, LA": [],
+  "Winn Parish, LA": [
     {
       "name": "Winn Clerk of Court",
       "phone": "(318) 628-3515",
@@ -33189,7 +32434,7 @@
       "onlineUrl": "https://map.netronline.com/maryland-montgomery/24031"
     }
   ],
-  "Prince Georges County, MD": [
+  "Prince George's County, MD": [
     {
       "name": "Prince Georges Assessor",
       "phone": "(301) 952-2500",
@@ -33216,7 +32461,7 @@
       "onlineUrl": "https://www.pgatlas.com/"
     }
   ],
-  "Queen Annes County, MD": [
+  "Queen Anne's County, MD": [
     {
       "name": "Queen Annes Assessor",
       "phone": "(410) 819-4160",
@@ -33238,7 +32483,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "St Marys County, MD": [
+  "St. Mary's County, MD": [
     {
       "name": "St Marys Assessor",
       "phone": "(301) 880-2900",
@@ -33400,7 +32645,7 @@
       "onlineUrl": "https://map.netronline.com/maryland-worcester/24047"
     }
   ],
-  "Baltimore City County, MD": [
+  "Baltimore City, MD": [
     {
       "name": "Baltimore City Assessor",
       "phone": "(410) 767-8250",
@@ -35786,7 +35031,7 @@
       "onlineUrl": "https://map.netronline.com/michigan-saginaw/26145"
     }
   ],
-  "St Clair County, MI": [
+  "St. Clair County, MI": [
     {
       "name": "St Clair Equalization Office",
       "phone": "(810) 989-6925",
@@ -35818,7 +35063,7 @@
       "onlineUrl": "https://map.netronline.com/michigan-st_clair/26147"
     }
   ],
-  "St Joseph County, MI": [
+  "St. Joseph County, MI": [
     {
       "name": "St Joseph Equalization Office",
       "phone": "(269) 467-5576",
@@ -37094,34 +36339,7 @@
       "onlineUrl": "https://map.netronline.com/minnesota-koochiching/27071"
     }
   ],
-  "Kanabec County, MN": [
-    {
-      "name": "Kanabec Assessor",
-      "phone": "(320) 679-6420",
-      "onlineUrl": "http://beacon.schneidercorp.com/Application.aspx?AppID=453&LayerID=6582&PageTypeID=2&PageID=3498&Q=2004481550#"
-    },
-    {
-      "name": "Kanabec Recorder",
-      "phone": "(320) 679-6466",
-      "onlineUrl": "http://www.kanabeccounty.org/departments/recorder.php"
-    },
-    {
-      "name": "Kanabec Auditor / Treasurer",
-      "phone": "(320) 679-6430",
-      "onlineUrl": "http://beacon.schneidercorp.com/Application.aspx?AppID=453&LayerID=6582&PageTypeID=2&PageID=3498&Q=2004481550"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Kanabec NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/minnesota-kanabec/27065"
-    }
-  ],
-  "Lacqui Parle County, MN": [],
+  "Lac qui Parle County, MN": [],
   "Kittson County, MN": [
     {
       "name": "Kittson Recorder",
@@ -37203,7 +36421,7 @@
       "onlineUrl": "https://map.netronline.com/minnesota-le_sueur/27079"
     }
   ],
-  "Lakeofthe Woods County, MN": [],
+  "Lake of the Woods County, MN": [],
   "Lincoln County, MN": [
     {
       "name": "Lincoln Recorder",
@@ -37322,7 +36540,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Mc Leod County, MN": [],
+  "McLeod County, MN": [],
   "Martin County, MN": [
     {
       "name": "Martin Assessor",
@@ -38019,7 +37237,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "St Louis County, MN": [
+  "St. Louis County, MN": [
     {
       "name": "St Louis Assessor",
       "phone": "(218) 726-2304",
@@ -38911,7 +38129,7 @@
       "onlineUrl": "https://map.netronline.com/mississippi-covington/28031"
     }
   ],
-  "De Soto County, MS": [],
+  "DeSoto County, MS": [],
   "Forrest County, MS": [
     {
       "name": "Forrest Assessor",
@@ -38954,28 +38172,6 @@
       "name": "Franklin NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/mississippi-franklin/28037"
-    }
-  ],
-  "George County, MS": [
-    {
-      "name": "George Assessor",
-      "phone": "(601) 947-7541",
-      "onlineUrl": "http://www.deltacomputersystems.com/MS/MS20/INDEX.HTML"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "George Chancery Clerk",
-      "phone": "(601) 947-4801",
-      "onlineUrl": "http://www.georgecountyrecords.com/DuProcessWebinquiry"
-    },
-    {
-      "name": "George NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/mississippi-george/28039"
     }
   ],
   "Greene County, MS": [
@@ -40864,33 +40060,6 @@
       "onlineUrl": "https://map.netronline.com/missouri-camden/29029"
     }
   ],
-  "Carter County, MO": [
-    {
-      "name": "Carter Assessor",
-      "phone": "(573) 323-4709",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Carter Recorder",
-      "phone": "(573) 323-9656",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Carter Treasurer",
-      "phone": "(573) 323-8271",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Carter Tax Collector",
-      "phone": "(573) 323-4708",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    }
-  ],
   "Cass County, MO": [
     {
       "name": "Cass Assessor",
@@ -41212,7 +40381,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "De Kalb County, MO": [],
+  "DeKalb County, MO": [],
   "Dent County, MO": [
     {
       "name": "Dent Recorder of Deeds",
@@ -41363,28 +40532,6 @@
       "name": "Greene NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/missouri-greene/29077"
-    }
-  ],
-  "Grundy County, MO": [
-    {
-      "name": "Grundy Recorder",
-      "phone": "(660) 359-4040 7",
-      "onlineUrl": "http://www.grundycountymo.com/recorder.php"
-    },
-    {
-      "name": "Grundy Treasurer",
-      "phone": "(660) 359-4040 3",
-      "onlineUrl": "http://www.grundycountymo.com/collector.php"
-    },
-    {
-      "name": "Grundy Assessor",
-      "phone": "(660) 359-4040 2",
-      "onlineUrl": "http://grundymo.devnetwedge.com/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
   "Gasconade County, MO": [
@@ -41912,7 +41059,7 @@
       "onlineUrl": "https://map.netronline.com/missouri-livingston/29117"
     }
   ],
-  "Mc Donald County, MO": [],
+  "McDonald County, MO": [],
   "Macon County, MO": [
     {
       "name": "Macon Recorder",
@@ -42715,7 +41862,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "St Charles County, MO": [
+  "St. Charles County, MO": [
     {
       "name": "St Charles Tax Collector",
       "phone": "(636) 949-7470",
@@ -42752,7 +41899,7 @@
       "onlineUrl": "https://map.netronline.com/missouri-st_charles/29183"
     }
   ],
-  "St Clair County, MO": [
+  "St. Clair County, MO": [
     {
       "name": "St. Clair Recorder",
       "phone": "(417) 646-2950",
@@ -42779,8 +41926,8 @@
       "onlineUrl": "https://map.netronline.com/missouri-st._clair/29185"
     }
   ],
-  "Ste . Genevieve County, MO": [],
-  "St Francois County, MO": [
+  "Ste. Genevieve County, MO": [],
+  "St. Francois County, MO": [
     {
       "name": "St. Francois Assessor",
       "phone": "(573) 756-1878",
@@ -42817,7 +41964,7 @@
       "onlineUrl": "https://map.netronline.com/missouri-st._francois/29187"
     }
   ],
-  "St Louis County, MO": [],
+  "St. Louis County, MO": [],
   "Saline County, MO": [
     {
       "name": "Saline Recorder",
@@ -43249,7 +42396,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "St Louis City County, MO": [
+  "St. Louis City, MO": [
     {
       "name": "St. Louis City Assessor",
       "phone": "(314) 622-4050",
@@ -43714,33 +42861,6 @@
       "onlineUrl": "https://map.netronline.com/montana-fergus/30027"
     }
   ],
-  "Golden Valley County, MT": [
-    {
-      "name": "Golden Valley Recorder",
-      "phone": "(406) 568-2231",
-      "onlineUrl": "http://www.co.golden-valley.mt.us/html/clerk.html"
-    },
-    {
-      "name": "Golden Valley Assessor",
-      "phone": "(406) 896-4000",
-      "onlineUrl": "https://svc.mt.gov/dor/property"
-    },
-    {
-      "name": "State Mapping / GIS",
-      "phone": "",
-      "onlineUrl": "https://svc.mt.gov/dor/property/prc#/map"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Golden Valley NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/montana-golden_valley/30037"
-    }
-  ],
   "Garfield County, MT": [
     {
       "name": "Garfield Recorder",
@@ -44014,7 +43134,7 @@
       "onlineUrl": "https://map.netronline.com/montana-liberty/30051"
     }
   ],
-  "Lewisand Clark County, MT": [],
+  "Lewis and Clark County, MT": [],
   "Lincoln County, MT": [
     {
       "name": "Lincoln Assessor",
@@ -44047,7 +43167,7 @@
       "onlineUrl": "https://map.netronline.com/montana-lincoln/30053"
     }
   ],
-  "Mc Cone County, MT": [],
+  "McCone County, MT": [],
   "Meagher County, MT": [
     {
       "name": "Meagher Recorder",
@@ -44889,44 +44009,7 @@
       "onlineUrl": "https://map.netronline.com/montana-wheatland/30107"
     }
   ],
-  "Yellowstone County, MT": [
-    {
-      "name": "Yellowstone Recorder",
-      "phone": "(406) 256-2785",
-      "onlineUrl": "https://crdocs.yellowstonecountymt.gov/recorder/web/"
-    },
-    {
-      "name": "Yellowstone Treasurer",
-      "phone": "(406) 256-2802",
-      "onlineUrl": "https://www.yellowstonecountymt.gov/Treasurer/PropertySearch/index.asp"
-    },
-    {
-      "name": "Yellowstone Mapping / GIS",
-      "phone": "",
-      "onlineUrl": "https://www.yellowstonecountymt.gov/mapping/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Yellowstone Assessor",
-      "phone": "(406) 896-4000",
-      "onlineUrl": "https://svc.mt.gov/dor/property"
-    },
-    {
-      "name": "State Mapping/GIS",
-      "phone": "",
-      "onlineUrl": "https://svc.mt.gov/dor/property/prc#/map"
-    },
-    {
-      "name": "Yellowstone NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/montana-yellowstone/30111"
-    }
-  ],
-  "Yellowstone Nat Park County, MT": [],
+  "Yellowstone County, MT": [],
   "Adams County, NE": [
     {
       "name": "Adams Treasurer",
@@ -45065,38 +44148,6 @@
       "name": "Blaine NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/nebraska-blaine/31009"
-    }
-  ],
-  "Box Butte County, NE": [
-    {
-      "name": "Box Butte Treasurer",
-      "phone": "(308) 762-6975",
-      "onlineUrl": "http://www.nebraskataxesonline.us/taxcollpage1.aspx?county=BoxB"
-    },
-    {
-      "name": "Box Butte Assessor",
-      "phone": "(308) 762-6100",
-      "onlineUrl": "https://boxbutte.gworks.com/"
-    },
-    {
-      "name": "Box Butte Register of Deeds",
-      "phone": "(308) 762-6565",
-      "onlineUrl": "https://nebraskadeedsonline.us/"
-    },
-    {
-      "name": "Box Butte Mapping / GIS",
-      "phone": "",
-      "onlineUrl": "https://boxbutte.gworks.com/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Box Butte NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/nebraska-box_butte/31013"
     }
   ],
   "Boyd County, NE": [
@@ -45987,38 +45038,6 @@
       "onlineUrl": "https://map.netronline.com/nebraska-gosper/31073"
     }
   ],
-  "Garfield County, NE": [
-    {
-      "name": "Garfield Register of Deeds",
-      "phone": "(308) 346-4161",
-      "onlineUrl": "http://www.nebraskadeedsonline.us/"
-    },
-    {
-      "name": "Garfield Assessor",
-      "phone": "(308) 346-4045",
-      "onlineUrl": "https://garfield.gisworkshop.com/#"
-    },
-    {
-      "name": "Garfield Mapping / GIS",
-      "phone": "",
-      "onlineUrl": "http://garfield.gisworkshop.com/#"
-    },
-    {
-      "name": "Garfield Treasurer",
-      "phone": "(308) 346-4125",
-      "onlineUrl": "https://nebraskataxesonline.us/search.aspx?county=Garfield"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Garfield NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/nebraska-garfield/31071"
-    }
-  ],
   "Garden County, NE": [
     {
       "name": "Garden Assessor",
@@ -46673,7 +45692,7 @@
       "onlineUrl": "https://map.netronline.com/nebraska-loup/31115"
     }
   ],
-  "Mc Pherson County, NE": [],
+  "McPherson County, NE": [],
   "Madison County, NE": [
     {
       "name": "Madison Assessor",
@@ -48127,7 +47146,7 @@
       "onlineUrl": "https://map.netronline.com/nevada-washoe/32031"
     }
   ],
-  "Carson City County, NV": [
+  "Carson City, NV": [
     {
       "name": "Carson City Assessor",
       "phone": "(775) 887-2130",
@@ -49196,38 +48215,6 @@
     }
   ],
   "De Baca County, NM": [],
-  "Dona Ana County, NM": [
-    {
-      "name": "Dona Ana Assessor",
-      "phone": "(575) 647-7400",
-      "onlineUrl": "https://assessor.donaanacounty.org/assessor/web"
-    },
-    {
-      "name": "Dona Ana Clerk",
-      "phone": "(575) 647-7421",
-      "onlineUrl": "http://records.donaanacounty.org/countyweb/login.do?countyname=DonaAna"
-    },
-    {
-      "name": "Dona Ana Treasurer",
-      "phone": "(575) 647-7433",
-      "onlineUrl": "https://treasurer.donaanacounty.org/treasurer/web/"
-    },
-    {
-      "name": "Dona Ana Mapping / GIS",
-      "phone": "",
-      "onlineUrl": "http://maps.donaanacounty.org/parcels/"
-    },
-    {
-      "name": "HIstoric Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Dona Ana NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/new_mexico-dona_ana/35013"
-    }
-  ],
   "Eddy County, NM": [
     {
       "name": "Eddy Assessor",
@@ -49451,7 +48438,7 @@
       "onlineUrl": "https://map.netronline.com/new_mexico-luna/35029"
     }
   ],
-  "Mc Kinley County, NM": [],
+  "McKinley County, NM": [],
   "Mora County, NM": [
     {
       "name": "Mora Assessor",
@@ -51020,7 +50007,7 @@
       "onlineUrl": "/directory/ny_numbers_rockland"
     }
   ],
-  "St Lawrence County, NY": [
+  "St. Lawrence County, NY": [
     {
       "name": "St. Lawrence Real Property Tax Service",
       "phone": "(315) 379-2272",
@@ -52233,43 +51220,6 @@
       "onlineUrl": "https://map.netronline.com/north_carolina-currituck/37053"
     }
   ],
-  "Chowan County, NC": [
-    {
-      "name": "Chowan Assessor",
-      "phone": "(252) 482-8486",
-      "onlineUrl": "http://chowancountygis.com/nc/chowan/"
-    },
-    {
-      "name": "Chowan Land Records Office",
-      "phone": "(252) 482-7157",
-      "onlineUrl": "http://www.chowancounty-nc.gov/index.asp?Type=B_BASIC&SEC={D95971B8-4D77-4648-9A48-740D36BBFC97}"
-    },
-    {
-      "name": "Chowan Register of Deeds",
-      "phone": "(252) 482-2619",
-      "onlineUrl": "http://72.15.246.186/ChowanNC/"
-    },
-    {
-      "name": "Chowan Mapping / GIS",
-      "phone": "",
-      "onlineUrl": "http://chowancountygis.com/nc/chowan/"
-    },
-    {
-      "name": "Chowan Tax Office",
-      "phone": "(252) 482-8487",
-      "onlineUrl": "http://taxonline.chowancountync.email/itsnet/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Chowan NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/north_carolina-chowan/37041"
-    }
-  ],
   "Dare County, NC": [
     {
       "name": "Dare Register of Deeds",
@@ -53126,7 +52076,7 @@
       "onlineUrl": "https://map.netronline.com/north_carolina-lenoir/37107"
     }
   ],
-  "Mc Dowell County, NC": [],
+  "McDowell County, NC": [],
   "Macon County, NC": [
     {
       "name": "Macon Assessor",
@@ -54514,33 +53464,6 @@
       "onlineUrl": "https://www.ndrin.com/counties/barnes/"
     }
   ],
-  "Adams County, ND": [
-    {
-      "name": "Adams Treasurer",
-      "phone": "(701) 567-4363",
-      "onlineUrl": "https://ndtax.biz/adams/"
-    },
-    {
-      "name": "Adams Recorder",
-      "phone": "(701) 567-2460",
-      "onlineUrl": "https://www.adamscountynd.com/departments/recorder/index.php"
-    },
-    {
-      "name": "Adams Equalization Office",
-      "phone": "(701) 567-2990",
-      "onlineUrl": "https://www.adamscountynd.com/departments/tax_equalization/index.php"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Recorders Information Network",
-      "phone": "",
-      "onlineUrl": "https://www.ndrin.com/counties/adams/"
-    }
-  ],
   "Yadkin County, NC": [
     {
       "name": "Yadkin Register of Deeds",
@@ -54603,33 +53526,6 @@
       "name": "Bottineau NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/north_dakota-bottineau/38009"
-    }
-  ],
-  "Bowman County, ND": [
-    {
-      "name": "Bowman Recorder",
-      "phone": "(701) 523-3450",
-      "onlineUrl": "https://bowmannd.com/county/departments/clerk-of-court/"
-    },
-    {
-      "name": "Bowman Treasurer",
-      "phone": "(701) 523-3665",
-      "onlineUrl": "https://bowmannd.com/county/departments/treasurer/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Bowman Assessor",
-      "phone": "(701) 523-3129",
-      "onlineUrl": "https://bowman.northdakotaassessors.com/"
-    },
-    {
-      "name": "Recorders Information Network",
-      "phone": "",
-      "onlineUrl": "https://www.ndrin.com/counties/bowman/"
     }
   ],
   "Burke County, ND": [
@@ -55139,11 +54035,11 @@
       "onlineUrl": "https://www.ndrin.com/counties/kidder/"
     }
   ],
-  "Mc Lean County, ND": [],
-  "La Moure County, ND": [],
-  "Mc Henry County, ND": [],
-  "Mc Intosh County, ND": [],
-  "Mc Kenzie County, ND": [],
+  "McLean County, ND": [],
+  "LaMoure County, ND": [],
+  "McHenry County, ND": [],
+  "McIntosh County, ND": [],
+  "McKenzie County, ND": [],
   "Logan County, ND": [
     {
       "name": "Logan Recorder",
@@ -59573,8 +58469,8 @@
       "onlineUrl": "https://map.netronline.com/oklahoma-love/40085"
     }
   ],
-  "Mc Clain County, OK": [],
-  "Mc Curtain County, OK": [],
+  "McClain County, OK": [],
+  "McCurtain County, OK": [],
   "Major County, OK": [
     {
       "name": "Major Clerk/Registrar of Deeds",
@@ -59602,7 +58498,7 @@
       "onlineUrl": "https://map.netronline.com/oklahoma-major/40093"
     }
   ],
-  "Mc Intosh County, OK": [],
+  "McIntosh County, OK": [],
   "Marshall County, OK": [
     {
       "name": "Marshall Assessor",
@@ -62793,7 +61689,7 @@
       "onlineUrl": "https://map.netronline.com/pennsylvania-luzerne/42079"
     }
   ],
-  "Mc Kean County, PA": [],
+  "McKean County, PA": [],
   "Montour County, PA": [
     {
       "name": "Montour Assessor",
@@ -63712,28 +62608,6 @@
       "onlineUrl": "https://map.netronline.com/south_carolina-berkeley/45015"
     }
   ],
-  "Calhoun County, SC": [
-    {
-      "name": "Calhoun Assessor",
-      "phone": "(803) 874-3613",
-      "onlineUrl": "https://calhouncounty.sc.gov/departments/assessor"
-    },
-    {
-      "name": "Calhoun Tax Collector",
-      "phone": "(803) 874-4021",
-      "onlineUrl": "https://calhountreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx"
-    },
-    {
-      "name": "Calhoun Clerk of Court",
-      "phone": "(803) 874-3524",
-      "onlineUrl": "https://calhouncounty.sc.gov/clerk-court"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    }
-  ],
   "Charleston County, SC": [
     {
       "name": "Charleston Auditor",
@@ -64430,7 +63304,7 @@
       "onlineUrl": "https://map.netronline.com/south_carolina-lexington/45063"
     }
   ],
-  "Mc Cormick County, SC": [],
+  "McCormick County, SC": [],
   "Marion County, SC": [
     {
       "name": "Marion Clerk of Court",
@@ -65559,23 +64433,6 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Hughes County, SD": [
-    {
-      "name": "Hughes Auditor",
-      "phone": "(605) 773-7483",
-      "onlineUrl": "http://hughescounty.org/departments/auditor/"
-    },
-    {
-      "name": "Hughes Register of Deeds",
-      "phone": "(605) 773-7495",
-      "onlineUrl": "http://hughescounty.org/departments/registerofdeeds/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    }
-  ],
   "Hutchinson County, SD": [
     {
       "name": "Hutchinson Equalization Office",
@@ -65831,8 +64688,8 @@
       "onlineUrl": "https://map.netronline.com/south_dakota-lyman/46085"
     }
   ],
-  "Mc Cook County, SD": [],
-  "Mc Pherson County, SD": [],
+  "McCook County, SD": [],
+  "McPherson County, SD": [],
   "Marshall County, SD": [
     {
       "name": "Marshall Equalization/Assessor",
@@ -66118,28 +64975,6 @@
       "name": "Sanborn NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/south_dakota-sanborn/46111"
-    }
-  ],
-  "Shannon County, SD": [
-    {
-      "name": "Shannon Equalization Office",
-      "phone": "(605) 745-5136",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Shannon Register of Deeds",
-      "phone": "(605) 745-5139",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Shannon Treasurer",
-      "phone": "(605) 745-5145",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
   "Spink County, SD": [
@@ -66468,38 +65303,6 @@
       "onlineUrl": "https://map.netronline.com/tennessee-benton/47005"
     }
   ],
-  "Bledsoe County, TN": [
-    {
-      "name": "Bledsoe Assessor",
-      "phone": "(423) 447-6548",
-      "onlineUrl": "https://www.assessment.cot.tn.gov/RE_Assessment/"
-    },
-    {
-      "name": "Bledsoe Register of Deeds",
-      "phone": "(423) 447-2020",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Bledsoe Trustee/Tax Collector",
-      "phone": "(423) 447-2369",
-      "onlineUrl": "https://secure.tennesseetrustee.org/index.php?entity=bledsoe&state=TN"
-    },
-    {
-      "name": "Bledsoe Mapping / GIS",
-      "phone": "",
-      "onlineUrl": "http://tnmap.tn.gov/assessment/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Bledsoe NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/tennessee-bledsoe/47007"
-    }
-  ],
   "Blount County, TN": [
     {
       "name": "Blount Assessor",
@@ -66599,38 +65402,6 @@
       "name": "Campbell NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/tennessee-campbell/47013"
-    }
-  ],
-  "Cannon County, TN": [
-    {
-      "name": "Cannon Register of Deeds",
-      "phone": "(615) 563-2041",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Cannon Assessor",
-      "phone": "(615) 563-5437",
-      "onlineUrl": "https://www.assessment.cot.tn.gov/RE_Assessment/"
-    },
-    {
-      "name": "Cannon Trustee (Tax Collector)",
-      "phone": "(615) 563-2282",
-      "onlineUrl": "http://www.cannon.tennesseetrustee.org/"
-    },
-    {
-      "name": "Cannon Mapping / GIS",
-      "phone": "",
-      "onlineUrl": "http://tnmap.tn.gov/assessment/"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "Cannon NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/tennessee-cannon/47015"
     }
   ],
   "Carroll County, TN": [
@@ -66980,7 +65751,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "De Kalb County, TN": [],
+  "DeKalb County, TN": [],
   "Dickson County, TN": [
     {
       "name": "Dickson Assessor",
@@ -68037,8 +66808,8 @@
       "onlineUrl": "https://map.netronline.com/tennessee-loudon/47105"
     }
   ],
-  "Mc Minn County, TN": [],
-  "Mc Nairy County, TN": [],
+  "McMinn County, TN": [],
+  "McNairy County, TN": [],
   "Madison County, TN": [
     {
       "name": "Madison Register of Deeds",
@@ -69675,33 +68446,6 @@
       "onlineUrl": "https://map.netronline.com/texas-bandera/48019"
     }
   ],
-  "Baylor County, TX": [
-    {
-      "name": "Baylor Appraisal District",
-      "phone": "(940) 888-5636",
-      "onlineUrl": "http://www.baylorcad.org"
-    },
-    {
-      "name": "Baylor Clerk",
-      "phone": "(940) 889-3322",
-      "onlineUrl": "http://www.co.baylor.tx.us/page/baylor.County.Clerk"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "TexasFile Clerk Records",
-      "phone": "",
-      "onlineUrl": "https://www.texasfile.com/search/texas/baylor-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    },
-    {
-      "name": "Baylor NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/texas-baylor/48023"
-    }
-  ],
   "Bee County, TX": [
     {
       "name": "Bee Appraisal District",
@@ -70051,28 +68795,6 @@
       "onlineUrl": "https://map.netronline.com/texas-burnet/48053"
     }
   ],
-  "Briscoe County, TX": [
-    {
-      "name": "Briscoe Appraisal District",
-      "phone": "(806) 823-2161",
-      "onlineUrl": "http://www.taxnetusa.com/texas/briscoe/"
-    },
-    {
-      "name": "Briscoe Clerk",
-      "phone": "(806) 823-2134",
-      "onlineUrl": "http://www.co.briscoe.tx.us/default.aspx?Briscoe_County/County.Clerk"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "TexasFile Clerk Records",
-      "phone": "",
-      "onlineUrl": "https://www.texasfile.com/search/texas/briscoe-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    }
-  ],
   "Burleson County, TX": [
     {
       "name": "Burleson Appraisal District",
@@ -70223,33 +68945,6 @@
       "onlineUrl": "https://map.netronline.com/texas-brooks/48047"
     }
   ],
-  "Carson County, TX": [
-    {
-      "name": "Carson Appraisal District",
-      "phone": "(806) 537-3569",
-      "onlineUrl": "http://www.carsoncad.org"
-    },
-    {
-      "name": "Carson Clerk",
-      "phone": "(806) 537-3873",
-      "onlineUrl": "https://tx.countygovernmentrecords.com/texas/web/login.jsp?submit=Enter"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "TexasFile Clerk Records",
-      "phone": "",
-      "onlineUrl": "https://www.texasfile.com/search/texas/carson-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    },
-    {
-      "name": "Carson NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/texas-carson/48065"
-    }
-  ],
   "Cameron County, TX": [
     {
       "name": "Cameron Appraisal District",
@@ -70285,33 +68980,6 @@
       "name": "Cameron NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/texas-cameron/48061"
-    }
-  ],
-  "Camp County, TX": [
-    {
-      "name": "Camp Appraisal District",
-      "phone": "(903) 856-6538",
-      "onlineUrl": "http://esearch.campcad.org/"
-    },
-    {
-      "name": "Camp Clerk",
-      "phone": "(903) 856-2731",
-      "onlineUrl": "https://www.co.camp.tx.us/page/camp.County.Clerk"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "TexasFile Clerk Records",
-      "phone": "",
-      "onlineUrl": "https://www.texasfile.com/search/texas/camp-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    },
-    {
-      "name": "Camp NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/texas-camp/48063"
     }
   ],
   "Cass County, TX": [
@@ -70457,33 +69125,6 @@
       "name": "TexasFile Clerk Records",
       "phone": "",
       "onlineUrl": "https://www.texasfile.com/search/texas/clay-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    }
-  ],
-  "Childress County, TX": [
-    {
-      "name": "Childress Appraisal District",
-      "phone": "(940) 937-6062",
-      "onlineUrl": "http://www.childresscad.org/"
-    },
-    {
-      "name": "Childress Clerk",
-      "phone": "(940) 937-6143",
-      "onlineUrl": "http://"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "TexasFile Clerk Records",
-      "phone": "",
-      "onlineUrl": "https://www.texasfile.com/search/texas/childress-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    },
-    {
-      "name": "Childress NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/texas-childress/48075"
     }
   ],
   "Cochran County, TX": [
@@ -70857,28 +69498,6 @@
       "onlineUrl": "https://map.netronline.com/texas-crane/48103"
     }
   ],
-  "Crockett County, TX": [
-    {
-      "name": "Crockett Appraisal District",
-      "phone": "(325) 392-2674",
-      "onlineUrl": "http://crockettcad.org/"
-    },
-    {
-      "name": "Crockett Clerk",
-      "phone": "(325) 392-2022",
-      "onlineUrl": "https://www.co.crockett.tx.us/page/crockett.CountyClerk"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "TexasFile Clerk Records",
-      "phone": "",
-      "onlineUrl": "https://www.texasfile.com/search/texas/crockett-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    }
-  ],
   "Crosby County, TX": [
     {
       "name": "Crosby Appraisal District",
@@ -70970,43 +69589,6 @@
       "onlineUrl": "https://www.dallascad.org/SearchOwner.aspx"
     }
   ],
-  "Culberson County, TX": [
-    {
-      "name": "Culberson Appraisal District",
-      "phone": "(432) 283-2977",
-      "onlineUrl": "http://culbersoncad.org"
-    },
-    {
-      "name": "Culberson Clerk",
-      "phone": "(432) 283-2058",
-      "onlineUrl": "http://www.co.culberson.tx.us/page/culberson.County.Clerk"
-    },
-    {
-      "name": "Culberson Mapping / GIS",
-      "phone": "",
-      "onlineUrl": "http://maplink.pandai.com/maplink/map3.jsp?name=pandai.tx.culberson.cad.public"
-    },
-    {
-      "name": "Culberson Tax Office",
-      "phone": "(432) 283-2130",
-      "onlineUrl": "http://www.co.culberson.tx.us/page/culberson.County.Assessor.Collector"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "TexasFile Clerk Records",
-      "phone": "",
-      "onlineUrl": "https://www.texasfile.com/search/texas/culberson-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    },
-    {
-      "name": "Culberson NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/texas-culberson/48109"
-    }
-  ],
   "Dawson County, TX": [
     {
       "name": "Dawson Appraisal District",
@@ -71056,7 +69638,7 @@
       "onlineUrl": "https://map.netronline.com/texas-deaf_smith/48117"
     }
   ],
-  "De Witt County, TX": [],
+  "DeWitt County, TX": [],
   "Denton County, TX": [
     {
       "name": "Denton Appraisal District",
@@ -71298,33 +69880,6 @@
       "onlineUrl": "https://map.netronline.com/texas-ector/48135"
     }
   ],
-  "Edwards County, TX": [
-    {
-      "name": "Edwards Appraisal District",
-      "phone": "(830) 683-4189",
-      "onlineUrl": "http://propaccess.trueautomation.com/clientdb/?cid=12"
-    },
-    {
-      "name": "Edwards Clerk",
-      "phone": "(830) 683-2235",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "TexasFile Clerk Records",
-      "phone": "",
-      "onlineUrl": "https://www.texasfile.com/search/texas/edwards-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    },
-    {
-      "name": "Edwards NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/texas-edwards/48137"
-    }
-  ],
   "Eastland County, TX": [
     {
       "name": "Eastland Appraisal District",
@@ -71510,33 +70065,6 @@
       "name": "Fayette NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/texas-fayette/48149"
-    }
-  ],
-  "Foard County, TX": [
-    {
-      "name": "Foard Clerk",
-      "phone": "(940) 684-1365",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "TexasFile Clerk Records",
-      "phone": "",
-      "onlineUrl": "https://www.texasfile.com/search/texas/foard-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    },
-    {
-      "name": "Foard Appraisal District",
-      "phone": "(940) 684-1225",
-      "onlineUrl": "http://www.foardcad.org/"
-    },
-    {
-      "name": "Foard NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/texas-foard/48155"
     }
   ],
   "Franklin County, TX": [
@@ -71783,33 +70311,6 @@
       "name": "Gillespie NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/texas-gillespie/48171"
-    }
-  ],
-  "Glasscock County, TX": [
-    {
-      "name": "Glasscock Appraisal District",
-      "phone": "(432) 354-2580",
-      "onlineUrl": "http://glasscockcad.org"
-    },
-    {
-      "name": "Glasscock Clerk",
-      "phone": "(432) 354-2371",
-      "onlineUrl": "http://www.co.glasscock.tx.us/page/glasscock.County.Clerk"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "TexasFile Clerk Records",
-      "phone": "",
-      "onlineUrl": "https://www.texasfile.com/search/texas/glasscock-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    },
-    {
-      "name": "Glasscock NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/texas-glasscock/48173"
     }
   ],
   "Floyd County, TX": [
@@ -72193,33 +70694,6 @@
       "onlineUrl": "https://www.texasfile.com/search/texas/hardeman-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
     }
   ],
-  "Hansford County, TX": [
-    {
-      "name": "Hansford Appraisal District",
-      "phone": "(806) 659-5575",
-      "onlineUrl": "http://www.hansfordcad.org/(0zyj3q55azqq1i45fgk5hzul)/search.aspx?clientid=hansfordcad"
-    },
-    {
-      "name": "Hansford Clerk",
-      "phone": "(806) 659-4110",
-      "onlineUrl": ""
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "TexasFile Clerk Records",
-      "phone": "",
-      "onlineUrl": "https://www.texasfile.com/search/texas/hansford-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    },
-    {
-      "name": "Hansford NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/texas-hansford/48195"
-    }
-  ],
   "Harris County, TX": [
     {
       "name": "Harris Appraisal District",
@@ -72447,33 +70921,6 @@
       "name": "Hidalgo NETR Mapping and GIS",
       "phone": "",
       "onlineUrl": "https://map.netronline.com/texas-hidalgo/48215"
-    }
-  ],
-  "Hemphill County, TX": [
-    {
-      "name": "Hemphill Appraisal District",
-      "phone": "(806) 323-8022",
-      "onlineUrl": "http://www.hemphillcad.org/"
-    },
-    {
-      "name": "Hemphill Clerk",
-      "phone": "(806) 323-6212",
-      "onlineUrl": "http://www.co.hemphill.tx.us/default.aspx?Hemphill_County/County.Clerk"
-    },
-    {
-      "name": "Historic Aerials",
-      "phone": "",
-      "onlineUrl": "https://www.historicaerials.com/"
-    },
-    {
-      "name": "TexasFile Clerk Records",
-      "phone": "",
-      "onlineUrl": "https://www.texasfile.com/search/texas/hemphill-county/county-clerk-records/?utm_source=ref&utm_medium=netronline&utm_campaign=directory"
-    },
-    {
-      "name": "Hemphill NETR Mapping and GIS",
-      "phone": "",
-      "onlineUrl": "https://map.netronline.com/texas-hemphill/48211"
     }
   ],
   "Hill County, TX": [
@@ -73846,9 +72293,9 @@
       "onlineUrl": "https://map.netronline.com/texas-lubbock/48303"
     }
   ],
-  "Mc Culloch County, TX": [],
-  "Mc Mullen County, TX": [],
-  "Mc Lennan County, TX": [],
+  "McCulloch County, TX": [],
+  "McMullen County, TX": [],
+  "McLennan County, TX": [],
   "Marion County, TX": [
     {
       "name": "Marion Appraisal District",
@@ -78419,7 +76866,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Charles City County, VA": [
+  "Charles City, VA": [
     {
       "name": "Charles City Commissioner of Revenue (Assessor)",
       "phone": "(804) 652-2161",
@@ -79143,8 +77590,8 @@
       "onlineUrl": "https://map.netronline.com/virginia-henrico/51087"
     }
   ],
-  "Isleof Wight County, VA": [],
-  "James City County, VA": [
+  "Isle of Wight County, VA": [],
+  "James City, VA": [
     {
       "name": "James City Commissioner of Revenue",
       "phone": "(757) 253-6695",
@@ -79208,7 +77655,7 @@
       "onlineUrl": "https://map.netronline.com/virginia-king_george/51099"
     }
   ],
-  "Kingand Queen County, VA": [],
+  "King and Queen County, VA": [],
   "King William County, VA": [
     {
       "name": "King William Clerk of Circuit Court",
@@ -80373,7 +78820,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Alexandria City County, VA": [
+  "Alexandria City, VA": [
     {
       "name": "Alexandria City Assessor",
       "phone": "(703) 838-4646",
@@ -80395,8 +78842,8 @@
       "onlineUrl": "https://secure.alexandriava.gov/ajis/main_menu.php"
     }
   ],
-  "Bedford City County, VA": [],
-  "Buena Vista City County, VA": [
+  "Bedford City, VA": [],
+  "Buena Vista City, VA": [
     {
       "name": "Buena Vista City Clerk of Circuit Court (Recorder)",
       "phone": "(540) 261-8627",
@@ -80418,7 +78865,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Bristol City County, VA": [
+  "Bristol City, VA": [
     {
       "name": "Bristol City Clerk of Circuit Court (Recorder)",
       "phone": "(276) 645-7321",
@@ -80563,7 +79010,7 @@
       "onlineUrl": "https://map.netronline.com/virginia-westmoreland/51193"
     }
   ],
-  "Charlottesville City County, VA": [
+  "Charlottesville City, VA": [
     {
       "name": "Charlottesville City Assessor",
       "phone": "(434) 970-3136",
@@ -80585,7 +79032,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Chesapeake City County, VA": [
+  "Chesapeake City, VA": [
     {
       "name": "Chesapeake City Recorder",
       "phone": "(757) 382-3000",
@@ -80612,7 +79059,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Clifton Forge City County, VA": [
+  "Clifton Forge City, VA": [
     {
       "name": "Clifton Forge City Finance Department",
       "phone": "(540) 863-2503",
@@ -80634,8 +79081,8 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Colonial Heights Cit County, VA": [],
-  "Covington City County, VA": [
+  "Colonial Heights City, VA": [],
+  "Covington City, VA": [
     {
       "name": "Covington City Commissioner of Revenue (Assessor)",
       "phone": "(540) 965-6350",
@@ -80662,7 +79109,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Falls Church City County, VA": [
+  "Falls Church City, VA": [
     {
       "name": "Commissioner of Revenue",
       "phone": "(703) 248-5019",
@@ -80689,7 +79136,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Franklin City County, VA": [
+  "Franklin City, VA": [
     {
       "name": "Franklin City Assessor",
       "phone": "(757) 562-8540",
@@ -80706,7 +79153,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Danville City County, VA": [
+  "Danville City, VA": [
     {
       "name": "Danville City Clerk of Circuit Court",
       "phone": "(434) 799-5168",
@@ -80733,7 +79180,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Fredericksburg City County, VA": [
+  "Fredericksburg City, VA": [
     {
       "name": "Fredericksburg City Commissioner of Revenue",
       "phone": "(540) 372-1004",
@@ -80760,7 +79207,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Fairfax City County, VA": [
+  "Fairfax City, VA": [
     {
       "name": "Fairfax City Commissioner of Revenue",
       "phone": "(703) 385-7885",
@@ -80787,7 +79234,7 @@
       "onlineUrl": "https://www.fairfaxva.gov/government/real-estate/online-services/real-estate-assessment-database"
     }
   ],
-  "Emporia City County, VA": [
+  "Emporia City, VA": [
     {
       "name": "Greensville County Clerk of Circuit Court",
       "phone": "(434) 348-4215",
@@ -80814,9 +79261,9 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Harrisonburg City County, VA": [],
-  "Galax City County, VA": [],
-  "Hampton City County, VA": [
+  "Harrisonburg City, VA": [],
+  "Galax City, VA": [],
+  "Hampton City, VA": [
     {
       "name": "Hampton City Commissioner of Revenue",
       "phone": "(757) 727-6183",
@@ -80848,7 +79295,7 @@
       "onlineUrl": "https://webgis2.hampton.gov/sites/ParcelViewer/Account/LogOn"
     }
   ],
-  "Lynchburg City County, VA": [
+  "Lynchburg City, VA": [
     {
       "name": "Lynchburg City Assessor",
       "phone": "(434) 455-3830",
@@ -80880,8 +79327,8 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Hopewell City County, VA": [],
-  "Lexington City County, VA": [
+  "Hopewell City, VA": [],
+  "Lexington City, VA": [
     {
       "name": "Lexington City Commissioner of Revenue",
       "phone": "(540) 462-3701",
@@ -80898,8 +79345,8 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Manassas Park City County, VA": [],
-  "Manassas City County, VA": [
+  "Manassas Park City, VA": [],
+  "Manassas City, VA": [
     {
       "name": "Manassas City Commissioner of Revenue",
       "phone": "(703) 257-8263",
@@ -80926,7 +79373,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Martinsville City County, VA": [
+  "Martinsville City, VA": [
     {
       "name": "Martinsville City Commissioner of Revenue",
       "phone": "(276) 656-5131",
@@ -80953,7 +79400,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Norfolk City County, VA": [
+  "Norfolk City, VA": [
     {
       "name": "Norfolk City Commissioner of Revenue",
       "phone": "(757) 664-7890",
@@ -80985,7 +79432,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Newport News City County, VA": [
+  "Newport News City, VA": [
     {
       "name": "Newport News City Assessor",
       "phone": "(757) 926-1926",
@@ -81012,7 +79459,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Norton City County, VA": [
+  "Norton City, VA": [
     {
       "name": "Norton City Commissioner of Revenue",
       "phone": "(276) 679-0031",
@@ -81029,7 +79476,7 @@
       "onlineUrl": "https://nortonva.interactivegis.com/map/"
     }
   ],
-  "Petersburg City County, VA": [
+  "Petersburg City, VA": [
     {
       "name": "Petersburg City Clerk of Circuit Court",
       "phone": "(804) 733-2367",
@@ -81051,7 +79498,7 @@
       "onlineUrl": "https://petersburgva.gov/135/Commissioner-of-the-Revenue"
     }
   ],
-  "Poquoson City County, VA": [
+  "Poquoson City, VA": [
     {
       "name": "Poquoson City Clerk of Circuit Court (York County)",
       "phone": "(757) 890-3350",
@@ -81073,7 +79520,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Portsmouth City County, VA": [
+  "Portsmouth City, VA": [
     {
       "name": "Portsmouth City Clerk of Circuit Court",
       "phone": "(757) 393-8671",
@@ -81100,7 +79547,7 @@
       "onlineUrl": "https://www2.portsmouthva.gov/portsmap/?CPN=07760430"
     }
   ],
-  "Radford City County, VA": [
+  "Radford City, VA": [
     {
       "name": "Radford City Commissioner of Revenue",
       "phone": "(540) 731-3613",
@@ -81117,7 +79564,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Richmond City County, VA": [
+  "Richmond City, VA": [
     {
       "name": "Richmond City Clerk of Circuit Court",
       "phone": "(804) 646-6530",
@@ -81144,7 +79591,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Roanoke City County, VA": [
+  "Roanoke City, VA": [
     {
       "name": "Roanoke City Commissioner of Revenue",
       "phone": "(540) 853-2521",
@@ -81171,7 +79618,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Salem City County, VA": [
+  "Salem City, VA": [
     {
       "name": "Salem City Assessor",
       "phone": "(540) 375-3058",
@@ -81193,8 +79640,8 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "South Boston City County, VA": [],
-  "Virginia Beach City County, VA": [
+  "South Boston City, VA": [],
+  "Virginia Beach City, VA": [
     {
       "name": "Virginia Beach City Treasurer",
       "phone": "(757) 385-4445",
@@ -81221,7 +79668,7 @@
       "onlineUrl": "https://vblandrecords.org/"
     }
   ],
-  "Suffolk City County, VA": [
+  "Suffolk City, VA": [
     {
       "name": "Suffolk City Treasurer",
       "phone": "(757) 514-4275",
@@ -81248,7 +79695,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Staunton City County, VA": [
+  "Staunton City, VA": [
     {
       "name": "Staunton City Clerk of Circuit Court",
       "phone": "(540) 332-3874",
@@ -81275,7 +79722,7 @@
       "onlineUrl": "https://gis.vgsi.com/stauntonva/"
     }
   ],
-  "Waynesboro City County, VA": [
+  "Waynesboro City, VA": [
     {
       "name": "Waynesboro City Commissioner of Revenue",
       "phone": "(540) 942-6610",
@@ -81302,7 +79749,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Winchester City County, VA": [
+  "Winchester City, VA": [
     {
       "name": "Winchester City Clerk of Circuit Court",
       "phone": "(540) 667-5770",
@@ -81329,7 +79776,7 @@
       "onlineUrl": "https://www.historicaerials.com/"
     }
   ],
-  "Williamsburg City County, VA": [],
+  "Williamsburg City, VA": [],
   "Adams County, WA": [
     {
       "name": "Adams Auditor / Recorder",
@@ -83152,7 +81599,7 @@
       "onlineUrl": "https://map.netronline.com/west_virginia-logan/54045"
     }
   ],
-  "Mc Dowell County, WV": [],
+  "McDowell County, WV": [],
   "Marion County, WV": [
     {
       "name": "Marion Assessor",
@@ -84781,7 +83228,7 @@
       "onlineUrl": "https://maps.sco.wisc.edu/Parcels/"
     }
   ],
-  "Fonddu Lac County, WI": [],
+  "Fond du Lac County, WI": [],
   "Crawford County, WI": [
     {
       "name": "Crawford Property Lister",
@@ -86021,7 +84468,7 @@
       "onlineUrl": "https://maps.sco.wisc.edu/Parcels/"
     }
   ],
-  "St Croix County, WI": [
+  "St. Croix County, WI": [
     {
       "name": "St. Croix Treasurer",
       "phone": "(715) 386-4645",
@@ -87328,13 +85775,6 @@
       "onlineUrl": "https://map.netronline.com/wyoming-washakie/56043"
     }
   ],
-  "Tutuila County, AS": [],
-  "Guam County, GU": [],
-  "Ofu County, AS": [],
-  "Aguijan County, MP": [],
-  "Cocos Island County, MP": [],
-  "Unknown County, AS": [],
-  "Rota County, MP": [],
   "Weston County, WY": [
     {
       "name": "Weston Assessor",
@@ -87366,12 +85806,5 @@
       "phone": "",
       "onlineUrl": "https://map.netronline.com/wyoming-weston/56045"
     }
-  ],
-  "St . Croix County, VI": [],
-  "St . Thomas County, VI": [],
-  "St . John County, VI": [],
-  "Saipan County, MP": [],
-  "Olosega County, AS": [],
-  "Tinian County, MP": [],
-  "Manua County, AS": []
+  ]
 }

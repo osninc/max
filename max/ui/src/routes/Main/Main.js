@@ -41,7 +41,7 @@ import { DetailsView } from '../../components/DetailsView.js';
 import { DisplayNumber, capitalizeFirstLetter } from '../../functions/functions.js';
 import { calcAvg, sqft2acre } from '../../functions/formulas';
 
-import { ACTORS, iconButtonFAStyle, modalStyle } from '../../constants/constants.js';
+import { ACTORS, iconButtonFAStyle, modalStyle, SAMEASCOUNTY } from '../../constants/constants.js';
 import { Copyright } from '../../components/Copyright.js';
 import { BigDataTable } from '../../components/Tables/BigDataTable.js';
 import { matrix } from '../../constants/matrix.js';
@@ -260,9 +260,8 @@ const Main = ({ debugOptions }) => {
         if (countyWithState) {
             const [county, state] = countyWithState.split(', ');
             if (state && state.length === 2) {
-                const sameAsCounty = [' County', ' Parish', ' Borough', ' Census Area', ' City', ' Municipality'];
                 let justCounty = county;
-                const replacing = sameAsCounty.map((txt) => {
+                const replacing = SAMEASCOUNTY.map((txt) => {
                     // Only exception is "carson city"
                     if (justCounty.toLowerCase() === 'carson city') return justCounty;
                     justCounty = justCounty.replace(txt, '');

@@ -59,6 +59,7 @@ import { fixListings } from '../../api/normalize.js';
 const sources = Object.keys(ACTORS).map((actor) => actor.toLowerCase());
 
 import useIsMounted from '../../hooks/useIsMounted.js';
+import statesJson from '../../data/states.json';
 
 const Main = ({ debugOptions }) => {
     const [isLoading, setLoading] = useState(false);
@@ -274,11 +275,16 @@ const Main = ({ debugOptions }) => {
 
     const processMap = (selectedValue) => {
         if (selectedValue && selectedValue.length >= 2) {
-            if (selectedValue.length === 2)
+            if (selectedValue.length === 2) {
                 // This is a state
                 // Highlight the state (region)
-                simplemaps_countymap.region_zoom(selectedValue);
-            else {
+                // if not found on the map, this could throw an error, try to prevent it by check if map exists
+                const statesArray = Object.keys(statesJson).map((v) => v.toUpperCase());
+
+                if (statesArray.includes(selectedValue.toUpperCase())) {
+                    simplemaps_countymap.region_zoom(selectedValue.toUpperCase());
+                }
+            } else {
                 // This is a county, get just the county name
                 const cs = splitCountyState(selectedValue);
                 if (cs.length > 0) {
@@ -410,8 +416,15 @@ const Main = ({ debugOptions }) => {
             // update dropdown
             try {
                 setDatasetLoading(true);
-                const datasets = await fetchDatasets(prevDsSource);
-                //console.log({datasets})
+                const tempDatasets = await fetchDatasets(prevDsSource);
+
+                // Remove duplicates and keep latest
+                const searchArray = tempDatasets.map(({ search }) => search);
+                const datasets = tempDatasets
+                    .filter(({ search }, index) => !searchArray.includes(search, index + 1))
+                    .reverse();
+                // End remove duplicate
+
                 setDatasets(datasets);
                 setBigData((prev) => {
                     return {

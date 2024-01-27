@@ -160,7 +160,7 @@ export const APIFY = {
         DATASETINFO: '/datasets/<DATASETID>/?',
         DATASETS: '/datasets/<DATASETID>/items/?',
         INPUT: '/key-value-stores/<STOREID>/records/INPUT/?',
-        RUNS: '/acts/<ACTORID>/runs/?&desc=true&build=<BUILD>',
+        RUNS: '/acts/<ACTORID>/runs/?&desc=false&build=<BUILD>',
         RUNSYNC: '/acts/<ACTORID>/run-sync-get-dataset-items/?&build=<BUILD>',
         LASTDATASET: '/acts/<ACTORID>/runs/last/dataset/items?',
     },

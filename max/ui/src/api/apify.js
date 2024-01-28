@@ -117,10 +117,13 @@ const findAllDetailDatasets = async (source) => {
         aryOfStoreIds.map(async ({ datasetId, storeId }) => {
             //const url = `${APIFY.listOfDetails.listOfInputs.replace('<STOREID>', storeId)}?token=${APIFY.base.token}&status=SUCCEEDED`;
             const url = buildApifyUrl(source, 'details', 'input', storeId);
-
-            const response = await axios.get(url);
-            const data = response.data;
-            return data.datasetId;
+            try {
+                const response = await axios.get(url);
+                const data = response.data;
+                return data.datasetId;
+            } catch (error) {
+                return {};
+            }
         }),
     );
     return [...new Set(aryOfResults)];
@@ -292,9 +295,13 @@ const findDetailsDatasetsByRunDatasetId = async (aryOfStoreIds, ds) => {
         aryOfStoreIds.map(async ({ datasetId, storeId }) => {
             //const url = `${APIFY.listOfDetails.listOfInputs.replace('<STOREID>', storeId)}?token=${APIFY.base.token}&status=SUCCEEDED`;
             const url = buildApifyUrl('', '', 'input', storeId);
-            const response = await axios.get(url);
-            const data = response.data;
-            if (data.datasetId === ds) return datasetId;
+            try {
+                const response = await axios.get(url);
+                const data = response.data;
+                if (data.datasetId === ds) return datasetId;
+            } catch (error) {
+                return;
+            }
         }),
     );
 
@@ -351,9 +358,13 @@ export const fetchDetails = async (source, ds, automaticDetails) => {
                 data: inputParams,
                 url: url4,
             };
-            const response4 = await axios(obj);
-            const data = response4.data;
-            return data;
+            try {
+                const response4 = await axios(obj);
+                const data = response4.data;
+                return data;
+            } catch (error) {
+                return {};
+            }
         }
     }
 };

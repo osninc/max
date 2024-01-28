@@ -273,12 +273,14 @@ const getDetailsSuccessfulRuns = async (source) => {
         const data = response.data;
 
         // Returns a list of storeId and datasetIds
-        return data.data.items.map((d) => {
-            return {
-                datasetId: d.defaultDatasetId,
-                storeId: d.defaultKeyValueStoreId,
-            };
-        });
+        return data.data.items
+            .filter((d) => d.actorTaskId === null)
+            .map((d) => {
+                return {
+                    datasetId: d.defaultDatasetId,
+                    storeId: d.defaultKeyValueStoreId,
+                };
+            });
     } catch (error) {
         // If there is an error, just return an empty array
         return [];

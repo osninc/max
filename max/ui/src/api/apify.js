@@ -274,7 +274,7 @@ const getDetailsSuccessfulRuns = async (source) => {
 
         // Returns a list of storeId and datasetIds
         return data.data.items
-            .filter((d) => d.actorTaskId === null)
+            .filter((d) => !d.actorTaskId)
             .map((d) => {
                 return {
                     datasetId: d.defaultDatasetId,

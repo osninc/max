@@ -418,10 +418,10 @@ const Main = ({ debugOptions }) => {
                 const tempDatasets = await fetchDatasets(prevDsSource);
 
                 // Remove duplicates and keep latest
-                const searchArray = tempDatasets.map(({ search }) => search);
-                const datasets = tempDatasets
-                    .filter(({ search }, index) => !searchArray.includes(search, index + 1))
-                    .reverse();
+                const searchArray = [...new Set(tempDatasets.map(({ search }) => search))];
+                const datasets = searchArray.map((search) => {
+                    return tempDatasets.find((ds) => ds.search === search);
+                });
                 // End remove duplicate
 
                 setDatasets(datasets);

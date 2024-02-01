@@ -9,6 +9,8 @@ import { buildApifyUrl } from './buildApifyUrl.js';
 import { fixData } from './fixData.js';
 import STATES from '../data/states.json';
 
+const USEDEMO = true;
+
 // This is only for realtor inventory data.  Get the latest successful run
 export const fetchInventory = async () => {
     try {
@@ -333,37 +335,55 @@ const findDetailsRunByDatasetId = async (source, ds) => {
 };
 
 export const fetchDetails = async (source, ds, automaticDetails) => {
-    const theDatasetId = await findDetailsRunByDatasetId(source, ds);
+    const importDemoData = async (tempDs) => {
+        let returnObj;
+        if (tempDs === 'nh9GfKC8bIuc8ucKK') {
+            returnObj = await import('../data/demo/lee_county_fl_details_nh9GfKC8bIuc8ucKK.json')
+                .then(({ default: myData }) => myData)
+                .catch(() => {});
+        } else if (tempDs === 'twYju5tWBp4B7YIvn') {
+            returnObj = await import('../data/demo/34135_details_twYju5tWBp4B7YIvn.json')
+                .then(({ default: myData }) => myData)
+                .catch(() => {});
+        }
+        return returnObj;
+    };
 
-    // if array is zero length, then there isn't a match, launch the actor
-    if (theDatasetId !== '') {
-        //const url = `${APIFY.listOfDetails.datasetItems.replace('<DATASETID>', theDatasetId)}?token=${APIFY.base.token}`;
-        const url = buildApifyUrl('', '', 'datasets', theDatasetId);
-        const response = await axios.get(url);
-        const data = response.data;
-        return data;
-    } else {
-        if (automaticDetails) {
-            const url4 = buildApifyUrl(source, 'details', 'runsync');
-            const inputParams = {
-                datasetId: ds,
-                maxConcurrency: 500,
-                proxyType: 'APIFY_RESIDENTIAL',
-                scraper: 'AXIOS',
-                sessionsKvsName: ds,
-            };
-            // POST runs the actor with the params
-            const obj = {
-                method: 'POST',
-                data: inputParams,
-                url: url4,
-            };
-            try {
-                const response4 = await axios(obj);
-                const data = response4.data;
-                return data;
-            } catch (error) {
-                return {};
+    // Demo data
+    if (USEDEMO && (ds === 'nh9GfKC8bIuc8ucKK' || ds === 'twYju5tWBp4B7YIvn')) return await importDemoData(ds);
+    else {
+        const theDatasetId = await findDetailsRunByDatasetId(source, ds);
+
+        // if array is zero length, then there isn't a match, launch the actor
+        if (theDatasetId !== '') {
+            //const url = `${APIFY.listOfDetails.datasetItems.replace('<DATASETID>', theDatasetId)}?token=${APIFY.base.token}`;
+            const url = buildApifyUrl('', '', 'datasets', theDatasetId);
+            const response = await axios.get(url);
+            const data = response.data;
+            return data;
+        } else {
+            if (automaticDetails) {
+                const url4 = buildApifyUrl(source, 'details', 'runsync');
+                const inputParams = {
+                    datasetId: ds,
+                    maxConcurrency: 500,
+                    proxyType: 'APIFY_RESIDENTIAL',
+                    scraper: 'AXIOS',
+                    sessionsKvsName: ds,
+                };
+                // POST runs the actor with the params
+                const obj = {
+                    method: 'POST',
+                    data: inputParams,
+                    url: url4,
+                };
+                try {
+                    const response4 = await axios(obj);
+                    const data = response4.data;
+                    return data;
+                } catch (error) {
+                    return {};
+                }
             }
         }
     }
@@ -420,9 +440,23 @@ export const fetchData = async (source, params) => {
     let axiosObj;
 
     // Check to see if there is an existing Dataset for this search within the last X days
-    if (tempDs === '' && !force) {
-        const existingDs = await findExistingDataset(source, search);
-        if (existingDs !== '') tempDs = existingDs;
+    // unless it's a demo data
+    if (!USEDEMO) {
+        if (tempDs === '' && !force) {
+            const existingDs = await findExistingDataset(source, search);
+            if (existingDs !== '') tempDs = existingDs;
+        }
+    } else {
+        if (
+            // New search
+            search !== 'Lee County, FL' &&
+            search !== '34135'
+        ) {
+            if (tempDs === '' && !force) {
+                const existingDs = await findExistingDataset(source, search);
+                if (existingDs !== '') tempDs = existingDs;
+            }
+        }
     }
 
     if (tempDs === '') {
@@ -434,6 +468,7 @@ export const fetchData = async (source, params) => {
             url,
         };
     } else {
+        // Existing dataset
         //const url = `${APIFY.datasets.realTime.replace('<DATASETID>', tempDs)}?token=${APIFY.base.token}`
         const url = buildApifyUrl('', '', 'datasets', tempDs);
 
@@ -443,9 +478,43 @@ export const fetchData = async (source, params) => {
         };
     }
 
+    const importDemoData = async (tempDs, search) => {
+        let returnObj;
+        if (tempDs === 'nh9GfKC8bIuc8ucKK' || search === 'Lee County, FL') {
+            returnObj = await import('../data/demo/lee_county_fl_nh9GfKC8bIuc8ucKK_20240122.json')
+                .then(({ default: myData }) => myData)
+                .catch(() => {});
+        } else if (tempDs === 'twYju5tWBp4B7YIvn' || search === '34135') {
+            returnObj = await import('../data/demo/34135_twYju5tWBp4B7YIvn_20240129.json')
+                .then(({ default: myData }) => myData)
+                .catch(() => {});
+        }
+        return returnObj;
+    };
+
     try {
-        const response = await axios(axiosObj);
-        const data = response.data;
+        // Begin Demo Data to stop from calling API
+        let demoJson;
+        // check datasetid first
+        if (USEDEMO) {
+            if (tempDs === 'nh9GfKC8bIuc8ucKK' || tempDs === 'twYju5tWBp4B7YIvn') {
+                demoJson = await importDemoData(tempDs, '');
+            } else if (
+                // New search
+                search === 'Lee County, FL' ||
+                search === '34135'
+            ) {
+                demoJson = await importDemoData('', search);
+            }
+        }
+
+        let data;
+        if (demoJson) data = demoJson;
+        else {
+            const response = await axios(axiosObj);
+            data = response.data;
+        }
+        // End demo data
 
         // There might be extra array elements that are for debugging on apify
         const filteredData = data.filter((el) => el.scraper);
